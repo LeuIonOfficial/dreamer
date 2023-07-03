@@ -1,7 +1,9 @@
+import Thoughts from "../components/Thoughts/Thoughts";
+
 const HomeScreen = () => {
     return (
         <>
-            <h1>Home screen</h1>
+            <Thoughts />
         </>
     )
 }

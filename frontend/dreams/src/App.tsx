@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen.tsx";
-import SignupScreen from "./screens/SignupScreen.tsx";
+import LoginScreen from "./screens/LoginScreen";
+import SignupScreen from "./screens/SignupScreen";
 
 
 const App = () => {

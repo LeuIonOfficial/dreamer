@@ -1,7 +1,7 @@
 import './scss/login.scss'
 import {useState, FormEvent} from "react";
 import { useNavigate } from 'react-router-dom'
-import AuthContainer from '../components/AuthContainer';
+import AuthContainer from '../components/Authorization/AuthContainer';
 
 
 

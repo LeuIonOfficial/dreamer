@@ -1,5 +1,5 @@
 import './Thoughts.css'
-import Slider from "./Thoughts/Slider.tsx";
+import Slider from "./Slider";
 
 
 const Thoughts = () => {
