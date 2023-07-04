@@ -1,0 +1,53 @@
+@import "variables";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
+
+.bg-header{
+    background-image: url("https://dreamerz.net/static/media/wbackground.1cc4ec945a2f5bb65bd3.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 24px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    box-sizing: border-box;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.logo-white{
+    background-image: url('https://dreamerz.net/static/media/whiteLogo.d4409e777733dc79e6d8.svg');
+    background-repeat: no-repeat;
+    color: white;
+    height: 60px;
+    width: 160px;
+}
+
+.buttons-together{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 330px;
+
+}
+
+.log-in{
+    width: 160px;
+    height: 48px;
+    background-color: white;
+    border-radius: 67px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.sign-up{
+    background: linear-gradient(297.06deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%);
+}
+
+
+.text-in-button{
+}
