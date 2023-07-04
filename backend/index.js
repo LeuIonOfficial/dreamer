@@ -5,10 +5,14 @@ import bcrypt from 'bcrypt'
 import registerValidator from './validations/auth.js'
 import User from './models/users.js'
 import {validationResult} from "express-validator";
+import cors from 'cors'
 
 const app = express()
 
 app.use(express.json())
+app.use(cors({
+    origin:"*"
+}))
 mongoose.connect("mongodb://localhost:27017")
     .then(()=>console.log("DB OK"))
     .catch(()=>console.log("DB ERROR"))
