@@ -1,54 +1,28 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk');*/
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk');
 
-/**{*/
-/*    box-sizing: border-box;*/
-/*}*/
-/*body{*/
-/*    margin: 0;*/
-/*}*/
-/*.container, .row, .content{*/
-/*    display: flex;*/
-/*}*/
-/*.container, .content{*/
-/*    justify-content: space-around;*/
-/*}*/
-/*.container{*/
-/*    flex-direction: row;*/
-/*    align-items: center;*/
-/*    height: 700px;*/
-/*    padding: 100px;*/
-/*}*/
+.container, .row, .content{
+    display: flex;
+}
+.container, .content{
+    justify-content: space-around;
+}
+.container{
+    flex-direction: row;
+    align-items: center;
+    height: 700px;
+    padding: 100px;
+}
 
-/*.row{*/
-/*    justify-content: center;*/
-/*    position: relative;*/
-/*    align-items: flex-start;*/
-/*    width: 400px;*/
-/*}*/
+.row{
+    justify-content: center;
+    position: relative;
+    align-items: flex-start;
+    width: 400px;
+}
 
-/*.content{*/
-/*    width: 50%;*/
-/*    height: 75%;*/
-/*    flex-direction: column;*/
-/*    margin-left: 20px;*/
-/*}*/
-/*h2, p{*/
-/*    font-family: Space Grotesk,serif;*/
-/*}*/
-/*h2{*/
-/*    color: #333;*/
-/*    font-size: 64px;*/
-/*    font-weight: 700;*/
-/*    line-height: 65px;*/
-/*    margin-bottom: 20px;*/
-/*}*/
-
-/*p{*/
-/*    color: #fff;*/
-/*    font-size: 24px;*/
-/*    font-weight: 700;*/
-/*    line-height: 31px;*/
-/*    --bs-text-opacity: 1;*/
-/*    color: rgba(33,37,41);*/
-/*    margin: 0;*/
-/*}*/
+.content{
+    width: 50%;
+    height: 75%;
+    flex-direction: column;
+    margin-left: 20px;
+}

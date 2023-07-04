@@ -1,7 +1,10 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Slider.css"
+import styled from "styled-components";
 
+const Img = styled.img`
+  width: inherit;`
 
 const responsive = {
     desktop: {
@@ -55,7 +58,7 @@ const Slider = () => {
                 {sliderImageSrc.map((image, index) => {
                     return (
                         <div className="slider" key={index}>
-                            <img src={image.src} alt="card" />
+                            <Img src={image.src} alt="card" />
                         </div>
                     );
                 })

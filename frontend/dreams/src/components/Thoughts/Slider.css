@@ -1,25 +1,22 @@
-/*.slider{*/
-/*    width: inherit;*/
-/*}*/
-/*.card{*/
-/*    height: 470px;*/
-/*    width: 350px;*/
-/*}*/
-/*img{*/
-/*    width: inherit;*/
-/*}*/
+.slider{
+    width: inherit;
+}
+.card{
+    height: 470px;
+    width: 350px;
+}
 
-/*.cursor-pointer {*/
-/*    cursor: pointer;*/
-/*}*/
+.cursor-pointer {
+    cursor: pointer;
+}
 
-/*.carousel-btn-left, .carousel-btn-right{*/
-/*    position: absolute;*/
-/*    top: 40%;*/
-/*}*/
-/*.carousel-btn-left{*/
-/*    left: 0;*/
-/*}*/
-/*.carousel-btn-right{*/
-/*    right: 0;*/
-/*}*/
+.carousel-btn-left, .carousel-btn-right{
+    position: absolute;
+    top: 40%;
+}
+.carousel-btn-left{
+    left: 0;
+}
+.carousel-btn-right{
+    right: 0;
+}
