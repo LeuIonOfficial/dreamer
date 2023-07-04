@@ -71,12 +71,27 @@ app.post('/sign-in',async(req,res)=>{
         const isValidPassword = await bcrypt.compare(req.body.password, user.passwordHash)
         if(!isValidPassword)
         {
-            return res.status(404).json({"message":"Probleme la logare"})
+            return res.json({"message":"Probleme la logare"})
         }
         else
         {
-            res.json({"message":"Logat cu succes"})
+            const token = jwt.sign({
+                    _id: user._id
+                },
+                "strong_key",
+                {
+                    expiresIn: '30d'
+                }
+            )
+            const respons = {
+                message: "succes",
+                email:user.email,
+                token
+            }
+
+            res.json(respons)
         }
+
     }
     catch (err){
         console.log(err)
