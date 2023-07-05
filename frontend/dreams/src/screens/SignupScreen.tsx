@@ -31,16 +31,22 @@ const SignupScreen = () => {
     const navigate = useNavigate()
 
     // @ts-ignore
-    const makeReqToServer = async event => {
+    const makeReqToServer = async (event: FocusEvent) => {
         await event.preventDefault()
         if (password === confirm) {
 
             axios.post('http://localhost:3000/sign-up', JSON.stringify({
-                email,
-                password
-            }))
+                    email: email,
+                    password: password
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -93,7 +99,7 @@ const SignupScreen = () => {
                         <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>
                     </FormInput>
                 </FormContent>
-                <Button>Sign up</Button>
+                <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
                     <span>Already have and account ? </span>
                     <button onClick={() => navigate('/login')}>
