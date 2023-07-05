@@ -51,10 +51,12 @@ interface IProps {
     props: ReactNode
 }
 
-export const FormInput = (props): IProps => {
+const FormInput = (props): IProps => {
     return (
         <Input {...props}>
             {props.children}
         </Input>
     )
 }
+
+export default FormInput

@@ -1,9 +1,10 @@
-import Thoughts from "../components/Thoughts/Thoughts";
+import Modal from "../components/Alerts/Modal";
 
 const HomeScreen = () => {
     return (
         <>
-            <Thoughts />
+            {/*<Thoughts />*/}
+            <Modal>Something</Modal>
         </>
     )
 }

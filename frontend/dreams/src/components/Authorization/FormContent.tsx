@@ -12,11 +12,13 @@ const Content = styled.div`
   }
 `
 
-export const FormContent = (props) => {
+const FormContent = (props) => {
     return (
         <Content>
             {props.children}
         </Content>
     )
 }
+
+export default FormContent
 
