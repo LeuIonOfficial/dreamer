@@ -43,7 +43,7 @@ app.post('/recover',async (req,res)=>{
     }
     catch (err){
         console.log(err)
-        res.json("Hz ")
+        res.status(500).json({"message":"Probleme la Modificare Parola"})
     }
 })
 
