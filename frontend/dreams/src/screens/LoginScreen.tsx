@@ -3,11 +3,12 @@ import AuthContainer from "../components/Authorization/AuthContainer";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Form from "../components/Authorization/Form";
-import {FormHeader} from "../components/Authorization/FormHeader";
-import {FormContent} from "../components/Authorization/FormContent";
-import {FormInput} from "../components/Authorization/FormInput";
+import FormHeader from "../components/Authorization/FormHeader";
+import FormContent from "../components/Authorization/FormContent";
+import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
+import Modal from "../components/Alerts/Modal";
 
 
 const LoginScreen = () => {
@@ -26,10 +27,12 @@ const LoginScreen = () => {
             setInputType('password')
         }
     }
-    const submitHandler = (event: FormEvent) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const submitHandler = async (event: FormEvent) => {
         event.preventDefault()
 
-        axios.post('', JSON.stringify({
+        await axios.post('http://localhost:3000/sign-up', JSON.stringify({
             email,
             password
         }))
@@ -43,6 +46,18 @@ const LoginScreen = () => {
 
         navigate('/')
 
+    }
+
+    const [isOpen, setShowOpen] = useState(false)
+
+    const handleOpen = (e) => {
+        e.preventDefault()
+        setShowOpen(true)
+    }
+
+    const handleClose = (e) => {
+        e.preventDefault()
+        setShowOpen(false)
     }
 
 
@@ -67,7 +82,15 @@ const LoginScreen = () => {
                     <FormInput>
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
-                            <button>Forgot password?</button>
+                            <button onClick={handleOpen}>Forgot password?</button>
+                            <Modal 
+                                isOpen={isOpen} 
+                                title='Recover password'
+                                handleClose={handleClose}
+                            >
+                                <label htmlFor="recover">Email</label>
+                                <input type="text" id='recover'/>
+                            </Modal>
                         </div>
                         <input
                             value={password}

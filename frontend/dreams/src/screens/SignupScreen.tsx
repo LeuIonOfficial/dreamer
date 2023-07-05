@@ -5,9 +5,9 @@ import AuthContainer from "../components/Authorization/AuthContainer";
 import Alert from "../components/Alerts/Modal";
 import Modal from "../components/Alerts/Modal";
 import Form from "../components/Authorization/Form";
-import {FormHeader} from "../components/Authorization/FormHeader";
-import {FormContent} from "../components/Authorization/FormContent";
-import {FormInput} from "../components/Authorization/FormInput";
+import FormHeader from "../components/Authorization/FormHeader";
+import FormContent from "../components/Authorization/FormContent";
+import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 
@@ -30,11 +30,12 @@ const SignupScreen = () => {
 
     const navigate = useNavigate()
 
-    function makeReqToServer(event) {
-        event.preventDefault()
+    // @ts-ignore
+    const makeReqToServer = async event => {
+        await event.preventDefault()
         if (password === confirm) {
 
-            axios.post('', JSON.stringify({
+            axios.post('http://localhost:3000/sign-up', JSON.stringify({
                 email,
                 password
             }))
@@ -45,10 +46,10 @@ const SignupScreen = () => {
                     console.log(error);
                 });
 
-            // navigate('/login')
+            navigate('/login')
 
         }
-    }
+    };
 
     return (
         <AuthContainer>
