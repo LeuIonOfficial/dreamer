@@ -15,9 +15,10 @@ const LoginScreen = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
-
+    const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
+
+    const navigate = useNavigate()
 
     const handleInputType = () => {
         if (inputType === 'password') {
@@ -29,26 +30,29 @@ const LoginScreen = () => {
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const submitHandler = async (event: FormEvent) => {
+    const submitHandler = (event: FormEvent) => {
         event.preventDefault()
 
-        await axios.post('http://localhost:3000/sign-up', JSON.stringify({
-            email,
-            password
-        }))
+        axios.post('http://localhost:3000/sign-in', JSON.stringify({
+                email: email,
+                password: password
+            }),
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
         console.log('submitted')
 
-        navigate('/')
 
     }
-
-    const [isOpen, setShowOpen] = useState(false)
 
     const handleOpen = (e) => {
         e.preventDefault()
@@ -82,9 +86,9 @@ const LoginScreen = () => {
                     <FormInput>
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
-                            <button onClick={handleOpen}>Forgot password?</button>
-                            <Modal 
-                                isOpen={isOpen} 
+                            <span onClick={handleOpen}>Forgot password?</span>
+                            <Modal
+                                isOpen={isOpen}
                                 title='Recover password'
                                 handleClose={handleClose}
                             >
