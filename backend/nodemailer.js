@@ -1,24 +1,25 @@
 import nodemailer from 'nodemailer'
 
-const transport = nodemailer.createTransport(
-    {
-        service: "gmail",
-        auth: {
-            user:"cltb.cecleavictor@gmail.com",
-            pass:"Bitociki"
-        }
-    }
-);
-const options = {
-    from: "cltb.cecleavictor@gmail.com",
-    to:"cecleavictor@gmail.com",
-    subject:"Fa lucreaza?",
-    text:"Da hui znaiet daca vezi asta insemna ca da"
+
+
+ export const sendMail =  async(mail,subject,message) => {
+     const transport = nodemailer.createTransport(
+         {
+             host: "smtp.mail.ru",
+             port:465,
+             secure:true,
+             auth: {
+                 user:"dream_recover@mail.ru",
+                 pass:"02j7BMnNFXGntaqtZBze"
+             }
+         }
+     );
+     const options = {
+         from: "dream_recover@mail.ru",
+         to:mail,
+         subject:subject,
+         text:message
+     }
+     const info = await transport.sendMail(options)
+     console.log("Message sent: %s", info.messageId);
 }
-transport.sendMail(options,(err,info)=> {
-    if (err) {
-        console.log(err)
-        return;
-    }
-    console.log(`Send:${info.response}`)
-})
