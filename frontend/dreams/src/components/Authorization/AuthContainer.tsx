@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 import styled from "styled-components";
 interface IProps {
-    children: ReactNode
+    children: ReactNode,
 }
-const AuthContainer = ({ children }: IProps) => {
+const AuthContainer = (props: IProps) => {
 
     const Title = styled.h1`
       color: #333;
@@ -14,13 +14,13 @@ const AuthContainer = ({ children }: IProps) => {
       margin-top: 20px;
     `
 
-
     return (
         <>
-            <div>
+            <div {...props} className='grid h-screen place-items-center'>
                 <Title>Become a dreamer Now!</Title>
-                {children}
+                {props.children}
             </div>
+
         </>
     )
 }
