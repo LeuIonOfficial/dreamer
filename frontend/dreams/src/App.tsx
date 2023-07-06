@@ -5,6 +5,8 @@ import SignupScreen from "./screens/SignupScreen";
 import {createGlobalStyle} from "styled-components";
 
 
+
+
 const Global = createGlobalStyle`
   * {
     margin: 0;
@@ -18,7 +20,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                {/*<Global/>*/}
+                <Global/>
                 <Route path='/' element={<HomeScreen/>}/>
                 <Route path='/login' element={<LoginScreen/>}/>
                 <Route path='/signup' element={<SignupScreen/>}/>
