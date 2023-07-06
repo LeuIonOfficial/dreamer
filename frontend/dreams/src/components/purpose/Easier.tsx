@@ -1,9 +1,10 @@
-import './ProjectPurpose.css'
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Background from './img/Background4.ce0bbc248e40244237da.png'
+
 
 const ContainerEasier = styled.div`
-  background-image: url("./img/Background4.ce0bbc248e40244237da.png");
+  background-image: url(${Background});
   height: 775px;
   padding: 82px 160px;
   background-repeat: no-repeat;
@@ -13,11 +14,21 @@ const ContainerEasier = styled.div`
   align-items: flex-start;
   justify-content: space-around;
   font-family: 'Space Grotesk', sans-serif;
+
+  @media screen and (max-width: 768px) {
+      padding: 20px;
+      height: auto;
+  }
 `;
+
 
 const TextHeadingEasier = styled.h1`
   color: white;
   font-size: 64px;
+
+  @media screen and (max-width: 768px) {
+      font-size: 48px;
+  }
 `;
 
 const SectionEasier = styled.div`
@@ -25,12 +36,21 @@ const SectionEasier = styled.div`
   justify-content: space-between;
   align-items: start;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+  
 `;
 
 const ColumnEasier = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const RowEasier = styled.div`
@@ -38,6 +58,13 @@ const RowEasier = styled.div`
   flex-direction: row;
   align-items: center;
   margin-bottom: 60px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 160px;
+  }
 `;
 
 const NumberCircleEasier = styled.div`
@@ -49,6 +76,13 @@ const NumberCircleEasier = styled.div`
   line-height: 82px;
   text-align: center;
   width: 82px;
+
+  @media screen and (max-width: 768px) {
+    line-height: 62px;
+    width: 62px;
+    font-size: 22px;
+    height: 62px;
+  }
 `;
 
 const TextContentEasier = styled.p`
@@ -57,6 +91,14 @@ const TextContentEasier = styled.p`
   line-height: 1;
   margin-left: 20px;
   width: 270px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 15px;
+    margin-left: 0;
+    margin-top: 15px;
+    width: 90%;
+    text-align: center;
+  }
 `;
 
 const ButtonEasier = styled.button`
@@ -68,6 +110,15 @@ const ButtonEasier = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  
+  &:hover{
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const TextButtonEasier = styled.span`

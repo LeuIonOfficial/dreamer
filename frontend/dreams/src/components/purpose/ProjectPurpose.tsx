@@ -1,6 +1,6 @@
-import './ProjectPurpose.css'
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import image from './img/myDream.8d70a4aefa9db11f815a.png';
 
 const ProjectPurposeStyle = styled.div`
   height: 809px;
@@ -11,6 +11,12 @@ const ProjectPurposeStyle = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid #f1f1f1;
   font-family: 'Space Grotesk', sans-serif;
+
+  @media screen and (max-width: 768px) {
+    padding: 60px;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const ProjectSectionPurpose = styled.div`
@@ -20,6 +26,11 @@ const ProjectSectionPurpose = styled.div`
   align-items: flex-start;
   height: 518px;
   margin-right: 35px;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 0;
+    margin-bottom: 35px;
+  }
 `;
 
 const HeadingPurpose = styled.h1`
@@ -27,6 +38,11 @@ const HeadingPurpose = styled.h1`
   font-size: 64px;
   line-height: 1;
   margin-bottom: -40px;
+
+  @media screen and (max-width: 768px) {
+    font-size: 48px;
+    margin-bottom: -30px;
+  }
 `;
 
 const ParagraphPurpose = styled.p`
@@ -35,11 +51,21 @@ const ParagraphPurpose = styled.p`
   font-weight: 700;
   line-height: 30px;
   color: #9e9e9e;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+    line-height: 30px;
+    text-align: center;
+  }
 `;
 
 const ImagePurpose = styled.img`
   width: 700px;
-  background-image: url("./img/myDream.8d70a4aefa9db11f815a.png");
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    max-width: 500px;
+  }
 `;
 const ButtonEasier = styled.div`
   background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
@@ -50,6 +76,10 @@ const ButtonEasier = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:hover{
+    font-weight: 700;
+    cursor: pointer;
+  }
 `;
 
 const TextButtonEasier = styled.span`
@@ -80,7 +110,7 @@ const ProjectPurpose = () => {
                     <TextButtonEasier>Try now</TextButtonEasier>
                 </ButtonEasier>
             </ProjectSectionPurpose>
-            <ImagePurpose src="" alt="dream" />
+            <ImagePurpose src={image} alt="dream" />
         </ProjectPurposeStyle>
 
     )
