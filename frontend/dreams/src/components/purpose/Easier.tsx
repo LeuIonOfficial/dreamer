@@ -80,7 +80,9 @@ const TextButtonEasier = styled.span`
 const Easier = () => {
 
     const navigate = useNavigate();
-
+    const handleButtonClick = () => {
+        navigate('/signup');
+    };
 
 
     return (
@@ -108,7 +110,7 @@ const Easier = () => {
                     </RowEasier>
                 </ColumnEasier>
             </SectionEasier>
-            <ButtonEasier onClick={() => navigate("/signup")}>
+            <ButtonEasier onClick={handleButtonClick}>
                 <TextButtonEasier>{`Try now`}</TextButtonEasier>
             </ButtonEasier>
         </ContainerEasier>

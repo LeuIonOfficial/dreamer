@@ -39,6 +39,7 @@ const ParagraphPurpose = styled.p`
 
 const ImagePurpose = styled.img`
   width: 700px;
+  background-image: url("./img/myDream.8d70a4aefa9db11f815a.png");
 `;
 const ButtonEasier = styled.div`
   background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
@@ -79,7 +80,7 @@ const ProjectPurpose = () => {
                     <TextButtonEasier>Try now</TextButtonEasier>
                 </ButtonEasier>
             </ProjectSectionPurpose>
-            <ImagePurpose src="https://dreamerz.net/static/media/myDream.8d70a4aefa9db11f815a.png" alt="dream" />
+            <ImagePurpose src="" alt="dream" />
         </ProjectPurposeStyle>
 
     )
