@@ -4,7 +4,6 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import {createGlobalStyle} from "styled-components";
 
-
 const Global = createGlobalStyle`
   * {
     margin: 0;
