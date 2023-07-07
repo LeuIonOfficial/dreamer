@@ -1,4 +1,5 @@
 import Modal from "../components/Alerts/Modal";
+import Easier from "../components/purpose/Easier";
 
 const HomeScreen = () => {
     return (
