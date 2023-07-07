@@ -1,3 +1,4 @@
+
 import Behero from "../components/BeOurHero/Behero";
 import RBD from "../components/ReBeHero/RBD";
 import Easier from "../components/purpose/Easier";
@@ -14,7 +15,6 @@ const Container = styled.div`
     font-family: 'Space Grotesk', sans-serif;
   
 `
-
 
 const HomeScreen = () => {
     return (
