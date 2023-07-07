@@ -1,35 +1,34 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import image from './../../assets/images/11.png'
+import image2 from './../../assets/images/12.png'
 
 const ContainerDreamerz = styled.div`
-  background-image: url("./../../assets/images/7.JPG");
-  background-color: #0f013f;
-  height: 880px;
+  background-image: url(${image});
+  height: 800px;
   background-size: cover;
-  width: 100%;
+  padding: 116px;
   display: flex;
   justify-content: space-between;
+  font-family: "Space Grotesk", sans-serif;
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
+    height: auto;
     flex-direction: column;
-    padding-bottom: 50px;
-    width: 768px;
-    background-size: cover;
+    padding: 32px;
   }
+  
 `;
 
 const DreamerzH1 = styled.div`
   color: #f1ebeb;
   font-size: 64px;
   font-weight: 700;
-  line-height: 65px;
-  margin-top: 67px;
-  margin-left: 200px;
+  margin-bottom: 50px;
 
-  @media (max-width: 768px) {
-    margin: 10px;
-    margin-top: 100px;
-    font-size: 28px;
+  @media screen and (max-width: 768px) {
+    font-size: 36px;
+    margin-bottom: 20px;
     text-align: center;
   }
 `;
@@ -39,15 +38,10 @@ const Paragraf = styled.p`
   font-size: 24px;
   font-weight: 700;
   line-height: 31px;
-  margin-top: 0;
-  margin-left: 200px;
-  font-family: "Space Grotesk", serif;
-  margin-top: 30px;
 
-  @media (max-width: 768px) {
-    margin: 20px;
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
     text-align: center;
-    font-size: 17px;
   }
 `;
 
@@ -55,41 +49,41 @@ const Buton = styled.button`
   border-radius: 43px;
   height: 72px;
   width: 350px;
-  margin-left: 390px;
-  margin-top: 250px;
-  transform: translate(-60%);
+  margin-top: 210px;
   background: linear-gradient(
     297.06deg,
     #f8ed84 23.88%,
     #f5e0ff 66.2%,
     #84fad5 109.31%
   );
-
-  @media (max-width: 768px) {
-    margin: 30px auto;
-    height: 50px;
-    width: 250px;
-    margin-left: 400px;
-    align-items: center;
-    
-    
+  
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
+    width: 100%;
   }
+  
+  &:hover{
+    font-size: 21px;
+  }
+  
 `;
 
 const ImageOneDreamers = styled.div`
   display: flex;
-  align-items: flex-end;
-  box-shadow: none;
-  width: 50%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const ImageOne = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  
-  @media(max-width: 768px){
-    margin-left: 200px;
+  width: 500px;
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
   }
 `;
 
@@ -107,15 +101,20 @@ const WhatIsDreamerz: React.FC = () => {
                 <div>
                     <DreamerzH1>What is Dreamerz?</DreamerzH1>
                     <Paragraf>
-                        This is the place where dreams come true! Sharing a $tar for a dream
-                        you will receive back twice for your own dream.
+                        This is the place where dreams
+                        <br/>
+                        come true! Sharing a $tar for a
+                        <br/>
+                        dream you will receive back twice
+                        <br/>
+                        for your own dream.
                     </Paragraf>
                 </div>
-                <Buton onClick={redirectionareSignUp1}>Try Now</Buton>
+                <Buton onClick={redirectionareSignUp1}>Try now</Buton>
             </div>
             <ImageOneDreamers>
                 <ImageOne
-                    src="./../../../../src/assets/images/7.JPG"
+                    src={image2}
                     alt="img-one"
                 />
             </ImageOneDreamers>
