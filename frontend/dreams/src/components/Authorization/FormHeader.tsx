@@ -10,14 +10,14 @@ const Form = styled.div`
   }
 `
 
-interface IProps {
-	props: ReactNode
+
+
+const FormHeader = (props) => {
+    return (
+        <Form {...props}>
+            {props.children}
+        </Form>
+    )
 }
 
-export const FormHeader = (props): IProps => {
-	return (
-		<Form {...props}>
-			{props.children}
-		</Form>
-	)
-}
+export default FormHeader

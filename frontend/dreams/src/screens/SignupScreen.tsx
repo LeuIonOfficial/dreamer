@@ -5,9 +5,9 @@ import AuthContainer from "../components/Authorization/AuthContainer";
 import Alert from "../components/Alerts/Modal";
 import Modal from "../components/Alerts/Modal";
 import Form from "../components/Authorization/Form";
-import {FormHeader} from "../components/Authorization/FormHeader";
-import {FormContent} from "../components/Authorization/FormContent";
-import {FormInput} from "../components/Authorization/FormInput";
+import FormHeader from "../components/Authorization/FormHeader";
+import FormContent from "../components/Authorization/FormContent";
+import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 
@@ -30,25 +30,32 @@ const SignupScreen = () => {
 
     const navigate = useNavigate()
 
-    function makeReqToServer(event) {
-        event.preventDefault()
+    // @ts-ignore
+    const makeReqToServer = async (event: FocusEvent) => {
+        await event.preventDefault()
         if (password === confirm) {
 
-            axios.post('', JSON.stringify({
-                email,
-                password
-            }))
+            axios.post('http://localhost:3000/sign-up', JSON.stringify({
+                    email: email,
+                    password: password
+                }),
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            )
                 .then((response) => {
-                    console.log(response);
+                    console.log(response.data);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
 
-            // navigate('/login')
+            navigate('/login')
 
         }
-    }
+    };
 
     return (
         <AuthContainer>
@@ -92,7 +99,7 @@ const SignupScreen = () => {
                         <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>
                     </FormInput>
                 </FormContent>
-                <Button>Sign up</Button>
+                <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
                     <span>Already have and account ? </span>
                     <button onClick={() => navigate('/login')}>

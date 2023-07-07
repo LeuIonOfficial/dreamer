@@ -44,17 +44,21 @@ const Input = styled.div`
     color: #50b5ff;
     font-weight: 400;
   }
+  
+  & span {
+    color: #50b5ff;
+    cursor: pointer;
+  }
 
 `
 
-interface IProps {
-    props: ReactNode
-}
 
-export const FormInput = (props): IProps => {
+const FormInput = (props) => {
     return (
         <Input {...props}>
             {props.children}
         </Input>
     )
 }
+
+export default FormInput

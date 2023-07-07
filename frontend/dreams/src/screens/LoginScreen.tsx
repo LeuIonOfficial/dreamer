@@ -3,20 +3,22 @@ import AuthContainer from "../components/Authorization/AuthContainer";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import Form from "../components/Authorization/Form";
-import {FormHeader} from "../components/Authorization/FormHeader";
-import {FormContent} from "../components/Authorization/FormContent";
-import {FormInput} from "../components/Authorization/FormInput";
+import FormHeader from "../components/Authorization/FormHeader";
+import FormContent from "../components/Authorization/FormContent";
+import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
+import Modal from "../components/Alerts/Modal";
 
 
 const LoginScreen = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
-
+    const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
+
+    const navigate = useNavigate()
 
     const handleInputType = () => {
         if (inputType === 'password') {
@@ -26,23 +28,40 @@ const LoginScreen = () => {
             setInputType('password')
         }
     }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
 
-        axios.post('', JSON.stringify({
-            email,
-            password
-        }))
+        axios.post('http://localhost:3000/sign-in', JSON.stringify({
+                email: email,
+                password: password
+            }),
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
         console.log('submitted')
 
-        navigate('/')
 
+    }
+
+    const handleOpen = (e) => {
+        e.preventDefault()
+        setShowOpen(true)
+    }
+
+    const handleClose = (e) => {
+        e.preventDefault()
+        setShowOpen(false)
     }
 
 
@@ -67,7 +86,15 @@ const LoginScreen = () => {
                     <FormInput>
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
-                            <button>Forgot password?</button>
+                            <span onClick={handleOpen}>Forgot password?</span>
+                            <Modal
+                                isOpen={isOpen}
+                                title='Recover password'
+                                handleClose={handleClose}
+                            >
+                                <label htmlFor="recover">Email</label>
+                                <input type="text" id='recover'/>
+                            </Modal>
                         </div>
                         <input
                             value={password}
