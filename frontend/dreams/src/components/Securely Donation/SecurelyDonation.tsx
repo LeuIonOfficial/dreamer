@@ -179,16 +179,16 @@ const SecurelyDonation = () => {
                                     you have donated to Received – Donations that you have received from People
                                 </p>
                             </TextHolderConatiner>
-                            <ImagePeople src="./../../../../src/assets/People.372031c702e82c76a061105c055b7f4e.svg" alt=""/>
+                            <ImagePeople src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg" alt=""/>
                         </DonationPeopleImg>
                     </ContainerTextComponents>
                 </ConatinerText>
-                <ImageSocialMedia src="./../../../../src/assets/screen.80f182283b766496e40e.png" alt="screen" />
+                <ImageSocialMedia src="./../../../../src/assets/wing/screen.80f182283b766496e40e.png" alt="screen" />
             </ContainerDiv>
 
             <GlobalDivM >
                 <TopTitleContainerM>
-                    <CircleM src="./../../../../src/assets/People.372031c702e82c76a061105c055b7f4e.svg" alt="people" />
+                    <CircleM src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg" alt="people" />
                     <TitleContainerM>
                         <img src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg" alt="security"/>
                         <h3 >Securely Donation</h3>
