@@ -8,7 +8,6 @@ import ProjectPurpose from "./components/purpose/ProjectPurpose";
 
 
 
-
 const Global = createGlobalStyle`
   * {
     margin: 0;
