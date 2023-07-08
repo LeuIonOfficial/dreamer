@@ -1,6 +1,7 @@
 import Slider from "./Slider";
 import { useMediaQuery } from 'react-responsive'
 import styled from "styled-components";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import OurTeam from "../../assets/media/ourteam.svg";
 

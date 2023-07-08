@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import image from './../../assets/images/11.png'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import image2 from './../../assets/images/12.png'
 
 const ContainerDreamerz = styled.div`

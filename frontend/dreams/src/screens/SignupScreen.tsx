@@ -101,7 +101,7 @@ const SignupScreen = () => {
                 </FormContent>
                 <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
-                    <span>Already have and account ? </span>
+                    <span>Already have an account ? </span>
                     <button onClick={() => navigate('/login')}>
                         Sign In
                     </button>

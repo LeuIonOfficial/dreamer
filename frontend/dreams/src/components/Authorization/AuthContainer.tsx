@@ -16,7 +16,7 @@ const AuthContainer = (props: IProps) => {
 
     return (
         <>
-            <div {...props} className='grid h-screen place-items-center'>
+            <div {...props} className='grid h-screen place-content-start'>
                 <Title>Become a dreamer Now!</Title>
                 {props.children}
             </div>

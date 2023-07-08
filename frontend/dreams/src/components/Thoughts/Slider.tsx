@@ -1,19 +1,22 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import styled from "styled-components";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ButtonArrowRight from "../../assets/media/button_arrow_right.svg";
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ButtonArrowLeft from "../../assets/media/button_arrow_left.svg";
 
 const Img = styled.img`
   width: inherit;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 768px) {
     flex: 1 1 auto;
     position: relative;
     width: 200px;
   }
- `
+`
 const Img2 = styled.img`
   width: 10px;
   height: 18px;
