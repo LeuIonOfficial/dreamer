@@ -14,18 +14,22 @@ import FormFooter from "../components/Authorization/FormFooter";
 
 const SignupScreen = () => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+    })
     const [confirm, setConfirm] = useState('')
     const [inputType, setInputType] = useState('password')
 
+    const {email, password} = userData
     const handleInputType = () => {
-        if (inputType === 'password') {
-            setInputType('text')
-        }
-        if (inputType === 'text') {
-            setInputType('password')
-        }
+        setInputType(prev => prev === 'password' ? 'text' : 'password')
+    }
+
+    const handleInputValue = (event) => {
+        const {id, value} = event.target
+        console.log(id)
+        setUserData({...userData, [id]: value})
     }
 
     const navigate = useNavigate()
@@ -46,20 +50,17 @@ const SignupScreen = () => {
                 }
             )
                 .then((response) => {
-                    console.log(response.data);
+                    navigate('/login')
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            navigate('/login')
-
         }
     };
 
     return (
         <AuthContainer>
-            <Form onSubmit={event => makeReqToServer(event)} className='m-10'>
+            <Form onSubmit={event => makeReqToServer(event)}>
                 <FormHeader>
                     <h1>Sign up</h1>
                 </FormHeader>
@@ -69,8 +70,8 @@ const SignupScreen = () => {
                         <label htmlFor="email">Email address</label><br/>
                         <input
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
-                            type="email"
+                            onChange={handleInputValue}
+                            type="text"
                             id="email"
                             placeholder="Enter email"/>
                     </FormInput>
@@ -78,7 +79,7 @@ const SignupScreen = () => {
                         <label htmlFor="password">Password</label>
                         <input
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={handleInputValue}
                             type={inputType}
                             id="password"
                             placeholder="Password"/>
@@ -111,4 +112,5 @@ const SignupScreen = () => {
     )
 }
 
+// @ts-ignore
 export default SignupScreen

@@ -13,23 +13,22 @@ import Modal from "../components/Alerts/Modal";
 
 const LoginScreen = () => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+    })
     const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
+    const [passwordValidation, setPasswordValidation] = useState(false)
 
     const navigate = useNavigate()
 
+    const {email, password} = userData
+
     const handleInputType = () => {
-        if (inputType === 'password') {
-            setInputType('text')
-        }
-        if (inputType === 'text') {
-            setInputType('password')
-        }
+        setInputType(prev => prev === 'password' ? 'text' : 'password')
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
+
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
 
@@ -44,14 +43,15 @@ const LoginScreen = () => {
             }
         )
             .then((response) => {
-                console.log(response.data);
+                const {token} = response.data;
+                localStorage.setItem('token', token);
+                navigate('/dashboard')
             })
             .catch((error) => {
                 console.log(error);
+                setPasswordValidation(true)
             });
         console.log('submitted')
-
-
     }
 
     const handleOpen = (e) => {
@@ -64,10 +64,15 @@ const LoginScreen = () => {
         setShowOpen(false)
     }
 
+    const handleInputChange = (event) => {
+        const {id, value} = event.target
+        setUserData({...userData, [id]: value})
+    }
+
 
     return (
         <AuthContainer>
-            <Form onSubmit={event => submitHandler(event)} className='m-10'>
+            <Form onSubmit={event => submitHandler(event)}>
                 <FormHeader>
                     <h1>Sign in</h1>
                 </FormHeader>
@@ -76,10 +81,10 @@ const LoginScreen = () => {
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
                         <input
-                            value={email}
-                            onChange={event => setEmail(event.target.value)}
-                            type="email"
                             id="email"
+                            value={email}
+                            onChange={handleInputChange}
+                            type="email"
                             placeholder="Enter email"
                         />
                     </FormInput>
@@ -93,16 +98,18 @@ const LoginScreen = () => {
                                 handleClose={handleClose}
                             >
                                 <label htmlFor="recover">Email</label>
+                                <h3>Enter your email to get recover your password!</h3>
                                 <input type="text" id='recover'/>
                             </Modal>
                         </div>
                         <input
-                            value={password}
-                            onChange={event => setPassword(event.target.value)}
-                            type={inputType}
                             id="password"
+                            value={password}
+                            onChange={handleInputChange}
+                            type={inputType}
                             placeholder="Password"
                         />
+                        {passwordValidation && <p className='text-red-500'>The password or email you've entered is incorrect.</p>}
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox" onClick={handleInputType}/> Show password</p>

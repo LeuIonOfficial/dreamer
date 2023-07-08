@@ -9,6 +9,9 @@ import styled from "styled-components";
 import WhatIsDreamerz from "../components/WhatIsDreams/WhatIsDreamerz";
 import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
 import Thoughts from "../components/Thoughts/Thoughts";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import React from "react";
 
 const Container = styled.div`
 
@@ -33,4 +36,6 @@ const HomeScreen = () => {
     )
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export default HomeScreen
