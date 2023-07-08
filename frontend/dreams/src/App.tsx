@@ -7,6 +7,8 @@ import Easier from "./components/purpose/Easier";
 import ProjectPurpose from "./components/purpose/ProjectPurpose";
 import WingsDonation from "./components/Wings Donation/WingsDonation";
 import SecurelyDonation from "./components/Securely Donation/SecurelyDonation";
+import Profile from "./components/Dashboard/Profile/Profile";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 
 
@@ -31,6 +33,9 @@ const App = () => {
                 <Route path='/easier' element={<Easier/>}/>
                 <Route path='/purpose' element={<ProjectPurpose/>}/>
             </Routes>
+
+
+
         </BrowserRouter>
     )
 }
