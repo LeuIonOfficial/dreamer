@@ -52,11 +52,8 @@ const Input = styled.div`
 
 `
 
-interface IProps {
-    props: ReactNode
-}
 
-const FormInput = (props): IProps => {
+const FormInput = (props) => {
     return (
         <Input {...props}>
             {props.children}

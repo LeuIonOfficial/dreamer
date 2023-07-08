@@ -10,11 +10,9 @@ const Form = styled.div`
   }
 `
 
-interface IProps {
-    props: ReactNode
-}
 
-const FormHeader = (props): IProps => {
+
+const FormHeader = (props) => {
     return (
         <Form {...props}>
             {props.children}
