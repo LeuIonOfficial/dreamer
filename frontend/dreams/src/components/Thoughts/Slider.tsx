@@ -11,7 +11,7 @@ import ButtonArrowLeft from "../../assets/media/button_arrow_left.svg";
 
 const Img = styled.img`
   width: inherit;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 800px) {
     flex: 1 1 auto;
     position: relative;
     width: 200px;
@@ -24,7 +24,7 @@ const Img2 = styled.img`
 const Card = styled.div`
   height: 470px;
   width: 350px;
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 800px){
     height: 270px;
     position: static!important;
     width: 200px;
