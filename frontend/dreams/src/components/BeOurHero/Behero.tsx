@@ -43,36 +43,38 @@ const TitleDescription = styled.h3`
   line-height: 36px;
 `
 const ContainerBeHeroMob = styled.div`
-  height: 400px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  height: 350px;
+  border-bottom: 1px solid #98dfda;
+  padding: 38px;
+  box-sizing: border-box;
   @media only screen and (width > 801px ) {
     display: none;
   }
 `
+
 const TitleBeHeroMob = styled.h1`
-  width: 75%;
+  color: #333;
   font-size: 32px;
   font-weight: 700;
-  line-height: 34px;
-  text-align: center;
-  margin: 20px 30px;
+  line-height: 25px;
+  margin: 0;
 `
 const ContainerDescriptionMob = styled.div`
-  margin-right: 10px;
+  margin-bottom: 15px;
 `
 const TitleDescriptionMob = styled.h3`
-  font-size: 22px;
+  font-size: 19px;
   font-weight: 700;
-  line-height: 34px;
+  line-height: 41px;
+  margin: 0;
+  color: #202020;
+
 `
 const TextDescriptionMob = styled.p`
-  font-size: 11px;
-  line-height: 16px;
-  //text-align: center;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #060606;
   margin: 0;
 `
 
@@ -98,7 +100,7 @@ const BeHero = () => {
 
             <ContainerBeHeroMob>
                 <TitleBeHeroMob>Be our hero</TitleBeHeroMob>
-                <ContentBeHero>
+                <div>
                     <ContainerDescriptionMob>
                         <TitleDescriptionMob>Dreamer</TitleDescriptionMob>
                         <TextDescriptionMob>Dreamer is a person who gives for other dreams and receive back twice for
@@ -111,7 +113,7 @@ const BeHero = () => {
                             his
                             future dream or further donation.</TextDescriptionMob>
                     </ContainerDescriptionMob>
-                </ContentBeHero>
+                </div>
             </ContainerBeHeroMob>
         </div>
     )
