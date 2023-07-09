@@ -5,8 +5,8 @@ import SignupScreen from "./screens/SignupScreen";
 import {createGlobalStyle} from "styled-components";
 import Easier from "./components/purpose/Easier";
 import ProjectPurpose from "./components/purpose/ProjectPurpose";
-import WingsDonation from "./components/Wings Donation/WingsDonation";
-import SecurelyDonation from "./components/Securely Donation/SecurelyDonation";
+import WingsDonation from "./components/WingsDonation/WingsDonation";
+import SecurelyDonation from "./components/SecurelyDonation/SecurelyDonation";
 import Profile from "./components/Dashboard/Profile/Profile";
 import Dashboard from "./components/Dashboard/Dashboard";
 
