@@ -1,7 +1,10 @@
-@import "variables";
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 
-
+.datdiv{
+    height: 450px;
+    width: 100%;
+    background-color: white;
+}
 h5{
     font-family: Roboto;
     font-size: 13px;
@@ -9,23 +12,26 @@ h5{
 .header-login{
     /*box-sizing: border-box;*/
     display: flex;
+    position: sticky;
     justify-content: space-between;
     align-items: center;
     margin: 0px;
     background-color: white;
     height: 60px;
-    width: 100% ;
+    max-width: 100% ;
+    padding: 0 8px;
     border-bottom: 4px solid;
     border-image: linear-gradient(114.93deg,#84fad5 1.02%,#ebbfff 44.33%,#f6ec85 76.07%);
     border-image-slice: 1;
+    z-index: 1000;
 }
 .logo{
-    background-image: $logo-img;
+    //background-image: $logo-img;
     background-repeat: no-repeat;
     color: #000;
     height: 50px;
     width: 100px;
-    margin:  0 15px 1px;
+    margin:  0 6px 1px;
 }
 
 .search-bar{
@@ -48,9 +54,12 @@ h5{
 }
 
 .user-balance{
-    right: 10px;
+    //right: 10px;
+    //width: 300px;
     display: flex;
+    align-items: center;
     flex-direction: row;
+    //justify-content: flex-end;
 
 }
 
@@ -74,12 +83,15 @@ h5{
     color: black;
 }
 .user-img{
-
+    //background-image: $user-img;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 50px;
     width: 50px;
     border-radius: 50%;
     background-color: #e2e2e2;
-    margin: 5px 10px;
+    margin-right: 10px;
+    object-fit: cover;
 }
 
 .balance-text{
