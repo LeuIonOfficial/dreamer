@@ -187,7 +187,7 @@ const ButtonMobile = styled.div`
 
 `
 
-const Profile = () => {
+const LeftSideBar = () => {
     //bt1
     const [isFontActive, setIsFontActive] = useState(false)
     const [isBackColorActive, setIsBackColorActive] = useState(false)
@@ -265,4 +265,4 @@ const Profile = () => {
 
     )
 }
-export default Profile
+export default LeftSideBar
