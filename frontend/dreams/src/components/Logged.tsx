@@ -47,9 +47,9 @@ function Logged() {
                     <BalanceAmount color={"black"} size={"12px"}></BalanceAmount>
                 </BalanceFrame>
                 <UserPhoto>
-                    <Round role="button " href="#">
-                          <UserImg></UserImg>
-                    </Round>
+                    {/*<Round role="button " href="#">*/}
+                    {/*      <UserImg></UserImg>*/}
+                    {/*</Round>*/}
                 </UserPhoto>
                 {/*<UserBalance>
                     <UserImg></UserImg>

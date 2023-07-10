@@ -15,7 +15,7 @@ const SearchInput = styled.input`
   border-radius: 8px;
   border: 1px solid #e5e5e5;
   margin: 0px;
-  padding: 0px;
+  padding: 0px 5px ;
   @media screen and (max-width: 480px){
     display: none;
   }
@@ -24,7 +24,7 @@ const SearchInput = styled.input`
 const Search = () => {
     return (
         <SearchBar>
-            <SearchInput type = "text" placeholder="  Search" />
+            <SearchInput type = "text" placeholder="Search.." />
         </SearchBar>
     )
 }

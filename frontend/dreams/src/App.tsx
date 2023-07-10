@@ -8,8 +8,8 @@ import Footer from "./components/Footer.tsx"
 const App = () => {
     return (
         <div>
-        <Unlogged></Unlogged>
-        {/*<Logged></Logged>*/}
+        {/*<Unlogged></Unlogged>*/}
+        <Logged></Logged>
             <div className="datdiv"></div>
             <Footer></Footer>
     </div>

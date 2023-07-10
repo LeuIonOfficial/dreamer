@@ -7,28 +7,31 @@ const Footers = styled.div`
   padding: 0;
   margin: 0;
   bottom: 0;
-  width: 100%;
+  //width: 100%;
   font-family: 'Space Grotesk', sans-serif;
 `
 
 const GreyFooter = styled.div`
     //bottom: 0px;
   padding: 20px;
-  width: 100%;
+  //width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #777D74;
 `
+
+const LowerFooter = (props) => {
+    return(
+        <GreyFooter>
+            {props.children}
+        </GreyFooter>)
+}
+
 const DreamerzText = styled.span`
 margin-left: 5px;
 `
-const LowerFooter = ({children}) => {
-    return(
-    <GreyFooter>
-        {children}
-    </GreyFooter>)
-}
+
 const Pages = styled.span`
   color: #fff;
   font-size: 12px;
