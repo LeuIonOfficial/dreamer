@@ -105,15 +105,15 @@ const ProgressBar = styled.div`
   margin: 0 10px 0 10px;
   display: flex;
   overflow: hidden;
- &:hover{
-  border: 1px solid gray;
- }
+  &:hover{
+    border: 1px solid gray;
+  }
 `
 const Bar = styled.div`
   cursor: pointer;
   background: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
   width: 13%;
-  
+
 `
 const RecivedDonation = styled.div`
   font-size: 12px;
@@ -166,7 +166,7 @@ const ButtonComponents = styled.div`
   }
   @media only screen and (width >= 820px ){
     display: none;
-    
+
   }
 `
 const ButtonMobile = styled.div`
