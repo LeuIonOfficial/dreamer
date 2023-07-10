@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const PostSchema = new Schema({
     creator:{
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
         require: true
     },
     title:{
@@ -23,7 +24,7 @@ const PostSchema = new Schema({
     },
     donated:{
         type: Number,
-        require: true
+        default: 0
     }
 })
 

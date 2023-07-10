@@ -4,44 +4,6 @@ import jwt from "jsonwebtoken";
 import {sendMail} from "../nodemailer.js";
 import {validationResult} from "express-validator";
 
-export const sing_in = async(req,res)=>{
-    try{
-        const user = await User.findOne({email:req.body.email})
-        if(!user){
-            return res.status(404).json({"message":"Nu a fost gasit asa gen de user"})
-        }
-
-        const isValidPassword = await bcrypt.compare(req.body.password, user.passwordHash)
-        if(!isValidPassword)
-        {
-            return res.status(401).json({"message":"Probleme la logare"})
-        }
-        else
-        {
-            const token = jwt.sign({
-                    email: user.email
-                },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: '30d'
-                }
-            )
-            const respons = {
-                message: "succes",
-                email:user.email,
-                token
-            }
-
-            res.json(respons)
-        }
-
-    }
-    catch (err){
-        console.log(err)
-        res.status(500).json({"message":"Probleme la logare"})
-    }
-}
-
 export const sinp_up = async (req, res)=>{
     try{
         const error =validationResult(req)
@@ -60,19 +22,9 @@ export const sinp_up = async (req, res)=>{
         })
         const user = await doc.save()
 
-        const token = jwt.sign({
-                email: user.email
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: '30d'
-            }
-        )
-
         const respons = {
             message: "succes",
-            email:user.email,
-            token
+            email:user.email
         }
 
         res.json(respons)
@@ -81,12 +33,55 @@ export const sinp_up = async (req, res)=>{
         console.log(err)
         res.status(500).json({"message":"Probleme la Registrare"})
     }
-
-
 }
+
+export const sing_in = async(req,res)=>{
+    try{
+        const user = await User.findOne({email:req.body.email})
+        if(!user){
+            return res.status(404).json({"message":"Nu a fost gasit asa gen de user"})
+        }
+
+        const isValidPassword = await bcrypt.compare(req.body.password, user.passwordHash)
+        if(!isValidPassword)
+        {
+            return res.status(401).json({"message":"Probleme la logare"})
+        }
+        else
+        {
+            const token = jwt.sign({
+                    id: user._id
+                },
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '30d'
+                }
+            )
+            const respons = {
+                message: "succes",
+                user_id:user._id,
+                token
+            }
+
+            res.json(respons)
+        }
+
+    }
+    catch (err){
+        console.log(err)
+        res.status(500).json({"message":"Probleme la logare"})
+    }
+}
+
+
 
 export const recover = async (req,res)=>{
     try{
+        const error =validationResult(req)
+        if(!error.isEmpty())
+        {
+            return res.status(400).json(error.array())
+        }
         const email = req.body.email
         const user = await User.findOne({email:email})
         if(!user){
