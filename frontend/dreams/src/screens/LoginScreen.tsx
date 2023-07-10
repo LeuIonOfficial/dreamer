@@ -9,6 +9,7 @@ import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Modal from "../components/Alerts/Modal";
+import Validation from "../components/Authorization/Validation";
 
 
 const LoginScreen = () => {
@@ -109,7 +110,7 @@ const LoginScreen = () => {
                             type={inputType}
                             placeholder="Password"
                         />
-                        {passwordValidation && <p className='text-red-500'>The password or email you've entered is incorrect.</p>}
+                        {passwordValidation && <Validation>The password or email you've entered is incorrect.</Validation>}
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox" onClick={handleInputType}/> Show password</p>
