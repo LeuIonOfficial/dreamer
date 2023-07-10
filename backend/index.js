@@ -29,7 +29,7 @@ app.get('/',(req,res)=>{
 
 
 
-
+//Authentication
 
 app.post('/sign-up',registerValidator,Registration.sinp_up)
 
@@ -37,11 +37,24 @@ app.post('/sign-in',registerValidator,Registration.sing_in)
 
 app.post('/recover',Registration.recover)
 
-app.post('/post_create', autorizare,Post.create)
+//About
 
 app.post('/about_create', autorizare,About.create)
 
 app.get('/about', autorizare,About.post)
+
+//POST
+
+app.post('/post_create', autorizare,Post.create)
+
+app.get('/post', autorizare,Post.post)
+
+app.post('/post_modify', autorizare,Post.modify)
+
+app.post('/post_donated', autorizare,Post.donate)
+
+
+
 
 app.listen(process.env.PORT ,(error)=>{
     if(error){
