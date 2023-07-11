@@ -2,70 +2,26 @@ import "./Unlogged.scss";
 import styled from "styled-components";
 import BgGalaxy from "./UnloggedComponents/BgGalaxy.tsx";
 import DreamerzLogo from "./GeneralComponents/DreamerzLogo.tsx";
-
-const Global = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box
-  }
-`
-
-const ButtonsTogether = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 330px;
-  height: 48px;`
-
-const StyledButton = styled.div`
-  width: 160px;
-  height: 48px;
-  background: ${props => props.color};
-  border-radius: 67px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  margin: 0;
-  cursor: pointer;
-
-  :hover {
-    font-weight: 900;
-  }
-`
-
-const LogIn = ({children, color}) => {
-    return <StyledButton color={color}>
-        {children}
-    </StyledButton>
-};
-
-
-const TextOnButton = styled.span`
-  color: black;
-`
-
-const ButtonName = ({children}) => {
-    return <TextOnButton> {children} </TextOnButton>;
-}
+import ButtonsTogether from "./UnloggedComponents/ButtonsTogether.tsx";
+import LogIn from "./UnloggedComponents/LogIn.tsx";
+import ButtonName from "./UnloggedComponents/ButtonName.tsx";
 
 function Unlogged() {
     return (
-        <BgGalaxy>
-
-            <DreamerzLogo></DreamerzLogo>
+        <BgGalaxy><a href="#">
+            <DreamerzLogo></DreamerzLogo> </a>
             <ButtonsTogether>
                 <LogIn color={'white'}>
+                    <a href='#'>
                     <ButtonName>Log in</ButtonName>
+                    </a>
                 </LogIn>
                 <LogIn color={'linear-gradient(297.06deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%)'}>
+                    <a href='#'>
                     <ButtonName>Sign up</ButtonName>
+                    </a>
                 </LogIn>
             </ButtonsTogether>
-
         </BgGalaxy>
     )
 }

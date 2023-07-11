@@ -13,8 +13,9 @@ background-repeat: no-repeat;
   background-size: 50px;
   height: 50px;
   width: 50px;
+  
 `
-
+//active = appear
 
 const UserPhoto = (props) => {
     return <ListSquare>
