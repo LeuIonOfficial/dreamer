@@ -17,7 +17,7 @@ const App = () => {
             </Routes>
             <LeftSideBar />
 
-
+            {/*text*/}
         </BrowserRouter>
     )
 }
