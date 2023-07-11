@@ -124,9 +124,9 @@ const TitleContainerM = styled.div`
 `
 const MobileParagraf = styled.p`
   color: #fff;
-  font-size: 10px;
-  line-height: 13px;
-  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: full-width;
   width: 75%;
   margin: 0 0 16px 20px;
 `
