@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import Button from "../Authorization/Button";
+import Validation from "../Authorization/Validation";
+import {useEffect, useRef, useState} from "react";
 
-
-const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
+const Modal = ({handleClose}): null | JSX.Element => {
 
     const Container = styled.div`
       width: 250px;
@@ -88,16 +89,43 @@ const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
       }
     `
 
-    if (!isOpen) return null
+    const [recoverEmail, setRecoverEmail] = useState('')
+
+    // const ref = useRef(null)
+    //
+    // useEffect(() => {
+    //     const handleInput = (event) => {
+    //         setRecoverEmail(event.target.value)
+    //         console.log(recoverEmail)
+    //     }
+    //     const element = ref.current;
+    //
+    //     element.addEventListener('change', handleInput);
+    //
+    //     return () => {
+    //         element.removeEventListener('change', handleInput);
+    //     };
+    // }, [recoverEmail, setRecoverEmail])
 
     return (
         <>
             <Container>
                 <Header>
-                    <h1>{title}</h1>
+                    <h1>Recover Password</h1>
                 </Header>
                 <Content>
-                    {children}
+                    <label htmlFor="recoverEmail">Email</label>
+                    <h3>Enter your email to get recover your password!</h3>
+                        <div
+                            contentEditable={true}
+                            onFocus={event => setRecoverEmail(event.target.textContent)}
+                            id="recoverEmail"
+                        >
+                            {recoverEmail}
+                        </div>
+
+
+                    <Validation></Validation>
                 </Content>
                 <Footer>
                     <Button onClick={handleClose}>Submit</Button>

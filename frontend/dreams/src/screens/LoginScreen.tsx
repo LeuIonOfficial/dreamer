@@ -1,4 +1,4 @@
-import {FormEvent, useState} from 'react'
+import {FormEvent, useEffect, useRef, useState} from 'react'
 import AuthContainer from "../components/Authorization/AuthContainer";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -10,6 +10,13 @@ import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Modal from "../components/Alerts/Modal";
 import Validation from "../components/Authorization/Validation";
+import {
+    handleInputType,
+    passwordHandler,
+    blurHandler,
+    emailHandler,
+    emailValidation
+} from "../components/Authorization/AuthFunctions";
 
 
 const LoginScreen = () => {
@@ -21,14 +28,24 @@ const LoginScreen = () => {
     const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
     const [passwordValidation, setPasswordValidation] = useState(false)
+    const [dirty, setDirty] = useState({
+        email: false,
+        password: false,
+        confirmPassword: false,
+        recoverPassword: false,
+    });
+
+    const [validationError, setValidationError] = useState({
+        email: "Email can't be empty",
+        password: "Password can't be empty",
+        confirmPassword: "Confirm password can't be empty!",
+        recoverPassword: "Email can't be empty!"
+    })
 
     const navigate = useNavigate()
 
     const {email, password} = userData
 
-    const handleInputType = () => {
-        setInputType(prev => prev === 'password' ? 'text' : 'password')
-    }
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
@@ -65,12 +82,6 @@ const LoginScreen = () => {
         setShowOpen(false)
     }
 
-    const handleInputChange = (event) => {
-        const {id, value} = event.target
-        setUserData({...userData, [id]: value})
-    }
-
-
     return (
         <AuthContainer>
             <Form onSubmit={event => submitHandler(event)}>
@@ -82,38 +93,37 @@ const LoginScreen = () => {
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
                         <input
+                            onBlur={(event) => blurHandler(event, setDirty)}
                             id="email"
                             value={email}
-                            onChange={handleInputChange}
+                            onChange={event => emailHandler(event, setValidationError, setUserData)}
                             type="email"
                             placeholder="Enter email"
                         />
+                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                     </FormInput>
                     <FormInput>
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
                             <span onClick={handleOpen}>Forgot password?</span>
-                            <Modal
-                                isOpen={isOpen}
-                                title='Recover password'
-                                handleClose={handleClose}
-                            >
-                                <label htmlFor="recover">Email</label>
-                                <h3>Enter your email to get recover your password!</h3>
-                                <input type="text" id='recover'/>
-                            </Modal>
+                            {isOpen && <Modal handleClose={handleClose}/>}
                         </div>
                         <input
+                            onBlur={event => blurHandler(event, setDirty)}
                             id="password"
                             value={password}
-                            onChange={handleInputChange}
+                            onChange={event => passwordHandler(event, setValidationError, setUserData)}
                             type={inputType}
                             placeholder="Password"
                         />
-                        {passwordValidation && <Validation>The password or email you've entered is incorrect.</Validation>}
+                        {(dirty.password && validationError.password) &&
+                          <Validation>{validationError.password}</Validation>}
+
+                        {passwordValidation &&
+                          <Validation>The password or email you've entered is incorrect.</Validation>}
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox" onClick={handleInputType}/> Show password</p>
+                        <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox"/> Remember Me</p>

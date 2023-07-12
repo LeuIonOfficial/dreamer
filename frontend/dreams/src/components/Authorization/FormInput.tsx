@@ -15,7 +15,7 @@ const Input = styled.div`
   }
 
 
-  #password, #email, #confirm {
+  #password, #email, #confirm, #recoverEmail {
     background: #fbfbfb;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
