@@ -6,14 +6,15 @@ import ProjectPurpose from "../components/purpose/ProjectPurpose";
 import SecurelyDonation from "../components/SecurelyDonation/SecurelyDonation";
 import WingsDonation from "../components/WingsDonation/WingsDonation";
 import styled from "styled-components";
-import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
-import Carusela from "../components/WhatIsDreams/Carusela";
 import WhatIsDreamerz from "../components/WhatIsDreams/WhatIsDreamerz";
+import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
+import Thoughts from "../components/Thoughts/Thoughts";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import React from "react";
 
 const Container = styled.div`
-  
-    margin: 0;
-    padding: 0;
+
     box-sizing: border-box;
     font-family: 'Space Grotesk', sans-serif;
   
@@ -22,17 +23,17 @@ const Container = styled.div`
 const HomeScreen = () => {
     return (
         <Container>
-            <LetTheDreams />
-            <WhatIsDreamerz/>
             <Behero />
             <RBD />
             <Easier />
             <ProjectPurpose />
-            {/*<Thoughts />*/}
+            <Thoughts />
             <SecurelyDonation />
             <WingsDonation />
         </Container>
     )
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export default HomeScreen

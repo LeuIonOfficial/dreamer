@@ -5,10 +5,10 @@ import Button from "../Authorization/Button";
 const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
 
     const Container = styled.div`
-      width: 450px;
+      width: 250px;
       height: 250px;
       position: absolute;
-      top: 50%;
+      //top: 50%;
       left: 50%;
       z-index: 9999;
       transform: translate(-50%, -50%);
@@ -19,6 +19,17 @@ const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
       flex-direction: column;
       justify-content: space-evenly;
       padding: 35px 0;
+      
+      & h3 {
+        color: #bdbdbd;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+      }
+      
+      @media (min-width: 768px) {
+        width: 350px;
+      }
     `
 
     const Header = styled.div`
@@ -33,7 +44,7 @@ const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
 
 
     const Content = styled.div`
-      padding: 35px;
+      padding: 20px;
       width: 100%;
       font-weight: 700;
       font-size: 14px;
@@ -80,8 +91,6 @@ const Modal = ({isOpen, title, children, handleClose}): null | JSX.Element => {
     if (!isOpen) return null
 
     return (
-
-
         <>
             <Container>
                 <Header>

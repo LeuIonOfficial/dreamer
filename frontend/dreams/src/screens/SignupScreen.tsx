@@ -10,21 +10,76 @@ import FormContent from "../components/Authorization/FormContent";
 import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
+import Validation from "../components/Authorization/Validation";
 
 
 const SignupScreen = () => {
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [userData, setUserData] = useState({
+        email: '',
+        password: ''
+    })
     const [confirm, setConfirm] = useState('')
     const [inputType, setInputType] = useState('password')
+    const [dirty, setDirty] = useState({
+        email: false,
+        password: false,
+        confirmPassword: false,
+    });
 
+    const [validationError, setValidationError] = useState({
+        email: "Email can't be empty",
+        password: "Password can't be empty",
+        confirmPassword: "Confirm password can't be empty!"
+    })
+
+    const {email, password} = userData
     const handleInputType = () => {
-        if (inputType === 'password') {
-            setInputType('text')
+        setInputType(prev => prev === 'password' ? 'text' : 'password')
+    }
+
+    const emailHandler = (event) => {
+        const {value} = event.target
+        setUserData((prev) => ({...prev, email: value}))
+        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (!validRegex.test(String(value).toLowerCase())) {
+            setValidationError((prev) => ({...prev, email: "Invaild email"}));
+        } else {
+            setValidationError((prev) => ({...prev, email: ""}))
         }
-        if (inputType === 'text') {
-            setInputType('password')
+    }
+
+    const passwordHandler = (event) => {
+        const {value} = event.target
+        setUserData((prev) => ({...prev, password: value}))
+        if (value.length < 4) {
+            setValidationError((prev) => ({...prev, password: "Invalid password"}))
+        } else {
+            setValidationError((prev) => ({...prev, password: ''}))
+        }
+    }
+
+    const confirmHandler = (event) => {
+        const {value} = event.target
+        setConfirm(() => value)
+        if (value !== password) {
+            setValidationError((prev) => ({...prev, confirmPassword: "Password doesnt match"}))
+        } else {
+            setValidationError((prev) => ({...prev, confirmPassword: ""}))
+        }
+    }
+
+    const blurHandler = (event) => {
+        const {id} = event.target
+        switch (id) {
+            case "email":
+                setDirty((prevDirty) => ({...prevDirty, email: true}));
+                break;
+            case "password":
+                setDirty((prevDirty) => ({...prevDirty, password: true}));
+                break;
+            case "confirm":
+                setDirty((prevDirty) => ({...prevDirty, confirmPassword: true}))
         }
     }
 
@@ -34,7 +89,6 @@ const SignupScreen = () => {
     const makeReqToServer = async (event: FocusEvent) => {
         await event.preventDefault()
         if (password === confirm) {
-
             axios.post('http://localhost:3000/sign-up', JSON.stringify({
                     email: email,
                     password: password
@@ -46,20 +100,17 @@ const SignupScreen = () => {
                 }
             )
                 .then((response) => {
-                    console.log(response.data);
+                    navigate('/login')
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            navigate('/login')
-
         }
     };
 
     return (
         <AuthContainer>
-            <Form onSubmit={event => makeReqToServer(event)} className='m-10'>
+            <Form onSubmit={event => makeReqToServer(event)}>
                 <FormHeader>
                     <h1>Sign up</h1>
                 </FormHeader>
@@ -67,27 +118,35 @@ const SignupScreen = () => {
                     <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
+                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                         <input
+                            onBlur={event => blurHandler(event)}
                             value={email}
-                            onChange={event => setEmail(event.target.value)}
-                            type="email"
+                            onChange={emailHandler}
+                            type="text"
                             id="email"
                             placeholder="Enter email"/>
                     </FormInput>
                     <FormInput>
                         <label htmlFor="password">Password</label>
+                        {(dirty.password && validationError.password) &&
+                          <Validation>{validationError.password}</Validation>}
                         <input
+                            onBlur={event => blurHandler(event)}
                             value={password}
-                            onChange={event => setPassword(event.target.value)}
+                            onChange={passwordHandler}
                             type={inputType}
                             id="password"
                             placeholder="Password"/>
                     </FormInput>
                     <FormInput>
-                        <label htmlFor="confirm">Password</label>
+                        <label htmlFor="confirm">Confirm Password</label>
+                        {(dirty.confirmPassword && validationError.confirmPassword) &&
+                          <Validation>{validationError.confirmPassword}</Validation>}
                         <input
+                            onBlur={event => blurHandler(event)}
                             value={confirm}
-                            onChange={event => setConfirm(event.target.value)}
+                            onChange={confirmHandler}
                             type={inputType}
                             id="confirm"
                             placeholder="password"/>
@@ -101,7 +160,7 @@ const SignupScreen = () => {
                 </FormContent>
                 <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
-                    <span>Already have and account ? </span>
+                    <span>Already have an account ? </span>
                     <button onClick={() => navigate('/login')}>
                         Sign In
                     </button>
@@ -111,4 +170,5 @@ const SignupScreen = () => {
     )
 }
 
+// @ts-ignore
 export default SignupScreen

@@ -9,8 +9,10 @@ const ContainerBeHero = styled.div`
   justify-content: space-between;
   flex-direction: column;
   display: flex;
-  @media only screen and (width <= 800px) {
-    display: none;
+  @media (max-width: 800px) {
+    height: 320px;
+    border-bottom: 1px solid #98dfda;
+    padding: 15px;
   }
 `
 
@@ -23,97 +25,66 @@ const TitleBeHero = styled.h1`
   font-weight: 700;
   line-height: 65px;
   margin: 20px 30px;
+  color: #333;
+  @media (max-width: 800px) {
+    font-size: 32px;
+    line-height: 25px;
+    margin: 0;
+  }
 `
 
 const ContentBeHero = styled.div`
   display: flex;
   flex-direction: row;
-  font-family: monospace;
   margin: 10px 30px;
+  @media (max-width: 800px) {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
 `
 
 const TextDescription = styled.p`
   font-size: 28px;
   line-height: 36px;
+  color: #060606;
+  @media (max-width: 800px) {
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 400;
+    margin: 0;
+  }
 `
 
 const TitleDescription = styled.h3`
   font-size: 28px;
   font-weight: 700;
   line-height: 36px;
-`
-const ContainerBeHeroMob = styled.div`
-  height: 400px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  @media only screen and (width > 801px ) {
-    display: none;
+  color: #202020;
+  @media (max-width: 800px) {
+    font-size: 19px;
+    line-height: 41px;
+    margin: 0;
   }
 `
-const TitleBeHeroMob = styled.h1`
-  width: 75%;
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 34px;
-  text-align: center;
-  margin: 20px 30px;
-`
-const ContainerDescriptionMob = styled.div`
-  margin-right: 10px;
-`
-const TitleDescriptionMob = styled.h3`
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 34px;
-`
-const TextDescriptionMob = styled.p`
-  font-size: 11px;
-  line-height: 16px;
-  //text-align: center;
-  margin: 0;
-`
-
 const BeHero = () => {
     return (
-        <div>
-            <ContainerBeHero>
-                <TitleBeHero>Be our hero</TitleBeHero>
-                <ContentBeHero>
-                    <ContainerDescription>
-                        <TitleDescription>Dreamer</TitleDescription>
-                        <TextDescription>Dreamer is a person who gives for other dreams and receive back twice for it’s
-                            own
-                            dream.</TextDescription>
-                    </ContainerDescription>
-                    <ContainerDescription>
-                        <TitleDescription>Dream Angel</TitleDescription>
-                        <TextDescription>Dream Angel is a person who give to others and collect fulfilled dreams for his
-                            future dream or further donation.</TextDescription>
-                    </ContainerDescription>
-                </ContentBeHero>
-            </ContainerBeHero>
-
-            <ContainerBeHeroMob>
-                <TitleBeHeroMob>Be our hero</TitleBeHeroMob>
-                <ContentBeHero>
-                    <ContainerDescriptionMob>
-                        <TitleDescriptionMob>Dreamer</TitleDescriptionMob>
-                        <TextDescriptionMob>Dreamer is a person who gives for other dreams and receive back twice for
-                            it’s own
-                            dream.</TextDescriptionMob>
-                    </ContainerDescriptionMob>
-                    <ContainerDescriptionMob>
-                        <TitleDescriptionMob>Dream Angel</TitleDescriptionMob>
-                        <TextDescriptionMob>Dream Angel is a person who give to others and collect fulfilled dreams for
-                            his
-                            future dream or further donation.</TextDescriptionMob>
-                    </ContainerDescriptionMob>
-                </ContentBeHero>
-            </ContainerBeHeroMob>
-        </div>
+        <ContainerBeHero>
+            <TitleBeHero>Be our hero</TitleBeHero>
+            <ContentBeHero>
+                <ContainerDescription>
+                    <TitleDescription>Dreamer</TitleDescription>
+                    <TextDescription>Dreamer is a person who gives for other dreams and receive back twice for it’s
+                        own
+                        dream.</TextDescription>
+                </ContainerDescription>
+                <ContainerDescription>
+                    <TitleDescription>Dream Angel</TitleDescription>
+                    <TextDescription>Dream Angel is a person who give to others and collect fulfilled dreams for his
+                        future dream or further donation.</TextDescription>
+                </ContainerDescription>
+            </ContentBeHero>
+        </ContainerBeHero>
     )
 }
 

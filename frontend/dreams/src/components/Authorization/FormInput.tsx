@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {ReactNode} from "react";
 
 const Input = styled.div`
 
@@ -49,6 +48,7 @@ const Input = styled.div`
     color: #50b5ff;
     cursor: pointer;
   }
+  
 
 `
 
