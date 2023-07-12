@@ -1,19 +1,21 @@
-import Logged from "./components/Logged.tsx";
-import Unlogged from "./components/Unlogged.tsx";
-import "./components/Logged.scss";
-import "./components/Unlogged.scss";
-import Footer from "./components/Footer.tsx"
-import MyScreen from "./components/MyScreen.tsx";
-
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import SignupScreen from "./screens/SignupScreen";
+import {Dashboard} from "./screens/Dashboard";
 
 const App = () => {
     return (
-        <MyScreen>
-        {/*<Unlogged></Unlogged>*/}
-        <Logged></Logged>
-            <div className="datdiv"></div>
-            <Footer></Footer>
-    </MyScreen>
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<HomeScreen/>}/>
+                <Route path='/login' element={<LoginScreen/>}/>
+                <Route path='/signup' element={<SignupScreen/>}/>
+                <Route path='/dashboard' element={<Dashboard/>}/>
+            </Routes>
+
+
+        </BrowserRouter>
     )
 }
 
