@@ -9,6 +9,7 @@ const Validation = (props) => {
       font-size: 12px;
       font-weight: normal;
       color: red;
+      z-index: 99;
     `
 
     return (

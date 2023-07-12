@@ -11,6 +11,15 @@ import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Validation from "../components/Authorization/Validation";
+import {
+    emailHandler,
+    passwordHandler,
+    blurHandler,
+    emailValidation,
+    confirmHandler,
+    passwordValidationFunc,
+    handleInputType
+} from "../components/Authorization/AuthFunctions";
 
 
 const SignupScreen = () => {
@@ -34,55 +43,6 @@ const SignupScreen = () => {
     })
 
     const {email, password} = userData
-    const handleInputType = () => {
-        setInputType(prev => prev === 'password' ? 'text' : 'password')
-    }
-
-    const emailHandler = (event) => {
-        const {value} = event.target
-        setUserData((prev) => ({...prev, email: value}))
-        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (!validRegex.test(String(value).toLowerCase())) {
-            setValidationError((prev) => ({...prev, email: "Invaild email"}));
-        } else {
-            setValidationError((prev) => ({...prev, email: ""}))
-        }
-    }
-
-    const passwordHandler = (event) => {
-        const {value} = event.target
-        setUserData((prev) => ({...prev, password: value}))
-        if (value.length < 4) {
-            setValidationError((prev) => ({...prev, password: "Invalid password"}))
-        } else {
-            setValidationError((prev) => ({...prev, password: ''}))
-        }
-    }
-
-    const confirmHandler = (event) => {
-        const {value} = event.target
-        setConfirm(() => value)
-        if (value !== password) {
-            setValidationError((prev) => ({...prev, confirmPassword: "Password doesnt match"}))
-        } else {
-            setValidationError((prev) => ({...prev, confirmPassword: ""}))
-        }
-    }
-
-    const blurHandler = (event) => {
-        const {id} = event.target
-        switch (id) {
-            case "email":
-                setDirty((prevDirty) => ({...prevDirty, email: true}));
-                break;
-            case "password":
-                setDirty((prevDirty) => ({...prevDirty, password: true}));
-                break;
-            case "confirm":
-                setDirty((prevDirty) => ({...prevDirty, confirmPassword: true}))
-        }
-    }
-
     const navigate = useNavigate()
 
     // @ts-ignore
@@ -118,41 +78,41 @@ const SignupScreen = () => {
                     <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
-                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={email}
-                            onChange={emailHandler}
+                            onChange={event => emailHandler(event, setValidationError, setUserData)}
                             type="text"
                             id="email"
                             placeholder="Enter email"/>
+                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                     </FormInput>
                     <FormInput>
                         <label htmlFor="password">Password</label>
-                        {(dirty.password && validationError.password) &&
-                          <Validation>{validationError.password}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={password}
-                            onChange={passwordHandler}
+                            onInput={event => passwordHandler(event, setValidationError, setUserData)}
                             type={inputType}
                             id="password"
                             placeholder="Password"/>
+                        {(dirty.password && validationError.password) &&
+                          <Validation>{validationError.password}</Validation>}
                     </FormInput>
                     <FormInput>
                         <label htmlFor="confirm">Confirm Password</label>
-                        {(dirty.confirmPassword && validationError.confirmPassword) &&
-                          <Validation>{validationError.confirmPassword}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={confirm}
-                            onChange={confirmHandler}
+                            onChange={event => confirmHandler(event, setValidationError, setConfirm, password)}
                             type={inputType}
                             id="confirm"
                             placeholder="password"/>
+                        {(dirty.confirmPassword && validationError.confirmPassword) &&
+                          <Validation>{validationError.confirmPassword}</Validation>}
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox" onClick={handleInputType}/> Show password</p>
+                        <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>

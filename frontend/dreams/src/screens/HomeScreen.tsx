@@ -23,8 +23,6 @@ const Container = styled.div`
 const HomeScreen = () => {
     return (
         <Container>
-            <WhatIsDreamerz />
-            <LetTheDreams />
             <Behero />
             <RBD />
             <Easier />
