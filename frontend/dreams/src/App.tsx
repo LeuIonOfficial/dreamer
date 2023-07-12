@@ -4,7 +4,6 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import {Dashboard} from "./screens/Dashboard";
 
-
 const App = () => {
     return (
         <BrowserRouter>
