@@ -11,7 +11,7 @@ background-color: white;
 padding: 0px 20px;
   box-sizing: border-box;
   --bs-gutter-x: 1rem;
-  width: 33.3%;
+  --bs-gutter-y: 0;  width: 33.3%;
   display: flex;
   flex-direction: column;
 `
