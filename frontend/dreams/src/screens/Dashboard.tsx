@@ -1,5 +1,9 @@
+import Logged from "../components/HeaderFooter/Logged";
+
 export const Dashboard = () => {
 	return (
-		<>OMG, is this Dashboard?</>
+		<div>
+			<Logged />
+		</div>
 	)
 }

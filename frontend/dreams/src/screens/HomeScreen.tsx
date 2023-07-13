@@ -12,6 +12,8 @@ import Thoughts from "../components/Thoughts/Thoughts";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from "react";
+import Footer from "../components/HeaderFooter/Footer";
+import Unlogged from "../components/HeaderFooter/Unlogged";
 
 const Container = styled.div`
 
@@ -23,6 +25,9 @@ const Container = styled.div`
 const HomeScreen = () => {
     return (
         <Container>
+            <Unlogged />
+            <LetTheDreams />
+            <WhatIsDreamerz />
             <Behero />
             <RBD />
             <Easier />

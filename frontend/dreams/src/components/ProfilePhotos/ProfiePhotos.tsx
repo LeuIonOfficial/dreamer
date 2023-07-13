@@ -7,8 +7,8 @@ import AddSmallImg from "./AddSmallImg";
 import AddBigImg from "./AddBigImg";
 
 const Background = styled.div`
-background-color: white;
-padding: 0px 20px;
+  background-color: white;
+  padding: 0px 20px;
   box-sizing: border-box;
   --bs-gutter-x: 1rem;
   width: 33.3%;
