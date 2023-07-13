@@ -33,10 +33,10 @@ const LetDreamsHeading = styled.h1`
 
 const SVGContainer = styled.svg`
   position: absolute;
-  top: 181px;
+  top: 288px;
 
   @media screen and (max-width: 700px) {
-    margin-top: -67px;
+    margin-top: -13px;
     
   }
 `;
@@ -60,7 +60,7 @@ const Button = styled.button`
   height: 72px;
   width: 350px;
   position: absolute;
-  top: 573px;
+  top: 673px;
   left: 54%;
   margin-top: 100px;
   transform: translate(-60%);
@@ -73,7 +73,7 @@ const Button = styled.button`
     justify-content: center;
     align-items: center;
     margin-left: 19px;
-    margin-top: 40px;
+    margin-top: 90px;
   }
 
   &:hover{
