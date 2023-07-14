@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {match} from "@headlessui/react/dist/utils/match";
 
 const MainConatiner = styled.div`
   box-sizing: border-box;
@@ -229,13 +230,17 @@ const LeftSideBar = () => {
     //         });
     // }, []);
 
-    const [received, setRecived] = useState(5); // Replace with your received value
-    const maximum = 10; // Replace with your fulfilled value
-    const progress = (received / maximum) * 100;
-
+    const [received, setRecived] = useState(6); // Replace with your received value
+    const [fulfilled, setFulfilled] = useState(21);
+    const handleReceivedChange = (newValue) => {
+        if (newValue <= fulfilled) {
+            setRecived(newValue)
+        }
+    }
+    const progress = (received / fulfilled) * 100;
     return (
         <MainConatiner>
-            <ProfileConatiner>s
+            <ProfileConatiner>
                 <ContainerElements>
                     {/*Image part of cpmponent*/}
                     <ProfileImgSection>
@@ -262,7 +267,7 @@ const LeftSideBar = () => {
                     <div>
                         <Scope>
                             <ScopeSpan>Scope</ScopeSpan>
-                            <ScopeProcentage>{received * 10}%</ScopeProcentage>
+                            <ScopeProcentage>{Math.round((received / fulfilled) * 100)}%</ScopeProcentage>
 
                         </Scope>
                         {/*ProgresBar*/}
@@ -272,7 +277,7 @@ const LeftSideBar = () => {
 
                         <RecivedDonation>
                             <span>Recived : {received}</span>
-                            <span>Fulfilled : {maximum}</span>
+                            <span>Fulfilled : {fulfilled}</span>
                         </RecivedDonation>
 
 
