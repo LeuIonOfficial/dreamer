@@ -4,7 +4,8 @@ import SectionName from "./SectionName";
 import SmallImages from "./SmallImages";
 import AddImg from "./AddSmallImg";
 import AddSmallImg from "./AddSmallImg";
-import AddBigImg from "./AddBigImg";
+import AddBigImg2 from "./AddBigImg2";
+
 
 const Background = styled.div`
 background-color: white;
@@ -15,17 +16,24 @@ padding: 0px 20px;
   display: flex;
   flex-direction: column;
 `
-
 const ProfilePhotos = () => {
     return(
         <Background >
             <SectionName>Profile Photos</SectionName>
-            <AddBigImg></AddBigImg>
+            <AddBigImg2 ></AddBigImg2>
             <SmallImages>
-                <AddSmallImg></AddSmallImg>
-                <AddSmallImg></AddSmallImg>
-                <AddSmallImg></AddSmallImg>
-                <AddSmallImg></AddSmallImg>
+                <AddSmallImg id="img2">
+
+                </AddSmallImg>
+                <AddSmallImg id="img3">
+
+                </AddSmallImg>
+                <AddSmallImg id="img4">
+
+                </AddSmallImg>
+                <AddSmallImg id="img5">
+
+                </AddSmallImg>
             </SmallImages>
         </Background>
     )

@@ -6,6 +6,9 @@ import {Dashboard} from "./screens/Dashboard";
 import LeftSideBar from "./components/LeftSIdeBar/LeftSideBar";
 import SecurelyDonation from "./components/SecurelyDonation/SecurelyDonation";
 import ProfiePhotos from "./components/ProfilePhotos/ProfiePhotos";
+import AddBigImg from "./components/ProfilePhotos/AddBigImg";
+import {useRef, useState} from "react";
+
 const App = () => {
     return (
         <ProfiePhotos></ProfiePhotos>
