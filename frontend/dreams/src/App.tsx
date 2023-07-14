@@ -26,7 +26,7 @@ const App = () => {
                 </Routes>
             </BrowserRouter>
         </Container>
-
     )
 }
+
 export default App

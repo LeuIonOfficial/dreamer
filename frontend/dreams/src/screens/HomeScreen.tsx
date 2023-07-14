@@ -11,6 +11,9 @@ import Thoughts from "../components/Thoughts/Thoughts";
 import React from "react";
 import WhatIsDreamerz from "../components/WhatIsDreams/WhatIsDreamerz";
 import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
+import Footer from "../components/HeaderFooter/Footer";
+import Unlogged from "../components/HeaderFooter/Unlogged";
+
 
 const Container = styled.div`
 
@@ -22,16 +25,17 @@ const Container = styled.div`
 const HomeScreen = () => {
     return (
         <Container>
-            <WhatIsDreamerz/>
-            <LetTheDreams/>
-            <Behero/>
-            <RBD/>
-            <Easier/>
-            <ProjectPurpose/>
-            <Thoughts/>
-            <SecurelyDonation/>
-            <WingsDonation/>
-        </Container>
+            <Unlogged />
+            <LetTheDreams />
+            <WhatIsDreamerz />
+            <Behero />
+            <RBD />
+            <Easier />
+            <ProjectPurpose />
+            <Thoughts />
+            <SecurelyDonation />
+            <WingsDonation />
+       </Container>
     )
 }
 
