@@ -1,8 +1,34 @@
 import styled from "styled-components";
 import Button from "../Authorization/Button";
+import {useState} from "react";
 
 
 export const CreateDream = () => {
+    const [img, setImg] = useState<string>()
+
+    const fileDataString = (file: File) => {
+        return new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onerror = (error) => reject(error);
+            reader.onload = () => resolve(reader.result as string)
+        });
+    }
+    const imageLoadHandler = async (event) => {
+        const file = event.target.file?.[0]
+
+        if (!file) {
+            return
+        }
+
+        try {
+            setImg(await fileDataString(file))
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
 
     const Container = styled.div`
       width: 800px;
@@ -50,8 +76,6 @@ export const CreateDream = () => {
         border-radius: 50%;
         border: 1px solid #e5e5e5;
         background-color: #fff;
-
-
       }
 
       & label {
@@ -128,6 +152,7 @@ export const CreateDream = () => {
       }
     `
 
+
     return (
         <div className="flex justify-center items-center">
             <Container>
@@ -141,7 +166,7 @@ export const CreateDream = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path
                                     fill="cornflowerblue" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"/></svg>
                             </label>
-                            <input type="file" id="img"/>
+                            <input type="file" id="img" onChange={imageLoadHandler}/>
                         </span>
                     </div>
                     <div>
