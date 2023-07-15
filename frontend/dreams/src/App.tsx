@@ -6,7 +6,6 @@ import {Dashboard} from "./screens/Dashboard";
 import {CreateDream} from "./components/CreateDream/CreateDream";
 import styled from "styled-components";
 
-
 const App = () => {
 
     const Container = styled.div`
@@ -22,10 +21,13 @@ const App = () => {
                     <Route path='/login' element={<LoginScreen/>}/>
                     <Route path='/signup' element={<SignupScreen/>}/>
                     <Route path='/dashboard' element={<Dashboard/>}/>
-                    <Route path='/user-profile/createdream' element={<CreateDream/>}/>
+                    <Route path='/user-profile/create-dream' element={<CreateDream/>}/>
                 </Routes>
-            </BrowserRouter>
-        </Container>
+                <div>
+                    <Footer/>
+                </div>
+            </Container>
+        </BrowserRouter>
     )
 }
 
