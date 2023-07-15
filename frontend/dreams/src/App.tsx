@@ -5,13 +5,12 @@ import SignupScreen from "./screens/SignupScreen";
 import {Dashboard} from "./screens/Dashboard";
 import {CreateDream} from "./components/CreateDream/CreateDream";
 import styled from "styled-components";
+import Footer from "./components/HeaderFooter/Footer";
 
 const App = () => {
 
     const Container = styled.div`
-
       font-family: 'Space Grotesk', sans-serif;
-
     `
     return (
         <Container>
@@ -26,8 +25,8 @@ const App = () => {
                 <div>
                     <Footer/>
                 </div>
-            </Container>
-        </BrowserRouter>
+            </BrowserRouter>
+        </Container>
     )
 }
 

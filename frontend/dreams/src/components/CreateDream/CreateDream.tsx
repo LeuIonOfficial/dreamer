@@ -10,8 +10,6 @@ import {
     FrameStyled,
     Img, AddButton
 } from "./createDream.template";
-import styled from "styled-components";
-import Button from "../Authorization/Button";
 import {useState} from "react";
 
 

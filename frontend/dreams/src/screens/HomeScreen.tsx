@@ -9,8 +9,8 @@ import SecurelyDonation from "../components/SecurelyDonation/SecurelyDonation";
 import WingsDonation from "../components/WingsDonation/WingsDonation";
 import WhatIsDreamerz from "../components/WhatIsDreams/WhatIsDreamerz";
 import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
-import Footer from "../components/HeaderFooter/Footer";
 import Thoughts from "../components/Thoughts/Thoughts";
+import Unlogged from "../components/HeaderFooter/Unlogged";
 
   
 const HomeScreen = () => {
