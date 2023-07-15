@@ -5,17 +5,17 @@ import SignupScreen from "./screens/SignupScreen";
 import {Dashboard} from "./screens/Dashboard";
 import {CreateDream} from "./components/CreateDream/CreateDream";
 import styled from "styled-components";
-import Footer from "./components/HeaderFooter/Footer";
-import {FrameStyled} from "./components/CreateDream/createDream.template";
-
 
 const App = () => {
+
     const Container = styled.div`
+
       font-family: 'Space Grotesk', sans-serif;
+
     `
     return (
-        <BrowserRouter>
-            <Container>
+        <Container>
+            <BrowserRouter>
                 <Routes>
                     <Route path='/' element={<HomeScreen/>}/>
                     <Route path='/login' element={<LoginScreen/>}/>

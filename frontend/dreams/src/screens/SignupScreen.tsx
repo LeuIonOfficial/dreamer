@@ -12,8 +12,6 @@ import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Validation from "../components/Authorization/Validation";
 import {
-    emailHandler,
-    passwordHandler,
     blurHandler,
     emailValidation,
     confirmHandler,
@@ -44,6 +42,27 @@ const SignupScreen = () => {
 
     const {email, password} = userData
     const navigate = useNavigate()
+
+    const emailHandler = (event, setValidationError, setUserData?) => {
+        event.preventDefault()
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, email: value}))
+        if (!emailValidation(value)) {
+            setValidationError(prev => ({...prev, email: "Invalid email"}))
+        } else {
+            setValidationError(prev => ({...prev, email: ""}))
+        }
+    }
+
+    const passwordHandler = (event, setValidationError, setUserData?) => {
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, password: value}))
+        if (!passwordValidationFunc(value)) {
+            setValidationError((prev) => ({...prev, password: "Invalid password"}))
+        } else {
+            setValidationError((prev) => ({...prev, password: ""}))
+        }
+    }
 
     // @ts-ignore
     const makeReqToServer = async (event: FocusEvent) => {

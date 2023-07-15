@@ -10,11 +10,13 @@ import {
     FrameStyled,
     Img, AddButton
 } from "./createDream.template";
+import styled from "styled-components";
+import Button from "../Authorization/Button";
 import {useState} from "react";
 
 
 export const CreateDream = () => {
-
+  
     const [image, setImage] = useState("")
 
     const handleImageAdd = (event) => {
@@ -22,6 +24,7 @@ export const CreateDream = () => {
         const path = event.target.files[0]
         setImage(URL.createObjectURL(path))
     }
+
 
     return (
         <div className="flex justify-center items-center">

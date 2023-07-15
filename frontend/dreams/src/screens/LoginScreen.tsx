@@ -12,10 +12,8 @@ import Modal from "../components/Alerts/Modal";
 import Validation from "../components/Authorization/Validation";
 import {
     handleInputType,
-    passwordHandler,
     blurHandler,
-    emailHandler,
-    emailValidation
+    emailValidation, passwordValidationFunc
 } from "../components/Authorization/AuthFunctions";
 
 
@@ -46,6 +44,26 @@ const LoginScreen = () => {
 
     const {email, password} = userData
 
+    const emailHandler = (event, setValidationError, setUserData?) => {
+        event.preventDefault()
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, email: value}))
+        if (!emailValidation(value)) {
+            setValidationError(prev => ({...prev, email: "Invalid email"}))
+        } else {
+            setValidationError(prev => ({...prev, email: ""}))
+        }
+    }
+
+    const passwordHandler = (event, setValidationError, setUserData?) => {
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, password: value}))
+        if (!passwordValidationFunc(value)) {
+            setValidationError((prev) => ({...prev, password: "Invalid password"}))
+        } else {
+            setValidationError((prev) => ({...prev, password: ""}))
+        }
+    }
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
