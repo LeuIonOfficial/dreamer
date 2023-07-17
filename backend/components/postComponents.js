@@ -8,7 +8,6 @@ export const create = async(req, res)=>{
         const doc = new Post({
             creator: req.userId,
             title:data.title,
-            text:data.text,
             images:data.images,
             amount:data.amount
         })
@@ -30,6 +29,22 @@ export const post = async (req,res) =>{
     try{
         const id = req.userId
         const post = await Post.findOne({creator:id})
+        if(!post){
+            return res.status(404).json({"message":"Nu a fost gasit asa gen de user"})
+        }
+        res.json(post)
+    }
+    catch (err){
+        console.log(err)
+        res.status(500).json({"message":"Erorr"})
+    }
+
+}
+
+export const post_all = async (req,res) =>{
+    try{
+        const id = req.userId
+        const post = await Post.find()
         if(!post){
             return res.status(404).json({"message":"Nu a fost gasit asa gen de user"})
         }

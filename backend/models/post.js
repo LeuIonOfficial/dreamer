@@ -11,12 +11,9 @@ const PostSchema = new Schema({
         type: String,
         require: true
     },
-    text:{
-        type: String,
-        require: true
-    },
     images:{
-        type: String,
+        type: Array,
+        default: []
     },
     amount:{
         type: Number,
