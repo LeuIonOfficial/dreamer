@@ -230,14 +230,22 @@ const LeftSideBar = () => {
     //         });
     // }, []);
 
-    const [received, setRecived] = useState(6); // Replace with your received value
-    const [fulfilled, setFulfilled] = useState(21);
-    const handleReceivedChange = (newValue) => {
-        if (newValue <= fulfilled) {
-            setRecived(newValue)
-        }
-    }
+    const [received, setRecived] = useState(31); // Replace with your received value
+    const [fulfilled, setFulfilled] = useState(30);
+    // const handleReceivedChange = (newValue) => {
+    //     if (newValue <= fulfilled) {
+    //         setRecived(newValue);
+    //     } else {
+    //         setRecived(fulfilled);
+    //     }
+    // };
     const progress = (received / fulfilled) * 100;
+    const procentageVerifiction = () => {
+        if (fulfilled < received) {
+            return Math.round((received / fulfilled) * 100)
+        }
+    };
+
     return (
         <MainConatiner>
             <ProfileConatiner>
@@ -267,7 +275,7 @@ const LeftSideBar = () => {
                     <div>
                         <Scope>
                             <ScopeSpan>Scope</ScopeSpan>
-                            <ScopeProcentage>{Math.round((received / fulfilled) * 100)}%</ScopeProcentage>
+                            <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
 
                         </Scope>
                         {/*ProgresBar*/}
