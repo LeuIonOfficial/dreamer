@@ -16,7 +16,6 @@ import Unlogged from "../components/HeaderFooter/Unlogged";
 const HomeScreen = () => {
     return (
         <>
-            <Unlogged/>
             <LetTheDreams/>
             <WhatIsDreamerz/>
             <Behero/>
