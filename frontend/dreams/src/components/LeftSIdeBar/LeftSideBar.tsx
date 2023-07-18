@@ -230,18 +230,20 @@ const LeftSideBar = () => {
     //         });
     // }, []);
 
-    const [received, setRecived] = useState(31); // Replace with your received value
-    const [fulfilled, setFulfilled] = useState(30);
-    // const handleReceivedChange = (newValue) => {
-    //     if (newValue <= fulfilled) {
-    //         setRecived(newValue);
-    //     } else {
-    //         setRecived(fulfilled);
-    //     }
-    // };
+    const [received, setRecived] = useState(45); // Replace with your received value
+    const [fulfilled, setFulfilled] = useState(40);
+    const handleReceivedChange = (newValue) => {
+        if (newValue <= fulfilled) {
+            setRecived(newValue);
+        } else {
+            setRecived(fulfilled);
+        }
+    };
     const progress = (received / fulfilled) * 100;
     const procentageVerifiction = () => {
         if (fulfilled < received) {
+            return 100;
+        } else {
             return Math.round((received / fulfilled) * 100)
         }
     };
