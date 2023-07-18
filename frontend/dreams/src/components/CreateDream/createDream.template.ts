@@ -38,6 +38,7 @@ export const Content = styled.div`
 export const Description = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 10px 0 0;
 
   & textarea {
     resize: none;
@@ -105,27 +106,37 @@ export const Footer = styled.div`
   }
 `
 
-export const CloseButton = styled.span`
+export const ImageButton = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 25px;
   height: 25px;
-  background-color: black;
+  background-color: white;
   position: absolute;
-  top: 0;
+  bottom: 10px;
   right: 0;
   cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #e5e5e5;
 `
 
 export const Image = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 150px;
-  height: 100px;
-  margin: 0 10px 20px 0;
+  width: 105px;
+  height: 105px;
+  margin: 0 10px 0 0;
+  border-radius: 50%;
+  background: #e5e5e5;
   
   & img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     flex-shrink: 0;
-    border-radius: 2px;
+    border-radius: 50%;
   }
 `
