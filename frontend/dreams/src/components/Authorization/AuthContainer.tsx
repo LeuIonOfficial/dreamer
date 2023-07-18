@@ -11,11 +11,11 @@ const AuthContainer = (props: IProps) => {
       font-weight: 700;
       line-height: 65px;
       text-align: center;
-      padding: 20px;
-      
+      padding: 10px;
+
       @media (min-width: 768px) {
         font-size: 64px;
-        padding: 60px;
+        padding: 20px;
       }
     `
 

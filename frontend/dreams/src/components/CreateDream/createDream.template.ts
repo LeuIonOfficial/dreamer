@@ -2,16 +2,17 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 800px;
-  height: 550px;
+  height: max-content;
   background: #fff;
-  box-shadow: 0 10px 15px rgba(179, 179, 179, 0.7);
-  border-radius: 7px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   padding: 35px;
   margin: 20px;
-
+  border: 2px solid;
+  border-image: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
+  border-image-slice: 3;
+  box-shadow: 0 10px 15px rgba(179, 179, 179, 0.7);
 `
 
 export const Header = styled.div`
@@ -80,43 +81,17 @@ export const Price = styled.div`
 export const FrameStyled = styled.div`
   position: relative;
   width: 150px;
-  height: 150px;
-  background-color: gray;
-  border-radius: 50%;
-  margin: 0 10px;
-`
+  height: 100px;
+  display: flex;
+  align-items: center;
 
-export const AddButton = styled.span`
-  width: 25px;
-  height: 25px;
-  position: absolute;
-  bottom: 20px;
-  right: 0;
-  background-color: white;
-  border-radius: 50%;
-  
   & label {
     cursor: pointer;
   }
-  
+
   & input {
     display: none;
   }
-`
-
-export const Img = styled.img`
-  flex-shrink: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-`
-
-export const Fill = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden
 `
 
 export const Footer = styled.div`
@@ -127,5 +102,30 @@ export const Footer = styled.div`
 
   & button {
     margin: 0 10px;
+  }
+`
+
+export const CloseButton = styled.span`
+  width: 25px;
+  height: 25px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+`
+
+export const Image = styled.div`
+  position: relative;
+  width: 150px;
+  height: 100px;
+  margin: 0 10px 20px 0;
+  
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 2px;
   }
 `
