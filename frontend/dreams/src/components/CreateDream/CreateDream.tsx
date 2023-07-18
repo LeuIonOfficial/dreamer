@@ -8,8 +8,7 @@ import {
     Toolbar,
     Footer,
     FrameStyled,
-    CloseButton,
-    Image
+    Image, ImageButton
 } from "./createDream.template";
 import {useState} from "react";
 
@@ -45,29 +44,33 @@ export const CreateDream = () => {
                             <img
                                 src={image}
                                 alt="error"/>
-                            <CloseButton onClick={() => handleRemoveImage(index)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="none" stroke="white" strokeDasharray="12" strokeDashoffset="12"
-                                          strokeLinecap="round" strokeWidth="2"
-                                          d="M12 12L19 19M12 12L5 5M12 12L5 19M12 12L19 5">
-                                        <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s"
-                                                 values="12;0"/>
-                                    </path>
+                            <ImageButton onClick={() => handleRemoveImage(index)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
+                                    <path fill="red" fillRule="evenodd"
+                                          d="M1 10a1 1 0 0 1 1-1h16a1 1 0 1 1 0 2H2a1 1 0 0 1-1-1Z"
+                                          clipRule="evenodd"/>
                                 </svg>
-                            </CloseButton>
+
+                            </ImageButton>
                         </Image>
 
                     }) : null}
                     {data.image.length < 5 && <FrameStyled>
-                      <label htmlFor="addImage">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24">
+                      <Image>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16">
                           <path fill="#333"
-                                d="m7 19l5-5l1.88 1.88c-.55.91-.88 1.98-.88 3.12H7m3-8.5C10 9.67 9.33 9 8.5 9S7 9.67 7 10.5S7.67 12 8.5 12s1.5-.67 1.5-1.5m3.09 9.5H6V4h7v5h5v4.09c.33-.05.66-.09 1-.09c.34 0 .67.04 1 .09V8l-6-6H6a2 2 0 0 0-2 2v16c0 1.11.89 2 2 2h7.81c-.35-.61-.6-1.28-.72-2M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3h-2Z"/>
+                                d="M7 2.5a2.5 2.5 0 1 1-5 0a2.5 2.5 0 0 1 5 0zm4.225 4.053a.5.5 0 0 0-.577.093l-3.71 4.71l-2.66-2.772a.5.5 0 0 0-.63.062L.002 13v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4.5l-4.777-3.947z"/>
                         </svg>
 
-
-                      </label>
-                      <input type="file" id="addImage" onInput={handleImageAdd}/>
+                        <ImageButton>
+                          <label htmlFor="addImage">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                              <path fill="cornflowerblue" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z"/>
+                            </svg>
+                          </label>
+                          <input type="file" id="addImage" onInput={handleImageAdd}/>
+                        </ImageButton>
+                      </Image>
                     </FrameStyled>}
                 </Toolbar>
                 <Content>

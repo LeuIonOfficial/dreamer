@@ -68,10 +68,7 @@ const SignupScreen = () => {
     const makeReqToServer = async (event: FocusEvent) => {
         await event.preventDefault()
         if (password === confirm) {
-            axios.post('http://localhost:3000/sign-up', JSON.stringify({
-                    email: email,
-                    password: password
-                }),
+            axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                 {
                     headers: {
                         'Content-Type': 'application/json'

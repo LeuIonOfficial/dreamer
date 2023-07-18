@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {RouterProvider} from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
@@ -9,10 +9,11 @@ import Footer from "./components/HeaderFooter/Footer";
 import {UserProfile} from "./screens/UserProfile";
 import {WingPage} from "./screens/WingPage";
 import {PricingPage} from "./screens/PricingPage";
-import {PrivateRoute} from "./utils/PrivateRoute";
+import {PrivateRoutes} from "./navigation/PrivateRoutes";
 import Unlogged from "./components/HeaderFooter/Unlogged";
 import Logged from "./components/HeaderFooter/Logged";
 import {useState} from "react";
+import router from "./navigation/navigation";
 
 const App = () => {
 
@@ -21,20 +22,9 @@ const App = () => {
     `
     return (
         <Container>
-            <BrowserRouter>
-                <Unlogged/>
-                <Routes>
-                    <Route path='/' element={<HomeScreen/>}/>
-                    <Route path='/login' element={<LoginScreen/>}/>
-                    <Route path='/signup' element={<SignupScreen/>}/>
-                    <Route path='/dashboard' element={<Dashboard/>}/>
-                    <Route path='/user-profile' element={<UserProfile/>}/>
-                    <Route path='/user-profile/createdream' element={<CreateDream/>}/>
-                    <Route path='/wing-page' element={<WingPage/>}/>
-                    <Route path='/pricing-page' element={<PricingPage/>}/>
-                </Routes>
-                <Footer/>
-            </BrowserRouter>
+            <RouterProvider router={router}/>
+            <Footer/>
+
         </Container>
     )
 }
