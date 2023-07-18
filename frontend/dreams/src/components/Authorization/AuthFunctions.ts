@@ -1,32 +1,11 @@
-export const emailHandler = (event, setValidationError, setUserData?) => {
-    event.preventDefault()
-    const {value} = event.target
-    if (setUserData) setUserData((prev) => ({...prev, email: value}))
-    setValidationError(prev => ({...prev, email: emailValidation(value)}))
-}
-
 export const emailValidation = (value) => {
-    const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!validRegex.test(String(value).toLowerCase())) {
-        return "Invalid email"
-    } else {
-        return ""
-    }
-}
-
-export const passwordHandler = (event, setValidationError, setUserData?) => {
-    const {value} = event.target
-    if (setUserData) setUserData((prev) => ({...prev, password: value}))
-    setValidationError((prev) => ({...prev, password: passwordValidationFunc(value)}))
+    const validRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return validRegex.test(String(value).toLowerCase());
 }
 
 export const passwordValidationFunc = (value) => {
     const validRegex = /^(?=.*[A-Z])(?=.*\d).{5,}$/
-    if (!validRegex.test(value)) {
-        return "Invalid password"
-    } else {
-        return ""
-    }
+    return validRegex.test(value);
 }
 
 export const blurHandler = (event, setDirty) => {
