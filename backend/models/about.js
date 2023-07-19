@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const AboutSchema = new Schema({
     creator:{
@@ -39,7 +39,7 @@ const AboutSchema = new Schema({
         type: String,
         require: true
     }
-})
+});
 
-const About = mongoose.model('About',AboutSchema)
-export default About
+const About = mongoose.model('About',AboutSchema);
+module.exports = About;
