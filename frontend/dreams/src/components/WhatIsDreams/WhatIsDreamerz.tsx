@@ -16,7 +16,7 @@ const ContainerDreamerz = styled.div`
   justify-content: space-between;
   font-family: "Space Grotesk", sans-serif;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     height: auto;
     flex-direction: column;
     padding: 32px;
@@ -30,7 +30,7 @@ const DreamerzH1 = styled.div`
   font-weight: 700;
   margin-bottom: 50px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
@@ -43,7 +43,7 @@ const Paragraf = styled.p`
   font-weight: 700;
   line-height: 31px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     font-size: 15px;
     text-align: center;
   }
@@ -61,10 +61,10 @@ const Buton = styled.button`
     #84fad5 109.31%
   );
   
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     margin-top: 20px;
     height: 48px;
-    width: 250px;
+    width: 100%;
     
   }
   
@@ -80,7 +80,7 @@ const ImageOneDreamers = styled.div`
   justify-content: center;
   height: 100%;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     margin-bottom: 20px;
   }
 `;
@@ -88,8 +88,9 @@ const ImageOneDreamers = styled.div`
 const ImageOne = styled.img`
   width: 500px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     width: 200px;
+    margin: 0 auto;
   }
 `;
 

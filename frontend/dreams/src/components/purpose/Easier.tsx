@@ -15,7 +15,7 @@ const ContainerEasier = styled.div`
   justify-content: space-around;
   font-family: 'Space Grotesk', sans-serif;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
       padding: 20px;
       height: auto;
   }
@@ -26,7 +26,7 @@ const TextHeadingEasier = styled.h1`
   color: white;
   font-size: 64px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
       font-size: 24px;
   }
 `;
@@ -37,7 +37,7 @@ const SectionEasier = styled.div`
   align-items: start;
   width: 100%;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
     margin-top: 20px;
   }
@@ -49,7 +49,7 @@ const ColumnEasier = styled.div`
   flex-direction: column;
   justify-content: space-around;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: column;
   }
 `;
@@ -60,7 +60,7 @@ const RowEasier = styled.div`
   align-items: center;
   margin-bottom: 60px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     flex-direction: row;
     //align-items: center;
     margin-bottom: 27px;
@@ -78,11 +78,11 @@ const NumberCircleEasier = styled.div`
   text-align: center;
   width: 82px;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     line-height: 62px;
-    width: 62px;
+    width: 45px;
     font-size: 22px;
-    height: 62px;
+    height: 45px;
   }
 `;
 
@@ -91,9 +91,9 @@ const TextContentEasier = styled.p`
   color: white;
   line-height: 1;
   margin-left: 20px;
-  width: 270px;
+  width: 100%;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     font-size: 13px;
     margin-left: 5px;
     //margin-top: 15px;
@@ -117,9 +117,9 @@ const ButtonEasier = styled.button`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1000px) {
     height: 48px;
-    width: 250px;
+    width: 100%;
   }
 `;
 
