@@ -39,6 +39,7 @@ export const Toolbar = styled.div`
   }
   
   @media (max-width: 500px) {
+    width: 220px;
     grid-template-columns: 105px 105px;
     gap: 10px;
   }
@@ -99,8 +100,8 @@ export const Price = styled.div`
 
 export const FrameStyled = styled.div`
   position: relative;
-  width: 150px;
-  height: 100px;
+  width: 105px;
+  height: 105px;
   display: flex;
   align-items: center;
 
@@ -150,7 +151,7 @@ export const Image = styled.div`
   position: relative;
   width: 105px;
   height: 105px;
-  margin: 0 10px 0 0;
+  //margin: 0 10px 0 0;
   border-radius: 50%;
   background: #e5e5e5;
   

@@ -35,10 +35,7 @@ const Modal = ({handleClose}): null | JSX.Element => {
         };
     }, [recoverEmail])
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-        console.log(recoverEmail)
-    }
+
 
     return (
         <>

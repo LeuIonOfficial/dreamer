@@ -10,16 +10,33 @@ import {
     FrameStyled,
     Image, ImageButton
 } from "./createDream.template";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 
-export const CreateDream = () => {
+interface IData {
+    image: string[],
+    description: string,
+    amount: number,
+    token: string
+}
 
-    const [data, setData] = useState({
+export const CreateDream: React.FC = () => {
+    const [data, setData] = useState<IData>({
         image: [],
         description: "",
-        amount: 0
+        amount: 0,
+        token: "",
     })
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        setData((prev) => ({...prev, token: token}))
+    }, [])
+
+    const navigate = useNavigate()
+
     const handleImageAdd = (event) => {
         event.preventDefault()
         const path = event.target.files[0]
@@ -31,6 +48,39 @@ export const CreateDream = () => {
         setData((prev) => ({...prev, image: updatedListImage}))
     }
 
+    const handleDescriptionInput = (event) => {
+        event.preventDefault()
+        const {value} = event.target
+
+        setData((prev) => ({...prev, description: value}))
+    }
+
+    const handleAmountInput = (event) => {
+        event.preventDefault()
+        const {value} = event.target
+
+        setData((prev) => ({...prev, amount: value}))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        axios.post('', JSON.stringify(data),
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+        )
+            .then((response) => {
+                console.log("server response:", response)
+                navigate('/dashboard')
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        console.log('submitted')
+    }
 
     return (
         <div className="flex justify-center items-center">
@@ -68,7 +118,7 @@ export const CreateDream = () => {
                               <path fill="cornflowerblue" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6Z"/>
                             </svg>
                           </label>
-                          <input type="file" id="addImage" onInput={handleImageAdd}/>
+                          <input type="file" id="addImage" accept=".png, .jpg" onChange={handleImageAdd}/>
                         </ImageButton>
                       </Image>
                     </FrameStyled>}
@@ -76,20 +126,20 @@ export const CreateDream = () => {
                 <Content>
                     <Description>
                         <h3>Description*</h3>
-                        <textarea placeholder="Description"></textarea>
+                        <textarea placeholder="Description" onInput={handleDescriptionInput} required></textarea>
                     </Description>
                     <Price>
                         <h3>Amount*</h3>
                         <div>
-                            <input type="number" placeholder="0"/>
+                            <input type="number" onInput={handleAmountInput} placeholder="0" required/>
                             <span>USD</span>
                         </div>
 
                     </Price>
                 </Content>
                 <Footer>
-                    <Button>Submit</Button>
-                    <Button>Close</Button>
+                    <Button onClick={handleSubmit}>Submit</Button>
+                    <Button onClick={() => navigate("/user-profile")}>Close</Button>
                 </Footer>
             </Container>
         </div>
