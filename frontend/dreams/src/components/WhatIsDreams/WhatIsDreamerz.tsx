@@ -16,7 +16,7 @@ const ContainerDreamerz = styled.div`
   justify-content: space-between;
   font-family: "Space Grotesk", sans-serif;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     height: auto;
     flex-direction: column;
     padding: 32px;
@@ -30,7 +30,7 @@ const DreamerzH1 = styled.div`
   font-weight: 700;
   margin-bottom: 50px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     font-size: 36px;
     margin-bottom: 20px;
     text-align: center;
@@ -43,8 +43,8 @@ const Paragraf = styled.p`
   font-weight: 700;
   line-height: 31px;
 
-  @media screen and (max-width: 768px) {
-    font-size: 16px;
+  @media screen and (max-width: 700px) {
+    font-size: 15px;
     text-align: center;
   }
 `;
@@ -61,9 +61,11 @@ const Buton = styled.button`
     #84fad5 109.31%
   );
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     margin-top: 20px;
-    width: 100%;
+    height: 48px;
+    width: 250px;
+    
   }
   
   &:hover{
@@ -78,7 +80,7 @@ const ImageOneDreamers = styled.div`
   justify-content: center;
   height: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     margin-bottom: 20px;
   }
 `;
@@ -86,7 +88,7 @@ const ImageOneDreamers = styled.div`
 const ImageOne = styled.img`
   width: 500px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     width: 200px;
   }
 `;

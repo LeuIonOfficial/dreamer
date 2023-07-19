@@ -1,7 +1,5 @@
 import nodemailer from 'nodemailer'
 
-
-
  export const sendMail =  async(mail,subject,message) => {
      const transport = nodemailer.createTransport(
          {

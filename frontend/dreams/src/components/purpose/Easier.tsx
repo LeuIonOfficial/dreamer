@@ -15,7 +15,7 @@ const ContainerEasier = styled.div`
   justify-content: space-around;
   font-family: 'Space Grotesk', sans-serif;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
       padding: 20px;
       height: auto;
   }
@@ -26,8 +26,8 @@ const TextHeadingEasier = styled.h1`
   color: white;
   font-size: 64px;
 
-  @media screen and (max-width: 768px) {
-      font-size: 48px;
+  @media screen and (max-width: 700px) {
+      font-size: 24px;
   }
 `;
 
@@ -37,8 +37,9 @@ const SectionEasier = styled.div`
   align-items: start;
   width: 100%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     flex-direction: column;
+    margin-top: 20px;
   }
   
 `;
@@ -48,8 +49,8 @@ const ColumnEasier = styled.div`
   flex-direction: column;
   justify-content: space-around;
 
-  @media screen and (max-width: 768px) {
-    flex-direction: row;
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
   }
 `;
 
@@ -59,11 +60,11 @@ const RowEasier = styled.div`
   align-items: center;
   margin-bottom: 60px;
 
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 15px;
-    width: 160px;
+  @media screen and (max-width: 700px) {
+    flex-direction: row;
+    //align-items: center;
+    margin-bottom: 27px;
+    //width: 160px;
   }
 `;
 
@@ -77,7 +78,7 @@ const NumberCircleEasier = styled.div`
   text-align: center;
   width: 82px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 700px) {
     line-height: 62px;
     width: 62px;
     font-size: 22px;
@@ -92,12 +93,12 @@ const TextContentEasier = styled.p`
   margin-left: 20px;
   width: 270px;
 
-  @media screen and (max-width: 768px) {
-    font-size: 15px;
-    margin-left: 0;
-    margin-top: 15px;
-    width: 90%;
-    text-align: center;
+  @media screen and (max-width: 700px) {
+    font-size: 13px;
+    margin-left: 5px;
+    //margin-top: 15px;
+    //width: 90%;
+    //text-align: center;
   }
 `;
 
@@ -116,8 +117,9 @@ const ButtonEasier = styled.button`
     cursor: pointer;
   }
 
-  @media screen and (max-width: 768px) {
-    width: 100%;
+  @media screen and (max-width: 700px) {
+    height: 48px;
+    width: 250px;
   }
 `;
 
