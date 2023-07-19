@@ -76,13 +76,16 @@ const NumberCircleEasier = styled.div`
   font-weight: 700;
   line-height: 82px;
   text-align: center;
-  width: 82px;
+  width: 100px;
 
   @media screen and (max-width: 1000px) {
     line-height: 62px;
     width: 45px;
     font-size: 22px;
     height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
