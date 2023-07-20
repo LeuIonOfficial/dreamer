@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {match} from "@headlessui/react/dist/utils/match";
+``
 
 const MainConatiner = styled.div`
   box-sizing: border-box;
@@ -204,7 +205,7 @@ const ButtonMobile = styled.div`
 
 `
 
-const LeftSideBar = () => {
+const LeftSideBar = (props) => {
     const navigate = useNavigate();
     //bt1
     const [isFontActive, setIsFontActive] = useState(false)

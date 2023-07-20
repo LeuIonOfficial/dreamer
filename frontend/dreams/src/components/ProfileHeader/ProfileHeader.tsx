@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import {useState} from "react";
-
+import {useRef, useState} from "react";
+import LeftSideBar from "../LeftSIdeBar/LeftSideBar";
 
 const Container = styled.div`
   max-width: 1300px;
@@ -20,7 +20,8 @@ const HeaderProfile = styled.div`
   margin-top: 10px;
 `
 const ProfileBG = styled.div`
-  background-color: gray;
+  background-image: url(${({ $backgroundImage }) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
+  background-size: cover;
   overflow: hidden;
   border-radius: 8px;
   height: 325px;
@@ -30,11 +31,9 @@ const ProfileBG = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-
 `
 const DropDownSection = styled.div`
-  //position: absolute;
-`
+z-index: 100;`
 const DDButton = styled.button`
 
   background: rgba(0, 0, 0, 0.5);
@@ -96,6 +95,16 @@ const DropDownConatiner = styled.div`
   display: flex;
   flex-direction: row;  
   padding-top: 4px;
+  & input{
+    visibility: hidden;
+  }
+  & label{
+    margin: 0 0 10px 10px;
+    cursor: pointer;
+    &:hover {
+      font-weight: 600;
+    }
+  }
   & span {
     margin: 0 0 10px 10px;
     cursor: pointer;
@@ -115,24 +124,72 @@ const UploadSvg = styled.img`
     width: 19px;
   }
 `
+const ProfilePictureContainer = styled.div`
+    margin-top: -4.1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+`
+const ProfilePicDiv = styled.div`
+  background: url("./../../../src/assets/wing/profile.jpg");
+  background-size: cover;
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  cursor: pointer;
+`
+const ProfilePic = styled.img`
+  
+  border: 0;
+  vertical-align: middle;
+  background: url("./../../../src/assets/wing/profile.jpg");
+  background-size: cover;
 
+`
+const RecivedContainer = styled.div`
+  margin-top: -35px;
+  color: rgb(79, 79, 79);
+  cursor: default;
+  display: flex;
+  justify-content: space-around;
+  & span{
+    text-align: center;
+    font-weight: 700;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 60px;
+    margin-left: 60px;  
+
+  }
+`
 export const ProfileHeader = () => {
     const [isOpacity, setIsOpacity] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
 
     // const handleMouseEnter = () =>{setIsOpacity(true)};
     const handleMouseLeave = () =>{setIsOpacity(false)};
+    const inputRef = useRef(null);
+    const [image, setImage] = useState("");
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setImage(file);
+        setBackgroundImage(URL.createObjectURL(file));
+    };
+
+
     return (
         <Container>
             <HeaderProfile>
-                <ProfileBG>
+                <ProfileBG $backgroundImage={backgroundImage}>
                     <DropDownSection>
                         <DropDownBox $opacity={isOpacity}  onMouseLeave={handleMouseLeave}>
 
-                            <DropDownConatiner>
-                                <UploadSvg src={'./../../../../src/assets/wing/cloud.png'}>
-                                </UploadSvg>
-                                <span>Upload</span>
+                            <DropDownConatiner >
+                                <UploadSvg src={'./../../../../src/assets/wing/cloud.png'}></UploadSvg>
+                                <label htmlFor="files" className="btn">Upload</label>
+                                <input id="files" type="file" ref={inputRef} onChange={handleImageChange} />
                             </DropDownConatiner>
 
                             <DropDownConatiner>
@@ -154,8 +211,20 @@ export const ProfileHeader = () => {
                         </DDButton>
 
                     </DropDownSection>
-
                 </ProfileBG>
+                <ProfilePictureContainer>
+                    <ProfilePicDiv>
+                        <ProfilePic>
+
+                        </ProfilePic>
+
+                    </ProfilePicDiv>
+
+                </ProfilePictureContainer>
+                <RecivedContainer>
+                    <span>Received</span>
+                    <span></span>
+                </RecivedContainer>
 
             </HeaderProfile>
         </Container>
