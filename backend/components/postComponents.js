@@ -8,30 +8,52 @@ const Minio = require('minio');
 
 exports.create = async (req, res) => {
     try {
-
         if (!req.files || req.files.length === 0) {
             return res.status(400).json({ error: 'No image files provided.' });
         }
 
         const uploadedFiles = [];
 
-        const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+        const uploadImage = (file, callback) => {
+            const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+            const imageName = generateimageName()
 
-        const imageName = generateimageName()
-
-        await minioClient.fPutObject(`${process.env.BUCKET_NAME}`,imageName, req.file.path, (err,etag)=>{
-                if (err) {
-                    console.error('Eroare la încărcarea fișierului:', err);
-                } else {
-                    console.log('Fișierul a fost încărcat cu succes:', etag);
+             minioClient.fPutObject(`${process.env.BUCKET_NAME}`,imageName, file.buffer, (err,etag)=>{
+                    if (err) {
+                        console.error('Eroare la încărcarea fișierului:', err);
+                        return callback(err);
+                    } else {
+                        console.log('Fișierul a fost încărcat cu succes:', etag);
+                        uploadedFiles.push(imageName);
+                        callback(null);
+                    }
                 }
-            }
-        )
+            )
+        };
+
+        // Upload each image in the array
+        const uploadPromises = req.files.map((file) => {
+            return new Promise((resolve, reject) => {
+                uploadImage(file, (err) => {
+                    if (err) reject(err);
+                    else resolve();
+                });
+            });
+        });
+
+        // Wait for all uploads to finish
+        Promise.all(uploadPromises)
+            .then(() => {
+                return res.status(200).json({ message: 'Images uploaded successfully.', uploadedFiles });
+            })
+            .catch((err) => {
+                return res.status(500).json({ error: 'Failed to upload images.' });
+            });
 
         const data = req.body;
         const doc = new Post({
             creator: req.userId,
-            image: data.image,
+            image: uploadedFiles,
             description: data.description,
             amount: data.amount
         });
@@ -40,7 +62,7 @@ exports.create = async (req, res) => {
         const respons = {
             message: "succes",
             post_id: post._id,
-            // user_id:post.creator
+            user_id:post.creator
         };
         res.json(respons);
     } catch (err) {

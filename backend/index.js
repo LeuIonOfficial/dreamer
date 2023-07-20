@@ -24,9 +24,6 @@ mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb
     .then(() => console.log("DB OK"))
     .catch(() => console.log("DB ERROR"));
 
-// Multer configuration to handle image uploads
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 
 const minioClient = new Minio.Client({
     endPoint: '127.0.0.1',
@@ -88,7 +85,7 @@ app.get('/about', autorizare, About.post);
 
 // POST
 
-app.post('/post', upload.array('photos', 5), autorizare, Post.create);
+app.post('/post', upload.array('image', 5), autorizare, Post.create);
 
 app.get('/post', autorizare, Post.post);
 
