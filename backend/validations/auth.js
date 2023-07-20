@@ -1,10 +1,8 @@
-import {body} from 'express-validator'
+const { body } = require('express-validator');
 
 const registerValidator = [
-    body('email',"Textul intordus nu este un Email").isEmail(),
-    body('password','parola trebuie sa aiba mai mult de 8 caractere').isLength({min: 8}),
-]
+    body('email', "Textul introdus nu este un Email").isEmail(),
+    body('password', 'Parola trebuie să aibă cel puțin 8 caractere').isLength({ min: 8 }),
+];
 
-export default registerValidator
-
-
+module.exports = registerValidator;
