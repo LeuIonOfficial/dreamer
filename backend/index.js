@@ -85,7 +85,7 @@ app.get('/about', autorizare, About.post);
 
 // POST
 
-app.post('/post', autorizare, Post.create);
+app.post('/post', upload.array('image', 5), autorizare, Post.create);
 
 app.get('/post', autorizare, Post.post);
 

@@ -88,17 +88,13 @@ exports.recover = async (req, res) => {
         if (!user) {
             return res.status(404).json({ "message": "Nu a fost gasit asa gen de user" });
         }
-        const password = req.body.password;
-        const salt = await bcrypt.genSalt(10);
-        const hash = await bcrypt.hash(password, salt);
-        await User.updateOne({ email: email }, { passwordHash: hash });
         const respons = {
             message: "succes",
             email: email,
         };
         res.json(respons);
 
-        sendMail(email, "Modificare Parola Dreams", `Salut aceasta este noua ta parola:${password}`);
+        sendMail(email, "Modificare Parola Dreams", `Salut aceseaza acest link ca sa-ti modifici parola`);
     } catch (err) {
         console.log(err);
         res.status(500).json({ "message": "Probleme la Modificare Parola" });
