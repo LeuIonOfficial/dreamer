@@ -19,7 +19,8 @@ exports.modify = async (req, res) => {
                 gender:req.body.gender,
                 phoneNumber:req.body.phoneNumber,
                 country:req.body.country,
-                city:req.body.city
+                city:req.body.city,
+                description:req.body.description
             });
 
         res.json({

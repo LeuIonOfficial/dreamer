@@ -32,6 +32,9 @@ const AboutSchema = new Schema({
     },
     city:{
         type: String,
+    },
+    description:{
+        type: String,
     }
 });
 

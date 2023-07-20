@@ -1,14 +1,38 @@
 const Post = require("../models/post.js");
 const User = require("../models/users.js");
 const About = require("../models/about.js");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const crypto = require('crypto')
+const Minio = require('minio');
 
 exports.create = async (req, res) => {
     try {
+
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ error: 'No image files provided.' });
+        }
+
+        const uploadedFiles = [];
+
+        const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+
+        const imageName = generateimageName()
+
+        await minioClient.fPutObject(`${process.env.BUCKET_NAME}`,imageName, req.file.path, (err,etag)=>{
+                if (err) {
+                    console.error('Eroare la încărcarea fișierului:', err);
+                } else {
+                    console.log('Fișierul a fost încărcat cu succes:', etag);
+                }
+            }
+        )
+
         const data = req.body;
         const doc = new Post({
             creator: req.userId,
-            title: data.title,
-            images: data.images,
+            image: data.image,
+            description: data.description,
             amount: data.amount
         });
         const post = await doc.save();
