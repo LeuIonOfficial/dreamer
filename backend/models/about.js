@@ -9,19 +9,15 @@ const AboutSchema = new Schema({
     },
     firstName:{
         type: String,
-        require: true
     },
     lastName:{
         type: String,
-        require: true
     },
     birthDate:{
         type: String,
-        require: true
     },
     gender:{
         type: String,
-        require: true
     },
     email:{
         type: String,
@@ -33,11 +29,9 @@ const AboutSchema = new Schema({
     },
     country:{
         type: String,
-        require: true
     },
     city:{
         type: String,
-        require: true
     }
 });
 

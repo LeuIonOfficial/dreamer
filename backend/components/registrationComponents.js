@@ -3,8 +3,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { sendMail } = require("../nodemailer.js");
 const { validationResult } = require("express-validator");
+const About = require("../models/about");
 
-exports.sinp_up = async (req, res) => {
+exports.sing_up = async (req, res) => {
     try {
         const error = validationResult(req);
         if (!error.isEmpty()) {
@@ -19,7 +20,16 @@ exports.sinp_up = async (req, res) => {
             email: req.body.email,
             passwordHash: hash
         });
+
         const user = await doc.save();
+
+        const about = new About({
+            creator: user._id,
+            email: user.email,
+        });
+
+        await about.save();
+
 
         const respons = {
             message: "succes",
