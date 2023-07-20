@@ -8,6 +8,9 @@ const dotenv = require('dotenv');
 const Registration = require("./components/registrationComponents.js");
 const Post = require("./components/postComponents.js");
 const About = require("./components/aboutComponents.js");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const crypto = require('crypto')
 
 dotenv.config({ path: './config/config.env' });
 const app = express();
@@ -20,29 +23,67 @@ mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb
     .then(() => console.log("DB OK"))
     .catch(() => console.log("DB ERROR"));
 
-const minioClient = new Minio.Client({
-    endPoint: '192.168.1.100',
-    port: 9000, // Portul implicit pentru Minio este 9000
-    useSSL: true, // Setează pe true dacă utilizezi SSL/TLS
-    accessKey: 'minioadmin',
-    secretKey: 'minioadmin',
-});
 
-minioClient.listBuckets((err, buckets) => {
-    if (err) {
-        console.log('Eroare la listarea bucket-urilor:', err);
-        return;
-    }
-
-    console.log('Bucket-uri disponibile:');
-    buckets.forEach(bucket => {
-        console.log(bucket.name);
+    const minioClient = new Minio.Client({
+        endPoint: '127.0.0.1',
+        port: 9000,
+        useSSL: false,
+        accessKey: 'minioadmin',
+        secretKey: 'minioadmin',
     });
-});
+
+    minioClient.listBuckets((err, buckets) => {
+        if (err) {
+            console.log('Eroare la listarea bucket-urilor:', err);
+            return;
+        }
+
+        console.log('Bucket-uri disponibile:');
+        buckets.forEach(bucket => {
+            console.log(bucket.name);
+        });
+    });
+
+    minioClient.fPutObject(`${process.env.BUCKET_NAME}`,"index.js", "./index.js",(err,etag)=>{
+            if (err) {
+                console.error('Eroare la încărcarea fișierului:', err);
+            } else {
+                console.log('Fișierul a fost încărcat cu succes:', etag);
+            }
+        }
+    )
 
 app.get('/', (req, res) => {
     res.send("Welcome to my server...");
 });
+
+const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+
+const imageName = generateimageName()
+
+app.post('/test', upload.single("image"),async (req,res)=>{
+
+
+
+    await minioClient.fPutObject(`${process.env.BUCKET_NAME}`,'image.png', req.file.path, (err,etag)=>{
+            if (err) {
+                console.error('Eroare la încărcarea fișierului:', err);
+            } else {
+                console.log('Fișierul a fost încărcat cu succes:', etag);
+            }
+        }
+    )
+    console.log(req.file);
+
+
+    // await minioClient.fGetObject(`${process.env.BUCKET_NAME}`,'image.png', './')
+
+
+
+    res.json("succes")
+})
+
+
 
 // Authentication
 
