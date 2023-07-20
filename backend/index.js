@@ -15,13 +15,13 @@ const app = express()
 app.use(express.json(),cors({
     origin:"*"
 }))
-// mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
-//     .then(()=>console.log("DB OK"))
-//     .catch(()=>console.log("DB ERROR"))
-
-mongoose.connect("mongodb://localhost:27017")
+mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
     .then(()=>console.log("DB OK"))
     .catch(()=>console.log("DB ERROR"))
+
+// mongoose.connect("mongodb://localhost:27017")
+//     .then(()=>console.log("DB OK"))
+//     .catch(()=>console.log("DB ERROR"))
 
 app.get('/',(req,res)=>{
     res.send("Welcome to my server...")

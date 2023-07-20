@@ -11,8 +11,10 @@ import WhatIsDreamerz from "../components/WhatIsDreams/WhatIsDreamerz";
 import LetTheDreams from "../components/WhatIsDreams/LetTheDreams";
 import Thoughts from "../components/Thoughts/Thoughts";
 import Unlogged from "../components/HeaderFooter/Unlogged";
+import Footer from "../components/HeaderFooter/Footer";
+import {Outlet} from "react-router-dom";
 
-  
+
 const HomeScreen = () => {
     return (
         <>

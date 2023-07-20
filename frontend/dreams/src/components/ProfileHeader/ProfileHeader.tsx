@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {useRef, useState} from "react";
-import LeftSideBar from "../LeftSIdeBar/LeftSideBar";
+import Draggable from 'react-draggable';
+import React from "react";
+
 
 const Container = styled.div`
   max-width: 1300px;
@@ -20,8 +22,6 @@ const HeaderProfile = styled.div`
   margin-top: 10px;
 `
 const ProfileBG = styled.div`
-  background-image: url(${({ $backgroundImage }) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
-  background-size: cover;
   overflow: hidden;
   border-radius: 8px;
   height: 325px;
@@ -33,7 +33,7 @@ const ProfileBG = styled.div`
   align-items: flex-end;
 `
 const DropDownSection = styled.div`
-z-index: 100;`
+  z-index: 100;`
 const DDButton = styled.button`
 
   background: rgba(0, 0, 0, 0.5);
@@ -89,22 +89,26 @@ const DropDownBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
+
 `
 const DropDownConatiner = styled.div`
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   padding-top: 4px;
-  & input{
+
+  & input {
     visibility: hidden;
   }
-  & label{
+
+  & label {
     margin: 0 0 10px 10px;
     cursor: pointer;
+
     &:hover {
       font-weight: 600;
     }
   }
+
   & span {
     margin: 0 0 10px 10px;
     cursor: pointer;
@@ -119,13 +123,14 @@ const UploadSvg = styled.img`
   height: 18px;
   background-size: cover;
   vertical-align: middle;
-  &:hover{
+
+  &:hover {
     height: 19px;
     width: 19px;
   }
 `
 const ProfilePictureContainer = styled.div`
-    margin-top: -4.1rem;
+  margin-top: -4.1rem;
   position: relative;
   display: flex;
   justify-content: center;
@@ -140,7 +145,7 @@ const ProfilePicDiv = styled.div`
   cursor: pointer;
 `
 const ProfilePic = styled.img`
-  
+
   border: 0;
   vertical-align: middle;
   background: url("./../../../src/assets/wing/profile.jpg");
@@ -153,22 +158,36 @@ const RecivedContainer = styled.div`
   cursor: default;
   display: flex;
   justify-content: space-around;
-  & span{
+
+  & span {
     text-align: center;
     font-weight: 700;
     display: flex;
     justify-content: flex-end;
     margin-right: 60px;
-    margin-left: 60px;  
+    margin-left: 60px;
 
   }
+`
+const Image = styled.div`
+  background-image: url(${({$backgroundImage}) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  height: 100rem;
+  width: 100rem;
+  cursor: move;
+
+
 `
 export const ProfileHeader = () => {
     const [isOpacity, setIsOpacity] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
 
     // const handleMouseEnter = () =>{setIsOpacity(true)};
-    const handleMouseLeave = () =>{setIsOpacity(false)};
+    const handleMouseLeave = () => {
+        setIsOpacity(false)
+    };
     const inputRef = useRef(null);
     const [image, setImage] = useState("");
 
@@ -176,24 +195,24 @@ export const ProfileHeader = () => {
         const file = event.target.files[0];
         setImage(file);
         setBackgroundImage(URL.createObjectURL(file));
-    };
 
+    };
 
     return (
         <Container>
             <HeaderProfile>
-                <ProfileBG $backgroundImage={backgroundImage}>
+                <ProfileBG>
                     <DropDownSection>
-                        <DropDownBox $opacity={isOpacity}  onMouseLeave={handleMouseLeave}>
+                        <DropDownBox $opacity={isOpacity} onMouseLeave={handleMouseLeave}>
 
-                            <DropDownConatiner >
+                            <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/cloud.png'}></UploadSvg>
                                 <label htmlFor="files" className="btn">Upload</label>
-                                <input id="files" type="file" ref={inputRef} onChange={handleImageChange} />
+                                <input id="files" type="file" ref={inputRef} onChange={handleImageChange}/>
                             </DropDownConatiner>
 
                             <DropDownConatiner>
-                                <UploadSvg  src={'./../../../../src/assets/wing/resize.png'}></UploadSvg>
+                                <UploadSvg src={'./../../../../src/assets/wing/resize.png'}></UploadSvg>
                                 <span>Resize</span>
                             </DropDownConatiner>
                             <DropDownConatiner>
@@ -201,17 +220,26 @@ export const ProfileHeader = () => {
                                 <span>Delete</span>
                             </DropDownConatiner>
                         </DropDownBox>
-                        <DDButton >
+                        <DDButton>
                             <ButtonImg
                                 src={"./../../../../src/assets/wing/photo-camera-svgrepo-com.png"}></ButtonImg>
-                            <EditButton $opacity={isOpacity} onClick={() => setIsOpacity(!isOpacity)} >Edit</EditButton>
+                            <EditButton $opacity={isOpacity} onClick={() => setIsOpacity(!isOpacity)}>Edit</EditButton>
                             <DropDonwArrow
                                 src={"./../../../../src/assets/wing/drop-down-arrow.png"}></DropDonwArrow>
 
                         </DDButton>
 
                     </DropDownSection>
+                    <Draggable
+                        axis="y"
+                        position={null}
+                        grid={[25, 25]}
+                        scale={1}>
+                        <Image $backgroundImage={backgroundImage}></Image>
+                    </Draggable>
                 </ProfileBG>
+
+
                 <ProfilePictureContainer>
                     <ProfilePicDiv>
                         <ProfilePic>
