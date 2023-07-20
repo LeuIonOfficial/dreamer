@@ -53,6 +53,7 @@ app.post('/post_image', upload.single("image"),async (req,res)=>{
         }
     )
     console.log(req.file);
+
 })
 
 app.get('/get_image',async (req,res)=> {

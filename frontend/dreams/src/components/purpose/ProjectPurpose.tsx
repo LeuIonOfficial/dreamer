@@ -12,10 +12,11 @@ const ProjectPurposeStyle = styled.div`
   border-bottom: 1px solid #f1f1f1;
   font-family: 'Space Grotesk', sans-serif;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     padding: 60px;
     flex-direction: column;
     align-items: center;
+    //height: 600px;
   }
 `;
 
@@ -27,8 +28,8 @@ const ProjectSectionPurpose = styled.div`
   height: 518px;
   margin-right: 35px;
 
-  @media screen and (max-width: 768px) {
-    margin-right: 0;
+  @media screen and (max-width: 1000px) {
+    margin-left: 77px;
     margin-bottom: 35px;
   }
 `;
@@ -39,7 +40,7 @@ const HeadingPurpose = styled.h1`
   line-height: 1;
   margin-bottom: -40px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     font-size: 48px;
     margin-bottom: -30px;
   }
@@ -52,17 +53,18 @@ const ParagraphPurpose = styled.p`
   line-height: 30px;
   color: #9e9e9e;
 
-  @media screen and (max-width: 768px) {
-    font-size: 18px;
-    line-height: 30px;
-    text-align: center;
+  @media screen and (max-width: 1000px) {
+    font-size: 15px;
+    margin-top: -54px;
+    //line-height: 30px;
+    //text-align: center;
   }
 `;
 
 const ImagePurpose = styled.img`
   width: 700px;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
     width: 100%;
     max-width: 500px;
   }
@@ -79,6 +81,10 @@ const ButtonEasier = styled.div`
   &:hover{
     font-weight: 700;
     cursor: pointer;
+  }
+  @media screen and (max-width: 1000px) {
+    height: 48px;
+    width: 100%;
   }
 `;
 
