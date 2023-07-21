@@ -118,6 +118,7 @@ const ImageSocialMedia  = styled.img`
 `
 const GlobalDivM = styled.div`
   height: 780px;
+  min-height: 780px;
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
   background-size: cover;
