@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BgGalaxy from "../UnloggedComponents/BgGalaxy";
 import DreamerzLogo from "../GeneralComponents/DreamerzLogo";
 import {useNavigate} from "react-router-dom";
-
+//c
 const Footers = styled.div`
   position: relative;
   padding: 0;

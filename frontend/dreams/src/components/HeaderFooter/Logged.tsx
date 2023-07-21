@@ -11,7 +11,7 @@ import MyProfileList from "../LoggedComponents/MyProfileList";
 import {useNavigate} from "react-router-dom";
 import CardWrapperOpen from "../LoggedComponents/CardWrapperOpen";
 import {useEffect} from "react";
-
+//c
 function Logged() {
     const navigate = useNavigate();
     //try UseRef

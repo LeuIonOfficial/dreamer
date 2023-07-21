@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+//c
 const BgHeader = styled.div`
   background-image: url("https://dreamerz.net/static/media/wbackground.1cc4ec945a2f5bb65bd3.png");
   background-repeat: no-repeat;
