@@ -8,6 +8,8 @@ const ImgInput = styled.input`
   opacity: 0;
   display: block;
 `
+
+//remove input, add img
 //
     const AddSmallImg = (props) => {
     return(

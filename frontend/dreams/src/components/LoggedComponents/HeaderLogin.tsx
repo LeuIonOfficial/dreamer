@@ -1,13 +1,14 @@
 import styled from "styled-components";
-
+//c
 const HLogin = styled.div`
   display: flex;
   position: sticky;
+  top: 0;
   justify-content: space-between;
   align-items: center;
   margin: 0px;
   background-color: white;
-  height: 60px;
+  height: 63px;
   max-width: 100%;
   padding: 0 8px;
   border-bottom: 4px solid;
