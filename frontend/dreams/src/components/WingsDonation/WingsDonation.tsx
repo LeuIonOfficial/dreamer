@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const GlobalDiv = styled.div`
   box-sizing: border-box;
-  font-family: 'Space Grotesk';
+  font-family: 'Space Grotesk', sans-serif;
 `
 const MainBox = styled.div`
   height: 631px;

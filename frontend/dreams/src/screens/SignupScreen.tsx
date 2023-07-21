@@ -79,7 +79,6 @@ const SignupScreen = () => {
             )
                 .then((response) => {
                     successNotify("You have successfully registered!")
-                    navigate('/login')
                 })
                 .catch((error) => {
                     errorNotify("Something goes wrong!")

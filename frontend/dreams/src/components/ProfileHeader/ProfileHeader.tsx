@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import {useRef, useState} from "react";
 import Draggable from 'react-draggable';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import React from "react";
 
 

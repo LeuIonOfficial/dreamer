@@ -3,7 +3,7 @@ import LoginScreen from "../screens/LoginScreen";
 import SignupScreen from "../screens/SignupScreen";
 import {Dashboard} from "../screens/Dashboard";
 import {createBrowserRouter} from "react-router-dom"
-import {Layout} from "../screens/Layout";
+import {Layout} from "./Layout";
 import {PrivateRoutes} from "./PrivateRoutes";
 import {PricingPage} from "../screens/PricingPage";
 import {UserProfile} from "../screens/UserProfile";
