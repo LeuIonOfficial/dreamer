@@ -16,9 +16,9 @@ const ContainerDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   @media only screen and (width <= 1098px ) {
-    
+
   }
-    @media only screen and (width <= 600px ) {
+  @media only screen and (width <= 600px ) {
     display: none;
   }
 
@@ -57,7 +57,7 @@ const TextHolderConatiner = styled.div`
 
     }
   }
-  
+
 `
 const TitleHolderbox = styled.div`
   display: flex;
@@ -85,8 +85,8 @@ const TitleHolderbox = styled.div`
 
 `
 const ImageSecqure = styled.img`
-    margin-right: 10px;
-    height: 64px;
+  margin-right: 10px;
+  height: 64px;
   @media only screen and (width <= 1098px ) {
     height: 54px;
     margin-right: 15px;
@@ -94,9 +94,9 @@ const ImageSecqure = styled.img`
   }
   @media only screen and (width <= 800px ) {
     margin-bottom: 24px;
-    
+
   }
-  
+
 `
 const ImagePeople = styled.img`
   width: 165px;
@@ -113,10 +113,10 @@ const ImageSocialMedia  = styled.img`
     width: 300px;
     height: 300px;
   }
-  
+
 `
 const GlobalDivM = styled.div`
-  height: 710px;
+  height: 780px;
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -126,8 +126,8 @@ const GlobalDivM = styled.div`
   align-items: flex-start;
   padding: 10px;
   @media only screen and (width > 601px ){
-      display: none;
-    }
+    display: none;
+  }
 `
 const TopTitleContainerM = styled.div`
   width: 100%;
@@ -142,11 +142,11 @@ const CircleM = styled.img`
 `
 const TitleContainerM = styled.div`
   display: flex;
-& img{
-  vertical-align: middle;
-  margin-right: 10px;
-  
-}
+  & img{
+    vertical-align: middle;
+    margin-right: 10px;
+
+  }
   & h3{
     margin-right: 10px;
     color: #fff;
@@ -160,11 +160,11 @@ const TitleContainerM = styled.div`
 `
 const MobileParagraf = styled.p`
   color: #fff;
-  font-size: 14px;
-  line-height: 16px;
-  text-transform: full-width;
-  width: 75%;
-  margin: 0 0 16px 20px;
+  font-size: 16px;
+  line-height: 21px;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
 `
 const ImageContainerM = styled.div`
   width: 100%;
@@ -206,7 +206,7 @@ const SecurelyDonation = () => {
                             <TextHolderConatiner>
                                 <TitleHolderbox>
                                     <ImageSecqure src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg"
-                                         alt="screen"/>
+                                                  alt="screen"/>
                                     <h3>Securely Donation</h3>
                                 </TitleHolderbox>
                                 <p >
@@ -250,5 +250,5 @@ const SecurelyDonation = () => {
 
     )
 }
-
+// delete this comment
 export default SecurelyDonation
