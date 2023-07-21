@@ -88,14 +88,22 @@ const NumberCircleEasier = styled.div`
   text-align: center;
   width: 100px;
 
-  @media screen and (max-width: 1000px) {
-    line-height: 62px;
-    width: 57px;
+  @media screen and (min-width: 0px) and (max-width: 450px){
+    //line-height: 62px;
+    //width: 92px;
+    //font-size: 22px;
+    ////height: 45px;
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
     font-size: 16px;
-    height: 45px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 62px;
+    line-height: 48px;
+  }
+  @media screen and (min-width: 451px) and (max-width: 800px){
+    font-size: 16px;
+    width: 58px;
+    line-height: 48px;
   }
 `;
 

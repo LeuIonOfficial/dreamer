@@ -24,7 +24,14 @@ const ProjectPurposeStyle = styled.div`
     
     //height: 600px;
   }
-
+  @media screen and (min-width: 800px) and (max-width: 1200px){
+    height: 355px;
+    padding: 90px 18px;
+  }
+  //@media screen and (min-width: 951px) and (max-width: 1200px){
+  //  height: 300px;
+  //  padding: 90px 18px;
+  //}
 `;
 
 const ProjectSectionPurpose = styled.div`
@@ -59,7 +66,14 @@ const HeadingPurpose = styled.h1`
     margin-bottom: 10px;
     
   }
-
+  @media screen and (min-width: 800px)  and (max-width: 1200px){
+    font-size: 38px;
+    line-height: 34px;
+    font-weight: 500;
+    align-items: center;
+    margin-top: -62px;
+    margin-bottom: 10px;
+  }
 `;
 
 const ParagraphPurpose = styled.p`
@@ -83,6 +97,17 @@ const ParagraphPurpose = styled.p`
     //line-height: 30px;
     //text-align: center;
   }
+  @media screen and (min-width: 800px) and (max-width: 950px){
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    //height: 145px;
+  }
+  @media screen and (min-width: 950px) and (max-width: 1200px){
+    font-size: 13px;
+    line-height: 22px;
+    
+  }
 `;
 
 const ImagePurpose = styled.img`
@@ -93,7 +118,11 @@ const ImagePurpose = styled.img`
     max-width: 500px;
     margin-top: -50px;
   }
-
+  @media screen and (min-width: 800px) and (max-width: 1200px) {
+    width: 52%;
+    max-width: 500px;
+    margin-bottom: 64px;
+  }
 `;
 // const ButtonEasier = styled.div`
 //   background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);

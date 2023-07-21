@@ -7,6 +7,8 @@ const AboutBiographyEdit = () => {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [email, setEmail] = useState('');
+    const [selectedGender, setSelectedGender] = useState('');
+    const [selectedBirthDate, setSelectedBirthDate] = useState('');
     const [valid, setValid] = useState(true);
     const [firstName, setFirstName] = useState('');
     const [validFirstName, setValidFirstName] = useState(true);
@@ -60,11 +62,13 @@ const AboutBiographyEdit = () => {
         setSelectedCountry(selectedCountry);
         setSelectedCity('');
         fetchCities();
+        console.log("Country : " ,selectedCountry )
     };
 
     const handleCityChange = event => {
         const selectedCity = event.target.value;
         setSelectedCity(selectedCity);
+        console.log("City : " , cities)
     };
     const handleChangeEmail = (event) => {
         const inputValue = event.target.value;
@@ -77,6 +81,11 @@ const AboutBiographyEdit = () => {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         setValid(pattern.test(input));
     };
+    const handleChangeGender = (event) => {
+        const inputValue = event.target.value;
+        setSelectedGender(inputValue);
+        console.log('Gender:', inputValue);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -87,11 +96,15 @@ const AboutBiographyEdit = () => {
             lastName: lastName,
             email: email,
             phoneNumber: phoneNumber,
+            birthDate: selectedBirthDate,
+            gender: selectedGender,
+            country: countries,
+            city: cities
         };
-
+        console.log(event)
 
         axios
-            .post('http://localhost:5173/', JSON.stringify(data))
+            .post('http://localhost:3000/about', JSON.stringify(data))
             .then((response) => {
                 console.log('Răspuns de la server:', response.data);
             })
@@ -112,7 +125,11 @@ const AboutBiographyEdit = () => {
         setValidFirstName(pattern.test(input));
 
     };
-
+    const handleChangeBirthDate = (event) => {
+        const inputValue = event.target.value;
+        setSelectedBirthDate(inputValue);
+        console.log('Birth Date:', inputValue);
+    };
     const handleLastNameChange = (event) => {
         const inputValue = event.target.value;
         setLastName(inputValue);
@@ -176,7 +193,7 @@ const AboutBiographyEdit = () => {
 
                                 <div className='input-name'>
                                     <span className='first-part-biography'>Birth Date*</span>
-                                    <input type="date" name='Birth' className='first-part-input' disabled={!isEditing}/>
+                                    <input type="date" name='Birth' className='first-part-input' disabled={!isEditing} onChange={handleChangeBirthDate}/>
                                 </div>
 
                                 <div className='input-name'>
@@ -234,9 +251,10 @@ const AboutBiographyEdit = () => {
 
                                 <div className='input-name'>
                                     <span className='first-part-biography'>Gender*</span>
-                                    <select name="gender" className='first-part-input' disabled={!isEditing}>
-                                        <option value="">Male</option>
-                                        <option value="">Female</option>
+                                    <select name="gender" className='first-part-input' disabled={!isEditing} onChange={handleChangeGender}>
+                                        <option value="">Selected Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select>
 
                                 </div>
