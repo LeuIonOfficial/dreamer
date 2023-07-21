@@ -7,17 +7,24 @@ import BalanceFrame from "../LoggedComponents/BalanceFrame";
 import BalanceText from "../LoggedComponents/BalanceName";
 import BalanceAmount from "../LoggedComponents/BalanceAmount";
 import UserPhoto from "../LoggedComponents/UserPhoto";
-import MyProfileList from "../LoggedComponents/MyProfileList";
 import {useNavigate} from "react-router-dom";
 import CardWrapperOpen from "../LoggedComponents/CardWrapperOpen";
-import {useEffect} from "react";
-//c
+import { useState} from "react";
+import CardFields from "../LoggedComponents/CardFields";
+import LinkButton from "../LoggedComponents/LinkButton";
+import DivForSvg from "../LoggedComponents/DivForSvg";
+import ProfiePhotos from "../ProfilePhotos/ProfiePhotos";
+import MyProfileList from "../LoggedComponents/MyProfileList";
+
 function Logged() {
     const navigate = useNavigate();
-    //try UseRef
+    const [myheight, setMyHeight] = useState("0px");
     const toggleMenu = () => {
-
-        // let opentheliiiist = open.setAttribute("height", "{\"auto\"}");
+        if (myheight === "0px") {
+            setMyHeight("auto");
+        } else {
+            setMyHeight("0px")
+        }
         console.log("I am pressed, but not impressed");
     }
     return (
@@ -40,8 +47,28 @@ function Logged() {
                     {/*      <UserImg></UserImg>*/}
                     {/*</Round>*/}
                 </UserPhoto>
-                <CardWrapperOpen id={"openpls"}>
-                <MyProfileList></MyProfileList>
+                <CardWrapperOpen height={myheight}>
+                    <MyProfileList>
+                    <CardFields>
+                            <LinkButton>My Profile</LinkButton>
+                            <LinkButton>Pricing Page</LinkButton>
+                    </CardFields>
+                    <hr />
+                    <CardFields>
+                        <LinkButton>About Us</LinkButton>
+                        <LinkButton>How it works</LinkButton>
+                        <LinkButton>FAQ</LinkButton>
+                        <LinkButton>Leave feedback</LinkButton>
+                        <LinkButton>Terms $ Conditions</LinkButton>
+                        <LinkButton>Privacy Policy</LinkButton>
+                    </CardFields>
+                    <hr />
+                    <CardFields>
+                        <LinkButton>Logout</LinkButton>
+                        {/*logout remove items from local storage
+                        в src создаем services , а там функцию удаления. delete token from local storage*/}
+                    </CardFields>
+                    </MyProfileList>
                 </CardWrapperOpen>
             </DivContainer>
         </HeaderLogin>

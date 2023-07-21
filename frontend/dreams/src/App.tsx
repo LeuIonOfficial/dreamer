@@ -4,7 +4,7 @@ import Footer from "./components/HeaderFooter/Footer";
 import router from "./navigation/navigation";
 
 const App = () => {
-  
+
     const Container = styled.div`
       & * {
         font-family: 'Space Grotesk', sans-serif;

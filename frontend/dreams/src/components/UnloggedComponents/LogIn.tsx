@@ -11,7 +11,7 @@ const StyledButton = styled.div`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  margin: 0;
+  margin: 2px;
   cursor: pointer;
   text-decoration: none;
   :hover {

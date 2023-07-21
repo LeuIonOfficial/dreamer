@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import MyProfileList from "./MyProfileList";
 //c
 const CardWrapperO = styled.div`
   position: absolute;
