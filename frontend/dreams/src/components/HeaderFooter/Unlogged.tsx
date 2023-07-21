@@ -12,8 +12,10 @@ const Unlogged = () => {
 
 
     return (
-        <BgGalaxy top={'0'} bottom={'auto'}><a href="#">
-            <DreamerzLogo></DreamerzLogo> </a>
+        <BgGalaxy top={'0'} bottom={'auto'} >
+            {/*<a href="#">          */}
+            <DreamerzLogo onClick = {() => navigate('')} ></DreamerzLogo>
+            {/*</a>*/}
             <ButtonsTogether>
                 <LogIn color={'white'}>
                     <ButtonName onClick={() => navigate('/login')}>Log in</ButtonName>

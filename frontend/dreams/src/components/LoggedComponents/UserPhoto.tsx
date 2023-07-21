@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import React from "react";
 
-const ListSquare = styled.div`
+const ListSquare = styled.button`
 position: relative;
   //height: 75px;
   //width: 75px;
@@ -18,7 +17,7 @@ background-repeat: no-repeat;
 //active = appear
 
 const UserPhoto = (props) => {
-    return <ListSquare>
+    return <ListSquare onClick = {props.onClick}>
         <Photo></Photo>
         {props.children}
     </ListSquare>

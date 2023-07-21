@@ -22,6 +22,7 @@ const App = () => {
     return (
         <Container>
             <BrowserRouter>
+                {/*поменять параметры в медиа*/}
                 <Unlogged/>
                 <Routes>
                     <Route path='/' element={<HomeScreen/>}/>

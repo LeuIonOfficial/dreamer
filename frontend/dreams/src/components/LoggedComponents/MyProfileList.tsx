@@ -1,14 +1,27 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 
-const CardWrapper = styled.div`
-position: absolute;
+
+const CardWrapperClosed = styled.div`
+  position: absolute;
   max-height: 0px;
   overflow: hidden;
-top: 100%;
-right: 10%;
-width: 180px;
-box-shadow: 0 0 1.25rem 0 rgba(0,0,0,.1)
+  top: 100%;
+  right: 10%;
+  width: 180px;
+  box-shadow: 0 0 1.25rem 0 rgba(0,0,0,.1);
+/*  &.OpenMenu{
+    max-height: 400px;
+  }*/
+`
+const CardWrapperOpen = styled.div`
+  position: absolute;
+  max-height: 400px;
+  overflow: hidden;
+  top: 100%;
+  right: 10%;
+  width: 180px;
+  box-shadow: 0 0 1.25rem 0 rgba(0,0,0,.1);
 `
 
 const Card = styled.div`
@@ -60,10 +73,18 @@ color: #777d74;
   color: black;
 }`
 
+/*let close = document.querySelector("CardWrapperClosed");
+const open = document.querySelector("CardWrapperOpen");
+close = open;
+let replaceTag = (id) => {
+
+}*/
+
 const Line = styled.hr``;
 const MyProfileList = (props) => {
+
     return (
-        <CardWrapper>
+        // <CardWrapperOpen>
             <Card>
                 <CardFields>
                     <LinkButton>My Profile</LinkButton>
@@ -77,13 +98,15 @@ const MyProfileList = (props) => {
                     <LinkButton>Leave feedback</LinkButton>
                     <LinkButton>Terms $ Conditions</LinkButton>
                     <LinkButton>Privacy Policy</LinkButton>
-            </CardFields>
-            <Line />
-            <CardFields>
-                <LinkButton>Logout</LinkButton>
+                    </CardFields>
+                <Line />
+                <CardFields>
+                    <LinkButton>Logout</LinkButton>
+                    {/*logout remove items from local storage
+                        в src создаем services , а там функцию удаления. delete token from local storage*/}
             </CardFields>
             </Card>
-        </CardWrapper>
+        // </CardWrapperOpen>
 
     )
 }

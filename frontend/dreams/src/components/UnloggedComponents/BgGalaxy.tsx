@@ -4,7 +4,6 @@ const BgHeader = styled.div`
   background-image: url("https://dreamerz.net/static/media/wbackground.1cc4ec945a2f5bb65bd3.png");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 24px;
   right: 0;
   left: 0;
   position: relative;
@@ -16,11 +15,16 @@ const BgHeader = styled.div`
   justify-content: space-around;
   align-items: center;
   box-sizing: border-box;
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 514px) {
     flex-direction: column;
+    padding: 24px;
   }
-  @media screen and (min-width: 481px) {
+  @media screen and (min-width: 515px) {
     flex-direction: row;
+    padding: 24px;
+  }
+  @media screen and (max-width: 299px) {
+    padding: 24px 0;
   }
 `
 const BgGalaxy = (props) => {
