@@ -7,7 +7,7 @@ import {emailValidation} from "../Authorization/AuthFunctions";
 const Modal = ({handleClose}): null | JSX.Element => {
 
     const [recoverEmail, setRecoverEmail] = useState('')
-    const [validationError, setValidationError] = useState('cant be empty')
+    const [validationError, setValidationError] = useState('Email field cant be empty!')
     const [dirty, setDirty] = useState(false)
     const inputRef = useRef<HTMLInputElement>()
 
@@ -21,7 +21,7 @@ const Modal = ({handleClose}): null | JSX.Element => {
             const {value} = event.target
             setRecoverEmail(value)
             if (!emailValidation(value)) {
-                setValidationError("invalid email")
+                setValidationError("Wrong email format!")
             } else {
                 setValidationError("")
             }

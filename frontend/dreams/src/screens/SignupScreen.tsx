@@ -18,6 +18,8 @@ import {
     passwordValidationFunc,
     handleInputType
 } from "../components/Authorization/AuthFunctions";
+import {toast, ToastContainer} from "react-toastify";
+import {errorNotify, successNotify} from "../services/toast";
 
 
 const SignupScreen = () => {
@@ -66,7 +68,7 @@ const SignupScreen = () => {
 
     // @ts-ignore
     const makeReqToServer = async (event: FocusEvent) => {
-        await event.preventDefault()
+        event.preventDefault()
         if (password === confirm) {
             axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                 {
@@ -76,9 +78,11 @@ const SignupScreen = () => {
                 }
             )
                 .then((response) => {
+                    successNotify("You have successfully registered!")
                     navigate('/login')
                 })
                 .catch((error) => {
+                    errorNotify("Something goes wrong!")
                     console.log(error);
                 });
         }
@@ -89,9 +93,9 @@ const SignupScreen = () => {
             <Form onSubmit={event => makeReqToServer(event)}>
                 <FormHeader>
                     <h1>Sign up</h1>
+                    <h3>Enter your email or password to get full access.</h3>
                 </FormHeader>
                 <FormContent>
-                    <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
                         <input
@@ -134,14 +138,27 @@ const SignupScreen = () => {
                         <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>
                     </FormInput>
                 </FormContent>
-                <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
-                    <span>Already have an account ? </span>
-                    <button onClick={() => navigate('/login')}>
-                        Sign In
-                    </button>
+                    <Button id="btn" onClick={event => makeReqToServer(event)}>Sign up</Button>
+                    <div id="text">
+                        <span>Already have an account ? </span>
+                        <button onClick={() => navigate('/login')}>
+                            Sign In
+                        </button>
+                    </div>
                 </FormFooter>
             </Form>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
         </AuthContainer>
     )
 }
