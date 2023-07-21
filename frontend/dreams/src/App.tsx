@@ -1,28 +1,21 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import HomeScreen from "./screens/HomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import SignupScreen from "./screens/SignupScreen";
-import {Dashboard} from "./screens/Dashboard";
-import LeftSideBar from "./components/LeftSIdeBar/LeftSideBar";
-import RightSideBar from "./components/rightSideBar/RightSideBar";
-import SecurelyDonation from "./components/SecurelyDonation/SecurelyDonation";
-import RightSideBlock from "./components/rightSideBar/RightSideBlock";
-import FulfillModal from "./components/Fulfill/FulfillModal";
+import {RouterProvider} from "react-router-dom";
+import styled from "styled-components";
+import Footer from "./components/HeaderFooter/Footer";
+import router from "./navigation/navigation";
 
 const App = () => {
+  
+    const Container = styled.div`
+      & * {
+        font-family: 'Space Grotesk', sans-serif;
+      }
+    `
     return (
-        <BrowserRouter>
-            <Routes>
-                {/*<Route path='/' element={<HomeScreen/>}/>*/}
-                {/*<Route path='/login' element={<LoginScreen/>}/>*/}
-                {/*<Route path='/signup' element={<SignupScreen/>}/>*/}
-                {/*<Route path='/dashboard' element={<Dashboard/>}/>*/}
-            </Routes>
-            {/*<LeftSideBar />*/}
-            <RightSideBlock />
-            {/*<HomeScreen></HomeScreen>*/}
-
-        </BrowserRouter>
+        <Container>
+            <RouterProvider router={router}/>
+            <Footer/>
+        </Container>
     )
 }
+
 export default App

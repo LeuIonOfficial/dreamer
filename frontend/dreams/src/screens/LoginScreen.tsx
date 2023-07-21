@@ -10,6 +10,14 @@ import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Modal from "../components/Alerts/Modal";
 import Validation from "../components/Authorization/Validation";
+import {
+    handleInputType,
+    blurHandler,
+    emailValidation, passwordValidationFunc
+} from "../components/Authorization/AuthFunctions";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import {errorNotify} from "../services/toast";
 
 
 const LoginScreen = () => {
@@ -20,23 +28,49 @@ const LoginScreen = () => {
     })
     const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
-    const [passwordValidation, setPasswordValidation] = useState(false)
+    const [dirty, setDirty] = useState({
+        email: false,
+        password: false,
+        confirmPassword: false,
+        recoverPassword: false,
+    });
+
+    const [validationError, setValidationError] = useState({
+        email: "Email can't be empty",
+        password: "Password can't be empty",
+        confirmPassword: "Confirm password can't be empty!",
+        recoverPassword: "Email can't be empty!"
+    })
 
     const navigate = useNavigate()
 
     const {email, password} = userData
 
-    const handleInputType = () => {
-        setInputType(prev => prev === 'password' ? 'text' : 'password')
+    const emailHandler = (event, setValidationError, setUserData?) => {
+        event.preventDefault()
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, email: value}))
+        if (!emailValidation(value)) {
+            setValidationError(prev => ({...prev, email: "Wrong email format!"}))
+        } else {
+            setValidationError(prev => ({...prev, email: ""}))
+        }
+    }
+
+    const passwordHandler = (event, setValidationError, setUserData?) => {
+        const {value} = event.target
+        if (setUserData) setUserData((prev) => ({...prev, password: value}))
+        if (!passwordValidationFunc(value)) {
+            setValidationError((prev) => ({...prev, password: "Wrong password format!"}))
+        } else {
+            setValidationError((prev) => ({...prev, password: ""}))
+        }
     }
 
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
 
-        axios.post('http://localhost:3000/sign-in', JSON.stringify({
-                email: email,
-                password: password
-            }),
+        axios.post('http://localhost:3000/sign-in', JSON.stringify(userData),
             {
                 headers: {
                     'Content-Type': 'application/json'
@@ -46,11 +80,11 @@ const LoginScreen = () => {
             .then((response) => {
                 const {token} = response.data;
                 localStorage.setItem('token', token);
-                navigate('/dashboard')
+                navigate("/dashboard")
             })
             .catch((error) => {
+                errorNotify("Wrong credentials!")
                 console.log(error);
-                setPasswordValidation(true)
             });
         console.log('submitted')
     }
@@ -65,63 +99,71 @@ const LoginScreen = () => {
         setShowOpen(false)
     }
 
-    const handleInputChange = (event) => {
-        const {id, value} = event.target
-        setUserData({...userData, [id]: value})
-    }
-
-
     return (
         <AuthContainer>
-            <Form onSubmit={event => submitHandler(event)}>
+            <Form onSubmit={event => submitHandler(event)} autocomplete="off">
                 <FormHeader>
                     <h1>Sign in</h1>
+                    <h3>Enter your email or password to get full access.</h3>
                 </FormHeader>
                 <FormContent>
-                    <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
                         <input
+                            onBlur={(event) => blurHandler(event, setDirty)}
                             id="email"
                             value={email}
-                            onChange={handleInputChange}
+                            onChange={event => emailHandler(event, setValidationError, setUserData)}
                             type="email"
                             placeholder="Enter email"
                         />
+                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                     </FormInput>
                     <FormInput>
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
                             <span onClick={handleOpen}>Forgot password?</span>
-                            <Modal isOpen={isOpen} title='Recover password' handleClose={handleClose}>
-                                <label htmlFor="recover">Email</label>
-                                <h3>Enter your email to get recover your password!</h3>
-                                <input type="text" id='recover'/>
-                            </Modal>
+                            {isOpen && <Modal handleClose={handleClose}/>}
                         </div>
                         <input
+                            onBlur={event => blurHandler(event, setDirty)}
                             id="password"
                             value={password}
-                            onChange={handleInputChange}
+                            onChange={event => passwordHandler(event, setValidationError, setUserData)}
                             type={inputType}
                             placeholder="Password"
                         />
-                        {passwordValidation && <Validation>The password or email you've entered is incorrect.</Validation>}
+                        {(dirty.password && validationError.password) &&
+                          <Validation>{validationError.password}</Validation>}
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox" onClick={handleInputType}/> Show password</p>
+                        <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox"/> Remember Me</p>
                     </FormInput>
                 </FormContent>
-                <Button>Sign in</Button>
                 <FormFooter>
-                    <span>Don't have an account ? </span>
-                    <button onClick={() => navigate('/signup')}>Sign up</button>
+                    <Button id="btn" onClick={event => submitHandler(event)}>Sign in</Button>
+                    <div id="text">
+                        <span>Don't have an account ? </span>
+                        <button onClick={() => navigate('/signup')}>Sign up</button>
+                    </div>
                 </FormFooter>
             </Form>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
         </AuthContainer>
+
     )
 }
 

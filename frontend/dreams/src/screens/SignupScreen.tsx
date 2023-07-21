@@ -11,6 +11,15 @@ import FormInput from "../components/Authorization/FormInput";
 import Button from '../components/Authorization/Button';
 import FormFooter from "../components/Authorization/FormFooter";
 import Validation from "../components/Authorization/Validation";
+import {
+    blurHandler,
+    emailValidation,
+    confirmHandler,
+    passwordValidationFunc,
+    handleInputType
+} from "../components/Authorization/AuthFunctions";
+import {toast, ToastContainer} from "react-toastify";
+import {errorNotify, successNotify} from "../services/toast";
 
 
 const SignupScreen = () => {
@@ -34,65 +43,34 @@ const SignupScreen = () => {
     })
 
     const {email, password} = userData
-    const handleInputType = () => {
-        setInputType(prev => prev === 'password' ? 'text' : 'password')
-    }
+    const navigate = useNavigate()
 
-    const emailHandler = (event) => {
+    const emailHandler = (event, setValidationError, setUserData?) => {
+        event.preventDefault()
         const {value} = event.target
-        setUserData((prev) => ({...prev, email: value}))
-        const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-        if (!validRegex.test(String(value).toLowerCase())) {
-            setValidationError((prev) => ({...prev, email: "Invaild email"}));
+        if (setUserData) setUserData((prev) => ({...prev, email: value}))
+        if (!emailValidation(value)) {
+            setValidationError(prev => ({...prev, email: "Invalid email"}))
         } else {
-            setValidationError((prev) => ({...prev, email: ""}))
+            setValidationError(prev => ({...prev, email: ""}))
         }
     }
 
-    const passwordHandler = (event) => {
+    const passwordHandler = (event, setValidationError, setUserData?) => {
         const {value} = event.target
-        setUserData((prev) => ({...prev, password: value}))
-        if (value.length < 4) {
+        if (setUserData) setUserData((prev) => ({...prev, password: value}))
+        if (!passwordValidationFunc(value)) {
             setValidationError((prev) => ({...prev, password: "Invalid password"}))
         } else {
-            setValidationError((prev) => ({...prev, password: ''}))
+            setValidationError((prev) => ({...prev, password: ""}))
         }
     }
-
-    const confirmHandler = (event) => {
-        const {value} = event.target
-        setConfirm(() => value)
-        if (value !== password) {
-            setValidationError((prev) => ({...prev, confirmPassword: "Password doesnt match"}))
-        } else {
-            setValidationError((prev) => ({...prev, confirmPassword: ""}))
-        }
-    }
-
-    const blurHandler = (event) => {
-        const {id} = event.target
-        switch (id) {
-            case "email":
-                setDirty((prevDirty) => ({...prevDirty, email: true}));
-                break;
-            case "password":
-                setDirty((prevDirty) => ({...prevDirty, password: true}));
-                break;
-            case "confirm":
-                setDirty((prevDirty) => ({...prevDirty, confirmPassword: true}))
-        }
-    }
-
-    const navigate = useNavigate()
 
     // @ts-ignore
     const makeReqToServer = async (event: FocusEvent) => {
-        await event.preventDefault()
+        event.preventDefault()
         if (password === confirm) {
-            axios.post('http://localhost:3000/sign-up', JSON.stringify({
-                    email: email,
-                    password: password
-                }),
+            axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -100,9 +78,11 @@ const SignupScreen = () => {
                 }
             )
                 .then((response) => {
+                    successNotify("You have successfully registered!")
                     navigate('/login')
                 })
                 .catch((error) => {
+                    errorNotify("Something goes wrong!")
                     console.log(error);
                 });
         }
@@ -113,59 +93,72 @@ const SignupScreen = () => {
             <Form onSubmit={event => makeReqToServer(event)}>
                 <FormHeader>
                     <h1>Sign up</h1>
+                    <h3>Enter your email or password to get full access.</h3>
                 </FormHeader>
                 <FormContent>
-                    <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
-                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={email}
-                            onChange={emailHandler}
+                            onChange={event => emailHandler(event, setValidationError, setUserData)}
                             type="text"
                             id="email"
                             placeholder="Enter email"/>
+                        {(dirty.email && validationError.email) && <Validation>{validationError.email}</Validation>}
                     </FormInput>
                     <FormInput>
                         <label htmlFor="password">Password</label>
-                        {(dirty.password && validationError.password) &&
-                          <Validation>{validationError.password}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={password}
-                            onChange={passwordHandler}
+                            onInput={event => passwordHandler(event, setValidationError, setUserData)}
                             type={inputType}
                             id="password"
                             placeholder="Password"/>
+                        {(dirty.password && validationError.password) &&
+                          <Validation>{validationError.password}</Validation>}
                     </FormInput>
                     <FormInput>
                         <label htmlFor="confirm">Confirm Password</label>
-                        {(dirty.confirmPassword && validationError.confirmPassword) &&
-                          <Validation>{validationError.confirmPassword}</Validation>}
                         <input
-                            onBlur={event => blurHandler(event)}
+                            onBlur={event => blurHandler(event, setDirty)}
                             value={confirm}
-                            onChange={confirmHandler}
+                            onChange={event => confirmHandler(event, setValidationError, setConfirm, password)}
                             type={inputType}
                             id="confirm"
                             placeholder="password"/>
+                        {(dirty.confirmPassword && validationError.confirmPassword) &&
+                          <Validation>{validationError.confirmPassword}</Validation>}
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox" onClick={handleInputType}/> Show password</p>
+                        <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>
                     </FormInput>
                 </FormContent>
-                <Button onClick={event => makeReqToServer(event)}>Sign up</Button>
                 <FormFooter>
-                    <span>Already have an account ? </span>
-                    <button onClick={() => navigate('/login')}>
-                        Sign In
-                    </button>
+                    <Button id="btn" onClick={event => makeReqToServer(event)}>Sign up</Button>
+                    <div id="text">
+                        <span>Already have an account ? </span>
+                        <button onClick={() => navigate('/login')}>
+                            Sign In
+                        </button>
+                    </div>
                 </FormFooter>
             </Form>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
         </AuthContainer>
     )
 }

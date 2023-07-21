@@ -15,17 +15,19 @@ const Input = styled.div`
   }
 
 
-  #password, #email, #confirm {
+  #password, #email, #confirm, #recoverEmail {
+
+    width: 100%;
+    letter-spacing: normal;
+
     background: #fbfbfb;
     border: 1px solid #e5e5e5;
     border-radius: 4px;
-    color: #bdbdbd;
+    color: rgb(33, 37, 41);
     font-size: 14px;
     font-weight: 400;
     height: 40px;
     line-height: 16px;
-    width: 100%;
-    letter-spacing: normal;
 
     padding: 6px 12px;
     text-align: start;
@@ -43,12 +45,13 @@ const Input = styled.div`
     color: #50b5ff;
     font-weight: 400;
   }
-  
+
   & span {
     color: #50b5ff;
     cursor: pointer;
+    font-weight: 400;
   }
-  
+
 
 `
 

@@ -1,10 +1,12 @@
-// import RightSideBar from "../components/rightSideBar/RightSideBar";
-// import RightSideBlock from "../components/rightSideBar/RightSideBlock";
-import FulfillModal from "../components/Fulfill/FulfillModal";
+
+import {Navigate} from "react-router-dom";
+import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
 
 export const Dashboard = () => {
-	return (
-		// <>OMG, is this Dashboard?</>
-		<div></div>
-	)
+
+    return (
+        <div>
+            <ProfileHeader/>
+        </div>
+    )
 }
