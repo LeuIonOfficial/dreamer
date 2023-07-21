@@ -1,65 +1,105 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import cors from 'cors'
-// import Post from "./models/postComponents.js";
-import registerValidator from './validations/auth.js'
-import autorizare from './utils/checkAuth.js'
-import dotenv from 'dotenv'
-import * as Registration from "./components/registrationComponents.js";
-import * as Post from "./components/postComponents.js";
-import * as About from "./components/aboutComponents.js";
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const Minio = require('minio');
+const registerValidator = require('./validations/auth.js');
+const autorizare = require('./utils/checkAuth.js');
+const dotenv = require('dotenv');
+const Registration = require("./components/registrationComponents.js");
+const Post = require("./components/postComponents.js");
+const About = require("./components/aboutComponents.js");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const crypto = require('crypto')
 
-dotenv.config({path: './config/config.env'})
-const app = express()
 
-app.use(express.json(),cors({
-    origin:"*"
-}))
-// mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
-//     .then(()=>console.log("DB OK"))
-//     .catch(()=>console.log("DB ERROR"))
+dotenv.config({ path: './config/config.env' });
+const app = express();
 
-mongoose.connect("mongodb://localhost:27017")
-    .then(()=>console.log("DB OK"))
-    .catch(()=>console.log("DB ERROR"))
+app.use(express.json(), cors({
+    origin: "*"
+}));
 
-app.get('/',(req,res)=>{
-    res.send("Welcome to my server...")
+mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
+    .then(() => console.log("DB OK"))
+    .catch(() => console.log("DB ERROR"))
+
+
+
+const minioClient = new Minio.Client({
+    endPoint: '127.0.0.1',
+    port: 9000,
+    useSSL: false,
+    accessKey: 'minioadmin',
+    secretKey: 'minioadmin',
+});
+
+app.get('/', (req, res) => {
+    res.send("Welcome to my server...");
+});
+
+
+
+app.post('/post_image', upload.single("image"),async (req,res)=>{
+    const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+
+    const imageName = generateimageName()
+
+    await minioClient.fPutObject(`${process.env.BUCKET_NAME}`,imageName, req.file.path, (err,etag)=>{
+            if (err) {
+                console.error('Eroare la încărcarea fișierului:', err);
+            } else {
+                console.log('Fișierul a fost încărcat cu succes:', etag);
+            }
+        }
+    )
+    console.log(req.file);
+
 })
 
+app.get('/get_image',async (req,res)=> {
 
+    await minioClient.getObject(`${process.env.BUCKET_NAME}`, 'image.png', (err, stream) => {
+        if (err) {
+            console.error('Error fetching the image from MinIO:', err);
+            return res.status(500).send('Error fetching the image from MinIO');
+        }
 
-//Authentication
+        res.setHeader('Content-Type', 'image/jpeg');
+        stream.pipe(res);
+    });
+})
 
-app.post('/sign-up',registerValidator,Registration.sinp_up)
+// Authentication
 
-app.post('/sign-in',registerValidator,Registration.sing_in)
+app.post('/sign-up', registerValidator, Registration.sing_up);
 
-app.post('/recover',Registration.recover)
+app.post('/sign-in', registerValidator, Registration.sing_in);
 
-//About
+app.patch('/recover', Registration.recover);
 
-app.post('/about_create', autorizare,About.create)
+// About
 
-app.get('/about', autorizare,About.post)
+app.post('/about', autorizare, About.modify);
 
-//POST
+app.get('/about', autorizare, About.post);
 
-app.post('/post_create', autorizare,Post.create)
+// POST
 
-app.get('/post', autorizare,Post.post)
+app.post('/post', upload.array('image', 5), autorizare, Post.create);
 
-app.post('/post_modify', autorizare,Post.modify)
+app.get('/post', autorizare, Post.post);
 
-app.post('/post_donated', autorizare,Post.donate)
+app.get('/post_all', Post.post_all);
 
+app.patch('/post', autorizare, Post.modify);
 
+app.post('/post_donated', autorizare, Post.donate);
 
-
-app.listen(process.env.PORT ,(error)=>{
-    if(error){
-        return console.log(error)
+app.listen(process.env.PORT, (error) => {
+    if (error) {
+        return console.log(error);
     }
-  
-    console.log(`Server OK: http://localhost:3000/`)
-})
+
+    console.log(`Server OK: http://localhost:3000/`);
+});

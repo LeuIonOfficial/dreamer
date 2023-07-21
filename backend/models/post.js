@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
     creator:{
@@ -7,16 +7,13 @@ const PostSchema = new Schema({
         ref:'User',
         require: true
     },
-    title:{
+    description:{
         type: String,
         require: true
     },
-    text:{
-        type: String,
-        require: true
-    },
-    images:{
-        type: String,
+    image:{
+        type: Array,
+        default: []
     },
     amount:{
         type: Number,
@@ -26,7 +23,7 @@ const PostSchema = new Schema({
         type: Number,
         default: 0
     }
-})
+});
 
-const Post = mongoose.model('Post',PostSchema)
-export default Post
+const Post = mongoose.model('Post',PostSchema);
+module.exports = Post;

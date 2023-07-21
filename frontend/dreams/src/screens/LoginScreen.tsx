@@ -1,4 +1,4 @@
-import {FormEvent, useEffect, useRef, useState} from 'react'
+import {FormEvent, useState} from 'react'
 import AuthContainer from "../components/Authorization/AuthContainer";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -15,6 +15,9 @@ import {
     blurHandler,
     emailValidation, passwordValidationFunc
 } from "../components/Authorization/AuthFunctions";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+import {errorNotify} from "../services/toast";
 
 
 const LoginScreen = () => {
@@ -25,7 +28,6 @@ const LoginScreen = () => {
     })
     const [isOpen, setShowOpen] = useState(false)
     const [inputType, setInputType] = useState('password')
-    const [passwordValidation, setPasswordValidation] = useState(false)
     const [dirty, setDirty] = useState({
         email: false,
         password: false,
@@ -49,7 +51,7 @@ const LoginScreen = () => {
         const {value} = event.target
         if (setUserData) setUserData((prev) => ({...prev, email: value}))
         if (!emailValidation(value)) {
-            setValidationError(prev => ({...prev, email: "Invalid email"}))
+            setValidationError(prev => ({...prev, email: "Wrong email format!"}))
         } else {
             setValidationError(prev => ({...prev, email: ""}))
         }
@@ -59,7 +61,7 @@ const LoginScreen = () => {
         const {value} = event.target
         if (setUserData) setUserData((prev) => ({...prev, password: value}))
         if (!passwordValidationFunc(value)) {
-            setValidationError((prev) => ({...prev, password: "Invalid password"}))
+            setValidationError((prev) => ({...prev, password: "Wrong password format!"}))
         } else {
             setValidationError((prev) => ({...prev, password: ""}))
         }
@@ -68,10 +70,7 @@ const LoginScreen = () => {
     const submitHandler = (event: FormEvent) => {
         event.preventDefault()
 
-        axios.post('http://localhost:3000/sign-in', JSON.stringify({
-                email: email,
-                password: password
-            }),
+        axios.post('http://localhost:3000/sign-in', JSON.stringify(userData),
             {
                 headers: {
                     'Content-Type': 'application/json'
@@ -81,11 +80,11 @@ const LoginScreen = () => {
             .then((response) => {
                 const {token} = response.data;
                 localStorage.setItem('token', token);
-                navigate('/dashboard')
+                navigate("/dashboard")
             })
             .catch((error) => {
+                errorNotify("Wrong credentials!")
                 console.log(error);
-                setPasswordValidation(true)
             });
         console.log('submitted')
     }
@@ -102,12 +101,12 @@ const LoginScreen = () => {
 
     return (
         <AuthContainer>
-            <Form onSubmit={event => submitHandler(event)}>
+            <Form onSubmit={event => submitHandler(event)} autocomplete="off">
                 <FormHeader>
                     <h1>Sign in</h1>
+                    <h3>Enter your email or password to get full access.</h3>
                 </FormHeader>
                 <FormContent>
-                    <h3>Enter your email or password to get full access.</h3>
                     <FormInput>
                         <label htmlFor="email">Email address</label><br/>
                         <input
@@ -136,9 +135,6 @@ const LoginScreen = () => {
                         />
                         {(dirty.password && validationError.password) &&
                           <Validation>{validationError.password}</Validation>}
-
-                        {passwordValidation &&
-                          <Validation>The password or email you've entered is incorrect.</Validation>}
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox" onClick={() => navigate('/login')}/> Show password</p>
@@ -147,13 +143,27 @@ const LoginScreen = () => {
                         <p><input type="checkbox"/> Remember Me</p>
                     </FormInput>
                 </FormContent>
-                <Button>Sign in</Button>
                 <FormFooter>
-                    <span>Don't have an account ? </span>
-                    <button onClick={() => navigate('/signup')}>Sign up</button>
+                    <Button id="btn" onClick={event => submitHandler(event)}>Sign in</Button>
+                    <div id="text">
+                        <span>Don't have an account ? </span>
+                        <button onClick={() => navigate('/signup')}>Sign up</button>
+                    </div>
                 </FormFooter>
             </Form>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
         </AuthContainer>
+
     )
 }
 

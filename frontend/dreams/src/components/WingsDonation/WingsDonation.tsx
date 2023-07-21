@@ -5,21 +5,27 @@ import styled from 'styled-components'
 
 const GlobalDiv = styled.div`
   box-sizing: border-box;
-  font-family: 'Space Grotesk';
+  font-family: 'Space Grotesk', sans-serif;
 `
 const MainBox = styled.div`
   height: 631px;
-  padding: 100px;
+  padding: 80px 70px 80px 70px;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  @media only screen and (width <= 600px){
+  @media only screen and (width <= 1080px){
     display: none;
   }
 `
 const DonationImage = styled.img`
   width: 494px;
   height: 286px;
+  margin-right: 48px;
+  @media only screen and (width <= 1098px ) {
+    width: 494px;
+    height: 286px;  }
+  @media only screen and (width <= 800px ) {
+  }
 `
 const ContentContainer = styled.div`
   width: 50%;
@@ -34,6 +40,7 @@ const ContentContainer = styled.div`
     font-size: 64px;
     font-weight: 700;
     line-height: 65px;
+    
   }
   & p{
     color: #333;
@@ -42,6 +49,7 @@ const ContentContainer = styled.div`
     line-height: 31px;
     margin-bottom: 16px;
     margin-top: 0;
+    
   }
 `
 const Button = styled.div`
@@ -63,28 +71,47 @@ const Button = styled.div`
   }
 `
 const MainContainerM = styled.div`
-  height: 400px;
-  padding: 15px;
+  height: 600px;
+  padding: 15px 15px 15px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  @media only screen and (width > 601px ){
+  @media only screen and (width > 1080px ){
     display: none;
   }
 `
 const DonationImageM = styled.img`
   width: 252px;
-  height: 146px;
+  height: 141px;
+  @media only screen and (width <= 1098px ) {
+    padding-top: 40px;
+    width: 494px;
+    height: 286px;
+  }
+
+  @media only screen and (width <= 600px ) {
+    width: 352px;
+    height: 198px;
+  }
+  
 `
 const ContentDivM = styled.div`
   width: 75%;
+  padding-bottom: 25px;
   & h2{
     color: #333;
     font-size: 26px;
     font-weight: 700;
     line-height: 34px;
     text-align: center;
+    @media only screen and (width <= 1098px ) {
+      font-size: 48px;
+      line-height: 14px;
+    }
+    @media only screen and (width <= 600px ) {
+      font-size: 26px;
+    }
   }
   & p{
     color: #2c2c2c;
@@ -92,6 +119,13 @@ const ContentDivM = styled.div`
     line-height: 16px;
     text-align: center;
     margin: 0;
+    @media only screen and (width <= 1098px ) {
+      font-size: 16px;
+
+    }
+    @media only screen and (width <= 600px ) {
+      font-size: 12px;
+    }
   }
 `
 const ButtonMobile =styled.div`
