@@ -2,7 +2,7 @@ import react from "@vitejs/plugin-react";
 import styled from "styled-components";
 import SectionName from "./SectionName";
 import SmallImages from "./SmallImages";
-import AddImg from "./AddSmallImg";
+// import AddImg from "./AddSmallImg";
 import AddSmallImg from "./AddSmallImg";
 import AddBigImg from "./AddBigImg";
 
