@@ -9,6 +9,7 @@ export const PrivateRoutes = () => {
             <>
                 <Logged/>
                 <Outlet/>
+                <Footer/>
             </>
         )
 
