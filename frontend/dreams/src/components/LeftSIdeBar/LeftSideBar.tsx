@@ -171,9 +171,7 @@ const ButtonComponents = styled.div`
 `
 const ButtonMobile = styled.div`
   align-items: center;
-  background: ${color => color.$backColor ? "linear-gradient(320deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%) " : "linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%)"};
-  background-clip: content-box, border-box;
-  font-weight: ${(props) => (props.$font ? 700 : 400)};
+
   background-origin: border-box;
   border: 1px double transparent;
   border-radius: 10px;
