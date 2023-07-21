@@ -1,8 +1,5 @@
 import styled from 'styled-components'
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {match} from "@headlessui/react/dist/utils/match";
-``
+import {useState} from "react";
 
 const MainConatiner = styled.div`
   box-sizing: border-box;
@@ -15,7 +12,7 @@ const ProfileConatiner = styled.div`
   position: sticky;
   top: 73px;
   @media only screen and (width <= 995px ) {
-    position: static;
+    position: sticky;
   }
 
 `
@@ -61,7 +58,6 @@ const Image = styled.img`
   line-height: 90px;
   width: 90px;
   vertical-align: middle;
-  cursor: pointer;
 `
 const TextContent = styled.div`
   text-align: center;
@@ -109,15 +105,14 @@ const ProgressBar = styled.div`
   margin: 0 10px 0 10px;
   display: flex;
   overflow: hidden;
-
-  &:hover {
+  &:hover{
     border: 1px solid gray;
   }
 `
 const Bar = styled.div`
   cursor: pointer;
   background: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
-  width: ${({progress}) => progress}%;
+  width: 13%;
 
 `
 const RecivedDonation = styled.div`
@@ -169,21 +164,16 @@ const ButtonComponents = styled.div`
     justify-content: space-around;
 
   }
-  @media only screen and (width >= 820px ) {
+  @media only screen and (width >= 820px ){
     display: none;
-
-  }
-  @media only screen and (width < 350px ) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
 
   }
 `
 const ButtonMobile = styled.div`
   align-items: center;
-
+  background: ${color => color.$backColor ? "linear-gradient(320deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%) " : "linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%)"};
+  background-clip: content-box, border-box;
+  font-weight: ${(props) => (props.$font ? 700 : 400)};
   background-origin: border-box;
   border: 1px double transparent;
   border-radius: 10px;
@@ -191,20 +181,13 @@ const ButtonMobile = styled.div`
   cursor: pointer;
   font-size: 12px;
   height: 48px;
-  width: 98px;
+  width: 110px;
   display: flex;
   justify-content: center;
-  @media only screen and (width < 350px ) {
-    width: 95%;
-    margin: 2px;
-
-  }
-
 
 `
 
-const LeftSideBar = (props) => {
-    const navigate = useNavigate();
+const LeftSideBar = () => {
     //bt1
     const [isFontActive, setIsFontActive] = useState(false)
     const [isBackColorActive, setIsBackColorActive] = useState(false)
@@ -214,39 +197,6 @@ const LeftSideBar = (props) => {
     //
     const [isFontActive2, setIsFontActive2] = useState(false)
     const [isBackColorActive2, setIsBackColorActive2] = useState(false)
-    //profile pic
-    const [profilePictureUrl, setProfilePictureUrl] = useState("");
-    // useEffect(() => {
-    //     // Make an API call to fetch the profile picture URL
-    //     // Update the state variable with the received URL
-    //     // Example:
-    //     fetchProfilePicture()
-    //         .then((response) => {
-    //             setProfilePictureUrl(response.data.url);
-    //         })
-    //         .catch((error) => {
-    //             console.log("Error fetching profile picture:", error);
-    //         });
-    // }, []);
-
-    const [received, setRecived] = useState(45); // Replace with your received value
-    const [fulfilled, setFulfilled] = useState(40);
-    const handleReceivedChange = (newValue) => {
-        if (newValue <= fulfilled) {
-            setRecived(newValue);
-        } else {
-            setRecived(fulfilled);
-        }
-    };
-    const progress = (received / fulfilled) * 100;
-    const procentageVerifiction = () => {
-        if (fulfilled < received) {
-            return 100;
-        } else {
-            return Math.round((received / fulfilled) * 100)
-        }
-    };
-
     return (
         <MainConatiner>
             <ProfileConatiner>
@@ -255,15 +205,15 @@ const LeftSideBar = (props) => {
                     <ProfileImgSection>
                         <ProfileImageContainer>
                             <ProfileImage>
-                                <Image src="./../../../../src/assets/wing/bdf2ff7d7efad75f528b71565ad82efb.jpg"
-                                       onClick={() => navigate('')}></Image>
+                                <Image src="./../../../../src/assets/wing/bdf2ff7d7efad75f528b71565ad82efb.jpg">
+                                </Image>
                             </ProfileImage>
 
                         </ProfileImageContainer>
                     </ProfileImgSection>
                     {/*Text part of component*/}
                     <TextContent>
-                        <H6 onClick={() => navigate('')}>
+                        <H6>
                             Robert St.
                         </H6>
                         <ParagrafConatiner>
@@ -276,17 +226,16 @@ const LeftSideBar = (props) => {
                     <div>
                         <Scope>
                             <ScopeSpan>Scope</ScopeSpan>
-                            <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
+                            <ScopeProcentage>13%</ScopeProcentage>
 
                         </Scope>
-                        {/*ProgresBar*/}
                         <ProgressBar>
-                            <Bar progress={progress}></Bar>
-                        </ProgressBar>
+                            <Bar ></Bar>
 
+                        </ProgressBar>
                         <RecivedDonation>
-                            <span>Recived : {received}</span>
-                            <span>Fulfilled : {fulfilled}</span>
+                            <span>Recived : 9</span>
+                            <span>Fulfilled : 10</span>
                         </RecivedDonation>
 
 
@@ -295,19 +244,9 @@ const LeftSideBar = (props) => {
                 </ContainerElements>
                 {/*Button Components*/}
                 <ButtonComponents>
-                    <ButtonMobile $font={isFontActive} $backColor={isBackColorActive} onClick={() => {
-                        setIsFontActive(!isFontActive);
-                        setIsBackColorActive(!isBackColorActive);
-                    }}>Wing donations</ButtonMobile>
-                    <ButtonMobile $font={isFontActive1} $backColor={isBackColorActive1} onClick={() => {
-                        setIsFontActive1(!isFontActive1);
-                        setIsBackColorActive1(!isBackColorActive1);
-                        navigate('')
-                    }}>Dreams</ButtonMobile>
-                    <ButtonMobile $font={isFontActive2} $backColor={isBackColorActive2} onClick={() => {
-                        setIsFontActive2(!isFontActive2);
-                        setIsBackColorActive2(!isBackColorActive2);
-                    }}>Last fulfilled</ButtonMobile>
+                    <ButtonMobile $font={isFontActive} $backColor={isBackColorActive} onClick={() => {setIsFontActive(!isFontActive); setIsBackColorActive(!isBackColorActive);}}>Wing donations</ButtonMobile>
+                    <ButtonMobile $font={isFontActive1} $backColor={isBackColorActive1} onClick={() => {setIsFontActive1(!isFontActive1); setIsBackColorActive1(!isBackColorActive1);}}>Dreams</ButtonMobile>
+                    <ButtonMobile $font={isFontActive2} $backColor={isBackColorActive2} onClick={() => {setIsFontActive2(!isFontActive2); setIsBackColorActive2(!isBackColorActive2);}}>Last fulfilled</ButtonMobile>
 
                 </ButtonComponents>
 
@@ -315,7 +254,7 @@ const LeftSideBar = (props) => {
                 <WingsDonationSection>
                     <span>Wings Donation</span>
                     <p>
-                        <u onClick={() => navigate('')}>See All</u>
+                        <u>See All</u>
                     </p>
 
 
@@ -326,6 +265,4 @@ const LeftSideBar = (props) => {
 
     )
 }
-
-
 export default LeftSideBar

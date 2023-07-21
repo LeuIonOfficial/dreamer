@@ -2,7 +2,7 @@ import styled from "styled-components";
 import BgGalaxy from "../UnloggedComponents/BgGalaxy";
 import DreamerzLogo from "../GeneralComponents/DreamerzLogo";
 import {useNavigate} from "react-router-dom";
-
+//c
 const Footers = styled.div`
   position: relative;
   padding: 0;
@@ -63,13 +63,13 @@ justify-content: space-between;
     width: 100%;
     //flex-wrap: wrap;
   }
-  //@media screen and (min-width: 501px) {
-  //  width: 57%;
-  //  margin-right: 5px;
-  //}
-  //@media screen and (min-width: 630px) {
-  //  width: 50%;
-  //}
+  @media screen and (min-width: 501px) {
+    width: 57%;
+    margin-right: 5px;
+  }
+  @media screen and (min-width: 630px) {
+    width: 50%;
+  }
 `
 const InstaFb = styled.div`
 display: flex;

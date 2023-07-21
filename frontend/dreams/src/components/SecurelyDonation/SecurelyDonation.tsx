@@ -15,9 +15,6 @@ const ContainerDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  @media only screen and (width <= 1098px ) {
-
-  }
   @media only screen and (width <= 600px ) {
     display: none;
   }
@@ -52,51 +49,27 @@ const TextHolderConatiner = styled.div`
     font-weight: 700;
     line-height: 31px;
     width: 75%;
-    @media only screen and (width <= 800px ) {
-      font-size: 20px;
-
-    }
   }
-
+  
 `
 const TitleHolderbox = styled.div`
   display: flex;
   align-items: center;
-  @media only screen and (width <= 800px ) {
-    flex-wrap: wrap;
-  }
-
-
-  & h3 {
+  
+ 
+  & h3{
     font-size: 64px;
-    font-weight: 700;
-    line-height: 65px;
-    color: whitesmoke;
-    margin-bottom: 0;
-    margin-top: 0;
-    @media only screen and (width <= 1098px ) {
-      font-size: 48px;
-      line-height: 54px;
-
-
-    }
-
+        font-weight: 700;
+        line-height: 65px;
+        color: whitesmoke;
+        margin-bottom: 0;
+        margin-top: 0;
   }
-
+  
 `
 const ImageSecqure = styled.img`
-  margin-right: 10px;
-  height: 64px;
-  @media only screen and (width <= 1098px ) {
-    height: 54px;
-    margin-right: 15px;
-
-  }
-  @media only screen and (width <= 800px ) {
-    margin-bottom: 24px;
-
-  }
-
+    margin-right: 10px;
+    height: 64px;
 `
 const ImagePeople = styled.img`
   width: 165px;
@@ -105,18 +78,9 @@ const ImagePeople = styled.img`
 const ImageSocialMedia  = styled.img`
   width: 550px;
   height: 550px;
-  @media only screen and (width <= 1098px ) {
-    width: 450px;
-    height: 450px;
-  }
-  @media only screen and (width <= 800px ) {
-    width: 300px;
-    height: 300px;
-  }
-
 `
 const GlobalDivM = styled.div`
-  height: 780px;
+  height: 710px;
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -126,8 +90,8 @@ const GlobalDivM = styled.div`
   align-items: flex-start;
   padding: 10px;
   @media only screen and (width > 601px ){
-    display: none;
-  }
+      display: none;
+    }
 `
 const TopTitleContainerM = styled.div`
   width: 100%;
@@ -142,11 +106,11 @@ const CircleM = styled.img`
 `
 const TitleContainerM = styled.div`
   display: flex;
-  & img{
-    vertical-align: middle;
-    margin-right: 10px;
-
-  }
+& img{
+  vertical-align: middle;
+  margin-right: 10px;
+  
+}
   & h3{
     margin-right: 10px;
     color: #fff;
@@ -160,11 +124,11 @@ const TitleContainerM = styled.div`
 `
 const MobileParagraf = styled.p`
   color: #fff;
-  font-size: 16px;
-  line-height: 21px;
-  width: 100%;
-  margin-bottom: 20px;
-  text-align: center;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: full-width;
+  width: 75%;
+  margin: 0 0 16px 20px;
 `
 const ImageContainerM = styled.div`
   width: 100%;
@@ -206,7 +170,7 @@ const SecurelyDonation = () => {
                             <TextHolderConatiner>
                                 <TitleHolderbox>
                                     <ImageSecqure src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg"
-                                                  alt="screen"/>
+                                         alt="screen"/>
                                     <h3>Securely Donation</h3>
                                 </TitleHolderbox>
                                 <p >
@@ -250,5 +214,5 @@ const SecurelyDonation = () => {
 
     )
 }
-// delete this comment
+
 export default SecurelyDonation

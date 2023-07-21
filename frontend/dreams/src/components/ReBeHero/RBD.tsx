@@ -51,6 +51,8 @@ const Description = styled.p`
   align-items: center;
   @media (max-width: 800px) {
     font-size: 26px;
+    //display: flex;
+    //align-self: center;
   }
 `
 const Rbd = () => {

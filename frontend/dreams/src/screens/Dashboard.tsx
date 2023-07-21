@@ -1,12 +1,8 @@
-import {Navigate} from "react-router-dom";
-import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
-import RightSideBlock from "../components/rightSideBar/RightSideBlock";
+import Logged from "../components/HeaderFooter/Logged";
 
 export const Dashboard = () => {
-
-    return (
-        <div>
-            <RightSideBlock/>
-        </div>
-    )
+	return (
+		<div>
+		</div>
+	)
 }

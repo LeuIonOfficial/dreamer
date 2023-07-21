@@ -1,32 +1,18 @@
 import styled from "styled-components";
 
 const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-
-  & div {
-    margin-top: 10px;
-  }
-
-  & #text {
+  align-self: center;
+  
+  & span {
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
-    color: #777d74;
-
-    & button {
-      color: #50b5ff;
-    }
-
+    color: rgb(130, 130, 130)
   }
-
-  & #btn {
-    width: 100%;
-    color: black;
+  
+  & button {
+    color: #50b5ff;
   }
-
 `
 
 const FormFooter = (props) => {

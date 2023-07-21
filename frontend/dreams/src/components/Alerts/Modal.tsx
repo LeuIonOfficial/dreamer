@@ -3,15 +3,11 @@ import {useEffect, useRef, useState} from "react";
 import {Container, Header, Content, Footer} from "./modal.template"
 import {FormButton} from "../Authorization/button.template";
 import {emailValidation} from "../Authorization/AuthFunctions";
-import axios from "axios";
-import loginScreen from "../../screens/LoginScreen";
-import {errorNotify, successNotify} from "../../services/toast";
-import {ToastContainer} from "react-toastify";
 
 const Modal = ({handleClose}): null | JSX.Element => {
 
     const [recoverEmail, setRecoverEmail] = useState('')
-    const [validationError, setValidationError] = useState('Email field cant be empty!')
+    const [validationError, setValidationError] = useState('cant be empty')
     const [dirty, setDirty] = useState(false)
     const inputRef = useRef<HTMLInputElement>()
 
@@ -25,7 +21,7 @@ const Modal = ({handleClose}): null | JSX.Element => {
             const {value} = event.target
             setRecoverEmail(value)
             if (!emailValidation(value)) {
-                setValidationError("Wrong email format!")
+                setValidationError("invalid email")
             } else {
                 setValidationError("")
             }
@@ -39,21 +35,10 @@ const Modal = ({handleClose}): null | JSX.Element => {
         };
     }, [recoverEmail])
 
-
-    const handleRecover = async (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault()
-        const response = await axios
-            .patch('http://localhost:3000/recover', {
-                email: recoverEmail
-            })
-            .catch((error) => console.log('Error: ', error));
-        if (response && response.data) {
-            successNotify("Submitted")
-            console.log(response);
-            console.log(response.data);
-        }
+        console.log(recoverEmail)
     }
-
 
     return (
         <>
@@ -72,23 +57,13 @@ const Modal = ({handleClose}): null | JSX.Element => {
                     {(dirty && validationError) && <Validation>{validationError}</Validation>}
                 </Content>
                 <Footer>
-                    <FormButton onClick={handleRecover}>Submit</FormButton>
+                    <FormButton onClick={handleClose}>Submit</FormButton>
                     <FormButton onClick={handleClose}>Back</FormButton>
                 </Footer>
             </Container>
-            <ToastContainer
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"/>
         </>
-    )
+
+    );
 }
 
 export default Modal

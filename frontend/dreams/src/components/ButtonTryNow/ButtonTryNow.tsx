@@ -15,7 +15,6 @@ const Button = styled.button`
     cursor: pointer;
   }
   @media only screen and (max-width: 800px){
-    height: 43px;
     width: 100%;
   }
 `;

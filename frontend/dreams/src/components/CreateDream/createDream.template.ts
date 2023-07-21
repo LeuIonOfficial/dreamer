@@ -13,10 +13,6 @@ export const Container = styled.div`
   border-image: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
   border-image-slice: 3;
   box-shadow: 0 10px 15px rgba(179, 179, 179, 0.7);
-  
-  @media (max-width: 400px) {
-    padding: 10px;
-  }
 `
 
 export const Header = styled.div`
@@ -29,20 +25,9 @@ export const Header = styled.div`
 `
 
 export const Toolbar = styled.div`
-  display: grid;
-  grid-template-columns: 105px 105px 105px 105px 105px;
-  gap: 20px;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 105px 105px 105px;
-  
-  }
-  
-  @media (max-width: 500px) {
-    width: 220px;
-    grid-template-columns: 105px 105px;
-    gap: 10px;
-  }
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 `
 
 export const Content = styled.div`
@@ -53,7 +38,6 @@ export const Content = styled.div`
 export const Description = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px 0 0;
 
   & textarea {
     resize: none;
@@ -90,18 +74,14 @@ export const Price = styled.div`
     line-height: 22px;
     margin-right: 10px;
     padding: 10px;
-    
-    @media (max-width: 500px) {
-      width: 50%;
-    }
 
   }
 `
 
 export const FrameStyled = styled.div`
   position: relative;
-  width: 105px;
-  height: 105px;
+  width: 150px;
+  height: 100px;
   display: flex;
   align-items: center;
 
@@ -120,46 +100,32 @@ export const Footer = styled.div`
   justify-content: flex-end;
   padding: 10px;
 
-  & Button {
+  & button {
     margin: 0 10px;
-    
-    @media (max-width: 500px) {
-      width: 50%;
-    }
   }
 `
 
-export const ImageButton = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const CloseButton = styled.span`
   width: 25px;
   height: 25px;
-  background-color: white;
+  background-color: black;
   position: absolute;
-  bottom: 10px;
+  top: 0;
   right: 0;
   cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid #e5e5e5;
 `
 
 export const Image = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-  width: 105px;
-  height: 105px;
-  //margin: 0 10px 0 0;
-  border-radius: 50%;
-  background: #e5e5e5;
+  width: 150px;
+  height: 100px;
+  margin: 0 10px 20px 0;
   
   & img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     flex-shrink: 0;
-    border-radius: 50%;
+    border-radius: 2px;
   }
 `

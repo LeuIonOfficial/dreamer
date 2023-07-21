@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+//c
 const SearchBar = styled.div`
   width: 300px;
   line-height: 0;
