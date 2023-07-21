@@ -93,11 +93,7 @@ const LoginScreen = () => {
                         <div className="input__password">
                             <label htmlFor="password">Password</label>
                             <span onClick={handleOpen}>Forgot password?</span>
-                            <Modal
-                                isOpen={isOpen}
-                                title='Recover password'
-                                handleClose={handleClose}
-                            >
+                            <Modal isOpen={isOpen} title='Recover password' handleClose={handleClose}>
                                 <label htmlFor="recover">Email</label>
                                 <h3>Enter your email to get recover your password!</h3>
                                 <input type="text" id='recover'/>

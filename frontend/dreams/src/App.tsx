@@ -4,7 +4,10 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import {Dashboard} from "./screens/Dashboard";
 import LeftSideBar from "./components/LeftSIdeBar/LeftSideBar";
+import RightSideBar from "./components/rightSideBar/RightSideBar";
 import SecurelyDonation from "./components/SecurelyDonation/SecurelyDonation";
+import RightSideBlock from "./components/rightSideBar/RightSideBlock";
+import FulfillModal from "./components/Fulfill/FulfillModal";
 
 const App = () => {
     return (
@@ -15,8 +18,9 @@ const App = () => {
                 {/*<Route path='/signup' element={<SignupScreen/>}/>*/}
                 {/*<Route path='/dashboard' element={<Dashboard/>}/>*/}
             </Routes>
-            <LeftSideBar />
-
+            {/*<LeftSideBar />*/}
+            <RightSideBlock />
+            {/*<HomeScreen></HomeScreen>*/}
 
         </BrowserRouter>
     )
