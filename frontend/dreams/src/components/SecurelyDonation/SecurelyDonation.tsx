@@ -250,5 +250,5 @@ const SecurelyDonation = () => {
 
     )
 }
-
+// delete this comment
 export default SecurelyDonation
