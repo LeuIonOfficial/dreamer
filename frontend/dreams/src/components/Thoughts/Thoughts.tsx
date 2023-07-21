@@ -37,7 +37,7 @@ const Div3 = styled.div`
   height: 75%;
   flex-direction: column;
   justify-content: space-around;
-  margin-left: 20px;
+  margin-left: 40px;
   @media only screen and (max-width: 800px){
     align-items: center;
     width: 95%;
@@ -84,6 +84,7 @@ const P = styled.p`
     font-size: 14px;
     line-height: 19px;
     text-align: center;
+    font-weight: 400;
   }
 `;
 const Thoughts = () => {
