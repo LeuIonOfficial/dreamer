@@ -6,9 +6,9 @@ const Frame = styled.div`
   border-radius: 8px;
   cursor: default;
   margin-left: 16px;
-  max-height: 26px;
+  max-height: 40px;
   padding: 4px 5px 6px;
-  width: 56px;
+  width: 70px;
   display: flex;
   flex-direction: column;
 `

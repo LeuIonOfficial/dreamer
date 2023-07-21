@@ -137,7 +137,7 @@ const LoginScreen = () => {
                           <Validation>{validationError.password}</Validation>}
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
+                        <p><input type="checkbox" onClick={() => navigate('/login')}/> Show password</p>
                     </FormInput>
                     <FormInput>
                         <p><input type="checkbox"/> Remember Me</p>
