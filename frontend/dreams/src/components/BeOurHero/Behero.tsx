@@ -2,30 +2,30 @@ import styled from "styled-components";
 
 
 const ContainerBeHero = styled.div`
-  border-bottom: 1px solid #98dfda;
-  height: 413px;
-  padding: 60px 100px;
+  display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
-  display: flex;
+  height: 100%;
   @media (max-width: 800px) {
-    height: 320px;
-    border-bottom: 1px solid #98dfda;
-    padding: 15px;
+   
   }
 `
 
 const ContainerDescription = styled.div`
-  margin-right: 10px;
+  margin: 0 20px 0 0;
+  @media (max-width: 800px){
+    margin: 0 0 16px;
+  }
+  
 `
 
 const TitleBeHero = styled.h1`
   font-size: 64px;
   font-weight: 700;
   line-height: 65px;
-  margin: 20px 30px;
-  color: #333;
+  color: #333333;
+  margin: 0;
   @media (max-width: 800px) {
     font-size: 32px;
     line-height: 25px;
@@ -36,7 +36,6 @@ const TitleBeHero = styled.h1`
 const ContentBeHero = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 10px 30px;
   @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
@@ -48,6 +47,8 @@ const TextDescription = styled.p`
   font-size: 28px;
   line-height: 36px;
   color: #060606;
+  margin: 0 0 16px;
+  font-weight: 400;
   @media (max-width: 800px) {
     font-size: 16px;
     line-height: 22px;
@@ -61,30 +62,45 @@ const TitleDescription = styled.h3`
   font-weight: 700;
   line-height: 36px;
   color: #202020;
+  margin: 0;
   @media (max-width: 800px) {
     font-size: 19px;
     line-height: 41px;
     margin: 0;
   }
 `
+
+const Main = styled.div`
+  display: block;
+  box-sizing: border-box;
+  height: 413px;
+  padding: 60px 100px;
+  border-bottom: 1px solid #d9e5e5;
+  @media (max-width: 800px) {
+    padding: 38px;
+    height: 350px;
+  }
+`
 const BeHero = () => {
     return (
-        <ContainerBeHero>
-            <TitleBeHero>Be our hero</TitleBeHero>
-            <ContentBeHero>
-                <ContainerDescription>
-                    <TitleDescription>Dreamer</TitleDescription>
-                    <TextDescription>Dreamer is a person who gives for other dreams and receive back twice for it’s
-                        own
-                        dream.</TextDescription>
-                </ContainerDescription>
-                <ContainerDescription>
-                    <TitleDescription>Dream Angel</TitleDescription>
-                    <TextDescription>Dream Angel is a person who give to others and collect fulfilled dreams for his
-                        future dream or further donation.</TextDescription>
-                </ContainerDescription>
-            </ContentBeHero>
-        </ContainerBeHero>
+        <Main>
+            <ContainerBeHero>
+                <TitleBeHero>Be our hero</TitleBeHero>
+                <ContentBeHero>
+                    <ContainerDescription>
+                        <TitleDescription>Dreamer</TitleDescription>
+                        <TextDescription>Dreamer is a person who gives for other dreams and receive back twice for it’s
+                            own
+                            dream.</TextDescription>
+                    </ContainerDescription>
+                    <ContainerDescription>
+                        <TitleDescription>Dream Angel</TitleDescription>
+                        <TextDescription>Dream Angel is a person who give to others and collect fulfilled dreams for his
+                            future dream or further donation.</TextDescription>
+                    </ContainerDescription>
+                </ContentBeHero>
+            </ContainerBeHero>
+        </Main>
     )
 }
 
