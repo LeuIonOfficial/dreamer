@@ -116,7 +116,7 @@ const ImageSocialMedia  = styled.img`
   
 `
 const GlobalDivM = styled.div`
-  height: 710px;
+  height: 780px;
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -160,11 +160,11 @@ const TitleContainerM = styled.div`
 `
 const MobileParagraf = styled.p`
   color: #fff;
-  font-size: 14px;
-  line-height: 16px;
-  text-transform: full-width;
-  width: 75%;
-  margin: 0 0 16px 20px;
+  font-size: 16px;
+  line-height: 21px;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
 `
 const ImageContainerM = styled.div`
   width: 100%;
