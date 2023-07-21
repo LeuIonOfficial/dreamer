@@ -107,7 +107,7 @@ const ContentDivM = styled.div`
     text-align: center;
     @media only screen and (width <= 1098px ) {
       font-size: 48px;
-      line-height: 14px;
+      margin-bottom: 20px;
     }
     @media only screen and (width <= 600px ) {
       font-size: 26px;
