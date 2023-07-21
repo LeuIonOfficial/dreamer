@@ -7,6 +7,7 @@ const GlobalDiv = styled.div`
 `
 const ContainerDiv = styled.div`
   height: 710px;
+  min-height: 710px;
   background-image: url("./../../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png");
   background-repeat: no-repeat;
   background-size: cover;
