@@ -15,7 +15,10 @@ const ContainerDiv = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  @media only screen and (width <= 600px ) {
+  @media only screen and (width <= 1098px ) {
+    
+  }
+    @media only screen and (width <= 600px ) {
     display: none;
   }
 
@@ -49,27 +52,51 @@ const TextHolderConatiner = styled.div`
     font-weight: 700;
     line-height: 31px;
     width: 75%;
+    @media only screen and (width <= 800px ) {
+      font-size: 20px;
+
+    }
   }
   
 `
 const TitleHolderbox = styled.div`
   display: flex;
   align-items: center;
-  
- 
-  & h3{
-    font-size: 64px;
-        font-weight: 700;
-        line-height: 65px;
-        color: whitesmoke;
-        margin-bottom: 0;
-        margin-top: 0;
+  @media only screen and (width <= 800px ) {
+    flex-wrap: wrap;
   }
-  
+
+
+  & h3 {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 65px;
+    color: whitesmoke;
+    margin-bottom: 0;
+    margin-top: 0;
+    @media only screen and (width <= 1098px ) {
+      font-size: 48px;
+      line-height: 54px;
+
+
+    }
+
+  }
+
 `
 const ImageSecqure = styled.img`
     margin-right: 10px;
     height: 64px;
+  @media only screen and (width <= 1098px ) {
+    height: 54px;
+    margin-right: 15px;
+
+  }
+  @media only screen and (width <= 800px ) {
+    margin-bottom: 24px;
+    
+  }
+  
 `
 const ImagePeople = styled.img`
   width: 165px;
@@ -78,6 +105,15 @@ const ImagePeople = styled.img`
 const ImageSocialMedia  = styled.img`
   width: 550px;
   height: 550px;
+  @media only screen and (width <= 1098px ) {
+    width: 450px;
+    height: 450px;
+  }
+  @media only screen and (width <= 800px ) {
+    width: 300px;
+    height: 300px;
+  }
+  
 `
 const GlobalDivM = styled.div`
   height: 710px;

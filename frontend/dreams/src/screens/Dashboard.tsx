@@ -1,10 +1,11 @@
 import {Navigate} from "react-router-dom";
+import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
 
 export const Dashboard = () => {
 
     return (
         <div>
-            <h1>Call me Dashboard</h1>
+            <ProfileHeader/>
         </div>
     )
 }
