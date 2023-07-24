@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useRef, useState } from "react";
 import Draggable from 'react-draggable';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import React from "react";
 
 const Container = styled.div`
@@ -203,7 +205,7 @@ const Image = styled.img`
   background-size: cover;
   position: absolute;
   top: 0;
-  height: 40%;
+  height: 100rem;
   width: 100%;
   cursor: move;
 `
@@ -282,6 +284,8 @@ export const ProfileHeader = () => {
         setBackgroundImage(URL.createObjectURL(file));
     };
 
+    const customBounds = {}
+
     const handleSaveChangesClick = () => {
         setIsResizing(false);
         setIsDraggable(false);
@@ -304,7 +308,7 @@ export const ProfileHeader = () => {
     return (
         <Container>
             <HeaderProfile>
-                <ProfileBG>
+                <ProfileBGs>
                     <DropDownSection>
                         <DropDownBox $opacity={isOpacity} onMouseLeave={handleMouseLeave}>
                             <DropDownConatiner>
@@ -342,7 +346,7 @@ export const ProfileHeader = () => {
                             scale={1}
                             ref={draggableRef}
                             onStop={handleDragStop}
-                            bounds='parent'
+                            bounds:{top:10}
 
 
                         >
@@ -351,7 +355,7 @@ export const ProfileHeader = () => {
                     ) : (
                         <Image $backgroundImage={backgroundImage}></Image>
                     )}
-                </ProfileBG>
+                </ProfileBGs>
 
                 <ProfilePictureContainer>
                     <ProfilePicDiv>

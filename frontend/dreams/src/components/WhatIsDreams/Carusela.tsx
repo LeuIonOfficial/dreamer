@@ -7,47 +7,53 @@ import ButtonArrowLeft from "../../assets/media/button_arrow_left.svg";
 
 const Img = styled.img`
   width: inherit;
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 800px) {
     flex: 1 1 auto;
     position: relative;
     width: 200px;
   }
 `
 const CardCarusela = styled.div `
-  height: 600px;
+  height: 327px;
   width: 600px;
+  margin-left: 10px;
 
-  @media (max-width: 1000px){
+  @media (max-width: 800px){
     //height: 400px;
     //width: 400px;
     height: 270px;
     position: static!important;
     width: 200px;
-  }
-  
-
-`;
+  }`
+const Slider = styled.div`
+  width: inherit;
+`
 const ButtonLeft = styled.div`
-  position: absolute;
-  //left: 20px;
-  margin-left: -15px;
-  margin-top: -150px;
-  
+  left: 0;
+  top: 40%;
 `
 const ButtonRight = styled.div`
-  position: absolute;
-  margin-top: -150px;
-  margin-left: 602px;
-  
-  @media (max-width: 1000px){
-    margin-left: 201px;
-    margin-top: -148px;
-    position: absolute;
-  }
+  right: 0;
+  top: 40%;
 `
-const CursorPointer = styled.div `
-  cursor: pointer;
-`;
+// const ButtonLeft = styled.div`
+//   position: absolute;
+//   //left: 20px;
+//   margin-left: -15px;
+//   margin-top: -150px;
+//
+// `
+// const ButtonRight = styled.div`
+//   position: absolute;
+//   margin-top: -150px;
+//   margin-left: 602px;
+//
+//   @media (max-width: 1000px){
+//     margin-left: 201px;
+//     margin-top: -148px;
+//     position: absolute;
+//   }
+// `
 const Img2 = styled.img`
   width: 10px;
   height: 18px;
@@ -82,17 +88,12 @@ const Img2 = styled.img`
 
 const responsive = {
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: 3000, min: 800 },
         items: 3,
         slidesToSlide: 1
     },
-    tablet: {
-        breakpoint: { max: 1024, min: 900 },
-        items: 3,
-        slidesToSlide: 2
-    },
     mobile: {
-        breakpoint: { max: 900, min: 0 },
+        breakpoint: { max: 800, min: 0 },
         items: 1,
         slidesToSlide: 1
     }
@@ -126,7 +127,7 @@ const CaruselaImageSrc = [
 
 const ButtonGroup = ({ next, previous }: any) => {
     return (
-        <CursorPointer>
+        <div className="cursor-pointer">
             <ButtonLeft className="absolute" onClick={() => previous()}>
                 <Img2 src={ButtonArrowLeft} alt="Your SVG" />
             </ButtonLeft>
@@ -144,7 +145,7 @@ const ButtonGroup = ({ next, previous }: any) => {
             {/*        <path d="M0.20078 2.796L6.20078 8.796L0.20078 14.796L1.40078 17.196L9.80078 8.796L1.40078 0.395996L0.20078 2.796Z" fill="#6C6C6C"></path>*/}
             {/*    </svg>*/}
             {/*</CarouselBtnRight>*/}
-        </CursorPointer>
+        </div>
 
     );
 }
@@ -161,9 +162,9 @@ const Carusela = () => {
             >
                 {CaruselaImageSrc.map((image, index) => {
                     return (
-                        <div className="slider" key={index}>
+                        <Slider key={index}>
                             <Img src={image.src} alt="card" />
-                        </div>
+                        </Slider>
                     );
                 })
                 }
@@ -172,4 +173,5 @@ const Carusela = () => {
     );
 };
 export default Carusela;
+
 

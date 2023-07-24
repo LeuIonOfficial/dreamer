@@ -7,8 +7,19 @@ import BalanceFrame from "../LoggedComponents/BalanceFrame";
 import BalanceText from "../LoggedComponents/BalanceName";
 import BalanceAmount from "../LoggedComponents/BalanceAmount";
 import UserPhoto from "../LoggedComponents/UserPhoto";
-
+import MyProfileList from "../LoggedComponents/MyProfileList";
+import {useNavigate} from "react-router-dom";
+import CardWrapperOpen from "../LoggedComponents/CardWrapperOpen";
+import {useEffect} from "react";
+//c
 function Logged() {
+    const navigate = useNavigate();
+    //try UseRef
+    const toggleMenu = () => {
+
+        // let opentheliiiist = open.setAttribute("height", "{\"auto\"}");
+        console.log("I am pressed, but not impressed");
+    }
     return (
         <HeaderLogin>
             <DivContainer justify={"flex-start"}>
@@ -24,14 +35,14 @@ function Logged() {
                     <BalanceText color={"#A8A6A6"} size={"13px"}>Balance</BalanceText>
                     <BalanceAmount color={"black"} size={"12px"}></BalanceAmount>
                 </BalanceFrame>
-                <UserPhoto>
+                <UserPhoto onClick={() => toggleMenu()}>
                     {/*<Round role="button " href="#">*/}
                     {/*      <UserImg></UserImg>*/}
                     {/*</Round>*/}
                 </UserPhoto>
-                {/*<UserBalance>
-                    <UserImg></UserImg>
-                </UserBalance>*/}
+                <CardWrapperOpen id={"openpls"}>
+                <MyProfileList></MyProfileList>
+                </CardWrapperOpen>
             </DivContainer>
         </HeaderLogin>
     )

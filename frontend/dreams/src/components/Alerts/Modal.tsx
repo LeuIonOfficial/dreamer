@@ -3,6 +3,10 @@ import {useEffect, useRef, useState} from "react";
 import {Container, Header, Content, Footer} from "./modal.template"
 import {FormButton} from "../Authorization/button.template";
 import {emailValidation} from "../Authorization/AuthFunctions";
+import axios from "axios";
+import loginScreen from "../../screens/LoginScreen";
+import {errorNotify, successNotify} from "../../services/toast";
+import {ToastContainer} from "react-toastify";
 
 const Modal = ({handleClose}): null | JSX.Element => {
 
@@ -36,6 +40,20 @@ const Modal = ({handleClose}): null | JSX.Element => {
     }, [recoverEmail])
 
 
+    const handleRecover = async (event) => {
+        event.preventDefault()
+        const response = await axios
+            .patch('http://localhost:3000/recover', {
+                email: recoverEmail
+            })
+            .catch((error) => console.log('Error: ', error));
+        if (response && response.data) {
+            successNotify("Submitted")
+            console.log(response);
+            console.log(response.data);
+        }
+    }
+
 
     return (
         <>
@@ -54,13 +72,23 @@ const Modal = ({handleClose}): null | JSX.Element => {
                     {(dirty && validationError) && <Validation>{validationError}</Validation>}
                 </Content>
                 <Footer>
-                    <FormButton onClick={handleClose}>Submit</FormButton>
+                    <FormButton onClick={handleRecover}>Submit</FormButton>
                     <FormButton onClick={handleClose}>Back</FormButton>
                 </Footer>
             </Container>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
         </>
-
-    );
+    )
 }
 
 export default Modal

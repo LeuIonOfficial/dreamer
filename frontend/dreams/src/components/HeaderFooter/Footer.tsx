@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import BgGalaxy from "../UnloggedComponents/BgGalaxy";
 import DreamerzLogo from "../GeneralComponents/DreamerzLogo";
+import {useNavigate} from "react-router-dom";
 
 const Footers = styled.div`
   position: relative;
   padding: 0;
   margin: 0;
   bottom: 0;
+  left: 0;
+  right: 0;
   //width: 100%;
   font-family: 'Space Grotesk', sans-serif;
   margin-top: auto;
@@ -34,15 +37,21 @@ margin-left: 5px;
 `
 
 const Pages = styled.span`
-  margin: 5px;
+  //margin: 2px;
   color: #fff;
   font-size: 12px;
+  margin: 0 5px;
   font-weight: 700;
   text-decoration: none;
-  
+  white-space: nowrap;
   &:link{
     text-decoration: none;
   }
+  @media screen and (max-width: 501px) {
+    white-space: nowrap;
+    margin: 0;
+  }
+  
 `
 const LinksContainer = styled.div`
 display: flex;
@@ -50,10 +59,15 @@ justify-content: space-between;
   text-decoration: none;
   align-items: center;
   flex-direction: row;
-  @media screen and (max-width: 480px){
+  @media screen and (max-width: 500px){
     width: 100%;
+    //flex-wrap: wrap;
   }
-  @media screen and (min-width: 481px) {
+  @media screen and (min-width: 501px) {
+    width: 57%;
+    margin-right: 5px;
+  }
+  @media screen and (min-width: 630px) {
     width: 50%;
   }
 `
@@ -61,7 +75,7 @@ const InstaFb = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-between;
-  margin: 10px;
+  margin: 20px 0;
   padding: 0px;
 `
 
@@ -80,14 +94,19 @@ const SocialMedia = (props) => {
     )
 }
 const Insta = styled.div`
-margin-right: 20px`
+  margin-right: 20px;
+  @media screen and (min-width: 515px) and (max-width: 535px){
+    margin: 5px;
+  }
+`
 const Footer = () => {
+    const navigate = useNavigate();
     return(
         <Footers>
+            {/*top={'auto'} bottom={'0'} position={'fixed'}*/}
             <BgGalaxy>
-            <div><a href="#">
-                <DreamerzLogo></DreamerzLogo>
-            </a>
+            <div>
+                <DreamerzLogo onClick = {() => navigate('')}></DreamerzLogo>
             </div>
             <LinksForPages>
                 <a href="#"><Pages>How it works</Pages></a>
@@ -97,10 +116,10 @@ const Footer = () => {
                 <a href="#"><Pages>FAQ</Pages></a>
             </LinksForPages>
             <SocialMedia>
-            <Insta> <a href="https://www.instagram.com/">
+            <Insta> <a href="https://www.instagram.com/dreamerz_net/?igshid=YmMyMTA2M2Y%3D">
                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21.12 16C21.12 17.0126 20.8197 18.0025 20.2571 18.8445C19.6945 19.6865 18.8949 20.3427 17.9593 20.7303C17.0238 21.1178 15.9943 21.2192 15.0011 21.0216C14.008 20.8241 13.0957 20.3364 12.3796 19.6204C11.6636 18.9043 11.1759 17.992 10.9784 16.9989C10.7808 16.0057 10.8822 14.9762 11.2697 14.0407C11.6573 13.1051 12.3135 12.3055 13.1555 11.7429C13.9975 11.1803 14.9874 10.88 16 10.88C17.3566 10.8842 18.6565 11.425 19.6157 12.3843C20.575 13.3435 21.1158 14.6434 21.12 16ZM32 8.96V23.04C32 25.4163 31.056 27.6954 29.3757 29.3757C27.6954 31.056 25.4163 32 23.04 32H8.96C6.58366 32 4.30465 31.056 2.62432 29.3757C0.943997 27.6954 0 25.4163 0 23.04V8.96C0 6.58366 0.943997 4.30465 2.62432 2.62432C4.30465 0.943997 6.58366 0 8.96 0H23.04C25.4163 0 27.6954 0.943997 29.3757 2.62432C31.056 4.30465 32 6.58366 32 8.96ZM23.68 16C23.68 14.481 23.2296 12.9962 22.3857 11.7332C21.5418 10.4703 20.3423 9.48589 18.939 8.90461C17.5357 8.32332 15.9915 8.17124 14.5017 8.46757C13.0119 8.7639 11.6435 9.49535 10.5694 10.5694C9.49535 11.6435 8.7639 13.0119 8.46757 14.5017C8.17124 15.9915 8.32332 17.5357 8.90461 18.939C9.48589 20.3423 10.4703 21.5418 11.7332 22.3857C12.9962 23.2296 14.481 23.68 16 23.68C18.0369 23.68 19.9903 22.8709 21.4306 21.4306C22.8709 19.9903 23.68 18.0369 23.68 16ZM26.24 7.68C26.24 7.30026 26.1274 6.92905 25.9164 6.61331C25.7054 6.29756 25.4056 6.05147 25.0548 5.90615C24.7039 5.76083 24.3179 5.72281 23.9454 5.79689C23.573 5.87098 23.2309 6.05384 22.9624 6.32235C22.6938 6.59087 22.511 6.93298 22.4369 7.30543C22.3628 7.67787 22.4008 8.06392 22.5462 8.41475C22.6915 8.76559 22.9376 9.06545 23.2533 9.27642C23.569 9.48739 23.9403 9.6 24.32 9.6C24.8292 9.6 25.3176 9.39771 25.6776 9.03765C26.0377 8.67758 26.24 8.18922 26.24 7.68Z" fill="white"></path></svg>
             </a> </Insta>
-                <div><a href="#">
+                <div><a href="https://m.facebook.com/dreamerz.net">
                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 0C27.6528 0 29.066 0.586806 30.2396 1.76042C31.4132 2.93403 32 4.34722 32 6V26C32 27.6528 31.4132 29.066 30.2396 30.2396C29.066 31.4132 27.6528 32 26 32H22.0833V19.6042H26.2292L26.8542 14.7708H22.0833V11.6875C22.0833 10.9097 22.2465 10.3264 22.5729 9.9375C22.8993 9.54861 23.5347 9.35417 24.4792 9.35417L27.0208 9.33333V5.02083C26.1458 4.89583 24.9097 4.83333 23.3125 4.83333C21.4236 4.83333 19.9132 5.38889 18.7812 6.5C17.6493 7.61111 17.0833 9.18056 17.0833 11.2083V14.7708H12.9167V19.6042H17.0833V32H6C4.34722 32 2.93403 31.4132 1.76042 30.2396C0.586806 29.066 0 27.6528 0 26V6C0 4.34722 0.586806 2.93403 1.76042 1.76042C2.93403 0.586806 4.34722 0 6 0H26Z" fill="white"></path></svg>
                 </a> </div>
             </SocialMedia>

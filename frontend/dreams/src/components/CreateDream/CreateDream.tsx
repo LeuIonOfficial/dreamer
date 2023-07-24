@@ -40,7 +40,8 @@ export const CreateDream: React.FC = () => {
     const handleImageAdd = (event) => {
         event.preventDefault()
         const path = event.target.files[0]
-        setData((prev) => ({...prev, image: [...prev.image, URL.createObjectURL(path)]}))
+        setData((prev) => ({...prev, image: [...prev.image, path]}))
+        console.log(path)
     }
 
     const handleRemoveImage = (index) => {
@@ -81,6 +82,8 @@ export const CreateDream: React.FC = () => {
             });
         console.log('submitted')
     }
+
+    console.log(data)
 
     return (
         <div className="flex justify-center items-center">
