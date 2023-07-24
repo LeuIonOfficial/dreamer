@@ -149,45 +149,83 @@ app.post('/post', upload.array('image', 5), autorizare, async (req, res) => {
 );
 
 app.get('/post', async (req, res) => {
-    try {
-        // const token = req.headers.authorization
-        // let id
-        // if (token) {
-        //     const decode = jwt.verify(token.replace(/Bearer\s?/, ''), process.env.JWT_SECRET);
-        //     id = decode.id;
-        // } else {
-        //     id = req.body.id
-        // }
-        // const id = "64ac0f80546f33d600fb63bd"
-        // const post = await Post.findOne({creator: id});
-        // if (!post) {
-        //     return res.status(404).json({"message": "Nu a fost gasit asa gen de user"});
-        // }
+        const token = req.headers.authorization
+        let id;
+        if (token) {
+            const decode = jwt.verify(token.replace(/Bearer\s?/, ''), process.env.JWT_SECRET);
+            id = decode.id;
+        } else {
+            id = req.body.id
+        }
+        const post = await Post.findOne({creator: id});
+        if (!post) {
+            return res.status(404).json({"message": "Nu a fost gasit asa gen de user"});
+        }
 
-        const image = ["image-984123189.png","image-326796961.png"]
 
-        const images = image.map((file) =>{
-            const bufferArray = [];
-            minioClient.getObject(process.env.BUCKET_NAME, file ,(err, dataStream)=> {
-                dataStream.on('data', function(chunk) {
-                    bufferArray.push(chunk);
-                });
+    const send = new Promise( (resolve)=>{
+        const dowload = []
+        const image = post.image
+          image.map((name) => {
+             minioClient.getObject(process.env.BUCKET_NAME, name,  (err, dataStream) => {
+                 if (err) {
+                     console.log(err)
+                     res.json("Eroare")
+                 }
+                 const objData = []
+                 dataStream.on('data', (chunk) => {
+                     objData.push(chunk);
+                 });
+                  dataStream.on('end', () => {
 
-                dataStream.on('end', function() {
-                    const fileBuffer = Buffer.concat(bufferArray);
-                    console.log(fileBuffer)
-                    return fileBuffer;
-                });
+                     console.log(`Obiectul ${name} a fost descărcat cu succes.`);
+                      const fileBuffer = Buffer.concat(objData);
+                      dowload.push(fileBuffer);
+                      if(dowload.length === image.length)
+                      {
+                          console.log("resolve")
+                          resolve(dowload)
+                      }
 
-            });
-        })
-        res.setHeader('Content-Type', 'image/jpeg');
-        res.send(images);
+                 })
+             })
 
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({"message": "Erorr"});
-    }
+         })
+
+
+
+    })
+
+    send.then((result)=> {
+        res.setHeader('Content-Type', 'image/png/jpeg');
+        result.forEach((_,index)=> res.write(result[index]))
+        res.end()
+        // sendPart(result[1],'image/png')
+        // res.end('--myboundary--\r\n');
+
+        // Convertim array-ul de obiecte în format JSON
+        // const jsonData = JSON.stringify(result);
+        // // Trimitem răspunsul HTTP cu datele obiectelor
+        //
+        // res.end(result[0]);
+        console.log('Datele obiectelor au fost trimise cu succes.');
+    })
+
+        // const images = image.forEach((file)=> {
+        //     const bufferArray = [];
+        //     minioClient.getObject(process.env.BUCKET_NAME, file, (err, dataStream) => {
+        //         dataStream.on('data', (chunk) => {
+        //             bufferArray.push(chunk);
+        //         });
+        //
+        //         dataStream.on('end', () => {
+        //             const fileBuffer = Buffer.concat(bufferArray);
+        //             return fileBuffer
+        //         })
+        //     })
+        // })
+        // console.log(images)
+
 });
 
 app.get('/post_all', PostComponents.post_all);
