@@ -1,26 +1,39 @@
 import styled from "styled-components";
-import {useRef, useState} from "react";
+import { useRef, useState } from "react";
 import Draggable from 'react-draggable';
 import React from "react";
 
-
 const Container = styled.div`
-  max-width: 1300px;
+  
   box-sizing: border-box;
-  margin: 0 304px 0 304px;
+  display: flex;
+  justify-content: center;
+  @media (width: 1200px) {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (width: 992px) {
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (width: 768px) {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (width: 576px) {
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 `
-// const CenterContetnt = styled.div`
-//   margin: 0;
-//   width: 100%;
-//   display: flex;
-//   justify-content: center;
-//   flex-wrap: wrap;
-// `
 
 const HeaderProfile = styled.div`
-  margin-bottom: 0;
-  margin-top: 10px;
-`
+  width: 1300px;
+  margin: 10px 20px 0 20px`
+
 const ProfileBG = styled.div`
   overflow: hidden;
   border-radius: 8px;
@@ -31,11 +44,14 @@ const ProfileBG = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
+  
 `
-const DropDownSection = styled.div`
-  z-index: 100;`
-const DDButton = styled.button`
 
+const DropDownSection = styled.div`
+  z-index: 100;
+`
+
+const DDButton = styled.button`
   background: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   z-index: 100;
@@ -55,6 +71,7 @@ const DDButton = styled.button`
     opacity: 1;
   }
 `
+
 const ButtonImg = styled.img`
   background-size: cover;
   margin: 3px;
@@ -63,10 +80,12 @@ const ButtonImg = styled.img`
   height: 18px;
   vertical-align: middle;
 `
+
 const EditButton = styled.p`
   font-size: .875rem;
   margin: 0 14px 0 14px;
 `
+
 const DropDonwArrow = styled.img`
   background-size: cover;
   margin: 3px;
@@ -75,8 +94,9 @@ const DropDonwArrow = styled.img`
   height: 10px;
   vertical-align: middle;
 `
+
 const DropDownBox = styled.div`
-  opacity: ${({$opacity}) => ($opacity ? 1 : 0)};
+  opacity: ${({ $opacity }) => ($opacity ? 1 : 0)};
   margin: 0 10px 5px 0;
   border-radius: 8px;
   width: 80px;
@@ -89,8 +109,8 @@ const DropDownBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 `
+
 const DropDownConatiner = styled.div`
   display: flex;
   flex-direction: row;
@@ -118,6 +138,7 @@ const DropDownConatiner = styled.div`
     }
   }
 `
+
 const UploadSvg = styled.img`
   width: 18px;
   height: 18px;
@@ -129,12 +150,14 @@ const UploadSvg = styled.img`
     width: 19px;
   }
 `
+
 const ProfilePictureContainer = styled.div`
   margin-top: -4.1rem;
   position: relative;
   display: flex;
   justify-content: center;
 `
+
 const ProfilePicDiv = styled.div`
   background: url("./../../../src/assets/wing/profile.jpg");
   background-size: cover;
@@ -144,50 +167,112 @@ const ProfilePicDiv = styled.div`
   height: 130px;
   cursor: pointer;
 `
-const ProfilePic = styled.img`
 
+const ProfilePic = styled.img`
   border: 0;
   vertical-align: middle;
   background: url("./../../../src/assets/wing/profile.jpg");
   background-size: cover;
-
 `
+
 const RecivedContainer = styled.div`
   margin-top: -35px;
   color: rgb(79, 79, 79);
   cursor: default;
   display: flex;
   justify-content: space-around;
-
-  & span {
-    text-align: center;
-    font-weight: 700;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 60px;
-    margin-left: 60px;
-
-  }
+  
 `
-const Image = styled.div`
-  background-image: url(${({$backgroundImage}) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
+const SpanElement = styled.span`
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 60px;
+`
+const SpanElement2 = styled.span`
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 60px;
+`
+
+const Image = styled.img`
+  background-image: url(${({ $backgroundImage }) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
   background-size: cover;
   position: absolute;
   top: 0;
-  height: 100rem;
-  width: 100rem;
+  height: 40%;
+  width: 100%;
   cursor: move;
-
-
 `
+
+const ChangesButtonContainer = styled.div`
+  position: absolute;
+  right: 16px;
+  top: 275px;
+  z-index: 1001;
+  display: flex;
+  justify-content: flex-end;
+  visibility: ${({ $visibility }) => ($visibility ? 'hidden' : 'visible')};
+`
+
+const EditButtonResizer = styled.div`
+  background: linear-gradient(297.06deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%);
+  cursor: pointer;
+  color: #262626;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 34px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const CancelButtonResizer = styled.div`
+  background: linear-gradient(#fff,#fff),linear-gradient(160deg,#84fad5 20%,#ebbfff 37%,#f6ec85 53%);
+  background-clip: content-box,border-box!important;
+  background-origin: border-box!important;
+  border: 1px double transparent!important;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #262626;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 34px;
+  width: 110px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const ProfileHeader = () => {
     const [isOpacity, setIsOpacity] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
+    const [isDraggable, setIsDraggable] = useState(false);
+    const [isResizing, setIsResizing] = useState(false);
+    const [initialPosition, setInitialPosition] = useState({ x: 0, y: 0 });
+    const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
+    const draggableRef = useRef(null);
 
-    // const handleMouseEnter = () =>{setIsOpacity(true)};
     const handleMouseLeave = () => {
-        setIsOpacity(false)
+        setIsOpacity(false);
     };
+
+    const handleResizeClick = () => {
+        setIsDraggable(!isDraggable);
+        setIsResizing(!isResizing);
+    };
+
     const inputRef = useRef(null);
     const [image, setImage] = useState("");
 
@@ -195,25 +280,42 @@ export const ProfileHeader = () => {
         const file = event.target.files[0];
         setImage(file);
         setBackgroundImage(URL.createObjectURL(file));
-
     };
 
+    const handleSaveChangesClick = () => {
+        setIsResizing(false);
+        setIsDraggable(false);
+    };
+
+    const handleCancelClick = () => {
+        setIsDraggable(false);
+        setIsResizing(false);
+        setCurrentPosition({ x: initialPosition.x, y: initialPosition.y });
+        if (draggableRef.current) {
+            const node = draggableRef.current.node;
+            node.style.transform = `translate(${initialPosition.x}px, ${initialPosition.y}px)`;
+        }
+    };
+
+    const handleDragStop = (e, data) => {
+        const { x, y } = data;
+        setCurrentPosition({ x, y });
+    };
     return (
         <Container>
             <HeaderProfile>
                 <ProfileBG>
                     <DropDownSection>
                         <DropDownBox $opacity={isOpacity} onMouseLeave={handleMouseLeave}>
-
                             <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/cloud.png'}></UploadSvg>
                                 <label htmlFor="files" className="btn">Upload</label>
-                                <input id="files" type="file" ref={inputRef} onChange={handleImageChange}/>
+                                <input id="files" type="file" ref={inputRef} onChange={handleImageChange} />
                             </DropDownConatiner>
 
                             <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/resize.png'}></UploadSvg>
-                                <span>Resize</span>
+                                <span onClick={handleResizeClick}>Resize</span>
                             </DropDownConatiner>
                             <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/delete.png'}></UploadSvg>
@@ -221,39 +323,45 @@ export const ProfileHeader = () => {
                             </DropDownConatiner>
                         </DropDownBox>
                         <DDButton>
-                            <ButtonImg
-                                src={"./../../../../src/assets/wing/photo-camera-svgrepo-com.png"}></ButtonImg>
+                            <ButtonImg src={"./../../../../src/assets/wing/photo-camera-svgrepo-com.png"}></ButtonImg>
                             <EditButton $opacity={isOpacity} onClick={() => setIsOpacity(!isOpacity)}>Edit</EditButton>
-                            <DropDonwArrow
-                                src={"./../../../../src/assets/wing/drop-down-arrow.png"}></DropDonwArrow>
-
+                            <DropDonwArrow src={"./../../../../src/assets/wing/drop-down-arrow.png"}></DropDonwArrow>
                         </DDButton>
-
+                        {isResizing && (
+                            <ChangesButtonContainer>
+                                <EditButtonResizer onClick={handleSaveChangesClick}>Save Changes</EditButtonResizer>
+                                <CancelButtonResizer onClick={handleCancelClick}>Cancel</CancelButtonResizer>
+                            </ChangesButtonContainer>
+                        )}
                     </DropDownSection>
-                    <Draggable
-                        axis="y"
-                        position={null}
-                        grid={[25, 25]}
-                        scale={1}>
-                        <Image $backgroundImage={backgroundImage}></Image>
-                    </Draggable>
-                </ProfileBG>
+                    {isDraggable ? ( // Render the draggable component conditionally based on isDraggable state
+                        <Draggable
+                            axis="y"
+                            position={null}
+                            grid={[25, 25]}
+                            scale={1}
+                            ref={draggableRef}
+                            onStop={handleDragStop}
+                            bounds='parent'
 
+
+                        >
+                            <Image $backgroundImage={backgroundImage} ></Image>
+                        </Draggable>
+                    ) : (
+                        <Image $backgroundImage={backgroundImage}></Image>
+                    )}
+                </ProfileBG>
 
                 <ProfilePictureContainer>
                     <ProfilePicDiv>
-                        <ProfilePic>
-
-                        </ProfilePic>
-
+                        <ProfilePic></ProfilePic>
                     </ProfilePicDiv>
-
                 </ProfilePictureContainer>
                 <RecivedContainer>
-                    <span>Received</span>
-                    <span></span>
+                    <SpanElement>Received</SpanElement>
+                    <SpanElement2>Fulfilled</SpanElement2>
                 </RecivedContainer>
-
             </HeaderProfile>
         </Container>
     )
