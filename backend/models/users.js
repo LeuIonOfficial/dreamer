@@ -10,7 +10,20 @@ const UserSchema = new Schema({
         passwordHash: {
             type: String,
             require: true
+        },
+        fulfill: {
+            type: Number,
+            default: 0
+        },
+        fulfilled: {
+            type: Number,
+            default: 0
+        },
+        received: {
+            type: Number,
+            default: 0
         }
+
     },
     {
         timestamps: true,

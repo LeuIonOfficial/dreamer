@@ -12,6 +12,11 @@ exports.sing_up = async (req, res) => {
             return res.status(400).json(error.array());
         }
 
+        const email = await User.findOne({ email: req.body.email });
+        if (email) {
+            return res.status(400).json({ "message": "Acest Email deja este inregistrat" });
+        }
+
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
@@ -55,7 +60,8 @@ exports.sing_in = async (req, res) => {
             return res.status(401).json({ "message": "Probleme la logare" });
         } else {
             const token = jwt.sign({
-                    id: user._id
+                    id: user._id,
+                    subscribe: user.subscribe
                 },
                 process.env.JWT_SECRET,
                 {
