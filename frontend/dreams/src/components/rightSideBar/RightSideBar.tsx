@@ -6,6 +6,7 @@ import styled from "styled-components";
 import React from "react";
 import {useState} from "react";
 import FulfillModal from "../Fulfill/FulfillModal";
+import {useNavigate} from "react-router-dom";
 
 
 const CardRightSideBar = styled.div`
@@ -72,20 +73,29 @@ const MyTitle = styled.div`
     text-overflow: ellipsis;
     -webkit-line-clamp: 1;
     line-height: 1;
-    font-weight: bolder;
     margin-bottom: 0.3125rem;
     font-size: .875rem;
     color: #3f414d;
     margin-top: 0;
+    font-weight: 400;
   }
 `
 const BlockFulfill = styled.div`
-  position: relative;
-
+  display: block;
+  & Button{
+    width: 55px;
+    height: 36px;
+    & samp{
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
 `
 
 const RightSlideBar = ({img, name, lastname, dream, openModal}) => {
-
+const navigate = useNavigate()
 
     return (
         <>
@@ -93,17 +103,23 @@ const RightSlideBar = ({img, name, lastname, dream, openModal}) => {
                 <CardBlock>
                     <CardContent>
                         <CardUser>
-                            <BlockImg>
+                            <BlockImg onClick={() => navigate("/user-profile")}>
                                 <img src={img} alt="#"/>
                             </BlockImg>
                             <MyTitle>
-                                <h6>{name} {lastname}</h6>
+                                <h6 onClick={() => navigate("/user-profile")}>{name} {lastname}</h6>
                                 <p>{dream}</p>
                             </MyTitle>
                         </CardUser>
+
                         <BlockFulfill>
-                            <Button onClick={openModal}>Fulfill</Button>
+                            <Button onClick={openModal}>
+                                <span>
+                                    Fulfill
+                                </span>
+                            </Button>
                         </BlockFulfill>
+
                     </CardContent>
                 </CardBlock>
             </CardRightSideBar>
