@@ -3,6 +3,19 @@ import PriceFulfill from "./PriceFulfill";
 // @ts-ignore
 import bgImage from './../../assets/images/priceBackground.16f0e13d391ea32b818b.jpg';
 
+
+const ModalOpasti = styled.div`
+  --bs-backdrop-zindex: 1040;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+`
 const ModalFulfill = styled.div`
   position: absolute;
   left: 0;
@@ -12,12 +25,12 @@ const ModalFulfill = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: all 0.5s ease-in-out;
-  z-index: 99;
+  z-index: 2001;
   
-  @media (max-width: 768px) {
+  @media (max-width: 769px) {
     height: fit-content;
+    z-index: 2001;
+    //overflow: scroll;
   }
   
 `
@@ -28,6 +41,9 @@ const ModalContent = styled.div`
   pointer-events: auto;
   width: 800px;
   background-image: url(${bgImage});
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
 
@@ -37,20 +53,32 @@ const ModalContent = styled.div`
   @media (max-width: 425px) {
     height: fit-content;
   }
+  @media(max-width: 926px){
+    width: 420px;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+  }
   
 `
 const ContentBlock = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  @media(max-width: 926px){
+    //margin: auto;
+    max-width: 420px;
+    //flex-direction: column;
+  }
+ 
 
   & h5 {
     color: #333;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
-    margin: 0 0 0 1.2px;
+    margin: 0 0 0 11.2px;
     @media (max-width: 425px){
       margin: 0 0 0 11.2px;
     }
@@ -62,6 +90,7 @@ const CloseModal = styled.button`
   height: 24px;
   width: 24px;
   display: contents;
+  color: #777d74;
 `
 
 const BtnCloseModal = styled.div`
@@ -73,15 +102,18 @@ const CardsBlock = styled.div`
   flex-direction: row;
   margin-bottom: 20px;
   pointer-events: auto;
-  @media (max-width: 425px){
+  @media (max-width: 926px){
     flex-direction: column;
+    display: flex;
+    align-items: center;
   }
 `
 const FulfillModal = ({closeModal}) => {
 
 
     return (
-
+        <>
+    <ModalOpasti></ModalOpasti>
         <ModalFulfill>
             <ModalContent>
                 <ContentBlock>
@@ -106,7 +138,7 @@ const FulfillModal = ({closeModal}) => {
                 </CardsBlock>
             </ModalContent>
         </ModalFulfill>
-
+</>
 
     )
 }
