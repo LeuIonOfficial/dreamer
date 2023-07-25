@@ -93,9 +93,11 @@ app.post('/test',upload.array('image', 5), async(req,res)=>{
 
 // Authentication
 
-app.post('/sign-up', registerValidator, Registration.sing_up);
+app.post('/sign-up', registerValidator, Registration.singUp);
 
-app.post('/sign-in', registerValidator, Registration.sing_in);
+app.get('/confirmationEmail/:token',Registration.confirmationEmail)
+
+app.post('/sign-in', registerValidator, Registration.singIn);
 
 app.patch('/recover', Registration.recover);
 
