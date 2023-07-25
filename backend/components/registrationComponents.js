@@ -14,7 +14,7 @@ exports.sing_up = async (req, res) => {
 
         const email = await User.findOne({ email: req.body.email });
         if (email) {
-            return res.status(400).json({ "message": "Acest Email deja este inregistrat" });
+            return res.status(409).json({ "message": "Acest Email deja este inregistrat" });
         }
 
         const password = req.body.password;
