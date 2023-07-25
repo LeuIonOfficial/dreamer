@@ -101,8 +101,8 @@ const DropDownBox = styled.div`
   opacity: ${({ $opacity }) => ($opacity ? 1 : 0)};
   margin: 0 10px 5px 0;
   border-radius: 8px;
-  width: 80px;
-  max-height: 100px;
+  width: 100px;
+  max-height: 120px;
   max-width: 120px;
   background-color: #fff;
   box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, .1);
@@ -256,7 +256,23 @@ const CancelButtonResizer = styled.div`
   justify-content: center;
   align-items: center;
 `
+const Name = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 10px 10px 0 10px;
 
+  & h3 {
+  font-weight: 700;
+    font-size: 28px;
+    color: #3f414d;
+    @media(width < 680px){
+      font-size: 24px;
+
+    }
+  }
+  
+`
 export const ProfileHeader = () => {
     const [isOpacity, setIsOpacity] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
@@ -308,7 +324,7 @@ export const ProfileHeader = () => {
     return (
         <Container>
             <HeaderProfile>
-                <ProfileBGs>
+                <ProfileBG>
                     <DropDownSection>
                         <DropDownBox $opacity={isOpacity} onMouseLeave={handleMouseLeave}>
                             <DropDownConatiner>
@@ -326,9 +342,9 @@ export const ProfileHeader = () => {
                                 <span>Delete</span>
                             </DropDownConatiner>
                         </DropDownBox>
-                        <DDButton>
+                        <DDButton $opacity={isOpacity} onClick={() => setIsOpacity(!isOpacity)}>
                             <ButtonImg src={"./../../../../src/assets/wing/photo-camera-svgrepo-com.png"}></ButtonImg>
-                            <EditButton $opacity={isOpacity} onClick={() => setIsOpacity(!isOpacity)}>Edit</EditButton>
+                            <EditButton>Edit</EditButton>
                             <DropDonwArrow src={"./../../../../src/assets/wing/drop-down-arrow.png"}></DropDonwArrow>
                         </DDButton>
                         {isResizing && (
@@ -345,17 +361,13 @@ export const ProfileHeader = () => {
                             grid={[25, 25]}
                             scale={1}
                             ref={draggableRef}
-                            onStop={handleDragStop}
-                            bounds:{top:10}
-
-
-                        >
+                            onStop={handleDragStop}>
                             <Image $backgroundImage={backgroundImage} ></Image>
                         </Draggable>
                     ) : (
                         <Image $backgroundImage={backgroundImage}></Image>
                     )}
-                </ProfileBGs>
+                </ProfileBG>
 
                 <ProfilePictureContainer>
                     <ProfilePicDiv>
@@ -366,6 +378,9 @@ export const ProfileHeader = () => {
                     <SpanElement>Received</SpanElement>
                     <SpanElement2>Fulfilled</SpanElement2>
                 </RecivedContainer>
+                <Name>
+                    <h3>Pedro Pascal</h3>
+                </Name>
             </HeaderProfile>
         </Container>
     )

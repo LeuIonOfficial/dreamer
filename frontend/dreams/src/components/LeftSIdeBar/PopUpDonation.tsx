@@ -34,6 +34,13 @@ const ModalContainer = styled.div`
   background: #f1f1f1;
   border-radius: 3px;
   min-height: auto;
+  @media(width < 600px){
+    width: 320px;
+    min-width: 320px;
+    min-height: 480px;
+    height: 480px;
+  
+  }
 `
 const HeaderContainer = styled.div`
   display: flex;
@@ -78,6 +85,10 @@ const ListContainer = styled.ul`
     flex-direction: column;
     justify-content: space-between;
     align-items: start;
+  }
+  @media(width < 600px){
+    width: 300px;
+    
   }
 `
 const List = styled.li`
@@ -134,21 +145,25 @@ export const PopUpDonation = ({closeModal}) => {
                 <DonatorsContainer>
                     <ListContainer>
                         <div>
-                            {users.map(({ title, image}) => {
-                                return (
-                                    <List>
-                                        <ProfilePic src={image}></ProfilePic>
-                                        <h6>{title}</h6>
-                                    </List>)
-                            })}
+                            {users.length === 0 ? (
+                                <div >
+                                    <p>You did not get any donation yet.</p>
+                                </div>
+                            ) : (
+                                users.map(({title, image}) =>{
+                                    return (
+                                        <List key={title}>
+                                            <ProfilePic src={image}></ProfilePic>
+                                            <h6>{title}</h6>
+                                        </List>
+                                    )
+                                })
+                            )}
                         </div>
                     </ListContainer>
 
                 </DonatorsContainer>
                 <ModalFooter></ModalFooter>
-
-
-
             </ModalContainer>
         </Container>
     )

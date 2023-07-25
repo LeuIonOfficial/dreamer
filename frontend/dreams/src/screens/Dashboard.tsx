@@ -8,6 +8,9 @@ width: 100%;
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  @media(width < 990px){
+    flex-direction: column;
+  }
 `
 export const Dashboard = () => {
 
