@@ -55,7 +55,7 @@ const HeadingPurpose = styled.h1`
   color: #333;
   font-size: 64px;
   line-height: 65px;
-  font-weight: 400;
+  font-weight: 700;
 
   @media screen and (max-width: 800px) {
     font-size: 21px;
@@ -79,7 +79,7 @@ const HeadingPurpose = styled.h1`
 const ParagraphPurpose = styled.p`
   width: 100%;
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 700;
   line-height: 30px;
   color: #333;
   margin: 0;

@@ -26,7 +26,7 @@ const ContainerEasier = styled.div`
 const TextHeadingEasier = styled.h1`
   color: white;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 65px;
 
   @media screen and (max-width: 1000px) {
@@ -83,7 +83,7 @@ const NumberCircleEasier = styled.div`
   border-radius: 50%;
   color: #fff;
   font-size: 27px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 82px;
   text-align: center;
   width: 100px;
@@ -109,6 +109,7 @@ const NumberCircleEasier = styled.div`
 
 const TextContentEasier = styled.p`
   font-size: 33px;
+  font-weight: 700;
   color: white;
   line-height: 1;
   margin-left: 20px;
