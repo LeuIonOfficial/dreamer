@@ -141,8 +141,8 @@ export const CreateDream: React.FC = () => {
                     </Price>
                 </Content>
                 <Footer>
-                    <Button onClick={handleSubmit}>Submit</Button>
-                    <Button onClick={() => navigate("/user-profile")}>Close</Button>
+                    <Button onClick={handleSubmit}><span>Submit</span></Button>
+                    <Button onClick={() => navigate("/user-profile")}><span>Close</span></Button>
                 </Footer>
             </Container>
         </div>

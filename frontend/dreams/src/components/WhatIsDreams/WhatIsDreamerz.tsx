@@ -28,7 +28,7 @@ const ContainerDreamerz = styled.div`
 const DreamerzH1 = styled.div`
   color: #f1ebeb;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 700;
   margin-bottom: 50px;
 
   @media screen and (max-width: 800px) {
@@ -42,7 +42,7 @@ const DreamerzH1 = styled.div`
 const Paragraf = styled.p`
   color: white;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 31px;
 
   @media screen and (max-width: 800px) {
@@ -131,11 +131,8 @@ const WhatIsDreamerz: React.FC = () => {
                     <DreamerzH1>What is Dreamerz?</DreamerzH1>
                     <Paragraf>
                         This is the place where dreams
-                        <br/>
                         come true! Sharing a $tar for a
-                        <br/>
-                        dream you will receive back twice
-                        <br/>
+                        dream you <br/> will receive back twice
                         for your own dream.
                     </Paragraf>
                 </div>

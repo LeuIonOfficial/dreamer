@@ -28,18 +28,21 @@ const SignupScreen = () => {
         email: '',
         password: ''
     })
-    const [confirm, setConfirm] = useState('')
+    const [confirmState, setConfirmState] = useState({
+        password: "",
+    })
     const [inputType, setInputType] = useState('password')
     const [dirty, setDirty] = useState({
         email: false,
         password: false,
         confirmPassword: false,
+        terms: false,
     });
 
     const [validationError, setValidationError] = useState({
-        email: "Email can't be empty",
-        password: "Password can't be empty",
-        confirmPassword: "Confirm password can't be empty!"
+        email: "Email field can't be empty",
+        password: "Password filed can't be empty",
+        confirmPassword: "Confirm password filed can't be empty!"
     })
 
     const {email, password} = userData
@@ -59,17 +62,45 @@ const SignupScreen = () => {
     const passwordHandler = (event, setValidationError, setUserData?) => {
         const {value} = event.target
         if (setUserData) setUserData((prev) => ({...prev, password: value}))
-        if (!passwordValidationFunc(value)) {
-            setValidationError((prev) => ({...prev, password: "Invalid password"}))
+        if (value.length < 8) {
+            setValidationError((prev) => ({...prev, password: "Password must be atleast 8 characters long."}))
+        } else if (!/[A-Z]/.test(value)) {
+            setValidationError((prev) => ({...prev, password: "Password must contain at least one uppercase letter."}))
+        } else if (!/[a-z]/.test(value)) {
+            setValidationError((prev) => ({...prev, password: "Password must contain at leat un lowercase letter."}))
+        } else if (!/\d/.test(value)) {
+            setValidationError((prev) => ({...prev, password: "Password must contain at least one digit."}))
+        } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+            setValidationError((prev) => ({...prev, password: "Password must contain at least one special character."}))
         } else {
             setValidationError((prev) => ({...prev, password: ""}))
         }
     }
 
+    const handleConfirmTerms = (event) => {
+        event.preventDefault()
+        setDirty(prevState => ({...prevState, terms: !prevState.terms}))
+    }
+
+
     // @ts-ignore
     const makeReqToServer = async (event: FocusEvent) => {
         event.preventDefault()
-        if (password === confirm) {
+        if (!(userData.password)) {
+            setDirty(prevState => ({...prevState, password: true}))
+        }
+        if (!(userData.email)) {
+            setDirty(prevState => ({...prevState, email: true}))
+        }
+        if (!(confirmState.password)) {
+            setDirty(prevState => ({...prevState, confirmPassword: true}))
+        }
+        if (dirty.terms === false) {
+            errorNotify("Please accept the terms and conditions to register")
+        }
+
+
+        if ((dirty.terms) && (dirty.email) && (dirty.password) && (dirty.confirmPassword)) {
             axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                 {
                     headers: {
@@ -78,11 +109,13 @@ const SignupScreen = () => {
                 }
             )
                 .then((response) => {
-                    successNotify("You have successfully registered!")
+                    successNotify("You have successfully registered! Please, sign-in")
                 })
                 .catch((error) => {
-                    errorNotify("Something goes wrong!")
-                    console.log(error);
+                    if (error.response.status === 500) {
+                        errorNotify("User with this email already exists!")
+                    }
+                    console.log(error.response)
                 });
         }
     };
@@ -122,11 +155,11 @@ const SignupScreen = () => {
                         <label htmlFor="confirm">Confirm Password</label>
                         <input
                             onBlur={event => blurHandler(event, setDirty)}
-                            value={confirm}
-                            onChange={event => confirmHandler(event, setValidationError, setConfirm, password)}
+                            value={confirmState.password}
+                            onChange={event => confirmHandler(event, setValidationError, setConfirmState, password)}
                             type={inputType}
                             id="confirm"
-                            placeholder="password"/>
+                            placeholder="Confirm password"/>
                         {(dirty.confirmPassword && validationError.confirmPassword) &&
                           <Validation>{validationError.confirmPassword}</Validation>}
                     </FormInput>
@@ -134,7 +167,8 @@ const SignupScreen = () => {
                         <p><input type="checkbox" onClick={() => handleInputType(setInputType)}/> Show password</p>
                     </FormInput>
                     <FormInput>
-                        <p><input type="checkbox"/> I accept <a href="#">Terms and Conditions</a></p>
+                        <p><input type="checkbox" id="terms" onInput={handleConfirmTerms}/> I accept <a href="#">Terms
+                            and Conditions</a></p>
                     </FormInput>
                 </FormContent>
                 <FormFooter>

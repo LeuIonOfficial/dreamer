@@ -320,7 +320,7 @@ const LetDreamsContainer = styled.div`
 const LetDreamsHeading = styled.h1`
   color: #333;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 65px;
   text-align: center;
   margin-bottom: 50px;

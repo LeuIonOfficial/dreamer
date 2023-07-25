@@ -1,23 +1,23 @@
 import {toast} from "react-toastify";
 
 export const successNotify = (text) => toast.success(text, {
-    position: "bottom-right",
+    position: "top-center",
     autoClose: 5000,
-    hideProgressBar: true,
+    hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: "colored",
 });
 
 export const errorNotify = (text) => toast.error(text, {
-    position: "bottom-right",
+    position: "top-center",
     autoClose: 5000,
-    hideProgressBar: true,
+    hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    theme: "light",
+    theme: "colored",
 });
