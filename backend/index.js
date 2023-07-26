@@ -25,6 +25,12 @@ app.use(express.json(), cors({
     origin: "*"
 }));
 
+app.use(express.urlencoded({
+    extended: false,
+    limit: 10000,
+    parameterLimit:2
+} ))
+
 
 //mongo
 mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
@@ -90,6 +96,9 @@ app.post('/test',upload.array('image', 5), async(req,res)=>{
     res.json(uploadedFiles)
 })
 
+app.post('/test2',(req, res)=>{
+    res.json(req.body.text1)
+})
 
 // Authentication
 
@@ -109,7 +118,7 @@ app.get('/about', About.post);
 
 // POST
 
-app.post('/post', upload.array('image', 5), autorizare, async (req, res) => {
+app.post('/post', upload.any(), autorizare, async (req, res) => {
         try {
             if (!req.files) {
                 return res.status(400).send('Nu au fost încărcate poze.');
@@ -199,9 +208,17 @@ app.get('/post', async (req, res) => {
     })
 
     send.then((result)=> {
-        res.setHeader('Content-Type', 'image/png/jpeg');
-        result.forEach((_,index)=> res.write(result[index]))
-        res.end()
+
+        const formData = new FormData();
+        formData.append('description', '123');
+        // formData.append('amount', post.amount);
+        // formData.append('images[]', result);
+
+
+        console.log(post.description)
+        console.log(post.amount)
+        // Trimitem datele către frontend
+        res.json(formData);
         // sendPart(result[1],'image/png')
         // res.end('--myboundary--\r\n');
 
