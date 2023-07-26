@@ -24,7 +24,7 @@ const StyledButton = styled.div`
 `
 
 const LogIn = (props) => {
-    return <StyledButton color={props.color}>
+    return <StyledButton color={props.color} onClick={props.onClick}>
         {props.children}
     </StyledButton>
 };

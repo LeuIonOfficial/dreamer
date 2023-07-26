@@ -58,28 +58,10 @@ background: white;
   transition-timing-function: ease-in-out;
   transition-delay: 0s;
   transition-property: all;
+   @media screen and (max-width: 500px){
+     padding: 0 8px;
+   }
 `
-
-/*const CardFields = styled.div`
-display: flex;
-align-items: center;
-flex-direction: column;
-`
-
-const LinkButton = styled.button`
-border: none;
-background: transparent;
-color: #777d74;
-&:hover{
-  color: black;
-}`*/
-
-/*let close = document.querySelector("CardWrapperClosed");
-const open = document.querySelector("CardWrapperOpen");
-close = open;
-let replaceTag = (id) => {
-
-}*/
 
 const Line = styled.hr``;
 const MyProfileList = (props) => {
