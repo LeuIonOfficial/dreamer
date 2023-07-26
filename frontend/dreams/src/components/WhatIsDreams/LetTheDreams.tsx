@@ -2,9 +2,9 @@ import Carusela from "./Carusela";
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import NewDream from '../../assets/images/newDream.svg'
-import { useMediaQuery } from 'react-responsive'
-import Slider from "../Thoughts/Slider";
-import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
+// import { useMediaQuery } from 'react-responsive'
+// import Slider from "../Thoughts/Slider";
+// import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const LetDreamsContainer = styled.div`
   background: radial-gradient(174.02% 541.72% at 249.87% 36.87%,rgba(164,255,226,.5) 0,#fff 100%);
@@ -35,7 +35,6 @@ const LetDreamsHeading = styled.h1`
   line-height: 65px;
   text-align: center;
   margin-bottom: 50px;
-  //margin-top: 150px;
 
   @media screen and (max-width: 508px) {
     font-size: 34px;
@@ -52,14 +51,12 @@ const LetDreamsHeading = styled.h1`
   }
 `;
 const CaruselaContainer = styled.div`
-  //margin-top: 200px;
   display: flex;
   align-items: center;
   overflow: hidden;
   position: relative;
   height: 100%;
   width: 625px;
-  //margin-top: 3.75rem;
   
 
   @media screen and (max-width: 800px) {

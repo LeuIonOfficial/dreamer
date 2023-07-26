@@ -34,7 +34,6 @@ const DreamerzH1 = styled.div`
 
   @media screen and (max-width: 800px) {
     font-size: 24px;
-    //margin-bottom: 20px;
     text-align: center;
     margin-bottom: 0;
   }
@@ -45,7 +44,6 @@ const Paragraf = styled.p`
   font-size: 26px;
   font-weight: 700;
   line-height: 31px;
-  //width: 75%;
 
   @media screen and (max-width: 800px) {
     font-size: 12px;

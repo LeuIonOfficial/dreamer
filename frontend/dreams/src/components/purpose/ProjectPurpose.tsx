@@ -26,10 +26,6 @@ const ProjectPurposeStyle = styled.div`
     height: 400px;
     padding: 90px 18px;
   }
-  //@media screen and (min-width: 951px) and (max-width: 1200px){
-  //  height: 300px;
-  //  padding: 90px 18px;
-  //}
 `;
 
 const ProjectSectionPurpose = styled.div`
@@ -112,7 +108,6 @@ const ImagePurpose = styled.img`
   @media screen and (min-width: 800px) and (max-width: 1200px) {
     width: 52%;
     max-width: 500px;
-    //margin-bottom: 54px;
   }
 `;
 
@@ -121,7 +116,6 @@ const ButtonPurpose = styled.button`
   border-radius: 43px;
   height: 72px;
   width: 350px;
-  //cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,10 +129,6 @@ const ButtonPurpose = styled.button`
     height: 48px;
     width: 100%;
   }
-  //@media screen and (min-width: 799px) and (max-width: 1200px){
-  //  height: 48px;
-  //  width: 100%;
-  //}
 `;
 
 const TextButtonPurpose = styled.span`
@@ -173,7 +163,6 @@ const ProjectPurpose = () => {
                     <br/>
                     Working together in a friendly community for a brighter future.
                 </ParagraphPurpose>
-                {/*<ButtonTryNow onClick={handleButtonClick}/>*/}
                 <ButtonPurpose onClick={handleButtonClick}>
                     <TextButtonPurpose>Try now</TextButtonPurpose>
                 </ButtonPurpose>
@@ -190,7 +179,6 @@ const ProjectPurpose = () => {
                         Working together in a friendly community for a brighter future.
                     </ParagraphPurpose>
                     <ImagePurpose src={image} alt="dream" />
-                    {/*<ButtonTryNow onClick={handleButtonClick}/>*/}
                     <ButtonPurpose onClick={handleButtonClick}>
                         <TextButtonPurpose>Try now</TextButtonPurpose>
                     </ButtonPurpose>

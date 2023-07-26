@@ -48,7 +48,6 @@ const SectionEasier = styled.div`
   flex-direction: row;
 
   @media screen and (max-width: 1000px) {
-    //flex-direction: column;
     margin-top: 20px;
     margin-left: 13px;
   }
@@ -62,7 +61,6 @@ const ColumnEasier = styled.div`
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
-    //width: 88%;
   }
 `;
 
@@ -74,9 +72,7 @@ const RowEasier = styled.div`
 
   @media screen and (max-width: 1000px) {
     flex-direction: row;
-    //align-items: center;
     margin-bottom: 27px;
-    //width: 160px;
   }
 `;
 
@@ -92,18 +88,8 @@ const NumberCircleEasier = styled.div`
   width: 100px;
 
   @media screen and (min-width: 0) and (max-width: 400px){
-    //line-height: 62px;
-    //width: 92px;
-    //font-size: 22px;
-    ////height: 45px;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
     font-size: 16px;
-    //border-radius: 50%;
     width: 62px;
-    //border-radius: 50%;
-    //height: 62px;
     line-height: 45px;
   }
    @media screen and (min-width: 401px) and (max-width: 1200px){
@@ -121,16 +107,13 @@ const TextContentEasier = styled.p`
   line-height: 1;
   margin-left: 20px;
   width: 100%;
+  font-weight: 700;
 
   @media screen and (max-width: 1200px) {
     font-size: 19px;
-    //margin-left: 5px;
     font-weight: 700;
     line-height: 1;
     margin-left: 20px;
-    //margin-top: 15px;
-    //width: 90%;
-    //text-align: center;
   }
 `;
 
@@ -139,7 +122,6 @@ const ButtonEasier = styled.button`
   border-radius: 43px;
   height: 72px;
   width: 350px;
-  //cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
