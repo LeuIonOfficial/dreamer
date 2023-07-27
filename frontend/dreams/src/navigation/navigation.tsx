@@ -9,6 +9,7 @@ import {PricingPage} from "../screens/PricingPage";
 import {UserProfile} from "../screens/UserProfile";
 import {WingPage} from "../screens/WingPage";
 import {CreateDream} from "../components/CreateDream/CreateDream";
+import Confirmation from "../screens/Confirmation";
 
 
 const router = createBrowserRouter([
@@ -18,7 +19,14 @@ const router = createBrowserRouter([
         children: [
             {path: "", element: <HomeScreen/>},
             {path: "login", element: <LoginScreen/>},
-            {path: "signup", element: <SignupScreen/>},
+            {
+                path: "signup",
+                element: <SignupScreen/>,
+            },
+            {
+                path: "success",
+                element: <Confirmation/>
+            }
         ]
     },
     {
@@ -32,7 +40,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "create-dream",
-                        element: <CreateDream />
+                        element: <CreateDream/>
                     }
                 ]
             },

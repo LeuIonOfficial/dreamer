@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import {Outlet, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import AuthContainer from "../components/Authorization/AuthContainer";
 import Alert from "../components/Alerts/Modal";
@@ -29,7 +29,7 @@ const SignupScreen = () => {
         password: ''
     })
     const [confirmState, setConfirmState] = useState({
-        password: "",
+        password: '',
     })
     const [inputType, setInputType] = useState('password')
     const [dirty, setDirty] = useState({
@@ -100,7 +100,7 @@ const SignupScreen = () => {
         }
 
 
-        if ((dirty.terms) && (dirty.email) && (dirty.password) && (dirty.confirmPassword)) {
+        if ((!(validationError.email) && !(validationError.password) && !(validationError.confirmPassword) && (dirty.terms === true))) {
             axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                 {
                     headers: {
@@ -112,11 +112,13 @@ const SignupScreen = () => {
                     successNotify("You have successfully registered! Please, sign-in")
                 })
                 .catch((error) => {
-                    if (error.response.status === 500) {
+                    if (error.response.status === 409) {
                         errorNotify("User with this email already exists!")
                     }
                     console.log(error.response)
                 });
+        } else {
+            errorNotify("Registration failed!")
         }
     };
 
