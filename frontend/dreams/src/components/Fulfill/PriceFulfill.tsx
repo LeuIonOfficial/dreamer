@@ -9,7 +9,6 @@ const PriceBlock = styled.div`
   border: 1px solid transparent;
   border-radius: 8px;
   cursor: pointer;
-
   font-style: normal;
   height: 319px;
   width: 33%;
@@ -17,9 +16,17 @@ const PriceBlock = styled.div`
   justify-content: space-between;
   flex-direction: column;
   display: flex;
-  @media (max-width: 500px){
+
+  &:hover{
+    box-shadow: 0 33px 20px rgba(0,0,0,.06), 0 7px 4px rgba(0,0,0,.01), 0 2px 1px rgba(0,0,0,.01);
+  }
+  @media (max-width: 926px){
+    width: 60%;
+  }
+  @media (max-width: 425px){
     width: 100%;
   }
+ 
 `
 const PriceCard = styled.div`
   padding: 40px;
@@ -30,6 +37,14 @@ const PriceCard = styled.div`
   
   & Button {
     margin-top: 40px;
+  }
+  @media(max-width: 926px){
+    padding: 30px;
+    margin: 0 23px;
+    & Button {
+      margin: 60px 0 0;
+      width: 100%;
+    }
   }
 `
 

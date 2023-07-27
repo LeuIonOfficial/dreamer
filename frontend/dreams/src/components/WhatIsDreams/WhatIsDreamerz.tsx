@@ -28,12 +28,12 @@ const ContainerDreamerz = styled.div`
 const DreamerzH1 = styled.div`
   color: #f1ebeb;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 700;
+  line-height: 65px;
   margin-bottom: 50px;
 
   @media screen and (max-width: 800px) {
     font-size: 24px;
-    //margin-bottom: 20px;
     text-align: center;
     margin-bottom: 0;
   }
@@ -41,14 +41,20 @@ const DreamerzH1 = styled.div`
 
 const Paragraf = styled.p`
   color: white;
-  font-size: 24px;
-  font-weight: 400;
+  font-size: 26px;
+  font-weight: 700;
   line-height: 31px;
 
   @media screen and (max-width: 800px) {
     font-size: 12px;
     text-align: center;
     line-height: 14px;
+  }
+  @media screen and (min-width: 800px) and (max-width: 1200px){
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 31px;
+    width: 75%;
   }
 `;
 const TextAndButon = styled.div`
@@ -76,7 +82,7 @@ const Buton = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    height: 48px;
+    height: 65px;
     width: 100%;
   }
   
@@ -131,11 +137,8 @@ const WhatIsDreamerz: React.FC = () => {
                     <DreamerzH1>What is Dreamerz?</DreamerzH1>
                     <Paragraf>
                         This is the place where dreams
-                        <br/>
                         come true! Sharing a $tar for a
-                        <br/>
-                        dream you will receive back twice
-                        <br/>
+                        dream you <br/> will receive back twice
                         for your own dream.
                     </Paragraf>
                 </div>

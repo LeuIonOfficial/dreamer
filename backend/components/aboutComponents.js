@@ -2,6 +2,7 @@ const User = require("../models/users.js");
 const About = require("../models/about.js");
 const { validationResult } = require("express-validator");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 exports.modify = async (req, res) => {
     try {
@@ -34,10 +35,26 @@ exports.modify = async (req, res) => {
 };
 
 exports.post = async (req, res) => {
-    const id = req.userId;
-    const user = await About.findOne({ creator: id });
-    if (!user) {
-        return res.status(404).json({ "message": "Nu a fost gasit asa gen de user" });
+    try{
+        const token = req.headers.authorization
+        let id
+        if (token) {
+            const decode = jwt.verify(token.replace(/Bearer\s?/, ''), process.env.JWT_SECRET);
+            id = decode.id;
+        }
+        else
+        {
+            id = req.body.id
+        }
+        const user = await About.findOne({ creator: id });
+        if (!user) {
+            return res.status(404).json({ "message": "Nu a fost gasit asa gen de user" });
+        }
+        res.json(user);
     }
-    res.json(user);
+    catch (e) {
+        res.json(e)
+        console.log(e)
+    }
+
 };
