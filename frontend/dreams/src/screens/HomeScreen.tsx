@@ -13,20 +13,22 @@ import Thoughts from "../components/Thoughts/Thoughts";
 import Unlogged from "../components/HeaderFooter/Unlogged";
 import Footer from "../components/HeaderFooter/Footer";
 import {Outlet} from "react-router-dom";
+import AboutBiography from "../components/AboutBiography/AboutBiography";
 
 
 const HomeScreen = () => {
     return (
         <>
-            <LetTheDreams/>
-            <WhatIsDreamerz/>
-            <Behero/>
-            <RBD/>
-            <Easier/>
-            <ProjectPurpose/>
-            <Thoughts/>
-            <SecurelyDonation/>
-            <WingsDonation/>
+            <AboutBiography/>
+            {/*<LetTheDreams/>*/}
+            {/*<WhatIsDreamerz/>*/}
+            {/*<Behero/>*/}
+            {/*<RBD/>*/}
+            {/*<Easier/>*/}
+            {/*<ProjectPurpose/>*/}
+            {/*<Thoughts/>*/}
+            {/*<SecurelyDonation/>*/}
+            {/*<WingsDonation/>*/}
         </>
     )
 }
