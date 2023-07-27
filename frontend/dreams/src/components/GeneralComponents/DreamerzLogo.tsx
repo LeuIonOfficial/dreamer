@@ -5,7 +5,9 @@ const Logo = styled.div`
   background-repeat: no-repeat;
   color: white;
   height: 60px;
-  width: 160px;`
+  width: 160px;
+  cursor: pointer;
+`
 
 const DreamerzLogo = (props) => {
     return <Logo {...props}>

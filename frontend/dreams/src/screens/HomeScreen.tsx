@@ -19,16 +19,16 @@ import AboutBiography from "../components/AboutBiography/AboutBiography";
 const HomeScreen = () => {
     return (
         <>
-            <AboutBiography/>
-            {/*<LetTheDreams/>*/}
-            {/*<WhatIsDreamerz/>*/}
-            {/*<Behero/>*/}
-            {/*<RBD/>*/}
-            {/*<Easier/>*/}
-            {/*<ProjectPurpose/>*/}
-            {/*<Thoughts/>*/}
-            {/*<SecurelyDonation/>*/}
-            {/*<WingsDonation/>*/}
+            {/*<AboutBiography/>*/}
+            <LetTheDreams/>
+            <WhatIsDreamerz/>
+            <Behero/>
+            <RBD/>
+            <Easier/>
+            <ProjectPurpose/>
+            <Thoughts/>
+            <SecurelyDonation/>
+            <WingsDonation/>
         </>
     )
 }

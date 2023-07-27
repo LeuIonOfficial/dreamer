@@ -137,11 +137,8 @@ const WhatIsDreamerz: React.FC = () => {
                     <DreamerzH1>What is Dreamerz?</DreamerzH1>
                     <Paragraf>
                         This is the place where dreams
-                        <br/>
                         come true! Sharing a $tar for a
-                        <br/>
-                        dream you will receive back twice
-                        <br/>
+                        dream you <br/> will receive back twice
                         for your own dream.
                     </Paragraf>
                 </div>

@@ -2,9 +2,12 @@ import Carusela from "./Carusela";
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import NewDream from '../../assets/images/newDream.svg'
-// import { useMediaQuery } from 'react-responsive'
-// import Slider from "../Thoughts/Slider";
-// import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
+import { useMediaQuery } from 'react-responsive'
+import Slider from "../Thoughts/Slider";
+import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
+//
+// // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// // @ts-ignore
 
 const LetDreamsContainer = styled.div`
   background: radial-gradient(174.02% 541.72% at 249.87% 36.87%,rgba(164,255,226,.5) 0,#fff 100%);
@@ -50,6 +53,11 @@ const LetDreamsHeading = styled.h1`
     font-weight: 700;
   }
 `;
+const CaruselaContainer = styled.div`
+    //font-weight: 600;
+  }
+`;
+
 const CaruselaContainer = styled.div`
   display: flex;
   align-items: center;

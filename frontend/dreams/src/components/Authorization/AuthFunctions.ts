@@ -4,8 +4,33 @@ export const emailValidation = (value) => {
 }
 
 export const passwordValidationFunc = (value) => {
-    const validRegex = /^(?=.*[A-Z])(?=.*\d).{5,}$/
-    return validRegex.test(value);
+    const errors = [];
+
+    // Check for minimum length
+    if (value.length < 8) {
+        errors.push('Password must be at least 8 characters long.');
+    }
+
+    // Check for at least one uppercase letter
+    if (!/[A-Z]/.test(value)) {
+        errors.push('Password must contain at least one uppercase letter.');
+    }
+
+    // Check for at least one lowercase letter
+    if (!/[a-z]/.test(value)) {
+        errors.push('Password must contain at least one lowercase letter.');
+    }
+
+    // Check for at least one digit
+    if (!/\d/.test(value)) {
+        errors.push('Password must contain at least one digit.');
+    }
+
+    // Check for at least one special character
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+        errors.push('Password must contain at least one special character.');
+    }
+    return errors
 }
 
 export const blurHandler = (event, setDirty) => {
@@ -30,10 +55,11 @@ export const confirmHandler = (event, setValidationError, setConfirm, password) 
     const {value} = event.target
     setConfirm(() => value)
     if (value !== password) {
-        setValidationError((prev) => ({...prev, confirmPassword: "Password doesnt match"}))
+        setValidationError((prev) => ({...prev, confirmPassword: "Password doesn't match"}))
     } else {
         setValidationError((prev) => ({...prev, confirmPassword: ""}))
     }
+
 }
 
 export const handleInputType = (setInputType) => {

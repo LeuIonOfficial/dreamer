@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import { useMediaQuery } from 'react-responsive'
 import image from './img/myDream.8d70a4aefa9db11f815a.png';
+import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const ProjectPurposeStyle = styled.div`
   
@@ -14,6 +15,7 @@ const ProjectPurposeStyle = styled.div`
   border-bottom: 1px solid #f1f1f1;
   font-family: 'Space Grotesk', sans-serif;
   box-sizing: border-box;
+
 
   @media screen and (max-width: 799px) {
     padding: 40px 9px 29px 20px;
@@ -64,7 +66,7 @@ const HeadingPurpose = styled.h1`
     line-height: 34px;
     font-weight: 700;
     align-items: center;
-    margin-top: -26px;
+    margin-top: -26px; 
     margin-bottom: 10px;
   }
 `;
@@ -136,6 +138,8 @@ const TextButtonPurpose = styled.span`
   font-size: 16px;
   letter-spacing: 0.14em;
 `;
+
+
 const ProjectPurpose = () => {
 
     const navigate = useNavigate();
@@ -163,6 +167,7 @@ const ProjectPurpose = () => {
                     <br/>
                     Working together in a friendly community for a brighter future.
                 </ParagraphPurpose>
+
                 <ButtonPurpose onClick={handleButtonClick}>
                     <TextButtonPurpose>Try now</TextButtonPurpose>
                 </ButtonPurpose>

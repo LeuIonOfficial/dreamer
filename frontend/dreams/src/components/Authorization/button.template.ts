@@ -1,53 +1,29 @@
 import styled from "styled-components";
 
 export const FormButton = styled.button`
-  padding: 10px;
-  border: none;
-  outline: none;
-  position: relative;
-  z-index: 1;
-  border-radius: 5px;
-  background-image: linear-gradient(to right top, #84fad5, #70f4f1, #7aebff, #97e0ff, #b5d4ff, #cccbff, #e7c1f5, #ffb8e0, #ffb9c6, #ffc3a6, #ffd58c, #f6ec85);
+  align-items: center;
+  background: linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%);
+  background-clip: content-box, border-box;
+  background-origin: border-box;
+  border: 1px double transparent; 
+  border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  color: #000;
+  height: 36px;
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
 
-  &::before {
-    content: "";
-    position: absolute;
-    left: 1px;
-    right: 1px;
-    top: 1px;
-    bottom: 1px;
-    border-radius: 4px;
-    background-color: white;
-    z-index: -1;
-    transition: 200ms
-  }
-
   &:hover {
+    background: linear-gradient(320deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
+    border-radius: 8px;
+    color: #262626;
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    font-style: normal;
     font-weight: 700;
-    font-size: 16px;
-  }
-
-  &::after {
-    font-size: 16px;
-    background-image: linear-gradient(to right top, #84fad5, #70f4f1, #7aebff, #97e0ff, #b5d4ff, #cccbff, #e7c1f5, #ffb8e0, #ffb9c6, #ffc3a6, #ffd58c, #f6ec85);
-    -webkit-background-clip: text;
-    color: transparent;
-    transition: 200ms
-  }
-
-  &:hover::before {
-    opacity: 50%;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  &:hover::after {
-    color: white;
+    line-height: 17px;
   }
 `

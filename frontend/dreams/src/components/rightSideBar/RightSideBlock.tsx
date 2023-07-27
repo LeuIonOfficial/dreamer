@@ -1,0 +1,129 @@
+import RightSideBar from "./RightSideBar";
+import styled from "styled-components";
+import axios from "axios";
+// @ts-ignore
+import React, {useEffect, useState} from "react";
+import Button from "../Authorization/Button";
+import FulfillModal from "../Fulfill/FulfillModal";
+
+
+const ContainerRightSideBlock = styled.div`
+  position: fixed;
+  right: 0;
+  width: 310px;
+
+  & * {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  @media only screen and (width < 769px) {
+    display: none;
+`
+const TitleBlock = styled.div`
+  text-align: left;
+  margin: 15px;
+`
+const TitleContainerRightBlock = styled.span`
+  font-weight: 700;
+  color: #777d74;
+`
+const CardBlock = styled.div`
+  height: 89.5vh;
+  margin-right: 2px;
+  padding-bottom: 33px;
+  overflow: scroll;
+  &::-webkit-scrollbar{
+    border-radius: 20px;
+    height: 0.5rem;
+    width: 0.2rem;
+  }
+  &::-webkit-scrollbar-thumb{
+    background: #b9b9b9;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track{
+    border-radius: 20px;
+  }
+@media(max-width: 768px){
+  width: 33%;
+}
+  @media(max-width: 767px){
+    width: 100%;
+  }
+`
+const MobileRightSideBlock = styled.div`
+  margin-bottom: 10px;
+  margin-top: 30px;
+  @media only screen and (width > 768px ) {
+    display: none;
+  }
+  & * {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+`
+const RightSideBlock = () => {
+
+    const [data, setData] = useState([])
+    const [modal, setModal] = React.useState(false);
+
+    useEffect(() => {
+        axios.get('https://fakestoreapi.com/products').then((response) => {
+            return setData(response.data)
+        })
+    }, [])
+
+    // const object = {
+    //     key: () => {openModal}
+    // }
+
+
+    const [card, setCard] = React.useState(false);
+    const openCard = (event) => {
+        event.preventDefault()
+        setCard(true)
+    }
+    const openModal = (event) => {
+        event.preventDefault()
+        setModal(true)
+    }
+
+    const closeModal = (event) => {
+        event.preventDefault()
+        setModal(false)
+    }
+
+    return (
+        <div>
+            <ContainerRightSideBlock>
+                <TitleBlock>
+                    <TitleContainerRightBlock>Last fulfilled</TitleContainerRightBlock>
+                </TitleBlock>
+                <CardBlock>
+                    {data.map(({id, title, description, image}) => {
+                        return (
+                            <RightSideBar key={id} img={image} name={title} lastname={""}
+                                          dream={description} openModal={openModal}></RightSideBar>)
+                    })}
+                </CardBlock>
+            </ContainerRightSideBlock>
+
+            <MobileRightSideBlock>
+                <Button onClick={() => setCard(true)}>Last fulfilled</Button>
+                {card && (<CardBlock>
+                    {data.map(({id, title, description, image}) => {
+                        return (
+                            <RightSideBar key={id} img={image} name={title} lastname={""}
+                                          dream={description} openModal={openModal}></RightSideBar>)
+                    })}
+                </CardBlock>)}
+            </MobileRightSideBlock>
+<div>
+    {modal && <FulfillModal closeModal={closeModal}/>}
+</div>
+        </div>
+    )
+}
+
+
+export default RightSideBlock

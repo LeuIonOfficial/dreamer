@@ -119,9 +119,15 @@ export const Footer = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   padding: 10px;
+  
+  
 
   & Button {
     margin: 0 10px;
+    
+    & span {
+      padding: 20px;
+    }
     
     @media (max-width: 500px) {
       width: 50%;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 250px;
-  height: 250px;
+  height: fit-content;
   position: absolute;
   //top: 50%;
   left: 50%;
@@ -14,17 +14,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  padding: 35px 0;
+  padding: 20px 0;
 
   & h3 {
     color: #bdbdbd;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
+    margin-top: 5px;
   }
 
   @media (min-width: 768px) {
     width: 350px;
+    padding: 35px 0;
   }
 `
 
@@ -46,7 +48,7 @@ export const Content = styled.div`
   font-size: 14px;
   line-height: 16px;
   color: rgb(130, 130, 130);
-
+  
   #recover {
     background: #fbfbfb;
     border: 1px solid #e5e5e5;
@@ -80,5 +82,6 @@ export const Footer = styled.div`
   & button {
     color: black;
     margin: 0 15px;
+    width: 50%;
   }
 `

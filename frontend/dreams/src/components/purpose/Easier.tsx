@@ -61,6 +61,7 @@ const ColumnEasier = styled.div`
 
   @media screen and (max-width: 1000px) {
     flex-direction: column;
+    width: 88%;
   }
 `;
 
@@ -87,10 +88,11 @@ const NumberCircleEasier = styled.div`
   text-align: center;
   width: 100px;
 
+
   @media screen and (min-width: 0) and (max-width: 400px){
     font-size: 16px;
     width: 62px;
-    line-height: 45px;
+    line-height: 45px
   }
    @media screen and (min-width: 401px) and (max-width: 1200px){
      font-size: 16px;
@@ -103,6 +105,7 @@ const NumberCircleEasier = styled.div`
 
 const TextContentEasier = styled.p`
   font-size: 33px;
+  font-weight: 700;
   color: white;
   line-height: 1;
   margin-left: 20px;
@@ -114,7 +117,6 @@ const TextContentEasier = styled.p`
     font-weight: 700;
     line-height: 1;
     margin-left: 20px;
-  }
 `;
 
 const ButtonEasier = styled.button`
