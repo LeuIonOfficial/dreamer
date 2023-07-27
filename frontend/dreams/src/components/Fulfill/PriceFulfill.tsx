@@ -25,6 +25,7 @@ const PriceBlock = styled.div`
   }
   @media (max-width: 425px){
     width: 100%;
+    inline-size: 80%;
   }
  
 `

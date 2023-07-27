@@ -2,6 +2,7 @@ import styled from "styled-components";
 import PriceFulfill from "./PriceFulfill";
 // @ts-ignore
 import bgImage from './../../assets/images/priceBackground.16f0e13d391ea32b818b.jpg';
+import {useEffect} from "react";
 
 
 const ModalOpasti = styled.div`
@@ -26,13 +27,10 @@ const ModalFulfill = styled.div`
   width: 100%;
   height: 100%;
   z-index: 2001;
-  
-  @media (max-width: 769px) {
-    height: fit-content;
-    z-index: 2001;
-    //overflow: scroll;
+  @media (max-width: 425px) {
+    //height: fit-content;
+    height: auto;
   }
-  
 `
 
 const ModalContent = styled.div`
@@ -51,10 +49,14 @@ const ModalContent = styled.div`
     font-family: "Space Grotesk", sans-serif;
   }
   @media (max-width: 425px) {
-    height: fit-content;
+    //height: fit-content;
+    height: calc(100vh - 0px) !important;
+    width: 320px;
   }
   @media(max-width: 926px){
     width: 420px;
+    //height: 100%;
+    height: calc(100vh - 30px);
     display: flex;
     flex-direction: column;
     padding: 30px;
@@ -104,12 +106,46 @@ const CardsBlock = styled.div`
   pointer-events: auto;
   @media (max-width: 926px){
     flex-direction: column;
-    display: flex;
     align-items: center;
+    overflow: scroll;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 428px){
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    display: inline-flex;
+    justify-content: space-between;
   }
 `
 const FulfillModal = ({closeModal}) => {
 
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [])
+
+ const packages = [
+     {
+         pack: "Basic",
+         price: 11,
+         nrDreams: 10
+     },
+     {
+         pack: "Standard",
+         price: 110,
+         nrDreams: 100
+     },
+     {
+         pack: "Premium",
+         price: 1100,
+         nrDreams: 1000000
+     }
+ ]
 
     return (
         <>
@@ -132,9 +168,13 @@ const FulfillModal = ({closeModal}) => {
                     </BtnCloseModal>
                 </ContentBlock>
                 <CardsBlock>
-                    <PriceFulfill pack={"Basic"} price={11} nrDreams={10}></PriceFulfill>
-                    <PriceFulfill pack={"Standard"} price={110} nrDreams={100}></PriceFulfill>
-                    <PriceFulfill pack={"Premium"} price={1100} nrDreams={100}></PriceFulfill>
+                    {packages.map((elem, index)=>{
+                        // console.log("pakage", elem.pack, index);
+                        return <PriceFulfill key={index} pack={elem.pack} price={elem.price} nrDreams={elem.nrDreams}></PriceFulfill>
+                    })}
+                    {/*<PriceFulfill pack={"Basic"} price={11} nrDreams={10}></PriceFulfill>*/}
+                    {/*<PriceFulfill pack={"Standard"} price={110} nrDreams={100}></PriceFulfill>*/}
+                    {/*<PriceFulfill pack={"Premium"} price={1100} nrDreams={1000}></PriceFulfill>*/}
                 </CardsBlock>
             </ModalContent>
         </ModalFulfill>
