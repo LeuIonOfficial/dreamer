@@ -52,7 +52,7 @@ exports.singUp = async (req, res) => {
             }
         )
 
-        const message = `Welcome to Dreamerz! To confirm the email address, click here: http://localhost:3000/confirmationEmail/${token}`
+        const message = `Welcome to Dreamerz! To confirm the email address, click here: http://localhost:5173/confirmationEmail/${token}`
         sendMail(email, "Email Confirmation", message);
 
         const respons = {
