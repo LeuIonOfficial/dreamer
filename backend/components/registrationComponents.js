@@ -22,13 +22,8 @@ exports.confirmationEmail = async (req, res)=>{
 
     await about.save();
 
-    const respons = {
-        message: "succes",
-        email: user.email
-    };
 
-    res.json(respons);
-
+    res.redirect(`http://localhost:5173/succes/${user.email}`);
 }
 
 exports.singUp = async (req, res) => {

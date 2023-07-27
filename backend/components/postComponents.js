@@ -1,12 +1,7 @@
 const Post = require("../models/post.js");
 const User = require("../models/users.js");
-const jwt = require("jsonwebtoken");
-const path =  require("path")
 
-// exports.create =
 
-// exports.post =
-// };
 
 exports.post_all = async (req, res) => {
     try {
