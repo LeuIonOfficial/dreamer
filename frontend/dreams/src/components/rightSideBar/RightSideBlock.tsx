@@ -45,9 +45,9 @@ const CardBlock = styled.div`
     border-radius: 20px;
   }
 @media(max-width: 768px){
-  width: 33%;
+  width: 250px;
 }
-  @media(max-width: 767px){
+  @media(max-width: 570px){
     width: 100%;
   }
 `

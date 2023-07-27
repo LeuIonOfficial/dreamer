@@ -12,7 +12,7 @@ const TextOnButton = styled.button`
 // const navigate = useNavigate();
 
 const ButtonName = (props) => {
-    return <TextOnButton onClick={props.onClick}> {props.children} </TextOnButton>;
+    return <TextOnButton> {props.children} </TextOnButton>;
 }
 
 export default ButtonName;

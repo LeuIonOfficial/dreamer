@@ -14,24 +14,20 @@ const ProjectPurposeStyle = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid #f1f1f1;
   font-family: 'Space Grotesk', sans-serif;
+  box-sizing: border-box;
 
-  @media screen and (max-width: 800px) {
+
+  @media screen and (max-width: 799px) {
     padding: 40px 9px 29px 20px;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     height: 431px;
-    
-    //height: 600px;
   }
   @media screen and (min-width: 800px) and (max-width: 1200px){
-    height: 355px;
+    height: 400px;
     padding: 90px 18px;
   }
-  //@media screen and (min-width: 951px) and (max-width: 1200px){
-  //  height: 300px;
-  //  padding: 90px 18px;
-  //}
 `;
 
 const ProjectSectionPurpose = styled.div`
@@ -43,10 +39,9 @@ const ProjectSectionPurpose = styled.div`
   margin-right: 20px;
 
   @media screen and (max-width: 800px) {
-    //margin-left: 77px;
-    //margin-bottom: 35px;
     display: flex;
     align-items: center;
+    height: 300px;
   }
 
 `;
@@ -57,10 +52,10 @@ const HeadingPurpose = styled.h1`
   line-height: 65px;
   font-weight: 700;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 799px) {
     font-size: 21px;
     line-height: 34px;
-    font-weight: 500;
+    font-weight: 700;
     align-items: center;
     margin-top: -26px;
     margin-bottom: 10px;
@@ -69,9 +64,9 @@ const HeadingPurpose = styled.h1`
   @media screen and (min-width: 800px)  and (max-width: 1200px){
     font-size: 38px;
     line-height: 34px;
-    font-weight: 500;
+    font-weight: 700;
     align-items: center;
-    margin-top: -62px;
+    margin-top: -26px; 
     margin-bottom: 10px;
   }
 `;
@@ -84,24 +79,18 @@ const ParagraphPurpose = styled.p`
   color: #333;
   margin: 0;
 
-  @media screen and (max-width: 800px) {
-    font-size: 14px;
+  @media screen and (max-width: 799px) {
+    font-size: 12px;
     line-height: 16px;
-    text-align: center;
+    text-align: left;
     height: 145px;
-    //margin-top: 5px;
-    //height: 240px;
-    //width: 75%;
-    //margin: 0;
-    //margin-top: -54px;
-    //line-height: 30px;
-    //text-align: center;
+    width: 75%;
+    color: #2c2c2c;
   }
   @media screen and (min-width: 800px) and (max-width: 950px){
     font-size: 16px;
     line-height: 22px;
-    text-align: center;
-    //height: 145px;
+    text-align: left;
   }
   @media screen and (min-width: 950px) and (max-width: 1200px){
     font-size: 13px;
@@ -113,65 +102,43 @@ const ParagraphPurpose = styled.p`
 const ImagePurpose = styled.img`
   width: 700px;
 
-  @media screen and (max-width: 800px) {
-    width: 100%;
+  @media screen and (max-width: 799px) {
+    width: 70%;
     max-width: 500px;
     margin-top: -50px;
   }
   @media screen and (min-width: 800px) and (max-width: 1200px) {
     width: 52%;
     max-width: 500px;
-    margin-bottom: 64px;
   }
 `;
-// const ButtonEasier = styled.div`
-//   background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
-//   border-radius: 43px;
-//   height: 72px;
-//   width: 350px;
-//   cursor: pointer;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   &:hover{
-//     font-weight: 700;
-//     cursor: pointer;
-//   }
-//   @media screen and (min-width: 768px) {
-//     //height: 48px;
-//     //width: 100%;
-//     height: 48px;
-//     width: 100%;
-//     //position: relative;
-//   }
-//   @media screen and (min-width: 1200px) {
-//     //height: 48px;
-//     //width: 100%;
-//     height: 48px;
-//     width: 100%;
-//     //position: relative;
-//   }
-//   @media (min-width: 320px) and (max-width: 480px) {
-//     //height: 48px;
-//     //width: 100%;
-//     height: 48px;
-//     width: 100%;
-//     //position: relative;
-//   }
-//   @media (min-width: 0px) and (max-width: 320px){
-//     //height: 48px;
-//     //width: 100%;
-//     height: 48px;
-//     width: 100%;
-//     //position: relative;
-//   }
-// `;
-//
-// const TextButtonEasier = styled.span`
-//   color: #262626;
-//   font-size: 16px;
-//   letter-spacing: 0.14em;
-// `;
+
+const ButtonPurpose = styled.button`
+  background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
+  border-radius: 43px;
+  height: 72px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  &:hover{
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1200px) {
+    height: 48px;
+    width: 100%;
+  }
+`;
+
+const TextButtonPurpose = styled.span`
+  color: #262626;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+`;
+
 
 const ProjectPurpose = () => {
 
@@ -200,10 +167,10 @@ const ProjectPurpose = () => {
                     <br/>
                     Working together in a friendly community for a brighter future.
                 </ParagraphPurpose>
-                <ButtonTryNow onClick={handleButtonClick}/>
-                {/*<ButtonEasier onClick={handleButtonClick}>*/}
-                {/*    <TextButtonEasier>Try now</TextButtonEasier>*/}
-                {/*</ButtonEasier>*/}
+
+                <ButtonPurpose onClick={handleButtonClick}>
+                    <TextButtonPurpose>Try now</TextButtonPurpose>
+                </ButtonPurpose>
             </ProjectSectionPurpose>
             <ImagePurpose src={image} alt="dream" />
             </Default>
@@ -217,10 +184,9 @@ const ProjectPurpose = () => {
                         Working together in a friendly community for a brighter future.
                     </ParagraphPurpose>
                     <ImagePurpose src={image} alt="dream" />
-                    <ButtonTryNow onClick={handleButtonClick}/>
-                    {/*<ButtonEasier onClick={handleButtonClick}>*/}
-                    {/*    <TextButtonEasier>Try now</TextButtonEasier>*/}
-                    {/*</ButtonEasier>*/}
+                    <ButtonPurpose onClick={handleButtonClick}>
+                        <TextButtonPurpose>Try now</TextButtonPurpose>
+                    </ButtonPurpose>
                 </ProjectSectionPurpose>
             </Mobile>
         </ProjectPurposeStyle>
