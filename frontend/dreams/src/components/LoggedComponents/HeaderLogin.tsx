@@ -1,5 +1,5 @@
 import styled from "styled-components";
-//c
+
 const HLogin = styled.div`
   display: flex;
   position: sticky;
@@ -12,6 +12,7 @@ const HLogin = styled.div`
   max-width: 100%;
   padding: 0 8px;
   border-bottom: 4px solid;
+  border-image-width: 100%;
   border-image: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
   border-image-slice: 1;
   z-index: 1000;`

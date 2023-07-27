@@ -3,7 +3,7 @@ import styled from "styled-components";
 import router from "./navigation/navigation";
 
 const App = () => {
-  
+
     const Container = styled.div`
       & * {
         font-family: 'Space Grotesk', sans-serif;

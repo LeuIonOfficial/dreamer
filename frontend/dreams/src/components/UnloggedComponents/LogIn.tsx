@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //c
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   width: 160px;
   height: 48px;
   background: ${props => props.color};
@@ -11,7 +11,7 @@ const StyledButton = styled.div`
   font-family: 'Space Grotesk', sans-serif;
   font-size: 16px;
   font-weight: 500;
-  margin: 0;
+  margin: 2px;
   cursor: pointer;
   text-decoration: none;
   :hover {
@@ -24,7 +24,7 @@ const StyledButton = styled.div`
 `
 
 const LogIn = (props) => {
-    return <StyledButton color={props.color}>
+    return <StyledButton color={props.color} onClick={props.onClick}>
         {props.children}
     </StyledButton>
 };
