@@ -31,7 +31,7 @@ function Logged() {
     const navigate = useNavigate();
     const [myheight, setMyHeight] = useState("0px");
     let [mywidth, setMyWidth] = useState("0px");
-    let smallScreen = window.matchMedia("(max-width: 500px)");
+    let smallScreen = window.matchMedia("(max-width: 600px)");
     let setWidth = document.body.offsetWidth - 15 + "px";
     let setWidthSearch = document.body.offsetWidth - 60 + "px";
     let [searchWidth, setSearchWidth] = useState("0px");

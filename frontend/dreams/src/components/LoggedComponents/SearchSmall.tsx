@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SearchBar = styled.div`
   width: ${props => props.width};
   line-height: 0;
-  @media screen and (min-width: 480px){
+  @media screen and (min-width: 601px){
     display: none;
   }
 `
@@ -17,7 +17,7 @@ const SearchInput = styled.input`
   margin: 14px 15px 0;
   font-size: 14px;
   padding: 0px 10px;
-  @media screen and (min-width: 480px) {
+  @media screen and (min-width: 601px) {
     display: none;
   }
   &:focus {

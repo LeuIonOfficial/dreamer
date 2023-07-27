@@ -1,6 +1,6 @@
 import styled from "styled-components";
 //c
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   width: 160px;
   height: 48px;
   background: ${props => props.color};

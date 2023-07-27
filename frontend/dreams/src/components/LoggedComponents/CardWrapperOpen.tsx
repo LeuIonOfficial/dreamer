@@ -6,9 +6,9 @@ const CardWrapperO = styled.div`
   height: ${props => props.height || "0px"};
   overflow: hidden;
   top: 130%;
-  padding: 0;
+  //padding: 0;
   right: 0;
-  margin: 0px;
+  //margin: 0px;
   width: ${props => props.width || "180px"};
   box-shadow: 0 0 1.25rem 0 rgba(0,0,0,.1);
   z-index: 1000;
