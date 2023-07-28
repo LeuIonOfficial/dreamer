@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {match} from "@headlessui/react/dist/utils/match";
 import {PopUpDonation} from "./PopUpDonation";
+import axios from "axios";
 
 
 const MainConatiner = styled.div`
@@ -16,6 +17,7 @@ const ProfileConatiner = styled.div`
   left: 0;
   position: sticky;
   top: 73px;
+  min-width: 320px;
   @media only screen and (width <= 995px ) {
     position: static;
   }
@@ -72,7 +74,9 @@ const TextContent = styled.div`
 const H6 = styled.h6`
   cursor: pointer;
   color: rgb(33, 37, 41);
-  font-size: 0.875rem
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 5px;
 `
 const ParagrafConatiner = styled.div`
   text-align: center;
@@ -209,6 +213,7 @@ const PopUpContainer = styled.div`
 `
 const LeftSideBar = ({handleShowCard, hideShowCard}) => {
     const navigate = useNavigate();
+    const [user, setUser] = useState([]);
     const [modal, setMdoal] = useState(false)
     //bt1
     const [isFontActive, setIsFontActive] = useState(false)
@@ -253,6 +258,9 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
             return Math.round((received / fulfilled) * 100)
         }
     };
+    useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => setUser(res.data))
+    }, []);
 
     return (
         <MainConatiner>
@@ -270,13 +278,16 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                     </ProfileImgSection>
                     {/*Text part of component*/}
                     <TextContent>
-                        <H6 onClick={() => navigate('')}>
-                            Robert St.
-                        </H6>
+                        {user && user.length > 0 && (
+                            <H6 onClick={() => navigate('')}>
+                                {user[0].name}</H6>
+                        )}
                         <ParagrafConatiner>
-                            <Paragraf>
-                                I would love to have a new HUBLOT watches !
-                            </Paragraf>
+                            {user && user.length > 0 && (
+                                <Paragraf>
+                                    {user[0].email}
+                                </Paragraf>
+                            )}
                         </ParagrafConatiner>
                     </TextContent>
                     {/*Scope*/}
@@ -311,7 +322,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                     <ButtonMobile $font={isFontActive1} $backColor={isBackColorActive1} onClick={() => {
                         resetButtons();
                         setIsFontActive1(!isFontActive1);
-                        setIsBackColorActive1(! isBackColorActive1);
+                        setIsBackColorActive1(!isBackColorActive1);
 
                         navigate('');
                         hideShowCard();

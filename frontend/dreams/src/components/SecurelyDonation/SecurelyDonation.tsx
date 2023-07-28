@@ -6,7 +6,6 @@ const GlobalDiv = styled.div`
   font-family: 'Space Grotesk';
 `
 const ContainerDiv = styled.div`
-  height: 710px;
   min-height: 710px;
   background-image: url("./../../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png");
   background-repeat: no-repeat;
@@ -102,6 +101,7 @@ const ImageSecqure = styled.img`
 const ImagePeople = styled.img`
   width: 165px;
   vertical-align: middle;
+  margin-top: 15px;
 `
 const ImageSocialMedia  = styled.img`
   width: 550px;
@@ -117,7 +117,6 @@ const ImageSocialMedia  = styled.img`
 
 `
 const GlobalDivM = styled.div`
-  height: 780px;
   min-height: 780px;
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
@@ -172,6 +171,7 @@ const ImageContainerM = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
+  margin-top: 10px;
   & img{
     vertical-align: middle;
     width: 100%;

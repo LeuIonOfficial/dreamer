@@ -83,16 +83,12 @@ const MainContainerM = styled.div`
 `
 const DonationImageM = styled.img`
   width: 252px;
-  height: 141px;
   @media only screen and (width <= 1098px ) {
     padding-top: 40px;
     width: 494px;
-    height: 286px;
   }
-
   @media only screen and (width <= 600px ) {
     width: 352px;
-    height: 198px;
   }
   
 `

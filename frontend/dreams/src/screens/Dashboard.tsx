@@ -4,6 +4,7 @@ import RightSideBlock from "../components/rightSideBar/RightSideBlock";
 import LeftSideBar from "../components/LeftSIdeBar/LeftSideBar";
 import styled from "styled-components";
 import {useState} from "react";
+import {DashboardComponent} from "../components/DashboardComponent/DashboardComponent";
 const Container = styled.div`
   width: 100%;
   display: flex;
