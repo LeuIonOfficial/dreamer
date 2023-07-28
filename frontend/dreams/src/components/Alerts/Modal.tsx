@@ -4,7 +4,6 @@ import {Container, Header, Content, Footer} from "./modal.template"
 import {FormButton} from "../Authorization/button.template";
 import {emailValidation} from "../Authorization/AuthFunctions";
 import axios from "axios";
-import loginScreen from "../../screens/LoginScreen";
 import {errorNotify, successNotify} from "../../services/toast";
 import {ToastContainer} from "react-toastify";
 
@@ -40,17 +39,29 @@ const Modal = ({handleClose}): null | JSX.Element => {
     }, [recoverEmail])
 
 
-    const handleRecover = async (event) => {
+    const handleRecover = (event) => {
         event.preventDefault()
-        const response = await axios
-            .patch('http://localhost:3000/recover', {
-                email: recoverEmail
-            })
-            .catch((error) => console.log('Error: ', error));
-        if (response && response.data) {
-            successNotify("Submitted")
-            console.log(response);
-            console.log(response.data);
+        try {
+            if (!(recoverEmail.length === 0) && !validationError) {
+                axios
+                    .patch('http://localhost:3000/recover', {
+                        email: recoverEmail
+                    })
+                    .then(() => {
+                        successNotify("Please check your email to proceed to recover password.")
+                    })
+                    .catch((error) => {
+                        console.log('Error: ', error)
+                        errorNotify("Server error");
+                    });
+            } else {
+                setDirty(true)
+                errorNotify("Recover password failed")
+            }
+
+        } catch (e) {
+            console.log(e)
+            errorNotify("Server is off.")
         }
     }
 

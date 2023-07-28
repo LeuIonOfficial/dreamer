@@ -3,8 +3,9 @@ import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
 import RightSideBlock from "../components/rightSideBar/RightSideBlock";
 import LeftSideBar from "../components/LeftSIdeBar/LeftSideBar";
 import styled from "styled-components";
+import {useState} from "react";
 const Container = styled.div`
-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   overflow: hidden;
@@ -13,11 +14,19 @@ width: 100%;
   }
 `
 export const Dashboard = () => {
+    const [showCard, setShowCard] = useState(false);
+
+    const handleShowCard = () => {
+        setShowCard(true);
+    };
+    const hideShowCard = () =>{
+        setShowCard(false)
+    }
 
     return (
         <Container>
-            <LeftSideBar/>
-            <RightSideBlock/>
+            <LeftSideBar hideShowCard={hideShowCard } handleShowCard={handleShowCard}/>
+            <RightSideBlock showCard={showCard}/>
         </Container>
     )
 }

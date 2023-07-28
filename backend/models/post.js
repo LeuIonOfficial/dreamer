@@ -9,7 +9,6 @@ const PostSchema = new Schema({
     },
     description:{
         type: String,
-        require: true
     },
     image:{
         type: Array,
@@ -17,7 +16,6 @@ const PostSchema = new Schema({
     },
     amount:{
         type: Number,
-        require: true
     },
     donated:{
         type: Number,

@@ -16,7 +16,7 @@ const ContainerRightSideBlock = styled.div`
     font-family: 'Space Grotesk', sans-serif;
   }
 
-  @media only screen and (width < 601px) {
+  @media only screen and (width < 769px) {
     display: none;
 `
 const TitleBlock = styled.div`
@@ -25,17 +25,36 @@ const TitleBlock = styled.div`
 `
 const TitleContainerRightBlock = styled.span`
   font-weight: 700;
+  color: #777d74;
 `
 const CardBlock = styled.div`
   height: 89.5vh;
   margin-right: 2px;
   padding-bottom: 33px;
   overflow: scroll;
+  &::-webkit-scrollbar{
+    border-radius: 20px;
+    height: 0.5rem;
+    width: 0.2rem;
+  }
+  &::-webkit-scrollbar-thumb{
+    background: #b9b9b9;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track{
+    border-radius: 20px;
+  }
+@media(max-width: 768px){
+  width: 250px;
+}
+  @media(max-width: 570px){
+    width: 100%;
+  }
 `
 const MobileRightSideBlock = styled.div`
   margin-bottom: 10px;
   margin-top: 30px;
-  @media only screen and (width > 601px ) {
+  @media only screen and (width > 768px ) {
     display: none;
   }
   & * {

@@ -15,6 +15,7 @@ const ContainerEasier = styled.div`
   align-items: flex-start;
   justify-content: space-around;
   font-family: 'Space Grotesk', sans-serif;
+  box-sizing: border-box;
 
   @media screen and (max-width: 1000px) {
       padding: 20px;
@@ -26,15 +27,16 @@ const ContainerEasier = styled.div`
 const TextHeadingEasier = styled.h1`
   color: white;
   font-size: 64px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 65px;
 
   @media screen and (max-width: 1000px) {
-      font-size: 40px;
+      font-size: 39px;
     line-height: 43px;
     margin-left: 13px;
     width: 67%;
     margin-bottom: 20px;
+    font-weight: 700;
   }
 `;
 
@@ -46,7 +48,6 @@ const SectionEasier = styled.div`
   flex-direction: row;
 
   @media screen and (max-width: 1000px) {
-    //flex-direction: column;
     margin-top: 20px;
     margin-left: 13px;
   }
@@ -72,9 +73,7 @@ const RowEasier = styled.div`
 
   @media screen and (max-width: 1000px) {
     flex-direction: row;
-    //align-items: center;
     margin-bottom: 27px;
-    //width: 160px;
   }
 `;
 
@@ -83,47 +82,41 @@ const NumberCircleEasier = styled.div`
   border-radius: 50%;
   color: #fff;
   font-size: 27px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 82px;
+  //height: 82px;
   text-align: center;
   width: 100px;
 
-  @media screen and (min-width: 0px) and (max-width: 450px){
-    //line-height: 62px;
-    //width: 92px;
-    //font-size: 22px;
-    ////height: 45px;
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
+
+  @media screen and (min-width: 0) and (max-width: 400px){
     font-size: 16px;
     width: 62px;
-    line-height: 48px;
+    line-height: 45px
   }
-  @media screen and (min-width: 451px) and (max-width: 800px){
-    font-size: 16px;
-    width: 58px;
-    line-height: 48px;
-  }
+   @media screen and (min-width: 401px) and (max-width: 1200px){
+     font-size: 16px;
+     border-radius: 50%;
+     width: 58px;
+     //height: 58px;
+     line-height: 48px;
+   } 
 `;
 
 const TextContentEasier = styled.p`
   font-size: 33px;
+  font-weight: 700;
   color: white;
   line-height: 1;
   margin-left: 20px;
   width: 100%;
+  font-weight: 700;
 
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 1200px) {
     font-size: 19px;
-    //margin-left: 5px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 1;
     margin-left: 20px;
-    //margin-top: 15px;
-    //width: 90%;
-    //text-align: center;
-  }
 `;
 
 const ButtonEasier = styled.button`
@@ -131,7 +124,6 @@ const ButtonEasier = styled.button`
   border-radius: 43px;
   height: 72px;
   width: 350px;
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -2,7 +2,21 @@ import styled from "styled-components";
 import PriceFulfill from "./PriceFulfill";
 // @ts-ignore
 import bgImage from './../../assets/images/priceBackground.16f0e13d391ea32b818b.jpg';
+import {useEffect} from "react";
 
+
+const ModalOpasti = styled.div`
+  --bs-backdrop-zindex: 1040;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 2000;
+`
 const ModalFulfill = styled.div`
   position: absolute;
   left: 0;
@@ -12,14 +26,11 @@ const ModalFulfill = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: all 0.5s ease-in-out;
-  z-index: 99;
-  
-  @media (max-width: 768px) {
-    height: fit-content;
+  z-index: 2001;
+  @media (max-width: 425px) {
+    //height: fit-content;
+    height: auto;
   }
-  
 `
 
 const ModalContent = styled.div`
@@ -28,6 +39,9 @@ const ModalContent = styled.div`
   pointer-events: auto;
   width: 800px;
   background-image: url(${bgImage});
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.5s ease-in-out;
 
@@ -35,7 +49,17 @@ const ModalContent = styled.div`
     font-family: "Space Grotesk", sans-serif;
   }
   @media (max-width: 425px) {
-    height: fit-content;
+    //height: fit-content;
+    height: calc(100vh - 0px) !important;
+    width: 320px;
+  }
+  @media(max-width: 926px){
+    width: 420px;
+    //height: 100%;
+    height: calc(100vh - 30px);
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
   }
   
 `
@@ -43,14 +67,20 @@ const ContentBlock = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  @media(max-width: 926px){
+    //margin: auto;
+    max-width: 420px;
+    //flex-direction: column;
+  }
+ 
 
   & h5 {
     color: #333;
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
-    margin: 0 0 0 1.2px;
+    margin: 0 0 0 11.2px;
     @media (max-width: 425px){
       margin: 0 0 0 11.2px;
     }
@@ -62,6 +92,7 @@ const CloseModal = styled.button`
   height: 24px;
   width: 24px;
   display: contents;
+  color: #777d74;
 `
 
 const BtnCloseModal = styled.div`
@@ -73,15 +104,52 @@ const CardsBlock = styled.div`
   flex-direction: row;
   margin-bottom: 20px;
   pointer-events: auto;
-  @media (max-width: 425px){
+  @media (max-width: 926px){
     flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    display: inline-flex;
+    justify-content: space-between;
+  }
+  @media (max-width: 428px){
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    display: inline-flex;
+    justify-content: space-between;
   }
 `
 const FulfillModal = ({closeModal}) => {
 
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+
+        return () => {
+            document.body.style.overflow = "unset"
+        }
+    }, [])
+
+ const packages = [
+     {
+         pack: "Basic",
+         price: 11,
+         nrDreams: 10
+     },
+     {
+         pack: "Standard",
+         price: 110,
+         nrDreams: 100
+     },
+     {
+         pack: "Premium",
+         price: 1100,
+         nrDreams: 1000000
+     }
+ ]
 
     return (
-
+        <>
+    <ModalOpasti></ModalOpasti>
         <ModalFulfill>
             <ModalContent>
                 <ContentBlock>
@@ -100,13 +168,17 @@ const FulfillModal = ({closeModal}) => {
                     </BtnCloseModal>
                 </ContentBlock>
                 <CardsBlock>
-                    <PriceFulfill pack={"Basic"} price={11} nrDreams={10}></PriceFulfill>
-                    <PriceFulfill pack={"Standard"} price={110} nrDreams={100}></PriceFulfill>
-                    <PriceFulfill pack={"Premium"} price={1100} nrDreams={100}></PriceFulfill>
+                    {packages.map((elem, index)=>{
+                        // console.log("pakage", elem.pack, index);
+                        return <PriceFulfill key={index} pack={elem.pack} price={elem.price} nrDreams={elem.nrDreams}></PriceFulfill>
+                    })}
+                    {/*<PriceFulfill pack={"Basic"} price={11} nrDreams={10}></PriceFulfill>*/}
+                    {/*<PriceFulfill pack={"Standard"} price={110} nrDreams={100}></PriceFulfill>*/}
+                    {/*<PriceFulfill pack={"Premium"} price={1100} nrDreams={1000}></PriceFulfill>*/}
                 </CardsBlock>
             </ModalContent>
         </ModalFulfill>
-
+</>
 
     )
 }

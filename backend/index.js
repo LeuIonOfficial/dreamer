@@ -1,80 +1,72 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const Minio = require('minio');
 const registerValidator = require('./validations/auth.js');
 const autorizare = require('./utils/checkAuth.js');
 const dotenv = require('dotenv');
 const Registration = require("./components/registrationComponents.js");
-const Post = require("./components/postComponents.js");
+const Donate = require("./components/donateComponents");
+const PostComponents = require("./components/postComponents.js");
 const About = require("./components/aboutComponents.js");
-const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
-const crypto = require('crypto')
-
-
+const path = require("path");
+const Post = require("./models/post");
+const jwt = require("jsonwebtoken");
+const {minioClient,upload} = require("./components/minioComponent");
+//config
 dotenv.config({ path: './config/config.env' });
 const app = express();
 
+
+//json convert
 app.use(express.json(), cors({
     origin: "*"
 }));
 
+app.use(express.urlencoded({
+    extended: false,
+    limit: 10000,
+    parameterLimit:2
+} ))
+
+
+//mongo
 mongoose.connect("mongodb+srv://victor:LMWjpNi0do0VpBBT@dreamsdb.bxh5w4z.mongodb.net/dreams?retryWrites=true&w=majority")
     .then(() => console.log("DB OK"))
     .catch(() => console.log("DB ERROR"))
 
-
-
-const minioClient = new Minio.Client({
-    endPoint: '127.0.0.1',
-    port: 9000,
-    useSSL: false,
-    accessKey: 'minioadmin',
-    secretKey: 'minioadmin',
-});
-
+//hello world
 app.get('/', (req, res) => {
     res.send("Welcome to my server...");
 });
 
+app.post('/test',upload.array('image', 5), async(req,res)=>{
+    if (!req.files) {
+        return res.status(400).send('Nu au fost încărcate poze.');
+    }
 
 
-app.post('/post_image', upload.single("image"),async (req,res)=>{
-    const generateimageName = ()=> crypto.randomBytes(32).toString('hex')
+    const uploadedFiles = req.files.map((file)  =>{
+        const uniqueSuffix = Math.round(Math.random() * 1E9);
+        const fileName = file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)
 
-    const imageName = generateimageName()
-
-    await minioClient.fPutObject(`${process.env.BUCKET_NAME}`,imageName, req.file.path, (err,etag)=>{
+        minioClient.putObject(process.env.BUCKET_NAME, fileName, file.buffer, (err, etag) => {
             if (err) {
-                console.error('Eroare la încărcarea fișierului:', err);
-            } else {
-                console.log('Fișierul a fost încărcat cu succes:', etag);
+                console.error('Error uploading image to Minio:', err);
             }
-        }
-    )
-    console.log(req.file);
-
-})
-
-app.get('/get_image',async (req,res)=> {
-
-    await minioClient.getObject(`${process.env.BUCKET_NAME}`, 'image.png', (err, stream) => {
-        if (err) {
-            console.error('Error fetching the image from MinIO:', err);
-            return res.status(500).send('Error fetching the image from MinIO');
-        }
-
-        res.setHeader('Content-Type', 'image/jpeg');
-        stream.pipe(res);
-    });
+            console.log('Image uploaded successfully:', etag);
+        });
+        return fileName
+    })
+    res.json(uploadedFiles)
 })
 
 // Authentication
 
-app.post('/sign-up', registerValidator, Registration.sing_up);
+app.post('/sign-up', registerValidator, Registration.singUp);
 
-app.post('/sign-in', registerValidator, Registration.sing_in);
+app.get('/confirmationEmail/:token',Registration.confirmationEmail)
+
+app.post('/sign-in', registerValidator, Registration.singIn);
 
 app.patch('/recover', Registration.recover);
 
@@ -82,19 +74,94 @@ app.patch('/recover', Registration.recover);
 
 app.post('/about', autorizare, About.modify);
 
-app.get('/about', autorizare, About.post);
+app.get('/about', About.post);
 
 // POST
 
-app.post('/post', upload.array('image', 5), autorizare, Post.create);
+app.post('/post', autorizare,upload.any(), async (req, res) => {
+    try {
+        if (!req.files) {
+            return res.status(400).send('Nu au fost încărc' +
+                'ate poze.');
+        }
 
-app.get('/post', autorizare, Post.post);
+        const uploadedFiles = req.files.map((file)  =>{
+            const uniqueSuffix = Math.round(Math.random() * 1E9);
+            const fileName = file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)
 
-app.get('/post_all', Post.post_all);
+            minioClient.putObject(process.env.BUCKET_NAME, fileName, file.buffer, (err, etag) => {
+                if (err) {
+                    console.error('Error uploading image to Minio:', err);
+                }
+                console.log('Image uploaded successfully:', etag);
+            });
+            return fileName
+        })
 
-app.patch('/post', autorizare, Post.modify);
+        const data = req.body;
+        const doc = new Post({
+            creator: req.userId,
+            image: uploadedFiles,
+            description: data.description,
+            amount: data.amount
+        });
+        const post = await doc.save();
 
-app.post('/post_donated', autorizare, Post.donate);
+        const respons = {
+            message: "succes",
+            post_id: post._id,
+            user_id: post.creator
+        };
+        res.json(respons);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({"message": "Erorr"});
+    }
+});
+
+app.get('/post', async (req, res) => {
+    const token = req.headers.authorization
+    let id;
+    if (token) {
+        const decode = jwt.verify(token.replace(/Bearer\s?/, ''), process.env.JWT_SECRET);
+        id = decode.id;
+    } else {
+        id = req.body.id
+    }
+    const post = await Post.findOne({creator: id});
+    if (!post) {
+        return res.status(404).json({"message": "Nu a fost gasit asa gen de user"});
+    }
+
+    const send = new Promise((resolve, reject) => {
+        const dowload = []
+        const image = post.image
+        image.map((name) => {
+            minioClient.presignedGetObject(process.env.BUCKET_NAME, name, (err, url) => {
+                if (err) {
+                    console.error('Eroare la obținerea URL-ului semnat:', err);
+                    return;
+                }
+                console.log('URL semnat pentru accesul la obiect:', url);
+                dowload.push(url)
+                if(dowload.length === image.length)
+                    resolve(dowload);
+            });
+        })
+    })
+
+    send.then(resolve => res.json(resolve))
+});
+
+app.get('/post_all', PostComponents.post_all);
+
+app.patch('/post', autorizare, PostComponents.modify);
+
+//Donate
+
+app.post('/post_donated', autorizare, Donate.donate);
+
+app.post('/subscribe', autorizare, Donate.subscribe);
 
 app.listen(process.env.PORT, (error) => {
     if (error) {

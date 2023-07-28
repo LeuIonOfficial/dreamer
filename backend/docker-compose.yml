@@ -1,18 +1,47 @@
-version: '3'
+version: '3.7'
+
+# Settings and configurations that are common for all containers
+x-minio-common: &minio-common
+  image: quay.io/minio/minio:latest
+  command: server --console-address ":9001" http://minio1/data1
+  expose:
+    - "9000"
+    - "9001"
+  environment:
+     MINIO_ROOT_USER: minioadmin
+     MINIO_ROOT_PASSWORD: minioadmin
+  healthcheck:
+    test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+    interval: 30s
+    timeout: 20s
+    retries: 3
+
+# starts 4 docker containers running minio server instances.
+# using nginx reverse proxy, load balancing, you can access
+# it through port 9000.
 services:
-  minio:
-    image: minio/minio
-    container_name: minio
-    restart: always
+  minio1:
+    <<: *minio-common
+    hostname: minio1
+    volumes:
+      - data1-1:/data1
+      - data1-2:/data2
+
+  nginx:
+    image: nginx:1.19.2-alpine
+    hostname: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "9000:9000"
-    environment:
-      MINIO_ACCESS_KEY: minioadmin
-      MINIO_SECRET_KEY: minioadmin
-    volumes:
-      - data:/data
-    command: server /data
+      - "9001:9001"
+    depends_on:
+      - minio1
+      - minio2
 
+
+## By default this config uses default local driver,
+## For custom volumes replace with volume driver configuration.
 volumes:
-  data:
-
+  data1-1:
+  data1-2:
