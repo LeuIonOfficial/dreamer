@@ -101,22 +101,26 @@ const SignupScreen = () => {
 
 
         if ((!(validationError.email) && !(validationError.password) && !(validationError.confirmPassword) && (dirty.terms === true))) {
-            axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
+            try {
+                await axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
                     }
-                }
-            )
-                .then((response) => {
-                    successNotify("You have successfully registered! Please, sign-in")
-                })
-                .catch((error) => {
-                    if (error.response.status === 409) {
-                        errorNotify("User with this email already exists!")
-                    }
-                    console.log(error.response)
-                });
+                )
+                    .then((response) => {
+                        successNotify("Please check your email to confirm your registration.")
+                    })
+                    .catch((error) => {
+                        if (error.response.status === 409) {
+                            errorNotify("User with this email already exists!")
+                        }
+                    });
+            } catch (e) {
+                console.log(e)
+                errorNotify("Server is off!")
+            }
         } else {
             errorNotify("Registration failed!")
         }

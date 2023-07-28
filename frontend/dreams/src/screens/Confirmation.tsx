@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import {Container} from "../components/CreateDream/createDream.template";
 import {FormButton} from "../components/Authorization/button.template";
-import loginScreen from "./LoginScreen";
-
+import {useNavigate} from "react-router-dom";
 
 const Confirmation = () => {
 
-    const isRowBased = matchMedia('(min-width: 500px)');
-    console.log(isRowBased)
+    const navigate = useNavigate()
+
 
     const styles = {
         container: {
-            flexDirection: isRowBased.matches ? "row" : "column",
+            flexDirection: "row",
             alignItems: "center",
         }
     }
@@ -41,7 +40,7 @@ const Confirmation = () => {
                             You have successfully registered!
                         </p>
                     </div>
-                    <FormButton style={button}>Log in</FormButton>
+                    <FormButton style={button} onClick={() => navigate("/login")}>Log in</FormButton>
                 </Container>
             </Content>
         </>
