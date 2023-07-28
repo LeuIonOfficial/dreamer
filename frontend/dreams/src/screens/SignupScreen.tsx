@@ -105,17 +105,18 @@ const SignupScreen = () => {
                 await axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
                     {
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
                         }
                     }
                 )
-                    .then((response) => {
+                    .then(() => {
                         successNotify("Please check your email to confirm your registration.")
                     })
                     .catch((error) => {
                         if (error.response.status === 409) {
                             errorNotify("User with this email already exists!")
                         }
+                        console.log(error.response)
                     });
             } catch (e) {
                 console.log(e)

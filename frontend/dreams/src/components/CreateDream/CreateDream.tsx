@@ -39,9 +39,11 @@ export const CreateDream: React.FC = () => {
 
     const handleImageAdd = (event) => {
         event.preventDefault()
-        const path = event.target.files
+        const path = event.target.files[0]
         setImages((prev) => ([...prev, path]))
     }
+
+    console.log(images)
 
     const handleRemoveImage = (index) => {
         const updatedListImage = images.filter((_, i) => i !== index)
@@ -98,7 +100,7 @@ export const CreateDream: React.FC = () => {
                     {images ? images.map((image, index) => {
                         return <Image key={index}>
                             <img
-                                src={URL.createObjectURL(image[0])}
+                                src={URL.createObjectURL(image)}
                                 alt="error"/>
                             <ImageButton onClick={() => handleRemoveImage(index)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
