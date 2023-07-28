@@ -98,7 +98,7 @@ app.post('/post', autorizare,upload.any(), async (req, res) => {
             return fileName
         })
 
-        const data = req.body;
+        const data =  JSON.parse(req.body.dream);
         const doc = new Post({
             creator: req.userId,
             image: uploadedFiles,
