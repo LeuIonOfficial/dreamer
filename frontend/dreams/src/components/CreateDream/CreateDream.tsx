@@ -75,7 +75,7 @@ export const CreateDream: React.FC = () => {
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",
-                        'Authorization': `token: ${token}`
+                        'Authorization': `${token}`
                     }
                 }
             )
