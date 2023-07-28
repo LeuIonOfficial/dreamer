@@ -59,21 +59,21 @@ const responsive = {
 const CaruselaImageSrc = [
     {
 
-        src: " ./../../../../src/assets/images/2.JPG"
+        src: "./../../../../src/assets/images/firstCard.ac86345d2178d23452c6.png"
     },
     {
-        src: " ./../../../../src/assets/images/3.JPG"
+        src: " ./../../../../src/assets/images/secondCard.e5866588bec66cd88dda.png"
     },
     {
-        src: " ./../../../../src/assets/images/4.JPG"
-    },
-
-    {
-        src: " ./../../../../src/assets/images/5.JPG"
+        src: " ./../../../../src/assets/images/thirdCard.92d0e865e2715196ba27.png"
     },
 
     {
-        src: " ./../../../../src/assets/images/6.JPG"
+        src: " ./../../../../src/assets/images/fourthCard.d1a4cb4a3c51570451e6.png"
+    },
+
+    {
+        src: " ./../../../../src/assets/images/fiveCard.c415a5d53cd508a0858d.png"
     },
 
 
@@ -106,7 +106,7 @@ const Carusela = () => {
                 {CaruselaImageSrc.map((image, index) => {
                     return (
                         <Slider key={index}>
-                            <Img src={image.src} alt="card" />
+                            <Img src={image.src} alt="card"/>
                         </Slider>
                     );
                 })
@@ -116,5 +116,6 @@ const Carusela = () => {
     );
 };
 export default Carusela;
+
 
 
