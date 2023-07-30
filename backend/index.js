@@ -81,8 +81,7 @@ app.get('/about', About.post);
 app.post('/post', autorizare,upload.any(), async (req, res) => {
     try {
         if (!req.files) {
-            return res.status(400).send('Nu au fost încărc' +
-                'ate poze.');
+            return res.status(400).send('Nu au fost încărcate poze.');
         }
 
         const uploadedFiles = req.files.map((file)  =>{
