@@ -10,7 +10,7 @@ import FulfillModal from "../Fulfill/FulfillModal";
 const ContainerRightSideBlock = styled.div`
   position: fixed;
   right: 0;
-  width: 310px;
+  width: 16%;
 
   & * {
     font-family: 'Space Grotesk', sans-serif;
@@ -29,7 +29,7 @@ const TitleContainerRightBlock = styled.span`
 `
 const CardBlock = styled.div`
   height: 89.5vh;
-  margin-right: 2px;
+  margin-right: 5px;
   padding-bottom: 33px;
   overflow: scroll;
   &::-webkit-scrollbar{
