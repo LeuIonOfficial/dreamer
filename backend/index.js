@@ -76,6 +76,8 @@ app.post('/about', autorizare, About.modify);
 
 app.get('/about', About.post);
 
+app.get('/aboutAll', About.postAll);
+
 // POST
 
 app.post('/post', autorizare,upload.any(), async (req, res) => {

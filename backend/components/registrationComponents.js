@@ -11,7 +11,7 @@ exports.confirmationEmail = async (req, res)=>{
 
     let email = await User.findOne({ email: decode.email });
     if (email) {
-        return res.status(409).json({ "message": "User already exists" });
+        res.redirect(`http://localhost:5173/success`);
     }
 
     const doc = new User({
