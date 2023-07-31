@@ -1,13 +1,18 @@
 import styled from "styled-components";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React, {useEffect, useState} from "react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import DreamCardIco from "../../assets/media/DreamCardIco.svg";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import coverImg from "../../assets/media/coverImg.png";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import noAvatar from "../../assets/media/noAvatar.png";
 import SliderDashboard from "./SliderDashboard";
+import Button from "../Authorization/Button";
 
 /*npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch*/
 
@@ -102,13 +107,13 @@ const DivProgressBar=styled.div`
   transition: var(--bs-progress-bar-transition);
   white-space: nowrap;
 `
-export const DreamCard = (props) => {
+export const DreamCard = ({title, image}) => {
     return (
                     <div className="mb-[14px] px-[7px]">
                         <div className="relative block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                             <div className="flex">
                                 <div className="relative overflow-hidden bg-cover bg-no-repeat w-full">
-                                    <SliderDashboard imagine={props.imagine}/>
+                                    <SliderDashboard image={image}/>
                                 </div>
                             </div>
                             <div className="p-2 w-full h-[50%]">
@@ -116,17 +121,17 @@ export const DreamCard = (props) => {
                                     <div className="text-center">
                                         <div className="profile-detail">
                                             <div className="relative flex items-center flex-col mt-[-2.5rem]">
-                                                <a href="#">
+                                                    <a>
                                                     <div className="flex items-center justify-center bg-white h-[60px] leading-[3.75rem] rounded-full w-[61px]">
                                                         <img src={noAvatar} alt="profile-img" className="h-[55px] leading-[55px] w-[55px] align-middle rounded-[50rem] object-cover"/>
                                                     </div>
-                                                </a>
+                                                    </a>
                                                 <div className="text-dark cursor-pointer w-[-webkit-fill-available]">
                                                     <SpanTitle>
                                                         TEST NAME
                                                     </SpanTitle>
                                                     <SpanItem className="leading-[1.25rem] h-[35px]">
-                                                        {props.title}
+                                                        {title}
                                                     </SpanItem>
                                                 </div>
                                             </div>
@@ -150,9 +155,9 @@ export const DreamCard = (props) => {
                                                         </span>
                                                     </DivButtonText>
                                                 </DivCustomGradient>
-                                                <DivCustomGradient className="w-[30%] h-[36px]">
-                                                    <img src={DreamCardIco} className="w-[24px] h-[24px]" alt=""/>
-                                                </DivCustomGradient>
+                                                <Button className="w-[30%] h-[36px]">
+                                                        <img src={DreamCardIco} className="w-[24px] h-[24px]" alt=""/>
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>
