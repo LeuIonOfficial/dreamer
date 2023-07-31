@@ -53,10 +53,7 @@ const LetDreamsHeading = styled.h1`
     font-weight: 700;
   }
 `;
-const CaruselaContainer = styled.div`
-    //font-weight: 600;
-  }
-`;
+
 
 const CaruselaContainer = styled.div`
   display: flex;

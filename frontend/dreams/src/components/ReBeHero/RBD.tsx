@@ -15,7 +15,7 @@ const RbdContainer = styled.div`
 
   height: 100%;
   align-items: center;
-  justify-content: space-around;
+  //justify-content: space-around;
   flex-direction: column;
   display: flex;
 `
@@ -53,13 +53,14 @@ const H2RBD = styled.h2`
     line-height: 36px;
     text-align: center;
     margin: 0;
+    padding: 30px 0;
   }
 `
 
 const Description = styled.p` //font-size: 38px;
   //color: #c3021f;
   //align-items: center;
-  margin: 0;
+  margin-top: 10px;
   @media (max-width: 800px) {
     font-size: 26px;
     & svg{
