@@ -6,10 +6,11 @@ import {createBrowserRouter} from "react-router-dom"
 import {Layout} from "./Layout";
 import {PrivateRoutes} from "./PrivateRoutes";
 import {PricingPage} from "../screens/PricingPage";
-import {UserProfile} from "../screens/UserProfile";
+import {Profile} from "../screens/Profile";
 import {WingPage} from "../screens/WingPage";
 import {CreateDream} from "../components/CreateDream/CreateDream";
 import Confirmation from "../screens/Confirmation";
+import {UserProfile} from "../screens/UserProfile";
 
 
 const router = createBrowserRouter([
@@ -36,8 +37,12 @@ const router = createBrowserRouter([
             {path: "pricing-page", element: <PricingPage/>},
             {
                 path: "user-profile",
-                element: <UserProfile/>,
+                element: <Profile/>,
                 children: [
+                    {
+                        path: "",
+                        element: <UserProfile/>
+                    },
                     {
                         path: "create-dream",
                         element: <CreateDream/>

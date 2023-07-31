@@ -81,8 +81,7 @@ app.get('/about', About.post);
 app.post('/post', autorizare,upload.any(), async (req, res) => {
     try {
         if (!req.files) {
-            return res.status(400).send('Nu au fost încărc' +
-                'ate poze.');
+            return res.status(400).send('Nu au fost încărcate poze.');
         }
 
         const uploadedFiles = req.files.map((file)  =>{
@@ -98,7 +97,7 @@ app.post('/post', autorizare,upload.any(), async (req, res) => {
             return fileName
         })
 
-        const data = req.body;
+        const data =  JSON.parse(req.body.dream);
         const doc = new Post({
             creator: req.userId,
             image: uploadedFiles,

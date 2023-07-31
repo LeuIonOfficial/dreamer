@@ -1,8 +1,23 @@
-import './AboutBiographu.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
-import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
-
+import {ContainerBiography,
+    CardBiography,
+    DashboardText,
+    TextBiography,
+    SpanBiography,
+    ButtonBiography,
+    TextButtonBiography,
+    InputGroupBiography,
+    FirstInputGroup,
+    InputName,
+    FirstPartBiography,
+    FirstPartInput,
+    TextError,
+    AboutMeBiography,
+    TextAreaBiography,
+    StyledCountryDropdown,
+    StyledRegionDropdown,
+    SelectGender} from './StyleBiography'
 const AboutBiographyEdit = () => {
     const [email, setEmail] = useState('');
     const [selectedGender, setSelectedGender] = useState('');
@@ -60,7 +75,6 @@ const AboutBiographyEdit = () => {
         console.log(data)
         const token = localStorage.getItem('token')
 
-        // try {
         axios.post('http://localhost:3000/about' , JSON.stringify(data) , {
                 headers: {
                     "Content-Type": "application/json",
@@ -68,15 +82,11 @@ const AboutBiographyEdit = () => {
                 }
             }
             ).then(response => {
-            // const token = localStorage.getItem('token');
-            // console.log(token);
             console.log('response: ', response)
         }).catch(error => {
             console.log('error: ', error)
         })
-        // } catch (error) {
-        //     console.error('Eroare la trimiterea datelor:', error);
-        // }
+
     };
 
     const handleChangeFirstName = (event) => {
@@ -133,142 +143,136 @@ const AboutBiographyEdit = () => {
     };
 
     return (
-        <div className='container-biography'>
-            <div className='card-biography'>
-                <form action="" className='test-biography' onSubmit={handleSubmit}>
-                    <div className='dashboard-text'>
-                        <div className='text-biography'>
-                            <span className='span-biography'>Biography</span>
-                        </div>
+        <ContainerBiography>
+            <CardBiography>
+                <form action="" onSubmit={handleSubmit}>
+                    <DashboardText>
+                        <TextBiography>
+                            <SpanBiography>Biography</SpanBiography>
+                        </TextBiography>
 
-                        <button type={"submit"} className='button-biography'>
-                            <div className='text-button-biography'>
+                        <ButtonBiography type={"submit"}>
+                            <TextButtonBiography>
                                 <span>{isEditing ? 'Submit' : 'Edit profile'}</span>
-                            </div>
-                        </button>
-                    </div>
+                            </TextButtonBiography>
+                        </ButtonBiography>
+                    </DashboardText>
 
-                    <div className='input-group-biography'>
-                        <div className='first-input-group'>
+                    <InputGroupBiography>
+                        <FirstInputGroup>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>First Name*</span>
-                                <input
+                            <InputName>
+                                <FirstPartBiography>First Name*</FirstPartBiography>
+                                <FirstPartInput
                                     type="text"
                                     name='firstName'
-                                    className='first-part-input'
                                     value={firstName}
                                     onChange={handleChangeFirstName}
                                     disabled={!isEditing}
 
                                 />
                                 {!validFirstName && (
-                                    <p className="par-text">
+                                    <TextError>
                                         First Name must contain only letters and be between 2 and 20
                                         characters long.
-                                    </p>
+                                    </TextError>
                                 )}
-                            </div>
+                            </InputName>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Birth Date*</span>
-                                <input type="date" name='Birth' className='first-part-input' disabled={!isEditing} onChange={handleChangeBirthDate}/>
-                            </div>
+                            <InputName>
+                                <FirstPartBiography>Birth Date*</FirstPartBiography>
+                                <FirstPartInput type="date" name='Birth' disabled={!isEditing} onChange={handleChangeBirthDate}/>
+                            </InputName>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Email Address*</span>
-                                <input
+                            <InputName>
+                                <FirstPartBiography>Email Address*</FirstPartBiography>
+                                <FirstPartInput
                                     type="text"
                                     name='Email'
-                                    className='first-part-input'
                                     value={email}
                                     onChange={handleChangeEmail}
                                     disabled={!isEditing}
 
                                 />
-                                {!valid && <p className="par-text">Please enter a valid email address.</p>}
-                            </div>
+                                {!valid && <TextError>Please enter a valid email address.</TextError>}
+                            </InputName>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Country*</span>
-                                <CountryDropdown
+                            <InputName>
+                                <FirstPartBiography>Country*</FirstPartBiography>
+                                <StyledCountryDropdown
                                     id="country"
-                                    className='first-part-input'
                                     value={selectedCountry}
                                     onChange={handleCountryChange}
                                     disabled={!isEditing}
                                 />
-                            </div>
-                        </div>
+                            </InputName>
+                        </FirstInputGroup>
 
-                        <div className='first-input-group'>
+                        <FirstInputGroup>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Last Name*</span>
-                                <input
+                            <InputName>
+                                <FirstPartBiography>Last Name*</FirstPartBiography>
+                                <FirstPartInput
                                     type="text"
                                     name='LastName'
-                                    className='first-part-input'
                                     value={lastName}
                                     onChange={handleLastNameChange}
                                     disabled={!isEditing}
                                 />
                                 {!validLastName && (
-                                    <p className="par-text">
+                                    <TextError>
                                         First Name must contain only letters and be between 2 and 20
                                         characters long.
-                                    </p>
+                                    </TextError>
                                 )}
-                            </div>
+                            </InputName>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Gender*</span>
-                                <select name="gender" className='first-part-input' disabled={!isEditing} onChange={handleChangeGender}>
+                            <InputName>
+                                <FirstPartBiography>Gender*</FirstPartBiography>
+                                <SelectGender name="gender" disabled={!isEditing} onChange={handleChangeGender}>
                                     <option value="">Selected Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
-                                </select>
+                                </SelectGender>
 
-                            </div>
+                            </InputName>
 
-                            <div className='input-name'>
-                                <span className='first-part-biography'>Phone Number*</span>
-                                <input
+                            <InputName>
+                                <FirstPartBiography>Phone Number*</FirstPartBiography>
+                                <FirstPartInput
                                     type="tel"
                                     name='PhoneNumber'
-                                    className='first-part-input'
                                     value={phoneNumber}
                                     onChange={handleChangePhoneNumber}
                                     disabled={!isEditing}
                                 />
                                 {!validPhoneNumber && (
-                                    <p className='par-text'>
+                                    <TextError>
                                         Phone Number must contain only digits and be between 7 and 15
                                         characters long.
-                                    </p>
+                                    </TextError>
                                 )}
-                            </div>
-                            <div className='input-name'>
-                                <span className='first-part-biography'>City*</span>
-                                <RegionDropdown
+                            </InputName>
+                            <InputName>
+                                <FirstPartBiography>City*</FirstPartBiography>
+                                <StyledRegionDropdown
                                     id="region"
-                                    className='first-part-input'
                                     country={selectedCountry}
                                     value={selectedRegion}
                                     onChange={handleRegionChange}
                                     disabled={!isEditing}
                                 />
-                            </div>
-                        </div>
-                    </div>
+                            </InputName>
+                        </FirstInputGroup>
+                    </InputGroupBiography>
 
                     <div>
-                        <span className='about-me-biography' >About me</span>
-                        <textarea className='textarea-biography' disabled={!isEditing}></textarea>
+                        <AboutMeBiography >About me</AboutMeBiography>
+                        <TextAreaBiography disabled={!isEditing}></TextAreaBiography>
                     </div>
                 </form>
-            </div>
-        </div>
+            </CardBiography>
+        </ContainerBiography>
     )
 }
 

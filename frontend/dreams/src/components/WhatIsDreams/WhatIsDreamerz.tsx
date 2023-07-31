@@ -22,7 +22,7 @@ const ContainerDreamerz = styled.div`
     flex-direction: column;
     padding: 32px;
   }
-  
+
 `;
 
 const DreamerzH1 = styled.div`
@@ -58,12 +58,12 @@ const Paragraf = styled.p`
   }
 `;
 const TextAndButon = styled.div`
-display: flex;
+  display: flex;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
   height: 100%;
-  
+
 `
 
 const Buton = styled.div`
@@ -85,7 +85,7 @@ const Buton = styled.div`
     height: 65px;
     width: 100%;
   }
-  
+
 `;
 const TextButtonEasier = styled.span`
   color: #262626;
@@ -132,26 +132,26 @@ const WhatIsDreamerz: React.FC = () => {
     return (
         <ContainerDreamerz>
             <Default>
-            <TextAndButon>
-                <div>
-                    <DreamerzH1>What is Dreamerz?</DreamerzH1>
-                    <Paragraf>
-                        This is the place where dreams
-                        come true! Sharing a $tar for a
-                        dream you <br/> will receive back twice
-                        for your own dream.
-                    </Paragraf>
-                </div>
-                <Buton onClick={redirectionareSignUp1}>
-                    <TextButtonEasier>{`Try now`}</TextButtonEasier>
-                </Buton>
-            </TextAndButon>
-            <ImageOneDreamers>
-                <ImageOne
-                    src={image2}
-                    alt="img-one"
-                />
-            </ImageOneDreamers>
+                <TextAndButon>
+                    <div>
+                        <DreamerzH1>What is Dreamerz?</DreamerzH1>
+                        <Paragraf>
+                            This is the place where dreams
+                            come true! Sharing a $tar for a
+                            dream you <br/> will receive back twice
+                            for your own dream.
+                        </Paragraf>
+                    </div>
+                    <Buton onClick={redirectionareSignUp1}>
+                        <TextButtonEasier>{`Try now`}</TextButtonEasier>
+                    </Buton>
+                </TextAndButon>
+                <ImageOneDreamers>
+                    <ImageOne
+                        src={image2}
+                        alt="img-one"
+                    />
+                </ImageOneDreamers>
             </Default>
 
             <Mobile>
@@ -181,3 +181,4 @@ const WhatIsDreamerz: React.FC = () => {
 };
 
 export default WhatIsDreamerz;
+
