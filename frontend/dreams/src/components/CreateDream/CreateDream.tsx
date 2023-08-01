@@ -13,77 +13,82 @@ import {
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import logo from "../LoggedComponents/Logo";
 
 
-interface IData {
-    image: string[],
+interface ICreateDream {
     description: string,
     amount: number,
-    token: string
 }
 
 export const CreateDream: React.FC = () => {
-    const [data, setData] = useState<IData>({
-        image: [],
+    const [dream, setDream] = useState<ICreateDream>({
         description: "",
         amount: 0,
-        token: "",
     })
+    const [images, setImages] = useState<File[]>([])
+    const navigate = useNavigate()
+    const [token, setToken] = useState('')
+
 
     useEffect(() => {
         const token = localStorage.getItem("token")
-        setData((prev) => ({...prev, token: token}))
+        setToken(() => token)
     }, [])
 
-    const navigate = useNavigate()
 
     const handleImageAdd = (event) => {
         event.preventDefault()
         const path = event.target.files[0]
-        setData((prev) => ({...prev, image: [...prev.image, path]}))
-        console.log(path)
+        setImages((prev) => ([...prev, path]))
     }
 
+    console.log(images)
+
     const handleRemoveImage = (index) => {
-        const updatedListImage = data.image.filter((_, i) => i !== index)
-        setData((prev) => ({...prev, image: updatedListImage}))
+        const updatedListImage = images.filter((_, i) => i !== index)
+        setImages(() => (updatedListImage))
     }
 
     const handleDescriptionInput = (event) => {
         event.preventDefault()
         const {value} = event.target
-
-        setData((prev) => ({...prev, description: value}))
+        setDream((prev) => ({...prev, description: value}))
     }
 
     const handleAmountInput = (event) => {
         event.preventDefault()
         const {value} = event.target
-
-        setData((prev) => ({...prev, amount: value}))
+        setDream((prev) => ({...prev, amount: value}))
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
-        axios.post('', JSON.stringify(data),
-            {
-                headers: {
-                    'Content-Type': 'application/json'
+        const formData = new FormData()
+        images.forEach(file => {
+            formData.append("images[]", file)
+        })
+        formData.append("dream", JSON.stringify(dream))
+        console.log(formData.get("dream"))
+        console.log(formData.getAll("images[]"));
+        try {
+            await axios.post('http://localhost:3000/post', formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        'Authorization': `${token}`
+                    }
                 }
-            }
-        )
-            .then((response) => {
-                console.log("server response:", response)
-                navigate('/dashboard')
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        console.log('submitted')
+            )
+                .then((response) => {
+                    console.log("server response:", response)
+                    navigate('/dashboard')
+                })
+        } catch (error) {
+            console.log(error)
+        }
     }
-
-    console.log(data)
 
     return (
         <div className="flex justify-center items-center">
@@ -92,10 +97,10 @@ export const CreateDream: React.FC = () => {
                     <h1>Create Dream</h1>
                 </Header>
                 <Toolbar>
-                    {data.image ? data.image.map((image, index) => {
+                    {images ? images.map((image, index) => {
                         return <Image key={index}>
                             <img
-                                src={image}
+                                src={URL.createObjectURL(image)}
                                 alt="error"/>
                             <ImageButton onClick={() => handleRemoveImage(index)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20">
@@ -108,7 +113,7 @@ export const CreateDream: React.FC = () => {
                         </Image>
 
                     }) : null}
-                    {data.image.length < 5 && <FrameStyled>
+                    {images.length < 5 && <FrameStyled>
                       <Image>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16">
                           <path fill="#333"

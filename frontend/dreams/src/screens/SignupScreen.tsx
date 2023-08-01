@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {useNavigate} from 'react-router-dom'
+import {Outlet, useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import AuthContainer from "../components/Authorization/AuthContainer";
 import Alert from "../components/Alerts/Modal";
@@ -29,7 +29,7 @@ const SignupScreen = () => {
         password: ''
     })
     const [confirmState, setConfirmState] = useState({
-        password: "",
+        password: '',
     })
     const [inputType, setInputType] = useState('password')
     const [dirty, setDirty] = useState({
@@ -100,23 +100,30 @@ const SignupScreen = () => {
         }
 
 
-        if ((dirty.terms) && (dirty.email) && (dirty.password) && (dirty.confirmPassword)) {
-            axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
+        if ((!(validationError.email) && !(validationError.password) && !(validationError.confirmPassword) && (dirty.terms === true))) {
+            try {
+                await axios.post('http://localhost:3000/sign-up', JSON.stringify(userData),
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
                     }
-                }
-            )
-                .then((response) => {
-                    successNotify("You have successfully registered! Please, sign-in")
-                })
-                .catch((error) => {
-                    if (error.response.status === 500) {
-                        errorNotify("User with this email already exists!")
-                    }
-                    console.log(error.response)
-                });
+                )
+                    .then(() => {
+                        successNotify("Please check your email to confirm your registration.")
+                    })
+                    .catch((error) => {
+                        if (error.response.status === 409) {
+                            errorNotify("User with this email already exists!")
+                        }
+                        console.log(error.response)
+                    });
+            } catch (e) {
+                console.log(e)
+                errorNotify("Server is off!")
+            }
+        } else {
+            errorNotify("Registration failed!")
         }
     };
 

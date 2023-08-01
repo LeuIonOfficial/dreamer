@@ -56,5 +56,26 @@ exports.post = async (req, res) => {
         res.json(e)
         console.log(e)
     }
+};
 
+exports.postAll = async (req, res) => {
+    try{
+        const users = await About.find();
+        if (!users) {
+            return res.status(404).json({ "message": "Users doesn't exist" });
+        }
+        const data = []
+        users.map((user)=>{
+            data.push({
+                creator :  user.creator,
+                firstName: user.firstName,
+                lastName: user.lastName
+            })
+        })
+        res.json(data);
+    }
+    catch (e) {
+        res.json(e)
+        console.log(e)
+    }
 };

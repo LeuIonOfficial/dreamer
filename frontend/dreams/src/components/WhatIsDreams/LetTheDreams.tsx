@@ -2,9 +2,9 @@ import Carusela from "./Carusela";
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import NewDream from '../../assets/images/newDream.svg'
-import { useMediaQuery } from 'react-responsive'
-import Slider from "../Thoughts/Slider";
-import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
+// import { useMediaQuery } from 'react-responsive'
+// import Slider from "../Thoughts/Slider";
+// import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 //
 // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // // @ts-ignore
@@ -54,7 +54,6 @@ const LetDreamsHeading = styled.h1`
   }
 `;
 
-
 const CaruselaContainer = styled.div`
   display: flex;
   align-items: center;
@@ -62,7 +61,7 @@ const CaruselaContainer = styled.div`
   position: relative;
   height: 100%;
   width: 625px;
-  
+
 
   @media screen and (max-width: 800px) {
     margin-top: -35px;
@@ -142,4 +141,5 @@ const LetDreamerz: React.FC = () => {
 };
 
 export default LetDreamerz;
+
 
