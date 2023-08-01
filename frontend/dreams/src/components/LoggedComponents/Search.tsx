@@ -44,7 +44,8 @@ const Search = (props) => {
         <SearchBar>
             <SearchInput type = "text" placeholder="Search..." onChange={(e) => setQuery(e.target.value)} />
         </SearchBar>
-            <SearchResults data={searching(Users)}></SearchResults>
+            {/*Eduard aici este componentul ce va afisa users*/}
+            {/*<SearchResults data={searching(Users)}></SearchResults>*/}
         </DivContainer>
     )
 }
