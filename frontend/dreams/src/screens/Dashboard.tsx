@@ -1,34 +1,31 @@
 import {Navigate} from "react-router-dom";
 import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
-import {DashboardComponent} from "../components/DashboardComponent/DashboardComponent";
 import RightSideBlock from "../components/rightSideBar/RightSideBlock";
+import LeftSideBar from "../components/LeftSIdeBar/LeftSideBar";
 import styled from "styled-components";
+import {useState} from "react";
+import {DashboardComponent} from "../components/DashboardComponent/DashboardComponent";
 
-const DashboardTest = styled.div`
-  height: 93.5vh;
-  margin-right: 1px;
-  padding-bottom: 33px;
-  overflow: scroll;
-  &::-webkit-scrollbar{
-    border-radius: 20px;
-    height: 0.5rem;
-    width: 0.2rem;
-  }
-  &::-webkit-scrollbar-thumb{
-    background: #b9b9b9;
-    border-radius: 20px;
-  }
-  &::-webkit-scrollbar-track{
-    border-radius: 20px;
-  }
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
 `
 export const Dashboard = () => {
+    const [showCard, setShowCard] = useState(false);
+
+    const handleShowCard = () => {
+        setShowCard(true);
+    };
+    const hideShowCard = () =>{
+        setShowCard(false)
+    }
 
     return (
-        <DashboardTest className="flex m-0">
-<div className="w-[16%]"></div>
+        <Container>
+            <LeftSideBar hideShowCard={hideShowCard } handleShowCard={handleShowCard}/>
             <DashboardComponent />
-            <RightSideBlock />
-        </DashboardTest>
+            <RightSideBlock showCard={showCard}/>
+        </Container>
     )
 }
