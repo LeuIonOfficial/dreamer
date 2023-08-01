@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const Words = styled.span`
 color: rgb(79, 79, 79);

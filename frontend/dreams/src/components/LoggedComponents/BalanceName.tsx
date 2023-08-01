@@ -1,5 +1,6 @@
 import styled from "styled-components";
-//c
+import React from "react";
+
 const UpperBal = styled.div`
   text-align: center;
   width: 100%;

@@ -5,7 +5,7 @@ import ButtonsTogether from "../UnloggedComponents/ButtonsTogether";
 import LogIn from "../UnloggedComponents/LogIn";
 import ButtonName from "../UnloggedComponents/ButtonName";
 import {useNavigate} from "react-router-dom";
-//c
+import React from "react";
 
 const Unlogged = () => {
     const navigate = useNavigate();
