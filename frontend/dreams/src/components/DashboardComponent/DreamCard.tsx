@@ -9,7 +9,7 @@ import coverImg from "../../assets/media/coverImg.png";
 import noAvatar from "../../assets/media/noAvatar.png";
 import SliderDashboard from "./SliderDashboard";
 
-/*npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch*/
+/*n*/
 
 const DivCustomGradient=styled.div`
   background: linear-gradient(white, white), linear-gradient(160deg, rgb(132, 250, 213) 20%, rgb(235, 191, 255) 37%, rgb(246, 236, 133) 53%);

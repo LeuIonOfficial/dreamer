@@ -202,12 +202,13 @@ const SpanElement2 = styled.span`
 
 const Image = styled.img`
   background-image: url(${({ $backgroundImage }) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
-  background-size: cover;
+  background-size: contain;
   position: absolute;
   top: 0;
   height: 100rem;
   width: 100%;
   cursor: move;
+  
 `
 
 const ChangesButtonContainer = styled.div`
@@ -300,7 +301,7 @@ export const ProfileHeader = () => {
         setBackgroundImage(URL.createObjectURL(file));
     };
 
-    const customBounds = {}
+    const customBounds = { bottom:0, top: -1000}
 
     const handleSaveChangesClick = () => {
         setIsResizing(false);
@@ -356,6 +357,7 @@ export const ProfileHeader = () => {
                     </DropDownSection>
                     {isDraggable ? ( // Render the draggable component conditionally based on isDraggable state
                         <Draggable
+                            bounds={customBounds}
                             axis="y"
                             position={null}
                             grid={[25, 25]}

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {match} from "@headlessui/react/dist/utils/match";
 import {PopUpDonation} from "./PopUpDonation";
 import axios from "axios";
 
@@ -11,6 +10,7 @@ const MainConatiner = styled.div`
   padding: 0;
   margin-top: 10px;
   font-family: Space Grotesk, serif;
+  
   //width: 50%;
 `
 const ProfileConatiner = styled.div`
@@ -18,6 +18,7 @@ const ProfileConatiner = styled.div`
   position: sticky;
   top: 73px;
   min-width: 320px;
+  max-width: 340px;
   @media only screen and (width <= 995px ) {
     position: static;
   }
@@ -211,9 +212,180 @@ const PopUpContainer = styled.div`
   display: flex;
   justify-content: center;
 `
+const ButtonCreateDream = styled.div`
+  width: 90%;
+  align-items: center;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
+  border-radius: 60px;
+`
+const DivBoxCreateDream = styled.div`
+  height: 65px;
+`
+const BoxCreateDreamBt = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+`
+const LineHr = styled.hr`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  opacity: 0.25;
+  border-top: 1px solid;
+  border-top: 1px solid;
+  opacity: 0.25;
+`
+const FullfiledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & h6 {
+    font-size: 0.875rem;
+  }
+`
+const ContainerDonationList = styled.div`
+  padding-bottom: 35px;
+  max-height: 402px;
+  overflow: hidden;
+  overflow-y: scroll;
+  -ms-overflow-y: hidden;
+  &::-webkit-scrollbar{
+    border-radius: 20px;
+    height: 0.5rem;
+    width: 0.2rem;
+  }
+  &::-webkit-scrollbar-thumb{
+    background: #b9b9b9;
+    border-radius: 20px;
+  }
+  &::-webkit-scrollbar-track{
+    border-radius: 20px;
+  }
+
+
+  //overflow: scroll;
+`
+const DonationBox = styled.div`
+  padding: 10px;
+  margin: 10px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 33px 20px rgba(0, 0, 0, .06), 0 7.371px 4.467px rgba(0, 0, 0, .01), 0 2.195px 1.33px rgba(0, 0, 0, .01);
+  border-radius: 10px;
+`
+const DonationListHolder = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`
+const DonationListHeader = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 75px;
+`
+const DonationListImage = styled.img`
+  object-fit: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 8px;
+  max-width: 55px;
+`
+const Imageholder = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(224, 224, 224);
+  border-radius: 8px;
+  box-sizing: border-box;
+  height: 55px;
+  width: 55px;
+`
+const DonationListTextCotainer = styled.div`
+  cursor: pointer;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  & h5 {
+    color: #000;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+
+  }
+
+  & span {
+    padding-top: 3px;
+    --max-lines: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: var(--max-lines);
+    line-height: 1;
+    font-size: 14px;
+  }
+
+`
+const ButtonForDonationList = styled.div`
+  height: 36px;
+  width: 100%;
+  background: linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%);
+  background-clip: content-box, border-box;
+  background-origin: border-box;
+  border: 1px double transparent;
+  border-radius: 8px;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    color: #000;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+
+  &:hover {
+    background: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
+  }
+`
 const LeftSideBar = ({handleShowCard, hideShowCard}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState([]);
+    const [doantion, setDoantion] = useState([]);
     const [modal, setMdoal] = useState(false)
     //bt1
     const [isFontActive, setIsFontActive] = useState(false)
@@ -261,6 +433,9 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users').then((res) => setUser(res.data))
     }, []);
+    useEffect(() => {
+        axios.get('https://fakestoreapi.com/products').then((res) => setDoantion(res.data))
+    }, []);
 
     return (
         <MainConatiner>
@@ -290,26 +465,41 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                             )}
                         </ParagrafConatiner>
                     </TextContent>
-                    {/*Scope*/}
-                    <div>
-                        <Scope>
-                            <ScopeSpan>Scope</ScopeSpan>
-                            <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
+                    {user && user.length > 0 ? (
+                        <div>
+                            <Scope>
+                                <ScopeSpan>Scope</ScopeSpan>
+                                <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
 
-                        </Scope>
-                        {/*ProgresBar*/}
-                        <ProgressBar onClick={toggleModal}>
-                            <Bar progress={progress}></Bar>
-                        </ProgressBar>
+                            </Scope>
+                            {/*ProgresBar*/}
+                            <ProgressBar onClick={toggleModal}>
+                                <Bar progress={progress}></Bar>
+                            </ProgressBar>
 
-                        <RecivedDonation>
-                            <span>Recived : {received}</span>
-                            <span>Fulfilled : {fulfilled}</span>
-                        </RecivedDonation>
+                            <RecivedDonation>
+                                <span>Recived : {received}</span>
+                                <span>Fulfilled : {fulfilled}</span>
+                            </RecivedDonation>
+                        </div>) : (
+                        <div>
+                            <BoxCreateDreamBt>
+                                <ButtonCreateDream>
+                            <span>
+                                Create your dream !
+                            </span>
 
+                                </ButtonCreateDream>
+                            </BoxCreateDreamBt>
+                            <DivBoxCreateDream>
+                                <LineHr/>
+                                <FullfiledDiv>
+                                    <h6>Fulfilled</h6>
+                                </FullfiledDiv>
 
-                    </div>
-
+                            </DivBoxCreateDream>
+                        </div>
+                    )}
                 </ContainerElements>
                 {/*Button Components*/}
                 <ButtonComponents>
@@ -338,16 +528,49 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                 </ButtonComponents>
 
                 {/*WingsDonation Componenet*/}
-                <WingsDonationSection>
-                    <span>Wings Donation</span>
-                    <p>
-                        <u onClick={() => navigate('')}>See All</u>
-                    </p>
+                <div>
+                    <WingsDonationSection>
+                        <span>Wings Donation</span>
+                        <p>
+                            <u onClick={() => navigate('')}>See All</u>
+                        </p>
 
+                    </WingsDonationSection>
 
-                </WingsDonationSection>
+                </div>
+                <ContainerDonationList>
+                    <div>
+                        {doantion && doantion.length > 0 ? (
+                            doantion.map(({title, image, description}) => {
+                                return(
+                                <DonationBox>
+                                    <DonationListHolder>
+                                        <DonationListHeader>
+                                            <Imageholder>
+                                                <DonationListImage
+                                                    src={image}
+                                                    alt="user image"/>
+                                            </Imageholder>
+                                            <DonationListTextCotainer>
+                                                <h5>{title}</h5>
+                                                <span>{description}</span>
+                                            </DonationListTextCotainer>
+                                        </DonationListHeader>
+                                    </DonationListHolder>
+                                    <ButtonForDonationList>
+                                        <div>
+                                            <span>Donate</span>
+                                        </div>
+                                    </ButtonForDonationList>
+                                </DonationBox>)
+                            })
+                        ) : (<p>Nothing</p>)}
+                    </div>
+                </ContainerDonationList>
             </ProfileConatiner>
-            {modalOpen && <PopUpDonation closeModal={toggleModal}/>}
+            {
+                modalOpen && <PopUpDonation closeModal={toggleModal}/>
+            }
         </MainConatiner>
 
 
