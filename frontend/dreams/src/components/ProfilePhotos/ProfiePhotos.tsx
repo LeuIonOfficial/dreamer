@@ -5,6 +5,7 @@ import SmallImages from "./SmallImages";
 import AddImg from "./AddSmallImg";
 import AddSmallImg from "./AddSmallImg";
 import AddBigImg from "./AddBigImg";
+import React from "react";
 
 const Background = styled.div`
   background-color: white;

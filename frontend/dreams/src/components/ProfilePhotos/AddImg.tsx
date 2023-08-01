@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const ImageBox = styled.div`
   background: ${props => props.background || '#f5f5f5'};

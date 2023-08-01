@@ -20,6 +20,8 @@ import {faWrench, faUsers, faQuestionCircle, faFileContract} from '@fortawesome/
 import CardText from "../LoggedComponents/CardText";
 import styled from "styled-components";
 import SearchSmall from "../LoggedComponents/SearchSmall";
+import SearchResults from "../LoggedComponents/SearchResults";
+import React from "react";
 
 const Line = styled.hr`
   margin-left: 10px;
@@ -29,6 +31,7 @@ const Line = styled.hr`
 
 function Logged() {
     const navigate = useNavigate();
+    const marginBottom = "16px";
     const [myheight, setMyHeight] = useState("0px");
     let [mywidth, setMyWidth] = useState("0px");
     let smallScreen = window.matchMedia("(max-width: 600px)");
@@ -62,9 +65,11 @@ function Logged() {
                     <DreamerzLogo></DreamerzLogo>
                 </a>
             </DivContainer>
-            <DivContainer justify={"center"}>
+{/*            <DivContainer justify={"center"}>
                 <Search/>
-            </DivContainer>
+                <SearchResults></SearchResults>
+            </DivContainer>*/}
+            <Search></Search>
             <DivContainer justify={"flex-end"}>
                 <BalanceFrame>
                     <BalanceText color={"#A8A6A6"} size={"13px"}>Balance</BalanceText>
@@ -77,15 +82,15 @@ function Logged() {
                 </UserPhoto>
                 <CardWrapperOpen height={myheight} width={mywidth}>
                     <MyProfileList>
-                        <CardFields >
-                            <SearchSmall width={searchWidth}/>
-                        </CardFields>
+                        {/*<CardFields >*/}
+                        {/*</CardFields>*/}
                         <CardFields>
+                            <SearchSmall width={searchWidth}/>
                             <LinkButton>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"></path>
-                                    <path fill-rule="evenodd"
+                                    <path fillRule="evenodd"
                                           d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"></path>
                                 </svg>
                                 <CardText>My profile</CardText>
@@ -93,7 +98,7 @@ function Logged() {
                             <LinkButton>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-cash-coin" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
+                                    <path fillRule="evenodd"
                                           d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"></path>
                                     <path
                                         d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"></path>
@@ -143,13 +148,13 @@ function Logged() {
                             </LinkButton>
                         </CardFields>
                         <Line/>
-                        <CardFields padding-bottom={"16px"}>
+                        <CardFields margin-bottom={marginBottom}>
                             <LinkButton style="padding-bottom: 16px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
+                                    <path fillRule="evenodd"
                                           d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"></path>
-                                    <path fill-rule="evenodd"
+                                    <path fillRule="evenodd"
                                           d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
                                 </svg>
                                 <CardText margin-bottom={"16px"}>Logout</CardText>
@@ -161,7 +166,7 @@ function Logged() {
                 </CardWrapperOpen>
             </DivContainer>
         </HeaderLogin>
-    )
+    );
 }
 
 export default Logged;

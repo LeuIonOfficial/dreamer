@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 const Logo = styled.div`
   background-image: url('https://dreamerz.net/static/media/whiteLogo.d4409e777733dc79e6d8.svg');

@@ -1,6 +1,7 @@
 import { useRef, useState} from "react";
 import styled from "styled-components";
 import AddImg from "./AddImg";
+import React from "react";
 
 const ImgInput = styled.input`
   width: 100%;

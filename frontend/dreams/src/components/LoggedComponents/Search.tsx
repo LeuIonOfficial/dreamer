@@ -1,4 +1,9 @@
 import styled from "styled-components";
+import {useState} from "react";
+import DivContainer from "./DivContainer";
+import SearchResults from "./SearchResults";
+import {Users} from "./users";
+import React from 'react'
 
 const SearchBar = styled.div`
   width: 300px;
@@ -25,11 +30,22 @@ const SearchInput = styled.input`
   }
 `
 
-const Search = () => {
+const Search = (props) => {
+    const [query, setQuery] = useState("");
+    console.log(query);
+    // props.onChange
+    const searching = (data) => {
+        return data.filter(el => el.first_name.toLowerCase().includes(query.toLowerCase()) ||
+            el.last_name.toLowerCase().includes(query.toLowerCase())
+        )}
+    // console.log(searching(Users));
     return (
+        <DivContainer justify={"center"}>
         <SearchBar>
-            <SearchInput type = "text" placeholder="Search..." />
+            <SearchInput type = "text" placeholder="Search..." onChange={(e) => setQuery(e.target.value)} />
         </SearchBar>
+            <SearchResults data={searching(Users)}></SearchResults>
+        </DivContainer>
     )
 }
 

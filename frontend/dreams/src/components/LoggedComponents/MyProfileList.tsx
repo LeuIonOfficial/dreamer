@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
-//c
+import React from "react";
 
 /*const CardWrapperClosed = styled.div`
   position: absolute;
