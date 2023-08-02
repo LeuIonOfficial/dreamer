@@ -1,6 +1,7 @@
 import Carusela from "./Carusela";
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+// @ts-ignore
 import NewDream from '../../assets/images/newDream.svg'
 import { useMediaQuery } from 'react-responsive'
 import Slider from "../Thoughts/Slider";
@@ -53,10 +54,10 @@ const LetDreamsHeading = styled.h1`
     font-weight: 700;
   }
 `;
-const CaruselaContainer = styled.div`
-    //font-weight: 600;
-  }
-`;
+// const CaruselaContainer = styled.div`
+//     //font-weight: 600;
+//   }
+// `;
 
 const CaruselaContainer = styled.div`
   display: flex;

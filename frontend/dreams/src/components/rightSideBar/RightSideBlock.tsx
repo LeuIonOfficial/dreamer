@@ -62,7 +62,7 @@ const MobileRightSideBlock = styled.div`
   }
 
 `
-const RightSideBlock = () => {
+const RightSideBlock = ({showCard}) => {
 
     const [data, setData] = useState([])
     const [modal, setModal] = React.useState(false);
@@ -109,8 +109,8 @@ const RightSideBlock = () => {
             </ContainerRightSideBlock>
 
             <MobileRightSideBlock>
-                <Button onClick={() => setCard(true)}>Last fulfilled</Button>
-                {card && (<CardBlock>
+                {/*<Button onClick={() => setCard(true)}>Last fulfilled</Button>*/}
+                {showCard && (<CardBlock>
                     {data.map(({id, title, description, image}) => {
                         return (
                             <RightSideBar key={id} img={image} name={title} lastname={""}
