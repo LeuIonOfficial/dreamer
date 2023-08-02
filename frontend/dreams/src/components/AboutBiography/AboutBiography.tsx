@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {ContainerBiography,
     CardBiography,
@@ -44,7 +44,7 @@ const AboutBiographyEdit = () => {
         setEmail(inputValue);
         validateEmail(inputValue);
         setMessage(event.target.value);
-        console.log('Email:', event.target.value);
+        // console.log('Email:', event.target.value);
     };
     const validateEmail = (input) => {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,14 +53,29 @@ const AboutBiographyEdit = () => {
     const handleChangeGender = (event) => {
         const inputValue = event.target.value;
         setSelectedGender(inputValue);
-        console.log('Gender:', inputValue);
+        // console.log('Gender:', inputValue);
     }
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         handleButtonClick()
         if(!isEditing){
             return
+        }
+        const isFormValid =
+            valid &&
+            validFirstName &&
+            validLastName &&
+            validPhoneNumber &&
+            selectedCountry !== "" &&
+            selectedRegion !== "" &&
+            selectedGender !== "" &&
+            selectedBirthDate !== "";
+
+        if (!isFormValid) {
+            alert("Please fill in all the required fields correctly.");
+            return;
         }
         const data = {
             firstName: firstName,
@@ -78,7 +93,7 @@ const AboutBiographyEdit = () => {
         axios.post('http://localhost:3000/about' , JSON.stringify(data) , {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `token:${token}`
+                    "Authorization": `${token}`
                 }
             }
             ).then(response => {
@@ -88,13 +103,36 @@ const AboutBiographyEdit = () => {
         })
 
     };
+    const fetchData = async () => {
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.get('http://localhost:3000/about', {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            });
+
+            const responseData = response.data;
+            setFirstName(responseData.firstName);
+            setLastName(responseData.lastName);
+            setEmail(responseData.email);
+            setPhoneNumber(responseData.phoneNumber);
+            setSelectedBirthDate(responseData.birthDate);
+            setSelectedGender(responseData.gender);
+            setSelectedCountry(responseData.country);
+            setSelectedRegion(responseData.city);
+        } catch (error) {
+            console.log('Error fetching data: ', error);
+        }
+    };
 
     const handleChangeFirstName = (event) => {
         const inputValue = event.target.value;
         setFirstName(inputValue);
         validateFirstName(inputValue);
         setMessage(event.target.value);
-        console.log('First name:', event.target.value);
+        // console.log('First name:', event.target.value);
     };
     const validateFirstName = (input) => {
         const pattern = /^[a-zA-Z]{2,20}$/;
@@ -104,14 +142,14 @@ const AboutBiographyEdit = () => {
     const handleChangeBirthDate = (event) => {
         const inputValue = event.target.value;
         setSelectedBirthDate(inputValue);
-        console.log('Birth Date:', inputValue);
+        // console.log('Birth Date:', inputValue);
     };
     const handleLastNameChange = (event) => {
         const inputValue = event.target.value;
         setLastName(inputValue);
         validateLastName(inputValue);
         setMessage(event.target.value);
-        console.log('Last name:', event.target.value);
+        // console.log('Last name:', event.target.value);
     };
     const validateLastName = (input) => {
         const pattern = /^[a-zA-Z]{2,20}$/;
@@ -123,7 +161,7 @@ const AboutBiographyEdit = () => {
         setPhoneNumber(inputValue);
         validatePhoneNumber(inputValue);
         setMessage(event.target.value);
-        console.log('Phone number:', event.target.value);
+        // console.log('Phone number:', event.target.value);
     };
     const validatePhoneNumber = (input) => {
         const pattern = /^\+[0-9]{7,15}$/;
@@ -141,6 +179,9 @@ const AboutBiographyEdit = () => {
     const handleRegionChange = (region) => {
         setSelectedRegion(region);
     };
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <ContainerBiography>
