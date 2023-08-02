@@ -97,7 +97,7 @@ const SliderDashboard = (props) => {
                 {sliderImageSrc.map((image, index) => {
                     return (
                         <SliderThoughts key={index}>
-                            <ProfileImage src={props.imagine} alt="card" />
+                            <ProfileImage src={props.image} alt="card" />
                         </SliderThoughts>
                     );
                 })

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-//c
+import React from "react";
+
 const Container3 = styled.div`
 width: 300px;
   margin: 0;

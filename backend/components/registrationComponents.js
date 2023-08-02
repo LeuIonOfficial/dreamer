@@ -8,22 +8,29 @@ const About = require("../models/about");
 exports.confirmationEmail = async (req, res)=>{
     const token = req.params.token;
     const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+    let email = await User.findOne({ email: decode.email });
+    if (email) {
+        res.redirect(`http://localhost:5173/success`);
+    }
+
     const doc = new User({
         email: decode.email,
         passwordHash: decode.hash
     });
 
     const user = await doc.save();
-
+    // const subscribe = user.fulfill === 0? false : true;
     const about = new About({
         creator: user._id,
         email: user.email,
+        // subscribe: subscribe
     });
 
     await about.save();
 
 
-    res.redirect(`http://localhost:5173/succes/${user.email}`);
+    res.redirect(`http://localhost:5173/success`);
 }
 
 exports.singUp = async (req, res) => {
@@ -77,9 +84,10 @@ exports.singIn = async (req, res) => {
         if (!isValidPassword) {
             return res.status(401).json({ "message": "Login problems" });
         } else {
+            // const subscribe = user.fulfill === 0? false : true;
             const token = jwt.sign({
                     id: user._id,
-                    subscribe: user.subscribe
+                    // subscribe: subscribe
                 },
                 process.env.JWT_SECRET,
                 {

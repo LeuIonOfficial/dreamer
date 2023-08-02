@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import MyProfileList from "./MyProfileList";
-//c
+import React from "react";
+
 const CardWrapperO = styled.div`
   position: absolute;
   height: ${props => props.height || "0px"};
@@ -12,9 +13,9 @@ const CardWrapperO = styled.div`
   width: ${props => props.width || "180px"};
   box-shadow: 0 0 1.25rem 0 rgba(0,0,0,.1);
   z-index: 1000;
-/*  @media screen and (max-width: 500px) {
-    box-shadow: none;
-  }*/
+  /*  @media screen and (max-width: 500px) {
+      box-shadow: none;
+    }*/
 `
 
 const CardWrapperOpen = (props) => {

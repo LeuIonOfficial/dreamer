@@ -1,9 +1,9 @@
-import {Navigate} from "react-router-dom";
 import styled from "styled-components";
 import DreamCard from './DreamCard';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import '../../App.css';
+import Button from "../Authorization/Button";
 export const DashboardComponent = () => {
 
     const [products, setProducts] = useState([]);
@@ -18,22 +18,6 @@ export const DashboardComponent = () => {
         fetchData();
     }, []);
 
-    const DivCustomGradient=styled.div`
-	background: linear-gradient(white, white), linear-gradient(160deg, rgb(132, 250, 213) 20%, rgb(235, 191, 255) 37%, rgb(246, 236, 133) 53%);
-	border-radius: 8px;
-  	border: double 1px transparent;
- 	background-origin: border-box;
-	background-clip: content-box, border-box;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: black;
-		&:hover{
-    		background: linear-gradient(320deg, #F8ED84 23.88%, #F5E0FF 66.2%, #84FAD5 109.31%);
-   			border-radius: 8px;
-  		}
-`
     const SpanText=styled.span`
 	font-family: Space Grotesk,serif;
 	font-weight: 700;
@@ -54,9 +38,6 @@ export const DashboardComponent = () => {
 			text-decoration: underline;
 		}
 	`
-    const SpanText3=styled.span`
-	font-family: Space Grotesk,serif;
-	`
     const HeaderBar=styled.div`
 	background: #fefdfd;
 	border-radius: 5px;
@@ -64,13 +45,19 @@ export const DashboardComponent = () => {
 	margin-right: 0;
 	padding: 10px 0;
 	position: sticky;
-	top: 63px;
+	top: 0;
 	z-index: 2;
 	`
+    const BlockDream = styled.div`
+      @media only screen and (max-width: 800px){
+        height: 600px;
+        position: relative;
+        padding: 10px;
+        flex-direction: column;
+      }
+    `
     return (
-        <div>
-            <div className='flex'>
-                <div className="container mx-[15%]">
+                 <BlockDream className="flex-[0_0_auto] relative w-[68%] m-0">
                     <div className="mb-[10px] text-center">
                         <HeaderBar>
                             <div className="grid grid-cols-6">
@@ -83,26 +70,22 @@ export const DashboardComponent = () => {
                                     </SpanText2>
                                 </div>
                                 <div className="col-end-7 col-span-2 flex justify-end">
-                                    <DivCustomGradient className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none roundet-[39px]">
-                                        <SpanText3>
+                                    <Button className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none roundet-[39px]">
                                             Random fulfill
-                                        </SpanText3>
-                                    </DivCustomGradient>
+                                    </Button>
                                 </div>
                             </div>
                         </HeaderBar>
-                        <div className="block box-border overflow-y-scroll h-[100vh]">
-                        <div className="block grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {products.map((product) => {
+                        <div className="block box-border">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {products.map(({title, image}) => {
                                 return (
-                                    <DreamCard title={product.title} imagine={product.image}/>
+                                    <DreamCard image={image} title={title} />
                                 );
                             })}
                         </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                </BlockDream>
     )
 }
