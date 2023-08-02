@@ -16,7 +16,7 @@ const LetDreamsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 788px;
+  height: 830px;
   padding: 64px;
   font-family: 'Space Grotesk', sans-serif;
   box-sizing: border-box;
@@ -60,7 +60,7 @@ const CaruselaContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 100%;
+  height: 70%;
   width: 625px;
 
 
@@ -80,12 +80,17 @@ const Button = styled.button`
   border-radius: 43px;
   height: 72px;
   width: 350px;
-  position: absolute;
-  top: 673px;
-  left: 54%;
-  margin-top: 100px;
-  transform: translate(-60%);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //position: absolute;
+  //top: 673px;
+  //left: 52%;
+  //margin-top: 100px;
+  //transform: translate(-60%);
   background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
+  
 
   @media screen and (max-width: 800px) {
     height: 48px;
