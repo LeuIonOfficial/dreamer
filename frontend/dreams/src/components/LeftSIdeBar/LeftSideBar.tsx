@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {PopUpDonation} from "./PopUpDonation";
 import axios from "axios";
+import {ProgresBar} from "../../variables/ProgresBar";
+import {DonationList} from "./DonationList";
 
 
 const MainConatiner = styled.div`
@@ -10,14 +12,13 @@ const MainConatiner = styled.div`
   padding: 0;
   margin-top: 10px;
   font-family: Space Grotesk, serif;
-  
   //width: 50%;
 `
 const ProfileConatiner = styled.div`
   left: 0;
   position: sticky;
   //top: 73px;
-  max-width: 280px;
+  //min-width: 320px;
   @media only screen and (width <= 995px ) {
     position: static;
     max-width: 100%;
@@ -130,7 +131,7 @@ const Bar = styled.div`
 const RecivedDonation = styled.div`
   font-size: 12px;
   color: rgb(33, 37, 41);
-  margin: 5px 10px 15px 10px;
+  margin: 5px 10px 25px 10px;
   padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -176,7 +177,7 @@ const ButtonComponents = styled.div`
     justify-content: space-around;
 
   }
-  @media only screen and (width >= 768px ) {
+  @media only screen and (width >= 820px ) {
     display: none;
 
   }
@@ -250,139 +251,12 @@ const FullfiledDiv = styled.div`
     font-size: 0.875rem;
   }
 `
-const ContainerDonationList = styled.div`
-  padding-bottom: 35px;
-  max-height: 402px;
-  overflow: hidden;
-  overflow-y: scroll;
-  -ms-overflow-y: hidden;
-  &::-webkit-scrollbar{
-    border-radius: 20px;
-    height: 0.5rem;
-    width: 0.2rem;
-  }
-  &::-webkit-scrollbar-thumb{
-    background: #b9b9b9;
-    border-radius: 20px;
-  }
-  &::-webkit-scrollbar-track{
-    border-radius: 20px;
-  }
-
-
-  //overflow: scroll;
-`
-const DonationBox = styled.div`
-  padding: 10px;
-  margin: 10px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 33px 20px rgba(0, 0, 0, .06), 0 7.371px 4.467px rgba(0, 0, 0, .01), 0 2.195px 1.33px rgba(0, 0, 0, .01);
-  border-radius: 10px;
-`
-const DonationListHolder = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-`
-const DonationListHeader = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 75px;
-`
-const DonationListImage = styled.img`
-  object-fit: cover;
-  width: 55px;
-  height: 55px;
-  border-radius: 8px;
-  max-width: 55px;
-`
-const Imageholder = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(224, 224, 224);
-  border-radius: 8px;
-  box-sizing: border-box;
-  height: 55px;
-  width: 55px;
-`
-const DonationListTextCotainer = styled.div`
-  cursor: pointer;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  & h5 {
-    color: #000;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 17px;
-    
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    
-
-  }
-
-  & span {
-    padding-top: 3px;
-    --max-lines: 2;
-    display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: var(--max-lines);
-    line-height: 1;
-    font-size: 14px;
-  }
-
-`
-const ButtonForDonationList = styled.div`
-  height: 36px;
-  width: 100%;
-  background: linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%);
-  background-clip: content-box, border-box;
-  background-origin: border-box;
-  border: 1px double transparent;
-  border-radius: 8px;
-  color: #000;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  & div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
-    color: #000;
-    width: 100%;
-    height: 100%;
-
-    &:hover {
-      font-weight: 600;
-    }
-  }
-
-  &:hover {
-    background: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
+const Donation = styled.div`
+  @media (width < 820px) {
+    display: none;
   }
 `
-const LeftSideBar = ({handleShowCard, hideShowCard}) => {
+const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShowDoantion}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [doantion, setDoantion] = useState([]);
@@ -473,9 +347,10 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
 
                             </Scope>
                             {/*ProgresBar*/}
-                            <ProgressBar onClick={toggleModal}>
-                                <Bar progress={progress}></Bar>
-                            </ProgressBar>
+                            {/*<ProgressBar onClick={toggleModal}>*/}
+                            {/*    <Bar progress={progress}></Bar>*/}
+                            {/*</ProgressBar>*/}
+                            <ProgresBar/>
 
                             <RecivedDonation>
                                 <span>Recived : {received}</span>
@@ -508,21 +383,22 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                         setIsFontActive(!isFontActive);
                         setIsBackColorActive(!isBackColorActive);
                         hideShowCard();
+                        handleShowDoantion();
                     }}>Wing donations</ButtonMobile>
                     <ButtonMobile $font={isFontActive1} $backColor={isBackColorActive1} onClick={() => {
                         resetButtons();
                         setIsFontActive1(!isFontActive1);
                         setIsBackColorActive1(!isBackColorActive1);
-
                         navigate('');
                         hideShowCard();
+                        hideShowDoantion();
                     }}>Dreams</ButtonMobile>
                     <ButtonMobile $font={isFontActive2} $backColor={isBackColorActive2} onClick={() => {
                         resetButtons();
                         setIsFontActive2(!isFontActive2);
                         setIsBackColorActive2(!isBackColorActive2);
-
                         handleShowCard(true);
+                        hideShowDoantion();
                     }}>Last fulfilled</ButtonMobile>
 
                 </ButtonComponents>
@@ -538,35 +414,9 @@ const LeftSideBar = ({handleShowCard, hideShowCard}) => {
                     </WingsDonationSection>
 
                 </div>
-                <ContainerDonationList>
-                    <div>
-                        {doantion && doantion.length > 0 ? (
-                            doantion.map(({title, image, description}) => {
-                                return(
-                                    <DonationBox>
-                                        <DonationListHolder>
-                                            <DonationListHeader>
-                                                <Imageholder>
-                                                    <DonationListImage
-                                                        src={image}
-                                                        alt="user image"/>
-                                                </Imageholder>
-                                                <DonationListTextCotainer>
-                                                    <h5>{title}</h5>
-                                                    <span>{description}</span>
-                                                </DonationListTextCotainer>
-                                            </DonationListHeader>
-                                        </DonationListHolder>
-                                        <ButtonForDonationList>
-                                            <div>
-                                                <span>Donate</span>
-                                            </div>
-                                        </ButtonForDonationList>
-                                    </DonationBox>)
-                            })
-                        ) : (<p>Nothing</p>)}
-                    </div>
-                </ContainerDonationList>
+                <Donation>
+                    <DonationList/>
+                </Donation>
             </ProfileConatiner>
             {
                 modalOpen && <PopUpDonation closeModal={toggleModal}/>
