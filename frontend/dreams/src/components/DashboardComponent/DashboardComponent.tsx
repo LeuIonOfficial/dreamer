@@ -5,10 +5,10 @@ import axios from "axios";
 import '../../App.css';
 import Button from "../Authorization/Button";
 import React from "react";
+import FulfillModal from "../Fulfill/FulfillModal";
 export const DashboardComponent = () => {
 
     const [products, setProducts] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             const result = await axios(
@@ -18,6 +18,22 @@ export const DashboardComponent = () => {
         };
         fetchData();
     }, []);
+
+    const [modal, setModal] = React.useState(false);
+    const [card, setCard] = React.useState(false);
+    const openCard = (event) => {
+        event.preventDefault()
+        setCard(true)
+    }
+    const openModal = (event) => {
+        event.preventDefault()
+        setModal(true)
+    }
+
+    const closeModal = (event) => {
+        event.preventDefault()
+        setModal(false)
+    }
 
     const SpanText=styled.span`
 	font-family: Space Grotesk,serif;
@@ -79,7 +95,7 @@ export const DashboardComponent = () => {
                                     </SpanText2>
                                 </div>
                                 <div className="col-end-7 col-span-2 flex justify-end">
-                                    <Button className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none rounded-[39px]">
+                                    <Button className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none rounded-[39px]" onClick={openModal}>
                                             Random fulfill
                                     </Button>
                                 </div>
@@ -89,13 +105,16 @@ export const DashboardComponent = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {products.map(({title, image}) => {
                                 return (
-                                    <DreamCard image={image} title={title} />
+                                    <DreamCard image={image} title={title} openModal={openModal}/>
                                 );
                             })}
                         </div>
                         </DreamCardBlocks>
                     </div>
                 </BlockDream>
+                <div>
+                    {modal && <FulfillModal closeModal={closeModal}/>}
+                </div>
             </div>
         </>
     )

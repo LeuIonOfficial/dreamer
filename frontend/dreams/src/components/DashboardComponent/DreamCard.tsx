@@ -1,18 +1,17 @@
 import styled from "styled-components";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import React, {useEffect, useState} from "react";
+import React from "react";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import DreamCardIco from "../../assets/media/DreamCardIco.svg";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import coverImg from "../../assets/media/coverImg.png";
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import noAvatar from "../../assets/media/noAvatar.png";
 import SliderDashboard from "./SliderDashboard";
 import Button from "../Authorization/Button";
+import {useNavigate} from "react-router-dom";
 
 /*npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch*/
 
@@ -107,7 +106,8 @@ const DivProgressBar=styled.div`
   transition: var(--bs-progress-bar-transition);
   white-space: nowrap;
 `
-export const DreamCard = ({title, image}) => {
+export const DreamCard = ({title, image, openModal}) => {
+    const navigate = useNavigate()
     return (
                     <div className="mb-[14px] px-[7px]">
                         <div className="relative block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
@@ -144,18 +144,18 @@ export const DreamCard = ({title, image}) => {
                                                     </SpanProgress>
                                                 </div>
                                                 <DivProgress className="black-hover h-[10px] cursor-pointer">
-                                                    <DivProgressBar role="progressbar" className="w-[90%]" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"/>
+                                                    <DivProgressBar role="progressbar" className="w-[90%]" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" />
                                                 </DivProgress>
                                             </div>
                                             <div className="flex justify-between my-2.5">
                                                 <DivCustomGradient className="w-[65%] h-[36px]">
-                                                    <DivButtonText>
+                                                    <DivButtonText onClick={() => navigate("/user-profile")}>
                                                         <span>
                                                             Visit profile
                                                         </span>
                                                     </DivButtonText>
                                                 </DivCustomGradient>
-                                                <Button className="w-[30%] h-[36px]">
+                                                <Button className="w-[30%] h-[36px]" onClick={openModal}>
                                                         <img src={DreamCardIco} className="w-[24px] h-[24px]" alt=""/>
                                                 </Button>
                                             </div>
