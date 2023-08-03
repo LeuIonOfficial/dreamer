@@ -66,7 +66,7 @@ export const DashboardComponent = () => {
     return (
         <>
             <div>
-                 <BlockDream className="flex-[0_0_auto] max-w-[80%] max-[995px]:max-w-full">
+                 <BlockDream className="flex-[0_0_auto] max-w-[100%] max-[995px]:max-w-full">
                     <div className="mb-[10px] text-center">
                         <HeaderBar>
                             <div className="grid grid-cols-6">

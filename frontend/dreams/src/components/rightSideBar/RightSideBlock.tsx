@@ -3,14 +3,13 @@ import styled from "styled-components";
 import axios from "axios";
 // @ts-ignore
 import React, {useEffect, useState} from "react";
-import Button from "../Authorization/Button";
 import FulfillModal from "../Fulfill/FulfillModal";
 
 
 const ContainerRightSideBlock = styled.div`
-  position: fixed;
+  //position: fixed;
   right: 0;
-  width: 16%;
+  min-width: 280px;
 
   & * {
     font-family: 'Space Grotesk', sans-serif;
@@ -32,22 +31,26 @@ const CardBlock = styled.div`
   margin-right: 5px;
   padding-bottom: 33px;
   overflow: scroll;
-  &::-webkit-scrollbar{
+
+  &::-webkit-scrollbar {
     border-radius: 20px;
     height: 0.5rem;
     width: 0.2rem;
   }
-  &::-webkit-scrollbar-thumb{
+
+  &::-webkit-scrollbar-thumb {
     background: #b9b9b9;
     border-radius: 20px;
   }
-  &::-webkit-scrollbar-track{
+
+  &::-webkit-scrollbar-track {
     border-radius: 20px;
   }
-@media(max-width: 768px){
-  width: 250px;
-}
-  @media(max-width: 570px){
+
+  @media (max-width: 768px) {
+    //width: 250px;
+  }
+  @media (max-width: 570px) {
     width: 100%;
   }
 `
@@ -57,9 +60,13 @@ const MobileRightSideBlock = styled.div`
   @media only screen and (width > 768px ) {
     display: none;
   }
+
   & * {
     font-family: 'Space Grotesk', sans-serif;
   }
+
+`
+const BlockContainer = styled.div`
 
 `
 const RightSideBlock = ({showCard}) => {
@@ -118,9 +125,9 @@ const RightSideBlock = ({showCard}) => {
                     })}
                 </CardBlock>)}
             </MobileRightSideBlock>
-<div>
-    {modal && <FulfillModal closeModal={closeModal}/>}
-</div>
+            <div>
+                {modal && <FulfillModal closeModal={closeModal}/>}
+            </div>
         </div>
     )
 }
