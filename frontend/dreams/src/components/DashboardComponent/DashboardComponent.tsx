@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import '../../App.css';
 import Button from "../Authorization/Button";
+import React from "react";
 export const DashboardComponent = () => {
 
     const [products, setProducts] = useState([]);
@@ -56,8 +57,16 @@ export const DashboardComponent = () => {
         flex-direction: column;
       }
     `
+    const DreamCardBlocks = styled.div`
+      &::-webkit-scrollbar{
+        border-radius: 0;
+        height: 0.5rem;
+        width: 0.2rem;
+    `
     return (
-                 <BlockDream className="flex-[0_0_auto] relative w-[68%] m-0">
+        <>
+            <div>
+                 <BlockDream className="flex-[0_0_auto] max-w-[80%] max-[995px]:max-w-full">
                     <div className="mb-[10px] text-center">
                         <HeaderBar>
                             <div className="grid grid-cols-6">
@@ -70,22 +79,24 @@ export const DashboardComponent = () => {
                                     </SpanText2>
                                 </div>
                                 <div className="col-end-7 col-span-2 flex justify-end">
-                                    <Button className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none roundet-[39px]">
+                                    <Button className="w-[180px] h-[36px] border-0 m-0 mr-[0.625rem] leading-none rounded-[39px]">
                                             Random fulfill
                                     </Button>
                                 </div>
                             </div>
                         </HeaderBar>
-                        <div className="block box-border">
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        <DreamCardBlocks className="block box-border overflow-scroll h-[86vh]">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             {products.map(({title, image}) => {
                                 return (
                                     <DreamCard image={image} title={title} />
                                 );
                             })}
                         </div>
-                        </div>
+                        </DreamCardBlocks>
                     </div>
                 </BlockDream>
+            </div>
+        </>
     )
 }
