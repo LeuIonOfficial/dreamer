@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import FulfillModal from "../Fulfill/FulfillModal";
 
 const ContainerDonationList = styled.div`
   padding-bottom: 35px;
@@ -32,7 +33,7 @@ const ContainerDonationList = styled.div`
   @media (width < 820px) {
     overflow-y: scroll;
   }
-  
+
 `
 const DonationBox = styled.div`
   padding: 10px;
@@ -144,13 +145,20 @@ const ButtonForDonationList = styled.div`
     background: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
   }
 `
-export const DonationList = () => {
+const Modal = styled.div`
+position: absolute;
+`
+export const DonationList = ({visiblePop}) => {
+    const [modal, setModal] = useState(false);
     const [doantion, setDoantion] = useState([]);
+    const ModalOpen = () => {
+        setModal(true)
+    }
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products').then((res) => setDoantion(res.data))
     }, []);
 
-    return(
+    return (
         <ContainerDonationList>
             <div>
                 {doantion && doantion.length > 0 ? (
@@ -170,7 +178,7 @@ export const DonationList = () => {
                                         </DonationListTextCotainer>
                                     </DonationListHeader>
                                 </DonationListHolder>
-                                <ButtonForDonationList>
+                                <ButtonForDonationList onClick={visiblePop}>
                                     <div>
                                         <span>Donate</span>
                                     </div>

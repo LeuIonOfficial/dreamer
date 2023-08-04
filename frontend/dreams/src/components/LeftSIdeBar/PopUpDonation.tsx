@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import RightSideBar from "../../../../../../../DreamerzBackup/src/components/rightSideBar/RightSideBar";
 
 const Container = styled.div`
   width: 100vw;
@@ -126,7 +125,6 @@ const ModalFooter = styled.div`
   border-top: 1px solid #d2d2d2;
   width: auto;
 `
-
 export const PopUpDonation = ({closeModal}) => {
     const [users, setUsers] = useState([]);
     useEffect(() => {

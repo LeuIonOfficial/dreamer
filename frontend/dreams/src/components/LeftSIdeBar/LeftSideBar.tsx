@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {PopUpDonation} from "./PopUpDonation";
 import axios from "axios";
-import {ProgresBar} from "../../variables/ProgresBar";
+import {ProgresBar} from "../../services/ProgresBar";
 import {DonationList} from "./DonationList";
 
 
@@ -20,7 +20,7 @@ const ProfileConatiner = styled.div`
   //top: 73px;
   //min-width: 320px;
   @media only screen and (width <= 995px ) {
-    position: static;
+    position: relative;
     max-width: 100%;
   }
 
@@ -256,24 +256,16 @@ const Donation = styled.div`
     display: none;
   }
 `
-const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShowDoantion}) => {
+const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShowDoantion, donation2}) => {
     const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [doantion, setDoantion] = useState([]);
-    const [modal, setMdoal] = useState(false)
-    //bt1
     const [isFontActive, setIsFontActive] = useState(false)
     const [isBackColorActive, setIsBackColorActive] = useState(false)
-    //bt2
     const [isFontActive1, setIsFontActive1] = useState(true)
     const [isBackColorActive1, setIsBackColorActive1] = useState(true)
-    //
     const [isFontActive2, setIsFontActive2] = useState(false)
     const [isBackColorActive2, setIsBackColorActive2] = useState(false)
-    //profile pic
-    const [profilePictureUrl, setProfilePictureUrl] = useState("");
-
-
     const [received, setRecived] = useState(31); // Replace with your received value
     const [fulfilled, setFulfilled] = useState(40);
     const [modalOpen, setModalOpen] = useState(false);
@@ -350,7 +342,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                             {/*<ProgressBar onClick={toggleModal}>*/}
                             {/*    <Bar progress={progress}></Bar>*/}
                             {/*</ProgressBar>*/}
-                            <ProgresBar/>
+                            <ProgresBar progress={progress} onClick={toggleModal}/>
 
                             <RecivedDonation>
                                 <span>Recived : {received}</span>
@@ -415,7 +407,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
 
                 </div>
                 <Donation>
-                    <DonationList/>
+                    <DonationList visiblePop={donation2}/>
                 </Donation>
             </ProfileConatiner>
             {
