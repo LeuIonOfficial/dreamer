@@ -2,9 +2,9 @@ import RightSideBlock from "../components/rightSideBar/RightSideBlock";
 import LeftSideBar from "../components/LeftSIdeBar/LeftSideBar";
 import styled from "styled-components";
 import {useState} from "react";
-import ProfilePhotos from "../components/ProfilePhotos/ProfiePhotos";
 import {DashboardComponent} from "../components/DashboardComponent/DashboardComponent";
 import {DonationList} from "../components/LeftSIdeBar/DonationList";
+import FulfillModal from "../components/Fulfill/FulfillModal";
 
 const Container = styled.div`
   width: 100%;
@@ -42,10 +42,17 @@ const TestCompoennt = styled.div`
   height: 100rem;
   background-color: gray;
 `
-export const Dashboard = () => {
+export const Dashboard = ({openModal}) => {
     const [showCard, setShowCard] = useState(false);
     const [donation, setDonation] = useState(false)
     const [state, setState] = useState(false);
+    const [pricemodal, setPriceModal2] = useState(false);
+    const showPrice = () => {
+        setPriceModal2(true);
+    };
+    const closePrice = () => {
+        setPriceModal2(false);
+    };
     const handleShowCard = () => {
         setShowCard(true);
     };
@@ -61,15 +68,16 @@ export const Dashboard = () => {
     return (
         <Container >
             <Iteam1>
-                <LeftSideBar hideShowCard={hideShowCard} handleShowCard={handleShowCard} handleShowDoantion={handleShowDoantion} hideShowDoantion={hideShowDoantion}/>
+                <LeftSideBar hideShowCard={hideShowCard} handleShowCard={handleShowCard}
+                             handleShowDoantion={handleShowDoantion} hideShowDoantion={hideShowDoantion} donation2={showPrice}/>
             </Iteam1>
 
             {!showCard && !donation ? (<DashboardComponent/>) : ("")}
 
             {!donation ? (<RightSideBlock showCard={showCard}/>) : ("")}
 
-            {donation ? (<DonationList/>) : ("")}
-
+            {donation ? (<DonationList visiblePop={showPrice} />) : ("")}
+            {pricemodal && <FulfillModal closeModal={closePrice}/>}
         </Container>
     )
 }
