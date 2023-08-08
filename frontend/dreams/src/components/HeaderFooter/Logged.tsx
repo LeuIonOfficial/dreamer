@@ -9,18 +9,14 @@ import BalanceAmount from "../LoggedComponents/BalanceAmount";
 import UserPhoto from "../LoggedComponents/UserPhoto";
 import {useNavigate} from "react-router-dom";
 import CardWrapperOpen from "../LoggedComponents/CardWrapperOpen";
-import {useState, useRef} from "react";
+import {useState} from "react";
 import CardFields from "../LoggedComponents/CardFields";
 import LinkButton from "../LoggedComponents/LinkButton";
-import DivForSvg from "../LoggedComponents/DivForSvg";
-import ProfiePhotos from "../ProfilePhotos/ProfiePhotos";
 import MyProfileList from "../LoggedComponents/MyProfileList";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faWrench, faUsers, faQuestionCircle, faFileContract} from '@fortawesome/free-solid-svg-icons'
 import CardText from "../LoggedComponents/CardText";
 import styled from "styled-components";
-import SearchSmall from "../LoggedComponents/SearchSmall";
-import SearchResults from "../LoggedComponents/SearchResults";
 import React from "react";
 
 const Line = styled.hr`
@@ -30,20 +26,21 @@ const Line = styled.hr`
 `
 
 function Logged() {
+    const [showSearch, setShowSearch] = useState(window.innerWidth > 800);
     const navigate = useNavigate();
     const marginBottom = "16px";
     const [myheight, setMyHeight] = useState("0px");
     let [mywidth, setMyWidth] = useState("0px");
     let smallScreen = window.matchMedia("(max-width: 600px)");
     let setWidth = document.body.offsetWidth - 15 + "px";
-    let setWidthSearch = document.body.offsetWidth - 60 + "px";
+    // let setWidthSearch = document.body.offsetWidth - 60 + "px";
     let [searchWidth, setSearchWidth] = useState("0px");
     // const [searchHere, setDisplay] = useState("");
 
     let mediaWidth = (smallScreen) => {
         if (smallScreen.matches) {
             mywidth = setWidth;
-            searchWidth = setWidthSearch;
+            // searchWidth = setWidthSearch;
         } else {
             mywidth = "180px";
         }
@@ -58,6 +55,17 @@ function Logged() {
             setMyHeight("0px")
         }
     }
+
+    const handleResize = () => {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth <= 800 && showSearch) {
+            setShowSearch(false);
+        } else if (screenWidth > 800 && !showSearch) {
+            setShowSearch(true);
+        }
+    };
+
     return (
         <HeaderLogin>
             <DivContainer justify={"flex-start"}>
@@ -65,27 +73,18 @@ function Logged() {
                     <DreamerzLogo></DreamerzLogo>
                 </a>
             </DivContainer>
-{/*            <DivContainer justify={"center"}>
-                <Search/>
-                <SearchResults></SearchResults>
-            </DivContainer>*/}
-            <Search></Search>
+            {showSearch && <Search/>}
             <DivContainer justify={"flex-end"}>
                 <BalanceFrame>
                     <BalanceText color={"#A8A6A6"} size={"13px"}>Balance</BalanceText>
                     <BalanceAmount color={"black"} size={"12px"}></BalanceAmount>
                 </BalanceFrame>
                 <UserPhoto onClick={() => toggleMenu()}>
-                    {/*<Round role="button " href="#">*/}
-                    {/*      <UserImg></UserImg>*/}
-                    {/*</Round>*/}
                 </UserPhoto>
                 <CardWrapperOpen height={myheight} width={mywidth}>
                     <MyProfileList>
-                        {/*<CardFields >*/}
-                        {/*</CardFields>*/}
                         <CardFields>
-                            <SearchSmall width={searchWidth}/>
+                            {!showSearch && <Search/>}
                             <LinkButton>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      className="bi bi-person-circle" viewBox="0 0 16 16">
@@ -159,8 +158,6 @@ function Logged() {
                                 </svg>
                                 <CardText margin-bottom={"16px"}>Logout</CardText>
                             </LinkButton>
-                            {/*logout remove items from local storage
-                        в src создаем services , а там функцию удаления. delete token from local storage*/}
                         </CardFields>
                     </MyProfileList>
                 </CardWrapperOpen>
