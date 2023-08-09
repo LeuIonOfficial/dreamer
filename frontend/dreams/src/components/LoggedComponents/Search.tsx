@@ -4,6 +4,9 @@ import React from 'react'
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
+import { PiUserFill } from "react-icons/pi";
+
+
 const SearchBar = styled.div`
   width: 300px;
   line-height: 0;
@@ -47,23 +50,14 @@ const SearchContainer = styled.div`
   }
 `
 const MyTitle = styled.div`
-  width: 75px;
-  cursor: pointer;
-  margin: 0 5px 5px 0;
+  margin-left: 0.3125rem
+;
 
   & h6 {
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
     font-style: normal;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    -webkit-line-clamp: 1;
     line-height: 1;
-    font-weight: bolder;
-    margin-bottom: 0.3125rem;
-    font-size: .875rem;
-    color: #3f414d;
-    margin-top: 0;
+    font-size: 0.875rem;
+    color: rgb(63, 65, 77);
   }
 `
 const BlockImg = styled.div`
@@ -77,6 +71,16 @@ const BlockImg = styled.div`
     width: 45px;
     vertical-align: middle;
     border-radius: 50%;
+  }
+  & svg {
+    border-radius: 50%;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    object-fit: cover;
+    vertical-align: middle;
+    color: #777d74;
+    background-color: #f8f9fa;
   }
 `
 const SearchUser = styled.div`
@@ -103,6 +107,11 @@ position: relative;
     padding-top: 10px;
   }
 `
+const Avatar = styled.div`
+
+`
+
+
 const Search = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
@@ -115,7 +124,7 @@ const Search = () => {
 
     const userData = async () => {
         try {
-            const response = await axios.get('https://fakestoreapi.com/products');
+            const response = await axios.get('http://localhost:3000/usersAll');
             setData(response.data);
         } catch (error) {
             // Handle error
@@ -126,10 +135,12 @@ const Search = () => {
         if (searchValue.trim() === '') {
             return [];
         }
-        return data.filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-        );
+        return data.filter((item) => {
+            const fullName = item.firstName + ' ' + item.lastName;
+            return fullName.toLowerCase().includes(searchValue.toLowerCase());
+        });
     }, [data, searchValue]);
+
 
     return (
         <SearchBlock>
@@ -143,13 +154,19 @@ const Search = () => {
 
             <ListUsers>
                 {filteredData.length > 0 ? (
-                    filteredData.map(({ image, title }) => (
-                        <SearchUser key={title}>
+                    filteredData.map(({id, image, firstName, lastName}) => (
+                        <SearchUser key={id}>
                             <BlockImg onClick={() => navigate('/user-profile')}>
-                                <img src={image} alt="#" />
+                                {/*<img src={image} alt="#"/>*/}
+                                {image ? (
+                                    <img src={image} alt="#" />
+                                ) : (
+                                    <PiUserFill/>
+                                )}
+
                             </BlockImg>
                             <MyTitle>
-                                <h6 onClick={() => navigate('/user-profile')}>{title}</h6>
+                                <h6 onClick={() => navigate('/user-profile')}>{firstName + ' ' + lastName}</h6>
                             </MyTitle>
                         </SearchUser>
                     ))
