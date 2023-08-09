@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Draggable from 'react-draggable';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -9,7 +9,7 @@ import React from "react";
 const Container = styled.div`
   max-width: 1300px;
   box-sizing: border-box;
-  margin: 0 304px 0 304px;
+  //margin: 0 304px 0 304px;
 `
 // const CenterContetnt = styled.div`
 //   margin: 0;
@@ -81,9 +81,9 @@ const DropDownBox = styled.div`
   opacity: ${({$opacity}) => ($opacity ? 1 : 0)};
   margin: 0 10px 5px 0;
   border-radius: 8px;
-  width: 80px;
-  max-height: 100px;
-  max-width: 120px;
+  width: 105px;
+  min-height: 100px;
+
   background-color: #fff;
   box-shadow: 0 0 1.25rem 0 rgba(0, 0, 0, .1);
   padding: 10px;
@@ -97,6 +97,7 @@ const DropDownConatiner = styled.div`
   display: flex;
   flex-direction: row;
   padding-top: 4px;
+  width: auto;
 
   & input {
     visibility: hidden;
@@ -134,6 +135,7 @@ const UploadSvg = styled.img`
 const ProfilePictureContainer = styled.div`
   margin-top: -4.1rem;
   position: relative;
+  position: relative;
   display: flex;
   justify-content: center;
 `
@@ -154,23 +156,7 @@ const ProfilePic = styled.img`
   background-size: cover;
 
 `
-const RecivedContainer = styled.div`
-  margin-top: -35px;
-  color: rgb(79, 79, 79);
-  cursor: default;
-  display: flex;
-  justify-content: space-around;
 
-  & span {
-    text-align: center;
-    font-weight: 700;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 60px;
-    margin-left: 60px;
-
-  }
-`
 const Image = styled.div`
   background-image: url(${({$backgroundImage}) => $backgroundImage || "./../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png"});
   background-size: cover;
@@ -179,13 +165,111 @@ const Image = styled.div`
   height: 100rem;
   width: 100rem;
   cursor: move;
+`
+const GoldLine = styled.div`
+  background: none;
+  border-width: 2px;
+  border-bottom: 2px double transparent;
+  border-image: linear-gradient(90deg, rgba(255, 193, 32, .1) .16%, #ffc120 48.95%, rgba(255, 193, 32, .06));
+  border-image-slice: 2;
+  margin-top: 4px;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
+  & div {
+    background: none;
+    border: 30px solid #ffc120;
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
+    height: 70px;
+    margin-top: 1px;
+    width: 140px;
+    position: absolute;
+  }
+`
+const NameContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+  margin: 10px 10px 0 10px;
 
+  & h3 {
+    font-weight: 700;
+    font-size: 27px;
+    color: rgb(63, 65, 77);
+    margin: 0;
+  }
+`
+const FulfilledContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  & span {
+    font-weight: 700;
+    font-size: 14px;
+    color: #757575;
+  }
+`
+const ChangesButtonContainer = styled.div`
+  position: absolute;
+  right: 16px;
+  top: 275px;
+  z-index: 1001;
+  display: flex;
+  justify-content: flex-end;
+  visibility: ${({ $visibility }) => ($visibility ? 'hidden' : 'visible')};
+`
+const EditButtonResizer = styled.div`
+  background: linear-gradient(297.06deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%);
+  cursor: pointer;
+  color: #262626;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 34px;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const CancelButtonResizer = styled.div`
+  background: linear-gradient(#fff,#fff),linear-gradient(160deg,#84fad5 20%,#ebbfff 37%,#f6ec85 53%);
+  background-clip: content-box,border-box!important;
+  background-origin: border-box!important;
+  border: 1px double transparent!important;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #262626;
+  border-radius: 8px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  height: 34px;
+  width: 110px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 export const ProfileHeader = () => {
     const [isOpacity, setIsOpacity] = useState(false);
     const [backgroundImage, setBackgroundImage] = useState('');
+    const [coverImageHeight, setImageHeight] = useState(0);
+    const coverImageRef = useRef(null);
+    const [isResizing, setIsResizing] = useState(false);
+    const [isDraggable, setIsDraggable] = useState(false);
 
+    const handleResizeClick = () => {
+        setIsDraggable(!isDraggable);
+        setIsResizing(!isResizing);
+    };
     // const handleMouseEnter = () =>{setIsOpacity(true)};
     const handleMouseLeave = () => {
         setIsOpacity(false)
@@ -198,6 +282,15 @@ export const ProfileHeader = () => {
         setImage(file);
         setBackgroundImage(URL.createObjectURL(file));
 
+    };
+    useEffect(() => {
+        if (coverImageRef.current) {
+            setImageHeight(coverImageRef.current.clientHeight);
+        }
+    }, []);
+    const handleSaveChangesClick = () => {
+        setIsResizing(false);
+        setIsDraggable(false);
     };
 
     return (
@@ -215,7 +308,7 @@ export const ProfileHeader = () => {
 
                             <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/resize.png'}></UploadSvg>
-                                <span>Resize</span>
+                                <span onClick={handleResizeClick} >Resize</span>
                             </DropDownConatiner>
                             <DropDownConatiner>
                                 <UploadSvg src={'./../../../../src/assets/wing/delete.png'}></UploadSvg>
@@ -230,18 +323,34 @@ export const ProfileHeader = () => {
                                 src={"./../../../../src/assets/wing/drop-down-arrow.png"}></DropDonwArrow>
 
                         </DDButton>
-
+                        {isResizing && (
+                            <ChangesButtonContainer>
+                                <EditButtonResizer onClick={handleSaveChangesClick} >Save Changes</EditButtonResizer>
+                                <CancelButtonResizer onClick={handleSaveChangesClick} >Cancel</CancelButtonResizer>
+                            </ChangesButtonContainer>
+                        )}
                     </DropDownSection>
-                    <Draggable
-                        axis="y"
-                        position={null}
-                        grid={[25, 25]}
-                        scale={1}>
-                        <Image $backgroundImage={backgroundImage}></Image>
-                    </Draggable>
+                    {isDraggable ? ( // Render the draggable component conditionally based on isDraggable state
+                        <Draggable
+                            axis="y"
+                            position={null}
+                            scale={1}
+                            nodeRef={coverImageRef}
+                            bounds={{
+                                top: -`${coverImageHeight / 2}`,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                            }}>
+                            <Image $backgroundImage={backgroundImage} ref={coverImageRef} ></Image>
+                        </Draggable>
+                    ) : (
+                        <Image $backgroundImage={backgroundImage} ref={coverImageRef}></Image>
+                    )}
                 </ProfileBG>
-
-
+                <GoldLine>
+                    <div></div>
+                </GoldLine>
                 <ProfilePictureContainer>
                     <ProfilePicDiv>
                         <ProfilePic>
@@ -249,12 +358,13 @@ export const ProfileHeader = () => {
                         </ProfilePic>
 
                     </ProfilePicDiv>
-
                 </ProfilePictureContainer>
-                <RecivedContainer>
-                    <span>Received</span>
-                    <span></span>
-                </RecivedContainer>
+                <NameContainer>
+                    <h3>Holla Bonita</h3>
+                </NameContainer>
+                <FulfilledContainer>
+                    <span>0 Fulfilled</span>
+                </FulfilledContainer>
 
             </HeaderProfile>
         </Container>
