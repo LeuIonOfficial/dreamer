@@ -75,11 +75,11 @@ const RightSideBlock = ({showCard}) => {
     const [modal, setModal] = React.useState(false);
 
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then((response) => {
+        axios.get('http://localhost:3000/usersAll').then((response) => {
             return setData(response.data)
         })
     }, [])
-
+    console.log(data);
     // const object = {
     //     key: () => {openModal}
     // }
@@ -107,10 +107,10 @@ const RightSideBlock = ({showCard}) => {
                     <TitleContainerRightBlock>Last fulfilled</TitleContainerRightBlock>
                 </TitleBlock>
                 <CardBlock>
-                    {data.map(({id, title, description, image}) => {
+                    {data.map(({id, firstName, lastName, image, email}) => {
                         return (
-                            <RightSideBar key={id} img={image} name={title} lastname={""}
-                                          dream={description} openModal={openModal}></RightSideBar>)
+                            <RightSideBar key={id} img={image} name={firstName} lastname={lastName}
+                                          dream={email} openModal={openModal}></RightSideBar>)
                     })}
                 </CardBlock>
             </ContainerRightSideBlock>
@@ -118,10 +118,10 @@ const RightSideBlock = ({showCard}) => {
             <MobileRightSideBlock>
                 {/*<Button onClick={() => setCard(true)}>Last fulfilled</Button>*/}
                 {showCard && (<CardBlock>
-                    {data.map(({id, title, description, image}) => {
+                    {data.map(({id, firstName, lastName, image, email}) => {
                         return (
-                            <RightSideBar key={id} img={image} name={title} lastname={""}
-                                          dream={description} openModal={openModal}></RightSideBar>)
+                            <RightSideBar key={id} img={image} name={firstName} lastname={lastName}
+                                          dream={email} openModal={openModal}></RightSideBar>)
                     })}
                 </CardBlock>)}
             </MobileRightSideBlock>
