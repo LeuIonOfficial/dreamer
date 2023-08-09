@@ -110,7 +110,7 @@ const DreamsNr = styled.div`
   }
 `
 
-const PriceFulfill = ({pack, price, nrDreams }) => {
+const PriceFulfill = ({pack, price, nrDreams, packageFulfill}) => {
 
     return (
         <PriceBlock>
@@ -127,7 +127,7 @@ const PriceFulfill = ({pack, price, nrDreams }) => {
                             <h3>Fulfill {nrDreams} dreams</h3>
                         </DreamsNr>
                     </PriceDreams>
-                        <Button>
+                        <Button onClick={packageFulfill}>
                             <span>Subscribe</span>
                         </Button>
             </PriceCard>

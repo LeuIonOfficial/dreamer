@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 
 const ContainerBeHero = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
+  //display: flex;
+  //align-items: flex-start;
+  //justify-content: space-between;
+  //flex-direction: column;
   height: 100%;
   @media (max-width: 800px) {
    
@@ -13,9 +13,12 @@ const ContainerBeHero = styled.div`
 `
 
 const ContainerDescription = styled.div`
-  margin: 0 20px 0 0;
+  //margin: 0 20px 0 0;
+  padding: 0 18px 0 0;
   @media (max-width: 800px){
-    margin: 0 0 16px;
+    //margin: 0 0 16px;
+    //padding: 0 18px 0 0;
+    padding: 0 0 15px 0;
   }
   
 `
@@ -25,7 +28,7 @@ const TitleBeHero = styled.h1`
   font-weight: 700;
   line-height: 65px;
   color: #333333;
-  margin: 0;
+  margin: 0 0 70px;
   @media (max-width: 800px) {
     font-size: 32px;
     line-height: 25px;
@@ -36,10 +39,11 @@ const TitleBeHero = styled.h1`
 const ContentBeHero = styled.div`
   display: flex;
   flex-direction: row;
+  margin: 0 0 50px;
   @media (max-width: 800px) {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    margin: 0 0 50px;
   }
 `
 
