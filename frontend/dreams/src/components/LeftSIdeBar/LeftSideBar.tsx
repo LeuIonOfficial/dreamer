@@ -270,6 +270,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
     const [fulfilled, setFulfilled] = useState(40);
     const [modalOpen, setModalOpen] = useState(false);
 
+
     const resetButtons = () => {
         setIsFontActive(false);
         setIsBackColorActive(false);
@@ -312,7 +313,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         <ProfileImageContainer>
                             <ProfileImage>
                                 <Image src="./../../../../src/assets/wing/bdf2ff7d7efad75f528b71565ad82efb.jpg"
-                                       onClick={() => navigate('')}></Image>
+                                       onClick={() => navigate('/user-profile')}></Image>
                             </ProfileImage>
 
                         </ProfileImageContainer>
@@ -320,7 +321,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                     {/*Text part of component*/}
                     <TextContent>
                         {user && user.length > 0 && (
-                            <H6 onClick={() => navigate('')}>
+                            <H6 onClick={() => navigate('/user-profile')}>
                                 {user[0].name}</H6>
                         )}
                         <ParagrafConatiner>
