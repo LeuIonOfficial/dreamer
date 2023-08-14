@@ -1,10 +1,9 @@
 import Slider from "./Slider";
 import { useMediaQuery } from 'react-responsive'
 import styled from "styled-components";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import OurTeam from "../../assets/media/ourteam.svg";
 import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
+import React from "react";
 
 /*npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch*/
 
@@ -15,6 +14,7 @@ const Div1 = styled.div`
   justify-content: space-around;
   align-items: center;
   @media only screen and (max-width: 800px){
+    justify-content: normal;
     height: 600px;
     position: relative;
     padding: 10px;
@@ -27,7 +27,7 @@ const Div2 = styled.div`
   justify-content: center;
   align-items: flex-start;
   @media only screen and (max-width: 800px){
-    display:flex;
+    align-items: center;
     width: 95%;
   }
 `;
@@ -63,12 +63,13 @@ const H2 = styled.h2`
   line-height: 65px;
   margin-bottom: 20px;
   @media only screen and (max-width: 800px){
+    display: flex;
+    align-items: center;
     font-size: 26px;
     font-weight: 700;
     line-height: 34px;
     text-align: center;
     margin-bottom: 0;
-    margin-top: 0;
   }
 `;
 
@@ -100,12 +101,12 @@ const Thoughts = () => {
     return (
             <Div1 className="flex">
                 <Mobile>
-                <Img src={OurTeam} alt="Your SVG" />
-                <H2>Thoughts</H2>
-                <Div2 className="flex relative">
+                <Img className="flex-[1_1_auto]" src={OurTeam} alt="Your SVG" />
+                <H2 className="flex-[1_1_auto]">Thoughts</H2>
+                <Div2 className="flex flex-[1_1_auto] items-center relative">
                     <Slider/>
                 </Div2>
-                <Div3 className="flex">
+                <Div3 className="flex flex-[1_1_auto] items-center">
                     <P>We believe that this platform will change the way of thinking and everyone will help each other reaching their dreams and making this world better !</P></Div3>
                    <ButtonTryNow/>
                 </Mobile>
