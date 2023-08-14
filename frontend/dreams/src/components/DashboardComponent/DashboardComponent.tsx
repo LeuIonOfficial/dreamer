@@ -8,13 +8,15 @@ import React from "react";
 export const DashboardComponent = () => {
     const [products, setProducts] = useState([]);
     const [sortedProducts, setSortedProducts] = useState(products);
-    const mostPopular = () => {
-        const sorted = [...products].sort((a, b) => a.price - b.price);
-        setSortedProducts(sorted);
-    };
-
-    const lessPopular = () => {
-        const sorted = [...products].sort((a, b) => b.price - a.price);
+    const sortProducts = (order) => {
+        const sorted = [...products].sort((a, b) => {
+            if (order === "mostPopular") {
+                return a.price - b.price;
+            } else if (order === "lessPopular") {
+                return b.price - a.price;
+            }
+            return 0;
+        });
         setSortedProducts(sorted);
     };
 
@@ -89,10 +91,10 @@ export const DashboardComponent = () => {
                         <HeaderBar>
                             <div className="grid grid-cols-6">
                                 <div className="col-start-3 col-end-5 flex items-center justify-center">
-                                    <SpanText className="cursor-pointer" onClick={mostPopular}>
+                                    <SpanText className="cursor-pointer" onClick={() => sortProducts("mostPopular")}>
                                         Most Popular
                                     </SpanText>
-                                    <SpanText2 className="pl-[20px] cursor-pointer" onClick={lessPopular}>
+                                    <SpanText2 className="pl-[20px] cursor-pointer" onClick={() => sortProducts("lessPopular")}>
                                         Less popular
                                     </SpanText2>
                                 </div>
