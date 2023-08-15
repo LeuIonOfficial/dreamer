@@ -298,8 +298,9 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
         }
     };
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => setUser(res.data))
+        axios.get('https://fakestoreapi.com/products').then((res) => setUser(res.data))
     }, []);
+    console.log(setUser);
     useEffect(() => {
         axios.get('https://fakestoreapi.com/products').then((res) => setDoantion(res.data))
     }, []);
