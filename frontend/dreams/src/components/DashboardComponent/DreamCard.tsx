@@ -1,17 +1,12 @@
 import styled from "styled-components";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import React from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+import React, {useState} from "react";
 import DreamCardIco from "../../assets/media/DreamCardIco.svg";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import noAvatar from "../../assets/media/noAvatar.png";
 import SliderDashboard from "./SliderDashboard";
 import Button from "../Authorization/Button";
 import {useNavigate} from "react-router-dom";
+import {CommentModal} from "./Modal/CommentModal";
+import {ProgresBarpx} from "./ProgresBar10px";
 
 /*npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch*/
 
@@ -75,41 +70,36 @@ const SpanProgress=styled.span`
   font-size: 12px;
   line-height: 16px;
 `
-
-const DivProgress=styled.div`
-  display: flex;
-  overflow: hidden;
-  --bs-progress-height: 10px;
-  --bs-progress-font-size: 0.65625rem;
-  --bs-progress-bg: #e9ecef;
-  --bs-progress-border-radius: 5px;
-  --bs-progress-box-shadow: inset 0 1px 2px rgba(0,0,0,.075);
-  --bs-progress-bar-color: #fff;
-  --bs-progress-bar-bg: #50b5ff;
-  --bs-progress-bar-transition: width 0.6s ease;
-  background-color: var(--bs-progress-bg);
-  border-radius: var(--bs-progress-border-radius);
-  font-size: var(--bs-progress-font-size);
-  height: var(--bs-progress-height);
-  &:hover{
-    border: 1px solid #000;
-  }
-`
-const DivProgressBar=styled.div`
-  display: flex;
-  overflow: hidden;
-  background: linear-gradient(114.93deg,#84fad5 1.02%,#ebbfff 44.33%,#f6ec85 76.07%);
-  color: var(--bs-progress-bar-color);
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  transition: var(--bs-progress-bar-transition);
-  white-space: nowrap;
-`
-export const DreamCard = ({title, image, openModal}) => {
+export const DreamCard = ({title, image}) => {
     const navigate = useNavigate()
+    const [modal, setModal] = React.useState(false);
+    const [received, setRecived] = useState(31);
+    const [fulfilled, setFulfilled] = useState(40);
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = (event) => {
+        event.preventDefault()
+        setModal(true)
+    }
+
+    const closeModal = (event) => {
+        event.preventDefault()
+        setModal(false)
+    }
+    const toggleModal = () => {
+        setModalOpen(!modalOpen);
+    };
+    const progress = (received / fulfilled) * 100;
+    const procentageVerifiction = () => {
+        if (fulfilled < received) {
+            return 100;
+        } else {
+            return Math.round((received / fulfilled) * 100)
+        }
+    };
+
     return (
-                    <div className="mb-[14px] px-[7px]">
+        <>
+            <div className="mb-[14px] px-[7px]">
                         <div className="relative block rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]">
                             <div className="flex">
                                 <div className="relative overflow-hidden bg-cover bg-no-repeat w-full">
@@ -140,12 +130,10 @@ export const DreamCard = ({title, image, openModal}) => {
                                             <div className="h-[30px] mb-[10px]">
                                                 <div className="w-full flex justify-end">
                                                     <SpanProgress className="mr-[0.3125rem] decoration-black">
-                                                        90%
+                                                        {procentageVerifiction()}%
                                                     </SpanProgress>
                                                 </div>
-                                                <DivProgress className="black-hover h-[10px] cursor-pointer">
-                                                    <DivProgressBar role="progressbar" className="w-[90%]" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" />
-                                                </DivProgress>
+                                                <ProgresBarpx progress={progress} onClick={toggleModal} children={undefined}/>
                                             </div>
                                             <div className="flex justify-between my-2.5">
                                                 <DivCustomGradient className="w-[65%] h-[36px]">
@@ -165,6 +153,8 @@ export const DreamCard = ({title, image, openModal}) => {
                             </div>
                         </div>
                     </div>
+                {modal && <CommentModal closeModal={closeModal} images={image} title={title} percent={procentageVerifiction()} progress={progress} toggleModal={toggleModal} />}
+            </>
     )
 }
 export default DreamCard
