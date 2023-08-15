@@ -10,6 +10,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
   &:hover{
     font-weight: 700;
     cursor: pointer;
