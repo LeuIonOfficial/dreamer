@@ -8,6 +8,7 @@ import ButtonArrowRight from "../../assets/media/button_arrow_right.svg";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ButtonArrowLeft from "../../assets/media/button_arrow_left.svg";
+import React from "react";
 
 const Img = styled.img`
   width: inherit;
