@@ -367,7 +367,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         </div>) : (
                         <div>
                             <BoxCreateDreamBt>
-                                <ButtonCreateDream>
+                                <ButtonCreateDream onClick={() => navigate('/user-profile/create-dream')}>
                             <span>
                                 Create your dream !
                             </span>
