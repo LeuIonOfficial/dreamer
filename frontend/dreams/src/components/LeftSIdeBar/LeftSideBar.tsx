@@ -166,7 +166,6 @@ const WingsDonationSection = styled.div`
   }
 
 `
-
 const ButtonComponents = styled.div`
   margin-bottom: 10px;
   margin-top: 30px;
@@ -269,6 +268,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
     const [received, setRecived] = useState(31); // Replace with your received value
     const [fulfilled, setFulfilled] = useState(40);
     const [modalOpen, setModalOpen] = useState(false);
+    const token = localStorage.getItem('token')
 
 
     const resetButtons = () => {
@@ -297,12 +297,23 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
             return Math.round((received / fulfilled) * 100)
         }
     };
+    const fetchData = async () => {
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.get('http://localhost:3000/about', {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            });
+            const responsedata = response.data
+            console.log(responsedata);
+        } catch (error){
+            console.log('Error fetch data:', error);
+        }
+    };
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then((res) => setUser(res.data))
-    }, []);
-    console.log(setUser);
-    useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then((res) => setDoantion(res.data))
+        fetchData();
     }, []);
 
     return (
@@ -338,14 +349,8 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                             <Scope>
                                 <ScopeSpan>Scope</ScopeSpan>
                                 <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
-
                             </Scope>
-                            {/*ProgresBar*/}
-                            {/*<ProgressBar onClick={toggleModal}>*/}
-                            {/*    <Bar progress={progress}></Bar>*/}
-                            {/*</ProgressBar>*/}
                             <ProgresBar progress={progress} onClick={toggleModal}/>
-
                             <RecivedDonation>
                                 <span>Recived : {received}</span>
                                 <span>Fulfilled : {fulfilled}</span>
@@ -370,7 +375,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         </div>
                     )}
                 </ContainerElements>
-                {/*Button Components*/}
+                        {/*Button Components*/}
                 <ButtonComponents>
                     <ButtonMobile $font={isFontActive} $backColor={isBackColorActive} onClick={() => {
                         resetButtons();
