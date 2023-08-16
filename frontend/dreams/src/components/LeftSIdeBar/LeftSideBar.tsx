@@ -140,7 +140,7 @@ const WingsDonationSection = styled.div`
   color: rgb(33, 37, 41);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   padding: 0 5px 0 10px;
 
   & span {
@@ -222,6 +222,15 @@ const ButtonCreateDream = styled.div`
   padding: 5px;
   background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
   border-radius: 60px;
+  & span{
+    text-align: center;
+  }
+  @media(width < 1194px){
+    & span{
+      text-align: center;
+      font-size: 12px;
+    }
+  }
 `
 const DivBoxCreateDream = styled.div`
   height: 65px;
@@ -358,7 +367,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         </div>) : (
                         <div>
                             <BoxCreateDreamBt>
-                                <ButtonCreateDream>
+                                <ButtonCreateDream onClick={() => navigate('/user-profile/create-dream')}>
                             <span>
                                 Create your dream !
                             </span>
@@ -406,10 +415,6 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                 <div>
                     <WingsDonationSection>
                         <span>Wings Donation</span>
-                        <p>
-                            <u onClick={() => navigate('')}>See All</u>
-                        </p>
-
                     </WingsDonationSection>
 
                 </div>
