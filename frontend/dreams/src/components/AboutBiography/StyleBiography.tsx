@@ -5,15 +5,17 @@ import {CountryDropdown, RegionDropdown} from "react-country-region-selector";
 const ContainerBiography = styled.div`
   width: 60%;
   margin-left: auto;
-  padding: 20px 30px 25px 0;
-
+  padding: 20px 30px 40px 0;
+  
   @media screen and (max-width: 768px) {
-    width: 90%;
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
   }
 `
 const CardBiography = styled.div`
-  padding: 0 24px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  padding: 1.25rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,.06);
   border-radius: 10px;
 `
 const DashboardText = styled.div`
@@ -58,10 +60,7 @@ const TextButtonBiography = styled.div`
 const InputGroupBiography = styled.div`
   display: flex;
   justify-content: space-between;
-
-  @media screen and (max-width: 768px) {
-    //flex-direction: column;
-  }
+  
 `
 const FirstInputGroup = styled.div`
   width: 44%;

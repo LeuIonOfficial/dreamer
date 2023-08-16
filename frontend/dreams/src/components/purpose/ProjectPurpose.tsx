@@ -6,7 +6,7 @@ import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const ProjectPurposeStyle = styled.div`
   
-  height: 609px;
+  //height: 609px;
   padding: 90px 100px;
   display: flex;
   flex-direction: row;
@@ -33,15 +33,15 @@ const ProjectPurposeStyle = styled.div`
 const ProjectSectionPurpose = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-items: flex-start;
-  height: 100%;
+  //height: 100%;
   margin-right: 20px;
 
   @media screen and (max-width: 800px) {
     display: flex;
     align-items: center;
-    height: 300px;
+    //height: 300px;
   }
 
 `;
@@ -77,14 +77,15 @@ const ParagraphPurpose = styled.p`
   font-weight: 700;
   line-height: 30px;
   color: #333;
-  margin: 0;
+  margin: 35px 0;
+  
 
   @media screen and (max-width: 799px) {
     font-size: 12px;
     line-height: 16px;
     text-align: left;
-    height: 145px;
-    width: 75%;
+    //height: 145px;
+    width: 75%; 
     color: #2c2c2c;
   }
   @media screen and (min-width: 800px) and (max-width: 950px){
@@ -104,12 +105,12 @@ const ImagePurpose = styled.img`
 
   @media screen and (max-width: 799px) {
     width: 70%;
-    max-width: 500px;
-    margin-top: -50px;
+    max-width: 400px;
+    margin-top: 0;
   }
   @media screen and (min-width: 800px) and (max-width: 1200px) {
     width: 52%;
-    max-width: 500px;
+    max-width: 400px;
   }
 `;
 
@@ -128,7 +129,7 @@ const ButtonPurpose = styled.button`
   }
 
   @media screen and (max-width: 1200px) {
-    height: 48px;
+    height: 43px;
     width: 100%;
   }
 `;
