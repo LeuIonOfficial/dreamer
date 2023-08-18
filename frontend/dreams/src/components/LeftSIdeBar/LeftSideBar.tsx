@@ -140,7 +140,7 @@ const WingsDonationSection = styled.div`
   color: rgb(33, 37, 41);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   padding: 0 5px 0 10px;
 
   & span {
@@ -166,7 +166,6 @@ const WingsDonationSection = styled.div`
   }
 
 `
-
 const ButtonComponents = styled.div`
   margin-bottom: 10px;
   margin-top: 30px;
@@ -223,6 +222,15 @@ const ButtonCreateDream = styled.div`
   padding: 5px;
   background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
   border-radius: 60px;
+  & span{
+    text-align: center;
+  }
+  @media(width < 1194px){
+    & span{
+      text-align: center;
+      font-size: 12px;
+    }
+  }
 `
 const DivBoxCreateDream = styled.div`
   height: 65px;
@@ -269,6 +277,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
     const [received, setRecived] = useState(31); // Replace with your received value
     const [fulfilled, setFulfilled] = useState(40);
     const [modalOpen, setModalOpen] = useState(false);
+    const token = localStorage.getItem('token')
 
 
     const resetButtons = () => {
@@ -297,11 +306,23 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
             return Math.round((received / fulfilled) * 100)
         }
     };
+    const fetchData = async () => {
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.get('http://localhost:3000/about', {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            });
+            const responsedata = response.data
+            console.log(responsedata);
+        } catch (error){
+            console.log('Error fetch data:', error);
+        }
+    };
     useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users').then((res) => setUser(res.data))
-    }, []);
-    useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then((res) => setDoantion(res.data))
+        fetchData();
     }, []);
 
     return (
@@ -337,14 +358,8 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                             <Scope>
                                 <ScopeSpan>Scope</ScopeSpan>
                                 <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
-
                             </Scope>
-                            {/*ProgresBar*/}
-                            {/*<ProgressBar onClick={toggleModal}>*/}
-                            {/*    <Bar progress={progress}></Bar>*/}
-                            {/*</ProgressBar>*/}
                             <ProgresBar progress={progress} onClick={toggleModal}/>
-
                             <RecivedDonation>
                                 <span>Recived : {received}</span>
                                 <span>Fulfilled : {fulfilled}</span>
@@ -352,7 +367,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         </div>) : (
                         <div>
                             <BoxCreateDreamBt>
-                                <ButtonCreateDream>
+                                <ButtonCreateDream onClick={() => navigate('/user-profile/create-dream')}>
                             <span>
                                 Create your dream !
                             </span>
@@ -369,7 +384,7 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                         </div>
                     )}
                 </ContainerElements>
-                {/*Button Components*/}
+                        {/*Button Components*/}
                 <ButtonComponents>
                     <ButtonMobile $font={isFontActive} $backColor={isBackColorActive} onClick={() => {
                         resetButtons();
@@ -400,10 +415,6 @@ const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShow
                 <div>
                     <WingsDonationSection>
                         <span>Wings Donation</span>
-                        <p>
-                            <u onClick={() => navigate('')}>See All</u>
-                        </p>
-
                     </WingsDonationSection>
 
                 </div>

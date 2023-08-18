@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Faq from "react-faq-component";
+import '/faqcss.css';
 const FAQ = () => {
 
     const [data] = useState({

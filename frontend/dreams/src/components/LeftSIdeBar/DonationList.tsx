@@ -162,7 +162,7 @@ export const DonationList = ({visiblePop}) => {
         <ContainerDonationList>
             <div>
                 {doantion && doantion.length > 0 ? (
-                    doantion.map(({title, image, description}) => {
+                    doantion.slice(0,2).map(({title, image, description}) => {
                         return (
                             <DonationBox>
                                 <DonationListHolder>
