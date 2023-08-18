@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+import React from "react";
+import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const Main = styled.div`
   display: block;
   box-sizing: border-box;
-  height: 500px;
+  //height: 500px;
   padding: 30px 10px;
   @media (max-width: 800px){
-    height: 300px;
+    //height: 300px;
   }
   
 `
@@ -20,47 +22,43 @@ const RbdContainer = styled.div`
   display: flex;
 `
 
-const ButtonRBD = styled.button`
-  background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
-  border-radius: 43px;
-  height: 72px;
-  width: 350px;
-  border: aliceblue;
-  & span{
-    color: #262626;
-    font-size: 16px;
-    letter-spacing: .14em;
-  }
-  @media (max-width: 800px) {
-    border-radius: 43px;
-    height: 48px;
-    width: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-`
+// const ButtonRBD = styled.button`
+//   background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
+//   border-radius: 43px;
+//   height: 72px;
+//   width: 350px;
+//   border: aliceblue;
+//   & span{
+//     color: #262626;
+//     font-size: 16px;
+//     letter-spacing: .14em;
+//   }
+//   @media (max-width: 800px) {
+//     border-radius: 43px;
+//     height: 48px;
+//     width: 100%;
+//     cursor: pointer;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//   }
+// `
 
 const H2RBD = styled.h2`
   color: #333;
   font-size: 64px;
   font-weight: 700;
   line-height: 65px;
-  margin: 0;
+  margin: 5% 0;
+  text-align: center;
   @media (max-width: 800px) {
     font-size: 28px;
     line-height: 36px;
-    text-align: center;
-    margin: 0;
-    padding: 30px 0;
   }
 `
 
-const Description = styled.p` //font-size: 38px;
-  //color: #c3021f;
-  //align-items: center;
-  margin-top: 10px;
+const Description = styled.p`
+  margin-top: 5%;
   @media (max-width: 800px) {
     font-size: 26px;
     & svg{
@@ -82,9 +80,7 @@ const Rbd = () => {
                 </svg>
             </Description>
             <H2RBD>Ready to become a dreamer?</H2RBD>
-            <ButtonRBD onClick={() => navigate("/signup")}>
-                <span>Try Now </span>
-            </ButtonRBD>
+            <ButtonTryNow></ButtonTryNow>
         </RbdContainer>
         </Main>
     )

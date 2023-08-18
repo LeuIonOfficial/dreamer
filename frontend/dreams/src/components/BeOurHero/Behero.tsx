@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import React from "react";
 
 
 const ContainerBeHero = styled.div`
@@ -77,12 +78,12 @@ const TitleDescription = styled.h3`
 const Main = styled.div`
   display: block;
   box-sizing: border-box;
-  height: 413px;
+  //height: 413px;
   padding: 60px 100px;
   border-bottom: 1px solid #d9e5e5;
   @media (max-width: 800px) {
     padding: 38px;
-    height: 350px;
+    //height: 350px;
   }
 `
 const BeHero = () => {

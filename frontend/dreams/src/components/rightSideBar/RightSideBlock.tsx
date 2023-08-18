@@ -27,7 +27,7 @@ const TitleContainerRightBlock = styled.span`
   color: #777d74;
 `
 const CardBlock = styled.div`
-  height: 89.5vh;
+  //height: 89.5vh;
   margin-right: 5px;
   padding-bottom: 33px;
   overflow: scroll;
