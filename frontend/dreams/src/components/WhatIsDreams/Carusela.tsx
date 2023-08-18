@@ -28,11 +28,11 @@ const Slider = styled.div`
 `
 const ButtonLeft = styled.div`
   left: 0;
-  top: 40%;
+  top: 30%;
 `
 const ButtonRight = styled.div`
   right: 0;
-  top: 40%;
+  top: 30%;
 `
 
 const Img2 = styled.img`

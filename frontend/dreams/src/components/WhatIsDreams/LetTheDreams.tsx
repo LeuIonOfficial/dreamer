@@ -16,7 +16,7 @@ const LetDreamsContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 830px;
+  //height: 830px;
   padding: 64px;
   font-family: 'Space Grotesk', sans-serif;
   box-sizing: border-box;
@@ -60,8 +60,9 @@ const CaruselaContainer = styled.div`
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 70%;
+  //height: 70%;
   width: 625px;
+  margin-top: 35px;
 
 
   @media screen and (max-width: 800px) {
@@ -93,7 +94,7 @@ const Button = styled.button`
   
 
   @media screen and (max-width: 800px) {
-    height: 48px;
+    height: 43px;
     width: 90%;
     position: relative;
     top: unset;

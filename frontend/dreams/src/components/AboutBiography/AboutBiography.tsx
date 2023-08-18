@@ -44,7 +44,6 @@ const AboutBiographyEdit = () => {
         setEmail(inputValue);
         validateEmail(inputValue);
         setMessage(event.target.value);
-        // console.log('Email:', event.target.value);
     };
     const validateEmail = (input) => {
         const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,8 +52,8 @@ const AboutBiographyEdit = () => {
     const handleChangeGender = (event) => {
         const inputValue = event.target.value;
         setSelectedGender(inputValue);
-        // console.log('Gender:', inputValue);
-    }
+    };
+
 
 
     const handleSubmit = async (event) => {
@@ -132,7 +131,6 @@ const AboutBiographyEdit = () => {
         setFirstName(inputValue);
         validateFirstName(inputValue);
         setMessage(event.target.value);
-        // console.log('First name:', event.target.value);
     };
     const validateFirstName = (input) => {
         const pattern = /^[a-zA-Z]{2,20}$/;
@@ -142,14 +140,13 @@ const AboutBiographyEdit = () => {
     const handleChangeBirthDate = (event) => {
         const inputValue = event.target.value;
         setSelectedBirthDate(inputValue);
-        // console.log('Birth Date:', inputValue);
     };
+
     const handleLastNameChange = (event) => {
         const inputValue = event.target.value;
         setLastName(inputValue);
         validateLastName(inputValue);
         setMessage(event.target.value);
-        // console.log('Last name:', event.target.value);
     };
     const validateLastName = (input) => {
         const pattern = /^[a-zA-Z]{2,20}$/;
@@ -161,7 +158,6 @@ const AboutBiographyEdit = () => {
         setPhoneNumber(inputValue);
         validatePhoneNumber(inputValue);
         setMessage(event.target.value);
-        // console.log('Phone number:', event.target.value);
     };
     const validatePhoneNumber = (input) => {
         const pattern = /^\+[0-9]{7,15}$/;
@@ -222,7 +218,7 @@ const AboutBiographyEdit = () => {
 
                             <InputName>
                                 <FirstPartBiography>Birth Date*</FirstPartBiography>
-                                <FirstPartInput type="date" name='Birth' disabled={!isEditing} onChange={handleChangeBirthDate}/>
+                                <FirstPartInput type="date" name='selectedBirthDate' value={selectedBirthDate} disabled={!isEditing} onChange={handleChangeBirthDate}/>
                             </InputName>
 
                             <InputName>
@@ -270,7 +266,7 @@ const AboutBiographyEdit = () => {
 
                             <InputName>
                                 <FirstPartBiography>Gender*</FirstPartBiography>
-                                <SelectGender name="gender" disabled={!isEditing} onChange={handleChangeGender}>
+                                <SelectGender name="gender" disabled={!isEditing} value={selectedGender} onChange={handleChangeGender}>
                                     <option value="">Selected Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>

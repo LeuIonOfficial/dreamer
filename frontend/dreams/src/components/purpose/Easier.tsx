@@ -6,7 +6,7 @@ import {useMediaQuery} from "react-responsive";
 
 const ContainerEasier = styled.div`
   background-image: url(${Background});
-  height: 775px;
+  //height: 775px;  
   padding: 82px 160px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -46,6 +46,7 @@ const SectionEasier = styled.div`
   align-items: center;
   width: 100%;
   flex-direction: row;
+  margin-top: 80px;
 
   @media screen and (max-width: 1000px) {
     margin-top: 20px;
@@ -110,7 +111,6 @@ const TextContentEasier = styled.p`
   line-height: 1;
   margin-left: 20px;
   width: 100%;
-  font-weight: 700;
 
   @media screen and (max-width: 1200px) {
     font-size: 19px;
@@ -127,6 +127,7 @@ const ButtonEasier = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
   
   &:hover{
     font-weight: 700;
@@ -134,7 +135,7 @@ const ButtonEasier = styled.button`
   }
 
   @media screen and (max-width: 1000px) {
-    height: 48px;
+    height: 43px;
     width: 100%;
   }
 `;

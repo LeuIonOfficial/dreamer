@@ -7,14 +7,15 @@ import image from './../../assets/images/11.png'
 // @ts-ignore
 import image2 from './../../assets/images/12.png'
 import {useMediaQuery} from "react-responsive";
+import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const ContainerDreamerz = styled.div`
   background-image: url(${image});
-  height: 800px;
+  //height: 800px;
   background-size: cover;
   padding: 116px;
   display: flex;
-  justify-content: space-between;
+  //justify-content: space-between;
   font-family: "Space Grotesk", sans-serif;
 
   @media screen and (max-width: 800px) {
@@ -62,31 +63,34 @@ const TextAndButon = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
-  height: 100%;
+  //height: 100%;
 
 `
 
-const Buton = styled.div`
-  background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
-  border-radius: 43px;
-  height: 72px;
-  width: 350px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover{
-    font-weight: 700;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 800px) {
-    height: 65px;
-    width: 100%;
-  }
-
-`;
+// const Buton = styled.div`
+//   background: linear-gradient(297.06deg , #f8ed84 23.88% , #f5e0ff 66.2% , #84fad5 109.31%);
+//   border-radius: 43px;
+//   height: 72px;
+//   width: 350px;
+//   cursor: pointer;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   margin-top: 180px;
+//
+//   &:hover{
+//     font-weight: 700;
+//     cursor: pointer;
+//   }
+//
+//   @media screen and (max-width: 800px) {
+//     height: 105px;
+//     width: 100%;
+//     margin-top: 30px;
+//
+//   }
+//
+// `;
 const TextButtonEasier = styled.span`
   color: #262626;
   font-size: 16px;
@@ -112,7 +116,12 @@ const ImageOne = styled.img`
     margin: 0 auto;
   }
 `;
-
+const ButtonDiv = styled.div`
+  @media screen and (min-width: 800px) and (max-width: 1200px){
+    margin-top: 40px;
+    margin-left: 0;
+  }
+`
 
 const WhatIsDreamerz: React.FC = () => {
     const navigate1 = useNavigate();
@@ -142,9 +151,11 @@ const WhatIsDreamerz: React.FC = () => {
                             for your own dream.
                         </Paragraf>
                     </div>
-                    <Buton onClick={redirectionareSignUp1}>
-                        <TextButtonEasier>{`Try now`}</TextButtonEasier>
-                    </Buton>
+                    <ButtonDiv>
+                        <ButtonTryNow onClick={redirectionareSignUp1}>
+                            <TextButtonEasier>{`Try now`}</TextButtonEasier>
+                        </ButtonTryNow>
+                    </ButtonDiv>
                 </TextAndButon>
                 <ImageOneDreamers>
                     <ImageOne
@@ -172,9 +183,11 @@ const WhatIsDreamerz: React.FC = () => {
                         alt="img-one"
                     />
                 </ImageOneDreamers>
-                <Buton onClick={redirectionareSignUp1}>
+                <ButtonDiv>
+                <ButtonTryNow onClick={redirectionareSignUp1}>
                     <TextButtonEasier>{`Try now`}</TextButtonEasier>
-                </Buton>
+                </ButtonTryNow>
+                </ButtonDiv>
             </Mobile>
         </ContainerDreamerz>
     );
