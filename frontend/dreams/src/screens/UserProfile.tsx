@@ -1,27 +1,17 @@
-import {Outlet} from "react-router-dom";
-import Footer from "../components/HeaderFooter/Footer";
 import AboutBiography from "../components/AboutBiography/AboutBiography";
-import ProfilePhoto from "../components/ProfilePhoto/ProfilePhoto";
+import {ProfileHeader} from "../components/ProfileHeader/ProfileHeader";
+import {ComponentSelector} from "../components/ProfileHeader/ComponentSelector";
 import styled from "styled-components";
-
 const Container = styled.div`
-  display: flex;
-
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
+	display: flex;
+	flex-direction: column;
+	margin: 0 304px 0 304px;
+`
 export const UserProfile = () => {
-    return (
-        <>
-            <Outlet/>
-
-            <Container>
-            <ProfilePhoto/>
-            <AboutBiography/>
-            </Container>
-
-            <Footer/>
-        </>
-    )
+	return (
+		<Container>
+			<ProfileHeader/>
+			<ComponentSelector/>
+		</Container>
+	)
 }

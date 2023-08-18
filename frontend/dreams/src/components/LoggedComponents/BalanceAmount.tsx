@@ -1,5 +1,6 @@
 import styled from "styled-components";
-//c
+import React from "react";
+
 const BalanceName = styled.h5`
   margin: 0;
   font-family: Roboto;

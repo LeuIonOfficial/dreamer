@@ -7,6 +7,7 @@ import React from "react";
 import {useState} from "react";
 import FulfillModal from "../Fulfill/FulfillModal";
 import {useNavigate} from "react-router-dom";
+import {PiUserFill} from "react-icons/pi";
 
 
 const CardRightSideBar = styled.div`
@@ -44,6 +45,17 @@ const BlockImg = styled.div`
     vertical-align: middle;
     border-radius: 50%;
   }
+  & svg {
+    object-fit: cover;
+    cursor: pointer;
+    height: 45px;
+    line-height: 45px;
+    width: 45px;
+    vertical-align: middle;
+    border-radius: 50%;
+    color: #777d74;
+    background-color: #f8f9fa;
+  }
 `
 const MyTitle = styled.div`
   width: 75px;
@@ -67,7 +79,7 @@ const MyTitle = styled.div`
 
   & p {
     -webkit-box-orient: vertical;
-    display: -webkit-box;
+    //display: -webkit-box;
     font-style: normal;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -104,7 +116,11 @@ const navigate = useNavigate()
                     <CardContent>
                         <CardUser>
                             <BlockImg onClick={() => navigate("/user-profile")}>
-                                <img src={img} alt="#"/>
+                                {img ? (
+                                    <img src={img} alt="#" />
+                                ) : (
+                                    <PiUserFill/>
+                                )}
                             </BlockImg>
                             <MyTitle>
                                 <h6 onClick={() => navigate("/user-profile")}>{name} {lastname}</h6>

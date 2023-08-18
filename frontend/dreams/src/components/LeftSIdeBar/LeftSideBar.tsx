@@ -1,21 +1,27 @@
 import styled from 'styled-components'
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {match} from "@headlessui/react/dist/utils/match";
-``
+import {PopUpDonation} from "./PopUpDonation";
+import axios from "axios";
+import {ProgresBar} from "../../services/ProgresBar";
+import {DonationList} from "./DonationList";
+
 
 const MainConatiner = styled.div`
   box-sizing: border-box;
   padding: 0;
   margin-top: 10px;
   font-family: Space Grotesk, serif;
+  //width: 50%;
 `
 const ProfileConatiner = styled.div`
   left: 0;
   position: sticky;
-  top: 73px;
+  //top: 73px;
+  //min-width: 320px;
   @media only screen and (width <= 995px ) {
-    position: static;
+    position: relative;
+    max-width: 100%;
   }
 
 `
@@ -70,7 +76,9 @@ const TextContent = styled.div`
 const H6 = styled.h6`
   cursor: pointer;
   color: rgb(33, 37, 41);
-  font-size: 0.875rem
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 5px;
 `
 const ParagrafConatiner = styled.div`
   text-align: center;
@@ -123,7 +131,7 @@ const Bar = styled.div`
 const RecivedDonation = styled.div`
   font-size: 12px;
   color: rgb(33, 37, 41);
-  margin: 5px 10px 15px 10px;
+  margin: 5px 10px 25px 10px;
   padding-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -132,7 +140,7 @@ const WingsDonationSection = styled.div`
   color: rgb(33, 37, 41);
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content:center;
   padding: 0 5px 0 10px;
 
   & span {
@@ -158,7 +166,6 @@ const WingsDonationSection = styled.div`
   }
 
 `
-
 const ButtonComponents = styled.div`
   margin-bottom: 10px;
   margin-top: 30px;
@@ -183,7 +190,9 @@ const ButtonComponents = styled.div`
 `
 const ButtonMobile = styled.div`
   align-items: center;
-
+  background: ${color => color.$backColor ? "linear-gradient(320deg,#f8ed84 23.88%,#f5e0ff 66.2%,#84fad5 109.31%) " : "linear-gradient(#fff, #fff), linear-gradient(160deg, #84fad5 20%, #ebbfff 37%, #f6ec85 53%)"};
+  background-clip: content-box, border-box;
+  font-weight: ${(props) => (props.$font ? 700 : 400)};
   background-origin: border-box;
   border: 1px double transparent;
   border-radius: 10px;
@@ -197,40 +206,91 @@ const ButtonMobile = styled.div`
   @media only screen and (width < 350px ) {
     width: 95%;
     margin: 2px;
-
   }
-
-
 `
+const PopUpContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const ButtonCreateDream = styled.div`
+  width: 90%;
+  align-items: center;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
+  border-radius: 60px;
+  & span{
+    text-align: center;
+  }
+  @media(width < 1194px){
+    & span{
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+`
+const DivBoxCreateDream = styled.div`
+  height: 65px;
+`
+const BoxCreateDreamBt = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+`
+const LineHr = styled.hr`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  opacity: 0.25;
+  border-top: 1px solid;
+  border-top: 1px solid;
+  opacity: 0.25;
+`
+const FullfiledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 
-const LeftSideBar = (props) => {
+  & h6 {
+    font-size: 0.875rem;
+  }
+`
+const Donation = styled.div`
+  @media (width < 820px) {
+    display: none;
+  }
+`
+const LeftSideBar = ({handleShowCard, hideShowCard, hideShowDoantion, handleShowDoantion, donation2}) => {
     const navigate = useNavigate();
-    //bt1
+    const [user, setUser] = useState([]);
+    const [doantion, setDoantion] = useState([]);
     const [isFontActive, setIsFontActive] = useState(false)
     const [isBackColorActive, setIsBackColorActive] = useState(false)
-    //bt2
-    const [isFontActive1, setIsFontActive1] = useState(false)
-    const [isBackColorActive1, setIsBackColorActive1] = useState(false)
-    //
+    const [isFontActive1, setIsFontActive1] = useState(true)
+    const [isBackColorActive1, setIsBackColorActive1] = useState(true)
     const [isFontActive2, setIsFontActive2] = useState(false)
     const [isBackColorActive2, setIsBackColorActive2] = useState(false)
-    //profile pic
-    const [profilePictureUrl, setProfilePictureUrl] = useState("");
-    // useEffect(() => {
-    //     // Make an API call to fetch the profile picture URL
-    //     // Update the state variable with the received URL
-    //     // Example:
-    //     fetchProfilePicture()
-    //         .then((response) => {
-    //             setProfilePictureUrl(response.data.url);
-    //         })
-    //         .catch((error) => {
-    //             console.log("Error fetching profile picture:", error);
-    //         });
-    // }, []);
-
-    const [received, setRecived] = useState(45); // Replace with your received value
+    const [received, setRecived] = useState(31); // Replace with your received value
     const [fulfilled, setFulfilled] = useState(40);
+    const [modalOpen, setModalOpen] = useState(false);
+    const token = localStorage.getItem('token')
+
+
+    const resetButtons = () => {
+        setIsFontActive(false);
+        setIsBackColorActive(false);
+        setIsFontActive1(false);
+        setIsBackColorActive1(false);
+        setIsFontActive2(false);
+        setIsBackColorActive2(false);
+    }
+    const toggleModal = () => {
+        setModalOpen(!modalOpen);
+    };
     const handleReceivedChange = (newValue) => {
         if (newValue <= fulfilled) {
             setRecived(newValue);
@@ -246,6 +306,24 @@ const LeftSideBar = (props) => {
             return Math.round((received / fulfilled) * 100)
         }
     };
+    const fetchData = async () => {
+        const token = localStorage.getItem('token');
+
+        try {
+            const response = await axios.get('http://localhost:3000/about', {
+                headers: {
+                    "Authorization": `${token}`
+                }
+            });
+            const responsedata = response.data
+            console.log(responsedata);
+        } catch (error){
+            console.log('Error fetch data:', error);
+        }
+    };
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <MainConatiner>
@@ -256,73 +334,99 @@ const LeftSideBar = (props) => {
                         <ProfileImageContainer>
                             <ProfileImage>
                                 <Image src="./../../../../src/assets/wing/bdf2ff7d7efad75f528b71565ad82efb.jpg"
-                                       onClick={() => navigate('')}></Image>
+                                       onClick={() => navigate('/user-profile')}></Image>
                             </ProfileImage>
 
                         </ProfileImageContainer>
                     </ProfileImgSection>
                     {/*Text part of component*/}
                     <TextContent>
-                        <H6 onClick={() => navigate('')}>
-                            Robert St.
-                        </H6>
+                        {user && user.length > 0 && (
+                            <H6 onClick={() => navigate('/user-profile')}>
+                                {user[0].name}</H6>
+                        )}
                         <ParagrafConatiner>
-                            <Paragraf>
-                                I would love to have a new HUBLOT watches !
-                            </Paragraf>
+                            {user && user.length > 0 && (
+                                <Paragraf>
+                                    {user[0].email}
+                                </Paragraf>
+                            )}
                         </ParagrafConatiner>
                     </TextContent>
-                    {/*Scope*/}
-                    <div>
-                        <Scope>
-                            <ScopeSpan>Scope</ScopeSpan>
-                            <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
+                    {user && user.length > 0 ? (
+                        <div>
+                            <Scope>
+                                <ScopeSpan>Scope</ScopeSpan>
+                                <ScopeProcentage>{procentageVerifiction()}%</ScopeProcentage>
+                            </Scope>
+                            <ProgresBar progress={progress} onClick={toggleModal}/>
+                            <RecivedDonation>
+                                <span>Recived : {received}</span>
+                                <span>Fulfilled : {fulfilled}</span>
+                            </RecivedDonation>
+                        </div>) : (
+                        <div>
+                            <BoxCreateDreamBt>
+                                <ButtonCreateDream onClick={() => navigate('/user-profile/create-dream')}>
+                            <span>
+                                Create your dream !
+                            </span>
 
-                        </Scope>
-                        {/*ProgresBar*/}
-                        <ProgressBar>
-                            <Bar progress={progress}></Bar>
-                        </ProgressBar>
+                                </ButtonCreateDream>
+                            </BoxCreateDreamBt>
+                            <DivBoxCreateDream>
+                                <LineHr/>
+                                <FullfiledDiv>
+                                    <h6>Fulfilled</h6>
+                                </FullfiledDiv>
 
-                        <RecivedDonation>
-                            <span>Recived : {received}</span>
-                            <span>Fulfilled : {fulfilled}</span>
-                        </RecivedDonation>
-
-
-                    </div>
-
+                            </DivBoxCreateDream>
+                        </div>
+                    )}
                 </ContainerElements>
-                {/*Button Components*/}
+                        {/*Button Components*/}
                 <ButtonComponents>
                     <ButtonMobile $font={isFontActive} $backColor={isBackColorActive} onClick={() => {
+                        resetButtons();
                         setIsFontActive(!isFontActive);
                         setIsBackColorActive(!isBackColorActive);
+                        hideShowCard();
+                        handleShowDoantion();
                     }}>Wing donations</ButtonMobile>
                     <ButtonMobile $font={isFontActive1} $backColor={isBackColorActive1} onClick={() => {
+                        resetButtons();
                         setIsFontActive1(!isFontActive1);
                         setIsBackColorActive1(!isBackColorActive1);
-                        navigate('')
+                        navigate('');
+                        hideShowCard();
+                        hideShowDoantion();
                     }}>Dreams</ButtonMobile>
                     <ButtonMobile $font={isFontActive2} $backColor={isBackColorActive2} onClick={() => {
+                        resetButtons();
                         setIsFontActive2(!isFontActive2);
                         setIsBackColorActive2(!isBackColorActive2);
+                        handleShowCard(true);
+                        hideShowDoantion();
                     }}>Last fulfilled</ButtonMobile>
 
                 </ButtonComponents>
 
                 {/*WingsDonation Componenet*/}
-                <WingsDonationSection>
-                    <span>Wings Donation</span>
-                    <p>
-                        <u onClick={() => navigate('')}>See All</u>
-                    </p>
+                <div>
+                    <WingsDonationSection>
+                        <span>Wings Donation</span>
+                    </WingsDonationSection>
 
-
-                </WingsDonationSection>
+                </div>
+                <Donation>
+                    <DonationList visiblePop={donation2}/>
+                </Donation>
             </ProfileConatiner>
-
+            {
+                modalOpen && <PopUpDonation closeModal={toggleModal}/>
+            }
         </MainConatiner>
+
 
     )
 }

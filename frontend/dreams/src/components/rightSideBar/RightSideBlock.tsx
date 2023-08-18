@@ -3,14 +3,13 @@ import styled from "styled-components";
 import axios from "axios";
 // @ts-ignore
 import React, {useEffect, useState} from "react";
-import Button from "../Authorization/Button";
 import FulfillModal from "../Fulfill/FulfillModal";
 
 
 const ContainerRightSideBlock = styled.div`
-  position: fixed;
+  //position: fixed;
   right: 0;
-  width: 310px;
+  min-width: 280px;
 
   & * {
     font-family: 'Space Grotesk', sans-serif;
@@ -29,25 +28,29 @@ const TitleContainerRightBlock = styled.span`
 `
 const CardBlock = styled.div`
   height: 89.5vh;
-  margin-right: 2px;
+  margin-right: 5px;
   padding-bottom: 33px;
   overflow: scroll;
-  &::-webkit-scrollbar{
+
+  &::-webkit-scrollbar {
     border-radius: 20px;
     height: 0.5rem;
     width: 0.2rem;
   }
-  &::-webkit-scrollbar-thumb{
+
+  &::-webkit-scrollbar-thumb {
     background: #b9b9b9;
     border-radius: 20px;
   }
-  &::-webkit-scrollbar-track{
+
+  &::-webkit-scrollbar-track {
     border-radius: 20px;
   }
-@media(max-width: 768px){
-  width: 250px;
-}
-  @media(max-width: 570px){
+
+  @media (max-width: 768px) {
+    //width: 250px;
+  }
+  @media (max-width: 570px) {
     width: 100%;
   }
 `
@@ -57,22 +60,26 @@ const MobileRightSideBlock = styled.div`
   @media only screen and (width > 768px ) {
     display: none;
   }
+
   & * {
     font-family: 'Space Grotesk', sans-serif;
   }
 
 `
-const RightSideBlock = () => {
+const BlockContainer = styled.div`
+
+`
+const RightSideBlock = ({showCard}) => {
 
     const [data, setData] = useState([])
     const [modal, setModal] = React.useState(false);
 
     useEffect(() => {
-        axios.get('https://fakestoreapi.com/products').then((response) => {
+        axios.get('http://localhost:3000/usersAll').then((response) => {
             return setData(response.data)
         })
     }, [])
-
+    console.log(data);
     // const object = {
     //     key: () => {openModal}
     // }
@@ -100,27 +107,27 @@ const RightSideBlock = () => {
                     <TitleContainerRightBlock>Last fulfilled</TitleContainerRightBlock>
                 </TitleBlock>
                 <CardBlock>
-                    {data.map(({id, title, description, image}) => {
+                    {data.map(({id, firstName, lastName, image, email}) => {
                         return (
-                            <RightSideBar key={id} img={image} name={title} lastname={""}
-                                          dream={description} openModal={openModal}></RightSideBar>)
+                            <RightSideBar key={id} img={image} name={firstName} lastname={lastName}
+                                          dream={email} openModal={openModal}></RightSideBar>)
                     })}
                 </CardBlock>
             </ContainerRightSideBlock>
 
             <MobileRightSideBlock>
-                <Button onClick={() => setCard(true)}>Last fulfilled</Button>
-                {card && (<CardBlock>
-                    {data.map(({id, title, description, image}) => {
+                {/*<Button onClick={() => setCard(true)}>Last fulfilled</Button>*/}
+                {showCard && (<CardBlock>
+                    {data.map(({id, firstName, lastName, image, email}) => {
                         return (
-                            <RightSideBar key={id} img={image} name={title} lastname={""}
-                                          dream={description} openModal={openModal}></RightSideBar>)
+                            <RightSideBar key={id} img={image} name={firstName} lastname={lastName}
+                                          dream={email} openModal={openModal}></RightSideBar>)
                     })}
                 </CardBlock>)}
             </MobileRightSideBlock>
-<div>
-    {modal && <FulfillModal closeModal={closeModal}/>}
-</div>
+            <div>
+                {modal && <FulfillModal closeModal={closeModal}/>}
+            </div>
         </div>
     )
 }

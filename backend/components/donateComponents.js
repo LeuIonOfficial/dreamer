@@ -9,8 +9,8 @@ exports.subscribe = async (req,res) =>{
         if (!user) {
             return res.status(404).json({ "message": "Nu a fost gasit asa gen de user" });
         }
-        const newFulfill = user.fulfill + req.body.fulfill
-        await User.updateOne({ creator: id },{fulfill:newFulfill})
+        const newFulfill = user.fulfill + req.body.nrDreams
+        await User.updateOne({ _id: id },{fulfill:newFulfill})
         res.json({
             message: "succes",
             user_id: user._id,

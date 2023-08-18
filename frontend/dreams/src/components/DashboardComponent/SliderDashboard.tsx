@@ -4,11 +4,13 @@ import styled from "styled-components";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ButtonArrowRight from "../../assets/media/button_arrow_right.svg";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import coverImg from "../../assets/media/coverImg.png";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import ButtonArrowLeft from "../../assets/media/button_arrow_left.svg";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import React from "react";
 
@@ -70,17 +72,16 @@ const responsive = {
     }
 };
 const sliderImageSrc = [
-    {src: "https://dev.dreamerz.net/dreams-platform-bucket/24813cbb1502097d46ea4eabf197f0f1.jpg"},
-    {src: "https://dev.dreamerz.net/dreams-platform-bucket/b04a64e6282b6de0617a9ab279688a9c.jpg"},
+    { src: {coverImg} },
 ];
-const ButtonGroup = ({ next, previous }: any) => {
+const ButtonGroup = ( { next, previous }: any ) => {
     return (
         <div className="cursor-pointer opacity-0 hover:opacity-100">
             <ButtonLeft className="absolute" onClick={() => previous()}>
-                <Img2 src={ButtonArrowLeft} alt="Your SVG" />
+                <Img2 src={ButtonArrowLeft} alt="Your SVG"/>
             </ButtonLeft>
             <ButtonRight className="absolute" onClick={() => next()}>
-                <Img2 src={ButtonArrowRight} alt="Your SVG" />
+                <Img2 src={ButtonArrowRight} alt="Your SVG"/>
             </ButtonRight>
         </div>
     );
@@ -92,12 +93,12 @@ const SliderDashboard = (props) => {
                 arrows={false}
                 responsive={responsive}
                 infinite={true}
-                customButtonGroup={<ButtonGroup/>}
+                customButtonGroup={<ButtonGroup />}
             >
                 {sliderImageSrc.map((image, index) => {
                     return (
                         <SliderThoughts key={index}>
-                            <ProfileImage src={props.imagine} alt="card" />
+                            <ProfileImage src={props.image} alt="card" />
                         </SliderThoughts>
                     );
                 })

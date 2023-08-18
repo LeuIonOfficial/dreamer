@@ -1,13 +1,12 @@
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
+import ButtonTryNow from "../ButtonTryNow/ButtonTryNow";
 
 const GlobalDiv = styled.div`
   box-sizing: border-box;
   font-family: 'Space Grotesk';
 `
 const ContainerDiv = styled.div`
-  height: 710px;
-  min-height: 710px;
   background-image: url("./../../../../src/assets/wing/Background5.67805aabb7dd9a06b946.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -47,12 +46,15 @@ const TextHolderConatiner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  & p{
+
+  & p {
     font-size: 24px;
     color: whitesmoke;
     font-weight: 700;
     line-height: 31px;
     width: 75%;
+    margin-top: 10%;
+    margin-bottom: 10%;
     @media only screen and (width <= 800px ) {
       font-size: 20px;
 
@@ -78,10 +80,7 @@ const TitleHolderbox = styled.div`
     @media only screen and (width <= 1098px ) {
       font-size: 48px;
       line-height: 54px;
-
-
     }
-
   }
 
 `
@@ -103,7 +102,7 @@ const ImagePeople = styled.img`
   width: 165px;
   vertical-align: middle;
 `
-const ImageSocialMedia  = styled.img`
+const ImageSocialMedia = styled.img`
   width: 550px;
   height: 550px;
   @media only screen and (width <= 1098px ) {
@@ -117,17 +116,16 @@ const ImageSocialMedia  = styled.img`
 
 `
 const GlobalDivM = styled.div`
-  height: 780px;
-  min-height: 780px;
+
   background: url("./../../../../src/assets/wing/SecyrelyDonation.ea03cf5a48683e3490c2.png");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
   padding: 10px;
-  @media only screen and (width > 601px ){
+  @media only screen and (width > 601px ) {
     display: none;
   }
 `
@@ -136,6 +134,7 @@ const TopTitleContainerM = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 5%;
 `
 const CircleM = styled.img`
   width: 64px;
@@ -144,12 +143,14 @@ const CircleM = styled.img`
 `
 const TitleContainerM = styled.div`
   display: flex;
-  & img{
+
+  & img {
     vertical-align: middle;
     margin-right: 10px;
 
   }
-  & h3{
+
+  & h3 {
     margin-right: 10px;
     color: #fff;
     font-size: 24px;
@@ -165,20 +166,22 @@ const MobileParagraf = styled.p`
   font-size: 16px;
   line-height: 21px;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10%;
+  margin-top: 10%;
   text-align: center;
 `
 const ImageContainerM = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  & img{
+
+  & img {
     vertical-align: middle;
     width: 100%;
     height: 100%;
   }
 `
-const ButtonMobile =styled.div`
+const ButtonMobile = styled.div`
   background: linear-gradient(297.06deg, #f8ed84 23.88%, #f5e0ff 66.2%, #84fad5 109.31%);
   border-radius: 43px;
   height: 48px;
@@ -201,35 +204,39 @@ const SecurelyDonation = () => {
 
     return (
         <GlobalDiv>
-            <ContainerDiv >
-                <ConatinerText >
-                    <ContainerTextComponents >
-                        <DonationPeopleImg >
+            <ContainerDiv>
+                <ConatinerText>
+                    <ContainerTextComponents>
+                        <DonationPeopleImg>
                             <TextHolderConatiner>
                                 <TitleHolderbox>
-                                    <ImageSecqure src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg"
-                                                  alt="screen"/>
+                                    <ImageSecqure
+                                        src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg"
+                                        alt="screen"/>
                                     <h3>Securely Donation</h3>
                                 </TitleHolderbox>
-                                <p >
+                                <p>
                                     All the donations will be saved in your Profile History Fulfilled – Peoples Dreams
                                     that
                                     you have donated to Received – Donations that you have received from People
                                 </p>
                             </TextHolderConatiner>
-                            <ImagePeople src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg" alt=""/>
+                            <ImagePeople src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg"
+                                         alt=""/>
                         </DonationPeopleImg>
                     </ContainerTextComponents>
                 </ConatinerText>
-                <ImageSocialMedia src="./../../../../src/assets/wing/screen.80f182283b766496e40e.png" alt="screen" />
+                <ImageSocialMedia src="./../../../../src/assets/wing/screen.80f182283b766496e40e.png" alt="screen"/>
             </ContainerDiv>
 
-            <GlobalDivM >
+            <GlobalDivM>
                 <TopTitleContainerM>
-                    <CircleM src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg" alt="people" />
+                    <CircleM src="./../../../../src/assets/wing/People.372031c702e82c76a061105c055b7f4e.svg"
+                             alt="people"/>
                     <TitleContainerM>
-                        <img src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg" alt="security"/>
-                        <h3 >Securely Donation</h3>
+                        <img src="./../../../../src/assets/wing/secyrely.7d02b37f3a5dfe54a9285f490e74411e.svg"
+                             alt="security"/>
+                        <h3>Securely Donation</h3>
                     </TitleContainerM>
                 </TopTitleContainerM>
                 <MobileParagraf>
@@ -239,13 +246,13 @@ const SecurelyDonation = () => {
                     <br/>
                     Received – Donations that you have received from People
                 </MobileParagraf>
-                <ImageContainerM >
-                    <img src="./../../../../src/assets/wing/screen.80f182283b766496e40e.png" alt="screen" />
+                <ImageContainerM>
+                    <img src="./../../../../src/assets/wing/screen.80f182283b766496e40e.png" alt="screen"/>
                 </ImageContainerM>
-                <ButtonMobile onClick={() => navigate('login')} >
+                {/* <ButtonMobile onClick={() => navigate('login')} >
                     <span>Try Now!</span>
-                </ButtonMobile>
-
+                </ButtonMobile>*/}
+                <ButtonTryNow/>
             </GlobalDivM>
         </GlobalDiv>
 

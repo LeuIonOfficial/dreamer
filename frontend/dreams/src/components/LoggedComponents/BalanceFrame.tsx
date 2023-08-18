@@ -1,5 +1,6 @@
 import styled from "styled-components";
-//c
+import React from "react";
+
 const Frame = styled.div`
   background: linear-gradient(#fff,#fff) padding-box,linear-gradient(150deg,#84fad5 7.35%,#ebbfff 49.61%,#f6ec85 92.65%) border-box;
   border: 2px solid transparent;
