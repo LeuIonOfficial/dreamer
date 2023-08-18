@@ -7,7 +7,7 @@ const HLogin = styled.div`
   top: 0;
   justify-content: space-between;
   align-items: center;
-  margin: 0px;
+  margin: 0;
   background-color: white;
   height: 63px;
   max-width: 100%;
@@ -16,7 +16,7 @@ const HLogin = styled.div`
   border-image-width: 100%;
   border-image: linear-gradient(114.93deg, #84fad5 1.02%, #ebbfff 44.33%, #f6ec85 76.07%);
   border-image-slice: 1;
-  z-index: 1000;`
+  z-index: 3;`
 
 const HeaderLogin = (props) => {
     return (

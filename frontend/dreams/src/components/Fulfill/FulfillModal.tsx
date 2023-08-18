@@ -11,16 +11,14 @@ import {ToastContainer} from "react-toastify";
 
 
 const ModalOpasti = styled.div`
-  --bs-backdrop-zindex: 1040;
-  --bs-backdrop-bg: #000;
-  --bs-backdrop-opacity: 0.5;
+ 
   background-color: rgba(0, 0, 0, 0.4);
   height: 100vh;
   left: 0;
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 2000;
+  z-index: 2;
 `
 const ModalFulfill = styled.div`
   position: absolute;
@@ -31,7 +29,7 @@ const ModalFulfill = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  z-index: 2001;
+  z-index: 3;
   @media (max-width: 425px) {
     //height: fit-content;
     height: auto;
@@ -160,13 +158,13 @@ const FulfillModal = ({closeModal}) => {
         event.preventDefault()
         console.log(packages[i])
         try {
-            axios.post('http://localhost:3000/recover', JSON.stringify(packages[i]),
+            axios.post('http://localhost:3000/post', JSON.stringify(packages[i]),
                 {headers: {
                         "Content-Type": 'application/json',
                         "Authorization": token
                 }})
                 .then(response => {
-                    successNotify(`${packages[i].nrDreams} dreams`)
+                    successNotify(`Your account has been topped up with ${packages[i].nrDreams} dreams`)
                     console.log(response.data);
 
                 })
